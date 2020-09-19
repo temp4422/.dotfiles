@@ -15,4 +15,4 @@ New-Item -Path "C:\Users\user\AppData\Roaming\Notepad++\config.xml" -ItemType Sy
 
 ## Misc
 Shutdown shortcut (Target: "C:\Windows\System32\shutdown.exe -s -t 600")
-AutoKey for linux
+AutoKey for linux  
