@@ -25,9 +25,9 @@
     // To learn more about profiles, visit https://aka.ms/terminal-profile-settings
 
     // My custom settings.
-    "initialCols": 92,
-    "initialRows": 23,
-    "initialPosition": "949,0",
+    "initialCols": 93,
+    "initialRows": 22,
+    "initialPosition": "939, 0",
     
 
     "profiles":

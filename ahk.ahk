@@ -242,7 +242,7 @@ BS := new BrightnessSetter()
 
 
 
-;JKL;+Ctrl,Shift,Alt
+;JKL;+Ctrl,Shift,Alt,Win
 MoveCursor(key) {
 	control := GetKeyState("CONTROL","P")
 	shift := GetKeyState("SHIFT","P")
