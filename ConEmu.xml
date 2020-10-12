@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2020-09-28 11:13:16" build="200713">
+		<key name=".Vanilla" modified="2020-09-29 12:11:57" build="200713">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -242,7 +242,7 @@
 			<value name="Cascaded" type="hex" data="00"/>
 			<value name="IntegralSize" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="0000051f"/>
-			<value name="ConWnd X" type="long" data="954"/>
+			<value name="ConWnd X" type="long" data="943"/>
 			<value name="ConWnd Y" type="long" data="502"/>
 			<value name="LastMonitor" type="string" data="0,0,1920,1030"/>
 			<value name="ConWnd Width" type="dword" data="00000057"/>
@@ -266,7 +266,7 @@
 			<value name="ClipboardFirstLine" type="hex" data="01"/>
 			<value name="ClipboardFirstLinePosix" type="hex" data="00"/>
 			<value name="ClipboardClickPromptPosition" type="hex" data="02"/>
-			<value name="ClipboardDeleteLeftWord" type="hex" data="01"/>
+			<value name="ClipboardDeleteLeftWord" type="hex" data="00"/>
 			<value name="TrueColorerSupport" type="hex" data="01"/>
 			<value name="VividColors" type="hex" data="01"/>
 			<value name="FadeInactive" type="hex" data="01"/>

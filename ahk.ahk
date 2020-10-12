@@ -366,4 +366,12 @@ if WinExist("ahk_exe WindowsTerminal.exe") {
 	WinActivate, ahk_exe WindowsTerminal.exe
 }
 return
-;test again
+
+
+;POWERSHELL FIND CTRL+F
+#IfWinActive, powershell
+^f::Send, Get-Childitem -Recurse –Force -ErrorAction SilentlyContinue -Path D:\ -Include *file* 
+return
+#IfWinActive, Windows PowerShell
+^f::Send, Get-Childitem -Recurse –Force -ErrorAction SilentlyContinue -Path D:\ -Include *file* 
+return
