@@ -375,3 +375,12 @@ return
 #IfWinActive, Windows PowerShell
 ^f::Send, Get-Childitem -Recurse –Force -ErrorAction SilentlyContinue -Path D:\ -Include *file* 
 return
+
+
+;TERMINAL CTRL+BACKSPACE
+#if WinActive("ahk_class VirtualConsoleClass","","powershell")
+^BS::Send, {Alt Down}{BackSpace}{Alt Up}
+Return
+#if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell")
+^BS::Send, {Alt Down}{BackSpace}{Alt Up}
+Return
