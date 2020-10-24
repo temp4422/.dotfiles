@@ -320,11 +320,15 @@ if WinExist("ahk_class CabinetWClass") {
 	WinActivate, ahk_class CabinetWClass
 } else {
 	Run, explorer.exe
+	WinWait, ahk_class CabinetWClass
+	WinMove, ahk_class CabinetWClass,,-8,0,976,1038
 }
 return
-+#e::Run explorer.exe
-
++#e::
+	Run, explorer.exe
+return
 	
+
 ;CONEMU
 #Enter::
 if WinExist("ahk_class VirtualConsoleClass") {
@@ -380,7 +384,7 @@ return
 ;TERMINAL CTRL+BACKSPACE
 #if WinActive("ahk_class VirtualConsoleClass","","powershell")
 ^BS::Send, {Alt Down}{BackSpace}{Alt Up}
-Return
+return
 #if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell")
 ^BS::Send, {Alt Down}{BackSpace}{Alt Up}
-Return
+return
