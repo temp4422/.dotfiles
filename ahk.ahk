@@ -388,3 +388,9 @@ return
 #if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell")
 ^BS::Send, {Alt Down}{BackSpace}{Alt Up}
 return
+
+
+;Focus Google earch box
+#if WinActive("ahk_exe chrome.exe","","Google Search")
+^/::MouseClick, Left, 890, 150, 1, 0.1
+return
