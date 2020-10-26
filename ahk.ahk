@@ -327,7 +327,7 @@ return
 +#e::
 	Run, explorer.exe
 return
-	
+
 
 ;ConEmu
 #`::
@@ -337,7 +337,8 @@ if WinActive("ahk_class VirtualConsoleClass") {
 } else if WinExist("ahk_class VirtualConsoleClass") {
 	WinActivate, ahk_class VirtualConsoleClass
 } else {
-	Run, C:\Users\user\ConEmuPack.200713\ConEmu64.exe -Dir C:\Users\user
+	;Run, C:\Users\user\ConEmuPack.200713\ConEmu64.exe -Dir C:\Users\user
+	Run, C:\Program Files\ConEmu\ConEmu64.exe -Dir C:\Users\user
 	Sleep, 500
 	WinActivate, ahk_class VirtualConsoleClass
 }
@@ -378,4 +379,14 @@ return
 ;Focus Google earch box
 #if WinActive("ahk_exe chrome.exe","","Google Search")
 ^/::MouseClick, Left, 890, 150, 1, 0.1
+return
+
+
+
+Loop
+{
+	WinWait, ahk_class CabinetWClass
+	WinMove, A,,-8,0,976,1038
+	WinWaitClose
+}
 return
