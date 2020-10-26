@@ -283,16 +283,16 @@ SC163 & /::MoveCursor("{END}")
 SC163 & BS::MoveCursor("{DEL}")
 
 
-;VOLUME
+;Volume
 #F1::Volume_Down
 #F2::Volume_Up
 
 
-;WIN+TAB to ALT+TAB
+;Win+Tab to Alt+Tab
 LWin & Tab::AltTab
 
 
-;MAXIMIZE ACTIVE WINDOW
+;Maximize active window
 #f::
 WinGet MX, MinMax, A
    If MX
@@ -301,7 +301,7 @@ WinGet MX, MinMax, A
 return
 
 
-;MINIMIZE ACTIVE WINDOW WIN+ESC
+;Minimize active window Win+Esc
 #Escape::
 WinGet MX, MinMax, A
    If MX
@@ -310,11 +310,11 @@ WinGet MX, MinMax, A
 return
 
 
-;CLOSE ACTIVE WINDOW SHIFT+WIN+ESC(ALT+F4)
+;Close active window Shift+Win+Esc(Alt+F4)
 +#Escape::Send {Alt down}{F4}{Alt up}
 
 
-;EXPLORER
+;File Explorer
 #e::
 if WinExist("ahk_class CabinetWClass") {
 	WinActivate, ahk_class CabinetWClass
@@ -329,30 +329,12 @@ return
 return
 	
 
-;CONEMU
-#Enter::
-if WinExist("ahk_class VirtualConsoleClass") {
-	WinActivate, ahk_class VirtualConsoleClass
-} else {
-	Run, C:\Users\user\ConEmuPack.200713\ConEmu64.exe -Dir C:\Users\user
-	Sleep, 500
-	WinActivate, ahk_class VirtualConsoleClass
-}
-return
-;WINDOWS TERMINAL
-+#Enter::
-if WinExist("ahk_exe WindowsTerminal.exe") {
-	WinActivate, ahk_exe WindowsTerminal.exe
-} else {
-	Run, wt.exe
-	Sleep, 500
-	WinActivate, ahk_exe WindowsTerminal.exe
-}
-return
-
-;CONEMU
+;ConEmu
 #`::
-if WinExist("ahk_class VirtualConsoleClass") {
+#Enter::
+if WinActive("ahk_class VirtualConsoleClass") {
+	WinMinimize A	
+} else if WinExist("ahk_class VirtualConsoleClass") {
 	WinActivate, ahk_class VirtualConsoleClass
 } else {
 	Run, C:\Users\user\ConEmuPack.200713\ConEmu64.exe -Dir C:\Users\user
@@ -360,9 +342,12 @@ if WinExist("ahk_class VirtualConsoleClass") {
 	WinActivate, ahk_class VirtualConsoleClass
 }
 return
-;WINDOWS TERMINAL
+;Windows Terminal
 +#`::
-if WinExist("ahk_exe WindowsTerminal.exe") {
++#Enter::
+if WinActive("ahk_exe WindowsTerminal.exe") {
+	WinMinimize A	
+} else if WinExist("ahk_exe WindowsTerminal.exe") {
 	WinActivate, ahk_exe WindowsTerminal.exe
 } else {
 	Run, wt.exe
@@ -372,7 +357,7 @@ if WinExist("ahk_exe WindowsTerminal.exe") {
 return
 
 
-;POWERSHELL FIND CTRL+F
+;Powershell find Ctrl+F
 #IfWinActive, powershell
 ^f::Send, Get-Childitem -Recurse –Force -ErrorAction SilentlyContinue -Path D:\ -Include *file* 
 return
@@ -381,7 +366,7 @@ return
 return
 
 
-;TERMINAL CTRL+BACKSPACE
+;Terminal Ctrl+Backspace
 #if WinActive("ahk_class VirtualConsoleClass","","powershell")
 ^BS::Send, {Alt Down}{BackSpace}{Alt Up}
 return
