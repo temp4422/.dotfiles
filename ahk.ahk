@@ -358,15 +358,6 @@ if WinActive("ahk_exe WindowsTerminal.exe") {
 return
 
 
-;Powershell find Ctrl+F
-#IfWinActive, powershell
-^f::Send, Get-Childitem -Recurse –Force -ErrorAction SilentlyContinue -Path D:\ -Include *file* 
-return
-#IfWinActive, Windows PowerShell
-^f::Send, Get-Childitem -Recurse –Force -ErrorAction SilentlyContinue -Path D:\ -Include *file* 
-return
-
-
 ;Terminal Ctrl+Backspace
 #if WinActive("ahk_class VirtualConsoleClass","","powershell")
 ^BS::Send, {Alt Down}{BackSpace}{Alt Up}
@@ -376,17 +367,11 @@ return
 return
 
 
-;Focus Google earch box
-#if WinActive("ahk_exe chrome.exe","","Google Search")
-^/::MouseClick, Left, 890, 150, 1, 0.1
+;Google Translate Listen
+#if WinActive("ahk_exe chrome.exe")
+^d::
+Send, {Esc}
+Sleep, 100
+MouseClick, Left, 265, 525, 1, 0.1
 return
 
-
-
-Loop
-{
-	WinWait, ahk_class CabinetWClass
-	WinMove, A,,-8,0,976,1038
-	WinWaitClose
-}
-return
