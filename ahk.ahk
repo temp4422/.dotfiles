@@ -322,6 +322,7 @@ if WinExist("ahk_class CabinetWClass") {
 	Run, explorer.exe
 	WinWait, ahk_class CabinetWClass
 	WinMove, ahk_class CabinetWClass,,-8,0,976,1038
+	WinActivate, ahk_class CabinetWClass
 }
 return
 +#e::
@@ -337,9 +338,8 @@ if WinActive("ahk_class VirtualConsoleClass") {
 } else if WinExist("ahk_class VirtualConsoleClass") {
 	WinActivate, ahk_class VirtualConsoleClass
 } else {
-	;Run, C:\Users\user\ConEmuPack.200713\ConEmu64.exe -Dir C:\Users\user
 	Run, C:\Program Files\ConEmu\ConEmu64.exe -Dir C:\Users\user
-	Sleep, 500
+	WinWait, ahk_class VirtualConsoleClass
 	WinActivate, ahk_class VirtualConsoleClass
 }
 return
@@ -352,7 +352,7 @@ if WinActive("ahk_exe WindowsTerminal.exe") {
 	WinActivate, ahk_exe WindowsTerminal.exe
 } else {
 	Run, wt.exe
-	Sleep, 500
+	WinWait, ahk_exe WindowsTerminal.exe
 	WinActivate, ahk_exe WindowsTerminal.exe
 }
 return
@@ -364,14 +364,5 @@ return
 return
 #if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell")
 ^BS::Send, {Alt Down}{BackSpace}{Alt Up}
-return
-
-
-;Google Translate Listen
-#if WinActive("ahk_exe chrome.exe")
-^d::
-Send, {Esc}
-Sleep, 100
-MouseClick, Left, 265, 525, 1, 0.1
 return
 
