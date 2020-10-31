@@ -1,75 +1,8 @@
 <?xml version="1.0" encoding="Windows-1252" ?>
 <NotepadPlus>
-    <FindHistory nbMaxFindHistoryPath="10" nbMaxFindHistoryFilter="10" nbMaxFindHistoryFind="10" nbMaxFindHistoryReplace="10" matchWord="no" matchCase="no" wrap="yes" directionDown="yes" fifRecuisive="yes" fifInHiddenFolder="no" dlgAlwaysVisible="no" fifFilterFollowsDoc="no" fifFolderFollowsDoc="no" searchMode="0" transparencyMode="1" transparency="150" dotMatchesNewline="no" isSearch2ButtonsMode="no" regexBackward4PowerUser="no">
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Filter name="" />
-        <Find name="tee" />
-        <Find name="ssh" />
-        <Find name="admin" />
-        <Find name="hash" />
-        <Find name="find" />
-        <Find name="fing" />
-        <Find name="alternative" />
-        <Find name="select" />
-        <Find name="update" />
-        <Find name="kill" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
-        <Replace name="" />
+    <FindHistory nbMaxFindHistoryPath="10" nbMaxFindHistoryFilter="10" nbMaxFindHistoryFind="10" nbMaxFindHistoryReplace="10" matchWord="no" matchCase="no" wrap="yes" directionDown="yes" fifRecuisive="yes" fifInHiddenFolder="no" dlgAlwaysVisible="no" fifFilterFollowsDoc="no" fifFolderFollowsDoc="no" searchMode="0" transparencyMode="1" transparency="150" dotMatchesNewline="no" isSearch2ButtonsMode="no" regexBackward4PowerUser="no">    
     </FindHistory>
     <History nbMaxFile="10" inSubMenu="no" customLength="-1">
-        <File filename="C:\Program Files\Notepad++\change.log" />
-        <File filename="C:\Users\user\Documents\123\java" />
-        <File filename="D:\Program Files\Eclipse\Java\task 2\task 2" />
-        <File filename="C:\Users\user\Desktop\cmder\LICENSE" />
-        <File filename="C:\Users\user\Desktop\New Text Document.txt" />
-        <File filename="C:\Users\user\Desktop\Task2_Triangles.java" />
-        <File filename="C:\Users\user\AppData\Roaming\Notepad++\contextMenu.xml" />
     </History>
     <GUIConfigs>
         <GUIConfig name="ToolBar" visible="no">standard</GUIConfig>
