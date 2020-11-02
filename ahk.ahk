@@ -249,8 +249,12 @@ MoveCursor(key) {
 	alt := GetKeyState("ALT","P")
 	win := GetKeyState("LWIN","P")
 	controlShift := control && shift
-	controlAlt := control && alt    
-if controlShift {
+	controlAlt := control && alt 
+	altShift := alt && shift    
+if altShift {
+        Send, !+%key%
+	} 
+else if controlShift {
         Send, ^+%key%
 	} 
 else if controlAlt {
