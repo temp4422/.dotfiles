@@ -100,7 +100,9 @@
 
 
         // MY CUSTOM KEYBINDINGS
-        { "command":"newTab", "keys": "ctrl+t" },
+        // { "command":"newTab", "keys": "ctrl+t" },
+        { "command": { "action": "newTab", "index": 0 }, "keys": "ctrl+t" },
+
         { "command": "nextTab", "keys": "ctrl+pgdn" },
         { "command": "prevTab", "keys": "ctrl+pgup" },
 

@@ -4,6 +4,12 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
+
+;*** MY CODE ***
+SetTitleMatchMode 2 ; Terminal Ctrl+Backspace need to match title
+
+
+
 ;BRIGHTNESS
 class BrightnessSetter {
 	; qwerty12 - 27/05/17
@@ -336,6 +342,11 @@ return
 +#e::
 	Run, explorer.exe
 return
+;File Explorer, go back folder go forward folder 
+#if WinActive("ahk_class CabinetWClass")
+SC163 & j::Send, {Alt Down}{Left}{Alt Up}
+SC163 & `;::Send, {Alt Down}{Right}{Alt Up}
+return
 
 
 ;ConEmu
@@ -367,10 +378,17 @@ return
 
 
 ;Terminal Ctrl+Backspace
-#if WinActive("ahk_class VirtualConsoleClass","","powershell")
+#ifWinActive, powershell ;ConEmu
+	^BS::Send, {Alt Down}{BackSpace}{Alt Up}
+return
+#if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell") ;Windows Terminal
 ^BS::Send, {Alt Down}{BackSpace}{Alt Up}
 return
-#if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell")
-^BS::Send, {Alt Down}{BackSpace}{Alt Up}
+
+
+;Far Manager replace Alt to Ctrl
+#if WinActive("ahk_exe Far.exe")
+LCtrl::Alt
+LAlt::Ctrl
 return
 
