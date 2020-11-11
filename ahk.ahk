@@ -1,4 +1,4 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -6,7 +6,10 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 
 ;*** MY CODE ***
-SetTitleMatchMode 2 ; Terminal Ctrl+Backspace need to match title
+; Terminal Ctrl+Backspace match title
+; RegEx or digits: 1 - title must start with the specified WinTitle, 2 - title can contain WinTitle anywhere inside it, 3 - title must exactly match WinTitle.
+SetTitleMatchMode 2 
+
 
 
 
@@ -325,7 +328,7 @@ return
 
 
 ;Close active window Shift+Win+Esc(Alt+F4)
-+#Escape::Send {Alt down}{F4}{Alt up}
+^CapsLock::Send {Alt down}{F4}{Alt up}
 
 
 ;File Explorer
@@ -341,11 +344,6 @@ if WinExist("ahk_class CabinetWClass") {
 return
 +#e::
 	Run, explorer.exe
-return
-;File Explorer, go back folder go forward folder 
-#if WinActive("ahk_class CabinetWClass")
-SC163 & j::Send, {Alt Down}{Left}{Alt Up}
-SC163 & `;::Send, {Alt Down}{Right}{Alt Up}
 return
 
 
@@ -378,11 +376,19 @@ return
 
 
 ;Terminal Ctrl+Backspace
-#ifWinActive, powershell ;ConEmu
-	^BS::Send, {Alt Down}{BackSpace}{Alt Up}
+#if WinActive("ahk_class VirtualConsoleClass","","powershell") ;Windows Terminal
+^BS::Send, {Alt Down}{BackSpace}{Alt Up}
 return
 #if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell") ;Windows Terminal
 ^BS::Send, {Alt Down}{BackSpace}{Alt Up}
+return
+
+
+;File Explorer, go back folder go forward folder, file info
+#if WinActive("ahk_class CabinetWClass")
+SC163 & j::Send, {Alt Down}{Left}{Alt Up}
+SC163 & `;::Send, {Alt Down}{Right}{Alt Up}
+Ctrl & Enter:: Send, {Alt Down}{Enter}{Alt Up}
 return
 
 

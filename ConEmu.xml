@@ -41,7 +41,7 @@
 			<value name="FontSize" type="ulong" data="14"/>
 			<value name="StatusFontHeight" type="long" data="12"/>
 			<value name="TabFontHeight" type="long" data="12"/>
-			<key name="HotKeys" modified="2020-11-10 14:36:18" build="201011">
+			<key name="HotKeys" modified="2020-11-11 09:56:49" build="201011">
 				<value name="MinimizeRestore" type="dword" data="001011c0"/>
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="000000a2"/>
@@ -166,10 +166,10 @@
 				<value name="PasteCygwinKey" type="dword" data="00005d2d"/>
 				<value name="KeyMacro01" type="dword" data="000011bc"/>
 				<value name="KeyMacro01.Text" type="string" data="Settings"/>
-				<value name="KeyMacro02" type="dword" data="00001108"/>
-				<value name="KeyMacro02.Text" type="string" data='Keys("!Backspace")'/>
-				<value name="KeyMacro03" type="dword" data="00001208"/>
-				<value name="KeyMacro03.Text" type="string" data='Keys("^Backspace")'/>
+				<value name="KeyMacro02" type="dword" data="00000000"/>
+				<value name="KeyMacro02.Text" type="string" data=""/>
+				<value name="KeyMacro03" type="dword" data="00000000"/>
+				<value name="KeyMacro03.Text" type="string" data=""/>
 				<value name="KeyMacro04" type="dword" data="00000000"/>
 				<value name="KeyMacro04.Text" type="string" data=""/>
 				<value name="KeyMacro05" type="dword" data="00000000"/>
