@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2020-11-10 14:33:49" build="201011">
+		<key name=".Vanilla" modified="2020-11-12 12:27:13" build="201101">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
-			<value name="StartTasksName" type="string" data="{Shells::PowerShell}"/>
+			<value name="StartTasksName" type="string" data="{WSL::bash}"/>
 			<value name="StartFarFolders" type="hex" data="00"/>
 			<value name="StartFarEditors" type="hex" data="00"/>
 			<value name="ColorTable00" type="dword" data="003f3f3f"/>
@@ -41,8 +41,8 @@
 			<value name="FontSize" type="ulong" data="14"/>
 			<value name="StatusFontHeight" type="long" data="12"/>
 			<value name="TabFontHeight" type="long" data="12"/>
-			<key name="HotKeys" modified="2020-11-11 09:56:49" build="201011">
-				<value name="MinimizeRestore" type="dword" data="001011c0"/>
+			<key name="HotKeys" modified="2020-11-12 08:02:41" build="201101">
+				<value name="MinimizeRestore" type="dword" data="00000000"/>
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="000000a2"/>
 				<value name="Multi.ArrowsModifier" type="dword" data="0000005b"/>
@@ -56,7 +56,7 @@
 				<value name="ChildSystemMenu" type="dword" data="00000000"/>
 				<value name="CheckUpdates" type="dword" data="00105b55"/>
 				<value name="Multi.NewConsole" type="dword" data="00001154"/>
-				<value name="Multi.NewConsoleShift" type="dword" data="00000000"/>
+				<value name="Multi.NewConsoleShift" type="dword" data="00101154"/>
 				<value name="Multi.CmdKey" type="dword" data="00005b58"/>
 				<value name="Multi.NewWndConfirm" type="dword" data="00000000"/>
 				<value name="Multi.NewConsolePopup" type="dword" data="00005b4e"/>
@@ -102,7 +102,7 @@
 				<value name="KillProcessKey" type="dword" data="00121103"/>
 				<value name="KillAllButShellKey" type="dword" data="00125b13"/>
 				<value name="DuplicateRootKey" type="dword" data="00005b53"/>
-				<value name="CloseConEmuKey" type="dword" data="00005b73"/>
+				<value name="CloseConEmuKey" type="dword" data="00001273"/>
 				<value name="Multi.Rename" type="dword" data="00005d52"/>
 				<value name="AffinityPriorityKey" type="dword" data="00005d41"/>
 				<value name="Multi.MoveLeft" type="dword" data="00125b25"/>
@@ -601,8 +601,8 @@
 			<value name="Update.DownloadPath" type="string" data="%TEMP%\ConEmu"/>
 			<value name="Update.LeavePackages" type="hex" data="00"/>
 			<value name="Update.PostUpdateCmd" type="string" data="echo Last successful update&gt;ConEmuUpdate.info &amp;&amp; date /t&gt;&gt;ConEmuUpdate.info &amp;&amp; time /t&gt;&gt;ConEmuUpdate.info"/>
-			<key name="Tasks" modified="2020-09-18 20:06:51" build="200713">
-				<value name="Count" type="long" data="10"/>
+			<key name="Tasks" modified="2020-11-11 21:34:45" build="201011">
+				<value name="Count" type="long" data="12"/>
 				<key name="Task1" modified="2020-09-18 20:20:00" build="200713">
 					<value name="Name" type="string" data="{Shells::cmd}"/>
 					<value name="Flags" type="dword" data="00000002"/>
@@ -658,16 +658,25 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd1" type="string" data="powershell.exe -new_console:a"/>
 				</key>
-				<key name="Task7" modified="2020-07-29 21:59:08" build="200713">
+				<key name="Task7" modified="2020-11-11 22:20:07" build="201101">
 					<value name="Name" type="string" data="{Bash::bash}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
-					<value name="Cmd1" type="string" data='set "PATH=%ConEmuBaseDirShort%\wsl;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe --wsl -cur_console:pm:/mnt'/>
+					<value name="Cmd1" type="string" data="%windir%\system32\wsl.exe -cur_console:pm:/mnt"/>
 				</key>
-				<key name="Task8" modified="2020-07-29 21:59:08" build="200713">
+				<key name="Task8" modified="2020-11-12 08:01:17" build="201101">
+					<value name="Name" type="string" data="{WSL::bash}"/>
+					<value name="Flags" type="dword" data="00000004"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data=""/>
+					<value name="Active" type="long" data="0"/>
+					<value name="Count" type="long" data="1"/>
+					<value name="Cmd1" type="string" data='set "PATH=%ConEmuBaseDirShort%\wsl;%PATH%" &amp; %ConEmuBaseDirShort%\conemu-cyg-64.exe %ConEmuBaseDirShort%\wsl\wslbridge2.exe -cur_console:pm:/mnt -eConEmuBuild -eConEmuPID -eConEmuServerPID -l'/>
+				</key>
+				<key name="Task9" modified="2020-11-11 21:34:45" build="201011">
 					<value name="Name" type="string" data="{Helper::Show ANSI colors}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -676,7 +685,7 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd1" type="string" data='cmd.exe /k type "%ConEmuBaseDir%\Addons\AnsiColors16t.ans" -cur_console:n'/>
 				</key>
-				<key name="Task9" modified="2020-07-29 21:59:08" build="200713">
+				<key name="Task10" modified="2020-11-11 21:34:45" build="201011">
 					<value name="Name" type="string" data="{Tools::Chocolatey (Admin)}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -685,14 +694,23 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd1" type="string" data='*cmd.exe /k Title Chocolatey &amp; "%ConEmuBaseDir%\Addons\ChocolateyAbout.cmd"'/>
 				</key>
-				<key name="Task10" modified="2020-09-18 20:06:51" build="200713">
+				<key name="Task11" modified="2020-11-11 21:34:45" build="201011">
 					<value name="Name" type="string" data="{Bash::Git bash}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
 					<value name="Active" type="long" data="0"/>
 					<value name="Count" type="long" data="1"/>
-					<value name="Cmd1" type="string" data='set "PATH=%ConEmuDrive%\Program Files\Git\usr\bin;%PATH%" &amp; "%ConEmuDrive%\Program Files\Git\git-cmd.exe" --no-cd --command=%ConEmuBaseDirShort%\conemu-msys2-64.exe /usr/bin/bash.exe -l -i -new_console:p'/>
+					<value name="Cmd1" type="string" data='set "PATH=%ConEmuDir%\..\Git\usr\bin;%PATH%" &amp; %ConEmuDir%\..\Git\git-cmd.exe --no-cd --command=%ConEmuBaseDirShort%\conemu-msys2-64.exe /usr/bin/bash.exe -l -i -new_console:p'/>
+				</key>
+				<key name="Task12" modified="2020-11-11 21:34:45" build="201011">
+					<value name="Name" type="string" data="{Far}"/>
+					<value name="Flags" type="dword" data="00000004"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data=""/>
+					<value name="Active" type="long" data="0"/>
+					<value name="Count" type="long" data="1"/>
+					<value name="Cmd1" type="string" data='set "FARHOME=" &amp; "far.exe" /w /p"%ConEmuDir%\Plugins\ConEmu;%FARHOME%\Plugins;%FARPROFILE%\Plugins"'/>
 				</key>
 			</key>
 			<key name="Apps" modified="2020-07-29 21:59:08" build="200713">
@@ -702,17 +720,8 @@
 				<value name="Count" type="long" data="0"/>
 			</key>
 			<value name="CmdLineHistory" type="multi">
-				<line data="{Shells::PowerShell (Admin)}"/>
-				<line data="{Shells::PowerShell}"/>
-				<line data="powershell.exe set-alias -name vi -value vim"/>
-				<line data='powershell.exe "set-alias -name vi -value vim"'/>
 				<line data="powershell.exe"/>
-				<line data="{Bash::bash}"/>
-				<line data="{Shells::cmd (Admin)}"/>
-				<line data="{Shells::cmd}"/>
-				<line data="{Shells::cmd 64/32}"/>
-				<line data="{Helper::Show ANSI colors}"/>
-				<line data="{Tools::Chocolatey (Admin)}"/>
+				<line data="{Shells::PowerShell}"/>
 			</value>
 			<value name="ResetTerminalConfirm" type="hex" data="01"/>
 		</key>

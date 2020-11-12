@@ -114,8 +114,10 @@
         { "command": { "action": "switchToTab", "index": 5 }, "keys": "ctrl+6" },
         { "command": { "action": "switchToTab", "index": 6 }, "keys": "ctrl+7" },
         { "command": { "action": "switchToTab", "index": 7 }, "keys": "ctrl+8" },
-        { "command": { "action": "switchToTab", "index": 8 }, "keys": "ctrl+9" }
+        { "command": { "action": "switchToTab", "index": 8 }, "keys": "ctrl+9" },
         
+
+        {  "command": "toggleFocusMode", "keys": "shift+f11" }        
 
 
 

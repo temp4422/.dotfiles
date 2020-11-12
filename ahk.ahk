@@ -306,7 +306,22 @@ SC163 & BS::MoveCursor("{DEL}")
 
 
 ;Win+Tab to Alt+Tab
-LWin & Tab::AltTab
+;LWin & Tab::AltTab
+LCtrl & Tab::AltTab
+LWin & Tab::Send, {Ctrl Down}{Tab}{Ctrl Up}
+
+
+;win+1,2,3...
+^1::#1
+^2::#2
+^3::#3
+^4::#4
+^5::#5
+#1::Send,{Ctrl Down}{1}{Ctrl Up}
+#2::Send,{Ctrl Down}{2}{Ctrl Up}
+#3::Send,{Ctrl Down}{3}{Ctrl Up}
+#4::Send,{Ctrl Down}{4}{Ctrl Up}
+#5::Send,{Ctrl Down}{5}{Ctrl Up}
 
 
 ;Maximize active window
@@ -333,7 +348,9 @@ return
 
 ;File Explorer
 #e::
-if WinExist("ahk_class CabinetWClass") {
+if WinActive("ahk_class CabinetWClass") {
+	WinMinimize A	
+} else if WinExist("ahk_class CabinetWClass") {
 	WinActivate, ahk_class CabinetWClass
 } else {
 	Run, explorer.exe
@@ -348,7 +365,7 @@ return
 
 
 ;ConEmu
-#`::
+^`::
 #Enter::
 if WinActive("ahk_class VirtualConsoleClass") {
 	WinMinimize A	
@@ -361,7 +378,7 @@ if WinActive("ahk_class VirtualConsoleClass") {
 }
 return
 ;Windows Terminal
-+#`::
++^`::
 +#Enter::
 if WinActive("ahk_exe WindowsTerminal.exe") {
 	WinMinimize A	
