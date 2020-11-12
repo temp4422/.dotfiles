@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2020-11-12 12:27:13" build="201101">
+		<key name=".Vanilla" modified="2020-11-12 16:43:00" build="201101">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -407,8 +407,8 @@
 			<value name="CTS.MBtnAction" type="hex" data="02"/>
 			<value name="CTS.ColorIndex" type="hex" data="E0"/>
 			<value name="ClipboardConfirmEnter" type="hex" data="01"/>
-			<value name="AutoTrimSingleLine" type="hex" data="00"/>
-			<value name="ClipboardConfirmLonger" type="ulong" data="200"/>
+			<value name="AutoTrimSingleLine" type="hex" data="01"/>
+			<value name="ClipboardConfirmLonger" type="ulong" data="1000"/>
 			<value name="FarGotoEditorOpt" type="hex" data="01"/>
 			<value name="FarGotoEditorPath" type="string" data='far.exe /e%1:%2 "%3"'/>
 			<value name="HighlightMouseRow" type="hex" data="00"/>
@@ -721,6 +721,7 @@
 			</key>
 			<value name="CmdLineHistory" type="multi">
 				<line data="powershell.exe"/>
+				<line data="{WSL::bash}"/>
 				<line data="{Shells::PowerShell}"/>
 			</value>
 			<value name="ResetTerminalConfirm" type="hex" data="01"/>
