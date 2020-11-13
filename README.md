@@ -10,9 +10,8 @@ ConEmu
 New-Item -Path "C:\Program Files\ConEmu\ConEmu.xml" -ItemType SymbolicLink -Value "D:\Winfiles\ConEmu.xml"   
 Windows Terminal  
 New-Item -Path "C:\Users\user\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -ItemType SymbolicLink -Value "D:\Winfiles\settings.json"  
-Notepad++  
-New-Item -Path "C:\Users\user\AppData\Roaming\Notepad++\config.xml" -ItemType SymbolicLink -Value "D:\Winfiles\config.xml"  
 
-## Misc
+## Archive
 Shutdown shortcut (Target: "C:\Windows\System32\shutdown.exe -s -t 600")  
 AutoKey for linux  
+Notepad++ (config.xml)
