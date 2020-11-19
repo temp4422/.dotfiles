@@ -64,9 +64,9 @@ SC163 & BS::MoveCursor("{DEL}")
 #F2::Volume_Up
 
 
-;Win+Tab to Alt+Tab
+;Ctrl+Tab to Alt+Tab, Ctrl+Esc to Ctrl+Tab
 LCtrl & Tab::AltTab ;Alternative 'LWin & Tab::AltTab'
-LWin & Tab::Send, {Ctrl Down}{Tab}{Ctrl Up}
+LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
 
 
 ;win+1,2,3...
@@ -92,7 +92,7 @@ Return
 
 
 ;Minimize active window Win+Esc
-^Escape::
+#Esc::
 WinGet MX, MinMax, A
    If MX
         WinMinimize A
