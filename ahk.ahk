@@ -482,23 +482,6 @@ Return
 #if WinActive("ahk_class ApplicationFrameWindow")
 Shift & Tab::Send {Shift Down}{Tab}{Shift Up}
 Return
-;OneNote move forward/backward
-#if WinActive("ahk_class ApplicationFrameWindow")
-	SC163 & J::
-	GetKeyState, state, Alt
-	if state = D
-		Send, {Alt Down}{Left}{Alt Up}
-	else 
-		Send, {Left}
-Return
-#if WinActive("ahk_class ApplicationFrameWindow")
-	SC163 & `;::
-	GetKeyState, state, Alt
-	if state = D
-		Send, {Alt Down}{Right}{Alt Up}
-	else 
-		Send, {Right}
-Return
 
 
 ;Chrome Vimium search 
