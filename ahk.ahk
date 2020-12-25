@@ -227,7 +227,9 @@ BrightnessSetter_new() {
 BS := new BrightnessSetter()
 
 ;Set keyboard shortcuts
+SC163 & u::
 SC163 & 7::BS.SetBrightness(-10)
+SC163 & i::
 SC163 & 8::BS.SetBrightness(10)
 
 
@@ -239,8 +241,10 @@ SC163 & 8::BS.SetBrightness(10)
 
 ;Volume (old #F1 and #F2)
 ^F1::
+SC163 & o::
 SC163 & 9::Volume_Down
 ^F2::
+SC163 & p::
 SC163 & 0::Volume_Up
 
 
@@ -284,9 +288,22 @@ SC163 & /::MoveCursor("{END}")
 SC163 & BS::MoveCursor("{DEL}")
 
 
-;Ctrl+Tab to Alt+Tab, Ctrl+Esc to Ctrl+Tab
+;Ctrl(+Shift)+Tab to Alt(+Shift)+Tab
 LCtrl & Tab::AltTab ;Alternative 'LWin & Tab::AltTab'
+LShift & Tab::
+	GetKeyState, state, Control
+	if state = D
+		Send, {Shift Down}{Alt Down}{Tab}{Alt Up}{Shift Up}
+Return
+
+
+;Ctrl(+Shift)+Esc to Ctrl(+Shift)+Tab
 LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
+LShift & Esc::
+	GetKeyState, state, Control
+	if state = D
+		Send, {Shift Down}{Ctrl Down}{Tab}{Ctrl Up}{Shift Up}
+Return
 
 
 ;AppsKey
@@ -423,7 +440,89 @@ Return
 		Send, {Right}
 Return
 
-;VSCode jumpy
-#if WinActive("ahk_class Chrome_WidgetWin_1")
+
+; VSCode jumpy
+#if WinActive("ahk_exe Code.exe")
 SC163 & f::^!f
+Return
+
+
+;OneNote Toggle Navigation panel
+#if WinActive("ahk_class ApplicationFrameWindow")
+^b::
+count++
+if (count=1) {
+	Send, {Enter}
+	Send, {Ctrl Down}{Alt Down}{-}{Alt Up}{Ctrl Up}
+}
+if (count=2) {
+	Send, {Ctrl Down}{Alt Down}{=}{Alt Up}{Ctrl Up}
+	Send, {Ctrl Down}{Alt Down}{g}{Alt Up}{Ctrl Up}
+	count := 0
+}
+Return
+#if WinActive("ahk_class ApplicationFrameWindow")
+^g::Send, {Ctrl Down}{Alt Down}{g}{Alt Up}{Ctrl Up}
+Return
+;OneNote Search ctrl+e to ctrl+shift+f
+#if WinActive("ahk_class ApplicationFrameWindow")
++^f::
+Send, {Ctrl Down}{f}{Ctrl Up}
+Sleep 150
+Send, {Tab}
+Sleep 20
+Send, {Enter}
+Sleep 40
+Send, {PgUp}
+Sleep 20
+Send, {Enter}
+Sleep 20
+Send, {Shift Down}{Tab}{Shift Up}
+Return
+#if WinActive("ahk_class ApplicationFrameWindow")
+Shift & Tab::Send {Shift Down}{Tab}{Shift Up}
+Return
+;OneNote move forward/backward
+#if WinActive("ahk_class ApplicationFrameWindow")
+	SC163 & J::
+	GetKeyState, state, Alt
+	if state = D
+		Send, {Alt Down}{Left}{Alt Up}
+	else 
+		Send, {Left}
+Return
+#if WinActive("ahk_class ApplicationFrameWindow")
+	SC163 & `;::
+	GetKeyState, state, Alt
+	if state = D
+		Send, {Alt Down}{Right}{Alt Up}
+	else 
+		Send, {Right}
+Return
+
+
+;Chrome Vimium search 
+#if WinActive("ahk_exe chrome.exe")
+SC163 & f::f
+Return
+
+
+;Brave DevTools 
+#if WinActive("ahk_exe brave.exe")
+	SC163 & ,::
+	GetKeyState, state, Shift
+	if state = D
+		Send, {Ctrl Down}{]}{Ctrl Up}
+	GetKeyState, state, Control
+	if state = D
+		Send, {Ctrl Down}{PgDn}{Ctrl Up}
+Return
+#if WinActive("ahk_exe brave.exe")
+	SC163 & .::
+	GetKeyState, state, Shift
+	if state = D
+		Send, {Ctrl Down}{[}{Ctrl Up}
+	GetKeyState, state, Control
+	if state = D
+		Send, {Ctrl Down}{PgUp}{Ctrl Up}
 Return
