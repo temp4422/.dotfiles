@@ -315,17 +315,20 @@ SC163 & Enter::AppsKey
 ^3::#3
 ^4::#4
 ^5::#5
+^6::#6
 #1::Send,{Ctrl Down}{1}{Ctrl Up}
 #2::Send,{Ctrl Down}{2}{Ctrl Up}
 #3::Send,{Ctrl Down}{3}{Ctrl Up}
 #4::Send,{Ctrl Down}{4}{Ctrl Up}
 #5::Send,{Ctrl Down}{5}{Ctrl Up}
+#6::Send,{Ctrl Down}{6}{Ctrl Up}
 ;Alternative 
 SC163 & 1::Send,{Ctrl Down}{1}{Ctrl Up}
 SC163 & 2::Send,{Ctrl Down}{2}{Ctrl Up}
 SC163 & 3::Send,{Ctrl Down}{3}{Ctrl Up}
 SC163 & 4::Send,{Ctrl Down}{4}{Ctrl Up}
 SC163 & 5::Send,{Ctrl Down}{5}{Ctrl Up}
+SC163 & 6::Send,{Ctrl Down}{6}{Ctrl Up}
 ;
 +^1::Send,{Ctrl Down}{1}{Ctrl Up}
 +^2::Send,{Ctrl Down}{2}{Ctrl Up}
@@ -362,7 +365,7 @@ Return
 
 
 ;File Explorer
-^e::
+#e::
 if WinActive("ahk_class CabinetWClass") {
 	WinMinimize A	
 } else if WinExist("ahk_class CabinetWClass") {
@@ -374,7 +377,7 @@ if WinActive("ahk_class CabinetWClass") {
 	WinActivate, ahk_class CabinetWClass
 }
 Return
-#e::
++#e::
 	Run, explorer.exe
 	WinWait, ahk_class CabinetWClass
 	WinMove, ahk_class CabinetWClass,,952,0,976,1038
@@ -452,7 +455,6 @@ Return
 ^b::
 count++
 if (count=1) {
-	Send, {Enter}
 	Send, {Ctrl Down}{Alt Down}{-}{Alt Up}{Ctrl Up}
 }
 if (count=2) {
@@ -462,25 +464,30 @@ if (count=2) {
 }
 Return
 #if WinActive("ahk_class ApplicationFrameWindow")
++^e::
+count++
+if (count=1) {
+	Send, {Ctrl Down}{Alt Down}{-}{Alt Up}{Ctrl Up}
+}
+if (count=2) {
+	Send, {Ctrl Down}{Alt Down}{=}{Alt Up}{Ctrl Up}
+	Send, {Ctrl Down}{Shift Down}{g}{Shift Up}{Ctrl Up}
+	count := 0
+}
+Return
+#if WinActive("ahk_class ApplicationFrameWindow")
 ^g::Send, {Ctrl Down}{Alt Down}{g}{Alt Up}{Ctrl Up}
 Return
 ;OneNote Search ctrl+e to ctrl+shift+f
 #if WinActive("ahk_class ApplicationFrameWindow")
-+^f::
-Send, {Ctrl Down}{f}{Ctrl Up}
-Sleep 150
-Send, {Tab}
-Sleep 20
-Send, {Enter}
-Sleep 40
-Send, {PgUp}
-Sleep 20
-Send, {Enter}
-Sleep 20
-Send, {Shift Down}{Tab}{Shift Up}
++^f::Send, {Ctrl Down}{e}{Ctrl Up}
 Return
 #if WinActive("ahk_class ApplicationFrameWindow")
 Shift & Tab::Send {Shift Down}{Tab}{Shift Up}
+Return
+;OneNote redo ctrl+shit+z
+#if WinActive("ahk_class ApplicationFrameWindow")
++^z::Send, {Ctrl Down}{y}{Ctrl Up}
 Return
 
 
@@ -509,3 +516,22 @@ Return
 	if state = D
 		Send, {Ctrl Down}{PgUp}{Ctrl Up}
 Return
+
+
+;Calculator
+; SC163 & n::
+; WinGet, Active_ID, ID, A
+; WinGet, Active_Process, ProcessName, ahk_id %Active_ID%
+; if ( Active_Process ="Calculator.exe" ) {
+; 	WinMinimize A	
+; ; } else if WinExist("ahk_exe WindowsTerminal.exe") {
+; ; 	WinActivate, ahk_exe WindowsTerminal.exe
+; } else {
+; 	MsgBox, Running %Active_Process%
+; 	; WinGet, calc_ID, ID, calculator.exe
+; 	; WinGet, Active_Process, ProcessName, ahk_id %Active_ID%
+; 	; Run, calc.exe
+; 	; Sleep, 100
+; 	; WinActivate, Active_Process
+; }
+; Return
