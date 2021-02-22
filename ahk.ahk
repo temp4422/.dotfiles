@@ -489,6 +489,10 @@ Return
 #if WinActive("ahk_class ApplicationFrameWindow")
 +^z::Send, {Ctrl Down}{y}{Ctrl Up}
 Return
+;OneNote send end+enter
+#if WinActive("ahk_class ApplicationFrameWindow")
+^Enter::Send, {End}{Enter}
+Return
 
 
 ;Chrome Vimium search 
