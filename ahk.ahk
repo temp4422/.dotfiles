@@ -422,28 +422,6 @@ Return
 Return
 
 
-;File Explorer, file info, go back folder, go forward folder 
-#if WinActive("ahk_class CabinetWClass")
-Ctrl & Enter:: Send, {Alt Down}{Enter}{Alt Up}
-Return
-#if WinActive("ahk_class CabinetWClass")
-	SC163 & J::
-	GetKeyState, state, Control
-	if state = D
-		Send, {Alt Down}{Left}{Alt Up}
-	else 
-		Send, {Left}
-Return
-#if WinActive("ahk_class CabinetWClass")
-	SC163 & `;::
-	GetKeyState, state, Control
-	if state = D
-		Send, {Alt Down}{Right}{Alt Up}
-	else 
-		Send, {Right}
-Return
-
-
 ; VSCode jumpy
 #if WinActive("ahk_exe Code.exe")
 SC163 & f::^!f
