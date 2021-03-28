@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2021-03-06 06:51:28" build="210304">
+		<key name=".Vanilla" modified="2021-03-23 16:13:40" build="210314">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -41,7 +41,7 @@
 			<value name="FontSize" type="ulong" data="14"/>
 			<value name="StatusFontHeight" type="long" data="12"/>
 			<value name="TabFontHeight" type="long" data="12"/>
-			<key name="HotKeys" modified="2020-11-21 17:26:14" build="201101">
+			<key name="HotKeys" modified="2021-03-12 09:37:36" build="210304">
 				<value name="MinimizeRestore" type="dword" data="00000000"/>
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="000000a2"/>
@@ -55,7 +55,7 @@
 				<value name="SetFocusChild" type="dword" data="00000000"/>
 				<value name="ChildSystemMenu" type="dword" data="00000000"/>
 				<value name="CheckUpdates" type="dword" data="00105b55"/>
-				<value name="Multi.NewConsole" type="dword" data="00001154"/>
+				<value name="Multi.NewConsole" type="dword" data="00101145"/>
 				<value name="Multi.NewConsoleShift" type="dword" data="00101154"/>
 				<value name="Multi.CmdKey" type="dword" data="00005b58"/>
 				<value name="Multi.NewWndConfirm" type="dword" data="00000000"/>
@@ -63,7 +63,7 @@
 				<value name="Multi.NewConsolePopup2" type="dword" data="00000000"/>
 				<value name="Multi.NewAttach" type="dword" data="00105b47"/>
 				<value name="Multi.NewSplitV" type="dword" data="0010114f"/>
-				<value name="Multi.NewSplitH" type="dword" data="00101145"/>
+				<value name="Multi.NewSplitH" type="dword" data="00001154"/>
 				<value name="Multi.SplitMaximize" type="dword" data="00005d0d"/>
 				<value name="Multi.SplitSizeVU" type="dword" data="00105d26"/>
 				<value name="Multi.SplitSizeVD" type="dword" data="00105d28"/>
@@ -246,7 +246,7 @@
 			<value name="WindowMode" type="dword" data="0000051f"/>
 			<value name="ConWnd X" type="long" data="0"/>
 			<value name="ConWnd Y" type="long" data="506"/>
-			<value name="LastMonitor" type="string" data="0,0,1920,1030"/>
+			<value name="LastMonitor" type="string" data="0,0,2560,1400"/>
 			<value name="ConWnd Width" type="dword" data="02000064"/>
 			<value name="ConWnd Height" type="dword" data="00000015"/>
 			<value name="16bit Height" type="ulong" data="0"/>
@@ -720,9 +720,12 @@
 				<value name="Count" type="long" data="0"/>
 			</key>
 			<value name="CmdLineHistory" type="multi">
-				<line data="{WSL::bash}"/>
 				<line data="{Shells::PowerShell (Admin)}"/>
+				<line data="{Shells::cmd (Admin)}"/>
+				<line data="{Shells::cmd 64/32}"/>
+				<line data="{Shells::cmd}"/>
 				<line data="powershell.exe"/>
+				<line data="{WSL::bash}"/>
 				<line data="{Shells::PowerShell}"/>
 			</value>
 			<value name="ResetTerminalConfirm" type="hex" data="01"/>

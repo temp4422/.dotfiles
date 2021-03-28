@@ -479,27 +479,6 @@ SC163 & f::f
 Return
 
 
-;Brave DevTools 
-#if WinActive("ahk_exe brave.exe")
-	SC163 & ,::
-	GetKeyState, state, Shift
-	if state = D
-		Send, {Ctrl Down}{]}{Ctrl Up}
-	GetKeyState, state, Control
-	if state = D
-		Send, {Ctrl Down}{PgDn}{Ctrl Up}
-Return
-#if WinActive("ahk_exe brave.exe")
-	SC163 & .::
-	GetKeyState, state, Shift
-	if state = D
-		Send, {Ctrl Down}{[}{Ctrl Up}
-	GetKeyState, state, Control
-	if state = D
-		Send, {Ctrl Down}{PgUp}{Ctrl Up}
-Return
-
-
 ;Calculator
 ; SC163 & n::
 ; WinGet, Active_ID, ID, A
