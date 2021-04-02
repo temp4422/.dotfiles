@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2021-03-23 16:13:40" build="210314">
+		<key name=".Vanilla" modified="2021-04-02 21:20:41" build="210314">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -246,7 +246,7 @@
 			<value name="WindowMode" type="dword" data="0000051f"/>
 			<value name="ConWnd X" type="long" data="0"/>
 			<value name="ConWnd Y" type="long" data="506"/>
-			<value name="LastMonitor" type="string" data="0,0,2560,1400"/>
+			<value name="LastMonitor" type="string" data="0,0,1920,1030"/>
 			<value name="ConWnd Width" type="dword" data="02000064"/>
 			<value name="ConWnd Height" type="dword" data="00000015"/>
 			<value name="16bit Height" type="ulong" data="0"/>
@@ -658,8 +658,8 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd1" type="string" data="powershell.exe -new_console:a"/>
 				</key>
-				<key name="Task7" modified="2020-11-11 22:20:07" build="201101">
-					<value name="Name" type="string" data="{Bash::bash}"/>
+				<key name="Task7" modified="2021-04-02 21:11:23" build="210314">
+					<value name="Name" type="string" data="{WSL::bash}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -667,8 +667,8 @@
 					<value name="Count" type="long" data="1"/>
 					<value name="Cmd1" type="string" data="%windir%\system32\wsl.exe -cur_console:pm:/mnt"/>
 				</key>
-				<key name="Task8" modified="2020-11-12 08:01:17" build="201101">
-					<value name="Name" type="string" data="{WSL::bash}"/>
+				<key name="Task8" modified="2021-04-02 21:11:23" build="210314">
+					<value name="Name" type="string" data="{WSLbridge2::bash}"/>
 					<value name="Flags" type="dword" data="00000004"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
 					<value name="GuiArgs" type="string" data=""/>
@@ -720,7 +720,9 @@
 				<value name="Count" type="long" data="0"/>
 			</key>
 			<value name="CmdLineHistory" type="multi">
+				<line data="{Bash::bash}"/>
 				<line data="{Shells::PowerShell (Admin)}"/>
+				<line data="{Bash::Git bash}"/>
 				<line data="{Shells::cmd (Admin)}"/>
 				<line data="{Shells::cmd 64/32}"/>
 				<line data="{Shells::cmd}"/>
