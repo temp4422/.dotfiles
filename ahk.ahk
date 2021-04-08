@@ -306,7 +306,7 @@ LShift & Esc::
 Return
 
 
-;AppsKey
+;AppsKey (context menu Shift+F10)
 SC163 & Enter::AppsKey
 
 ;win+1,2,3...
