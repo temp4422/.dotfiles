@@ -298,7 +298,14 @@ Return
 
 
 ;Ctrl(+Shift)+Esc to Ctrl(+Shift)+Tab
-LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
+LCtrl & Esc::
+;OneNote go back to the last page visited Alt+Left arrow
+if WinActive("ahk_class ApplicationFrameWindow") {
+	Send, {Alt Down}{Left}{Alt Up}
+} Else {
+	Send, {Ctrl Down}{Tab}{Ctrl Up}
+}
+Return
 LShift & Esc::
 	GetKeyState, state, Control
 	if state = D
@@ -471,10 +478,6 @@ Return
 ;OneNote send end+enter
 #if WinActive("ahk_class ApplicationFrameWindow")
 ^Enter::Send, {End}{Enter}
-Return
-;OneNote go back to the last page visited Alt+Left arrow
-#if WinActive("ahk_class ApplicationFrameWindow")
-LCtrl & Escape::Send, {Alt Down}{Left}{Alt Up}
 Return
 ;OneNote Create a Quick Note
 #if WinActive("ahk_class ApplicationFrameWindow")
