@@ -460,6 +460,7 @@ Return
 #if WinActive("ahk_class ApplicationFrameWindow")
 +^f::Send, {Ctrl Down}{e}{Ctrl Up}
 Return
+;OneNote send shift+tab
 #if WinActive("ahk_class ApplicationFrameWindow")
 Shift & Tab::Send {Shift Down}{Tab}{Shift Up}
 Return
@@ -470,6 +471,21 @@ Return
 ;OneNote send end+enter
 #if WinActive("ahk_class ApplicationFrameWindow")
 ^Enter::Send, {End}{Enter}
+Return
+;OneNote go back to the last page visited Alt+Left arrow
+#if WinActive("ahk_class ApplicationFrameWindow")
+LCtrl & Escape::Send, {Alt Down}{Left}{Alt Up}
+Return
+;OneNote Create a Quick Note
+#if WinActive("ahk_class ApplicationFrameWindow")
+^t::
+Send, {Ctrl Down}{Shift Down}{g}{Shift Up}{Ctrl Up}
+Sleep, 100
+Send, {Home}
+Sleep, 100
+Send, {Ctrl Down}{n}{Ctrl Up}
+Sleep, 100
+Send, {Tab}
 Return
 
 
