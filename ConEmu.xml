@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2021-04-07 20:27:16" build="210314">
+		<key name=".Vanilla" modified="2021-04-14 11:26:47" build="210314">
 			<value name="StartType" type="hex" data="02"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -720,8 +720,8 @@
 				<value name="Count" type="long" data="0"/>
 			</key>
 			<value name="CmdLineHistory" type="multi">
-				<line data="powershell.exe"/>
 				<line data="{WSLbridge2::bash}"/>
+				<line data="powershell.exe"/>
 				<line data="{Shells::PowerShell (Admin)}"/>
 				<line data="{Shells::cmd (Admin)}"/>
 				<line data="{WSL::bash}"/>

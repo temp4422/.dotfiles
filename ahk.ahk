@@ -288,6 +288,10 @@ SC163 & /::MoveCursor("{END}")
 SC163 & BS::MoveCursor("{DEL}")
 
 
+;Send F7 Caret Browsing
+SC163 & '::Send, {F7}
+
+
 ;Ctrl(+Shift)+Tab to Alt(+Shift)+Tab
 LCtrl & Tab::AltTab ;Alternative 'LWin & Tab::AltTab'
 LShift & Tab::
@@ -393,8 +397,8 @@ Return
 
 
 ;ConEmu
-^`::
-#Enter::
+#`::
++#Enter::
 if WinActive("ahk_class VirtualConsoleClass") {
 	WinMinimize A	
 } else if WinExist("ahk_class VirtualConsoleClass") {
@@ -406,8 +410,8 @@ if WinActive("ahk_class VirtualConsoleClass") {
 }
 Return
 ;Windows Terminal
-#`::
-+#Enter::
+^`::
+#Enter::
 if WinActive("ahk_exe WindowsTerminal.exe") {
 	WinMinimize A	
 } else if WinExist("ahk_exe WindowsTerminal.exe") {
@@ -416,6 +420,9 @@ if WinActive("ahk_exe WindowsTerminal.exe") {
 	Run, wt.exe
 	WinWait, ahk_exe WindowsTerminal.exe
 	WinActivate, ahk_exe WindowsTerminal.exe
+	WinMove, ahk_exe WindowsTerminal.exe,,-8,,,
+	WinActivate, ahk_exe WindowsTerminal.exe
+
 }
 Return
 

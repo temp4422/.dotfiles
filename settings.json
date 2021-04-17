@@ -4,10 +4,12 @@
     "copyOnSelect": false,
     "defaultProfile": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
     "disableAnimations": true,
-    "multiLinePasteWarning": false,
-    "initialCols": 93,
-    "initialRows": 22,
-    "initialPosition": "939,0",
+    // "initialPosition": "939,0",
+    // "initialCols": 93,
+    // "initialRows": 22,
+    "initialPosition": "0,483",
+    "initialCols": 188,
+    "initialRows": 24,
     "bellStyle": "none",
     // Add custom keybindings to this array.
     // To unbind a key combination from your defaults.json, set the command to "unbound".
@@ -47,24 +49,52 @@
             },
             "keys": "alt+shift+d"
         },
+        //
         // MY CUSTOM KEYBINDINGS
-        // { 
-        //     "command": 
-        //     { 
-        //         "action": "sendInput", 
-        //         "input": "\u0002\u005b", 
-        //     }, 
-        //     "keys": "ctrl+shift+c" 
-        // },
-        // { "command":"newTab", "keys": "ctrl+t" },
-        {
+        //
+        {"command": "unbound", "keys": "ctrl+t"},
+        {"command": "unbound", "keys": "ctrl+tab"},
+
+
+        { "command": "unbound", "keys": "ctrl+shift+down" },
+        { "command": "unbound", "keys": "ctrl+shift+pgdn" },
+        { "command": "unbound", "keys": "ctrl+shift+up" },
+        { "command": "unbound", "keys": "ctrl+shift+pgup" },
+        { "command": "unbound", "keys": "ctrl+shift+home" },
+        { "command": "unbound", "keys": "ctrl+shift+end" },
+
+        
+
+        { 
             "command": 
-            {
-                "action": "newTab",
-                "index": 0
-            },
-            "keys": "ctrl+t"
+            { 
+                "action": "sendInput", 
+                "input": "\u0002\u005b",  // ctrl+b [
+            }, 
+            "keys": "ctrl+shift+c" 
         },
+
+        {"command": 
+            { 
+                "action": "sendInput", 
+                "input": "\u0002\u006f", // ctrl+b o
+            }, 
+             "keys": "ctrl+tab"
+         },
+        // { "command":"newTab", "keys": "ctrl+t" },
+        
+
+        // {
+        //     "command": 
+        //     {
+        //         "action": "newTab",
+        //         "index": 0
+        //     },
+        //     "keys": "ctrl+t"
+        // },
+
+
+
         // {
         //     "command": 
         //     {
@@ -89,98 +119,104 @@
         //     },
         //     "keys": "ctrl+w"
         // },
-        {
-            "command": "closeTab",
-            "keys": "ctrl+w"
-        },
-        {
-            "command": "nextTab",
-            "keys": "ctrl+pgdn"
-        },
-        {
-            "command": "prevTab",
-            "keys": "ctrl+pgup"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 0
-            },
-            "keys": "ctrl+1"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 1
-            },
-            "keys": "ctrl+2"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 2
-            },
-            "keys": "ctrl+3"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 3
-            },
-            "keys": "ctrl+4"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 4
-            },
-            "keys": "ctrl+5"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 5
-            },
-            "keys": "ctrl+6"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 6
-            },
-            "keys": "ctrl+7"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 7
-            },
-            "keys": "ctrl+8"
-        },
-        {
-            "command": 
-            {
-                "action": "switchToTab",
-                "index": 8
-            },
-            "keys": "ctrl+9"
-        },
+
+        // {
+        //     "command": "closeTab",
+        //     "keys": "ctrl+w"
+        // },
+
+
+        // {
+        //     "command": "nextTab",
+        //     "keys": "ctrl+pgdn"
+        // },
+        // {
+        //     "command": "prevTab",
+        //     "keys": "ctrl+pgup"
+        // },
+
+
+        // {
+        //     "command": 
+        //     {
+        //         "action": "switchToTab",
+        //         "index": 0
+        //     },
+        //     "keys": "ctrl+1"
+        // },
+        // {
+        //     "command": 
+        //     {
+        //         "action": "switchToTab",
+        //         "index": 1
+        //     },
+        //     "keys": "ctrl+2"
+        // },
+        // {
+        //     "command": 
+        //     {
+        //         "action": "switchToTab",
+        //         "index": 2
+        //     },
+        //     "keys": "ctrl+3"
+        // },
+        // {
+        //     "command": 
+        //     {
+        //         "action": "switchToTab",
+        //         "index": 3
+        //     },
+        //     "keys": "ctrl+4"
+        // },
+        // {
+        //     "command": 
+        //     {
+        //         "action": "switchToTab",
+        //         "index": 4
+        //     },
+        //     "keys": "ctrl+5"
+        // },
+        // {
+        //     "command": 
+        //     {
+        //         "action": "switchToTab",
+        //         "index": 5
+        //     },
+        //     "keys": "ctrl+6"
+        // },
+        // {
+        //     "command": 
+        //     {
+        //         "action": "switchToTab",
+        //         "index": 6
+        //     },
+        //     "keys": "ctrl+7"
+        // },
+        // {
+        //     "command": 
+        //     {
+        //         "action": "switchToTab",
+        //         "index": 7
+        //     },
+        //     "keys": "ctrl+8"
+        // },
+        // {
+        //     "command": 
+        //     {
+        //         "action": "switchToTab",
+        //         "index": 8
+        //     },
+        //     "keys": "ctrl+9"
+        // },
+
+        
         {
             "command": "toggleFocusMode",
             "keys": "shift+f11"
         }
     ],
-
-
-
+    "launchMode": "focus",
+    "multiLinePasteWarning": false,
     "profiles": 
     {
         "defaults": 
