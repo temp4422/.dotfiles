@@ -247,7 +247,7 @@ SC163 & 9::Volume_Down
 SC163 & p::
 SC163 & 0::Volume_Up
 
-
+;This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
 ;JKL;+Ctrl,Shift,Alt,Win
 MoveCursor(key) {
 	control := GetKeyState("CONTROL","P")
@@ -418,13 +418,20 @@ if WinActive("ahk_exe WindowsTerminal.exe") {
 	WinActivate, ahk_exe WindowsTerminal.exe
 } else {
 	Run, wt.exe
+	Sleep, 500
 	WinWait, ahk_exe WindowsTerminal.exe
 	WinActivate, ahk_exe WindowsTerminal.exe
 	WinMove, ahk_exe WindowsTerminal.exe,,-8,,,
-	WinActivate, ahk_exe WindowsTerminal.exe
-
 }
 Return
+
+
+;RemNote Quick Add "Ctrl + Alt + Shift + `"
+SC163 & n::Send, {Ctrl Down}{Shift Down}{Alt Down}{``}{Alt Up}{Shift Up}{Ctrl Up}
+
+
+;Google Dictionary
+SC163 & [::Send, {LWinDown}{8}{LWinUp}
 
 
 ;Terminal Ctrl+Backspace
@@ -442,8 +449,16 @@ SC163 & f::^!f
 Return
 
 
-;OneNote Toggle Navigation panel
+;Google Chrome Vimium search 
+#if WinActive("ahk_exe chrome.exe")
+SC163 & f::f
+Return
+
+
+;OneNote
+;Toggle Navigation panel
 #if WinActive("ahk_class ApplicationFrameWindow")
++^e::
 ^b::
 count++
 if (count=1) {
@@ -455,53 +470,41 @@ if (count=2) {
 	count := 0
 }
 Return
-#if WinActive("ahk_class ApplicationFrameWindow")
-+^e::
-count++
-if (count=1) {
-	Send, {Ctrl Down}{Alt Down}{-}{Alt Up}{Ctrl Up}
-}
-if (count=2) {
-	Send, {Ctrl Down}{Alt Down}{=}{Alt Up}{Ctrl Up}
-	Send, {Ctrl Down}{Shift Down}{g}{Shift Up}{Ctrl Up}
-	count := 0
-}
-Return
+;Send ctrl+alt+g
 #if WinActive("ahk_class ApplicationFrameWindow")
 ^g::Send, {Ctrl Down}{Alt Down}{g}{Alt Up}{Ctrl Up}
-Return
-;OneNote Search ctrl+e to ctrl+shift+f
-#if WinActive("ahk_class ApplicationFrameWindow")
+;Search ctrl+e to ctrl+shift+f
 +^f::Send, {Ctrl Down}{e}{Ctrl Up}
-Return
-;OneNote send shift+tab
-#if WinActive("ahk_class ApplicationFrameWindow")
+;Send shift+tab
 Shift & Tab::Send {Shift Down}{Tab}{Shift Up}
-Return
-;OneNote redo ctrl+shit+z
-#if WinActive("ahk_class ApplicationFrameWindow")
+;Redo ctrl+shit+z
 +^z::Send, {Ctrl Down}{y}{Ctrl Up}
-Return
-;OneNote send end+enter
-#if WinActive("ahk_class ApplicationFrameWindow")
+;Send end+enter
 ^Enter::Send, {End}{Enter}
-Return
-;OneNote Create a Quick Note
-#if WinActive("ahk_class ApplicationFrameWindow")
+;Create a Quick Note
 ^t::
 Send, {Ctrl Down}{Shift Down}{g}{Shift Up}{Ctrl Up}
-Sleep, 100
+Sleep, 200
 Send, {Home}
-Sleep, 100
+Sleep, 200
 Send, {Ctrl Down}{n}{Ctrl Up}
-Sleep, 100
-Send, {Tab}
 Return
 
 
-;Chrome Vimium search 
-#if WinActive("ahk_exe chrome.exe")
-SC163 & f::f
+;RemNote
+#if WinActive("ahk_exe RemNote.exe")
+;Add Child Without Splitting Text "Alt + Enter"
+^Enter::Send, {Alt Down}{Enter}{Alt Up}
+;Add Document "Alt + N"
+^t::Send, {Alt Down}{n}{Alt Up}
+;Delete Rem "Ctrl + Shift + Alt + Backspace"
++^x::Send, {Ctrl Down}{Shift Down}{Alt Down}{BackSpace}{Alt Up}{Shift Up}{Ctrl Up}
+;Headers
+!^1::Send, {Ctrl Down}{Alt Down}{1}{Alt Up}{Ctrl Up}
+!^2::Send, {Ctrl Down}{Alt Down}{2}{Alt Up}{Ctrl Up}
+!^3::Send, {Ctrl Down}{Alt Down}{3}{Alt Up}{Ctrl Up}
+;Navigate Backward
+LCtrl & Esc::Send, {Alt Down}{Left}{Alt Up}
 Return
 
 
