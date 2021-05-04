@@ -430,10 +430,6 @@ Return
 SC163 & n::Send, {Ctrl Down}{Shift Down}{Alt Down}{``}{Alt Up}{Shift Up}{Ctrl Up}
 
 
-;Google Dictionary
-SC163 & [::Send, {LWinDown}{8}{LWinUp}
-
-
 ;Terminal Ctrl+Backspace
 #if WinActive("ahk_class VirtualConsoleClass","","powershell") ;Windows Terminal
 	^BS::Send, {Alt Down}{BackSpace}{Alt Up}
