@@ -418,7 +418,7 @@ if WinActive("ahk_exe WindowsTerminal.exe") {
 	WinActivate, ahk_exe WindowsTerminal.exe
 } else {
 	Run, wt.exe
-	Sleep, 500
+	Sleep, 750
 	WinWait, ahk_exe WindowsTerminal.exe
 	WinActivate, ahk_exe WindowsTerminal.exe
 	WinMove, ahk_exe WindowsTerminal.exe,,-8,,,
@@ -427,7 +427,7 @@ Return
 
 
 ;RemNote Quick Add "Ctrl + Alt + Shift + `"
-SC163 & n::Send, {Ctrl Down}{Shift Down}{Alt Down}{``}{Alt Up}{Shift Up}{Ctrl Up}
+;SC163 & n::Send, {Ctrl Down}{Shift Down}{Alt Down}{``}{Alt Up}{Shift Up}{Ctrl Up}
 
 
 ;Terminal Ctrl+Backspace
@@ -492,7 +492,7 @@ Return
 ;Add Child Without Splitting Text "Alt + Enter"
 ^Enter::Send, {Alt Down}{Enter}{Alt Up}
 ;Add Document "Alt + N"
-^t::Send, {Alt Down}{n}{Alt Up}
+;^t::Send, {Alt Down}{n}{Alt Up}
 ;Delete Rem "Ctrl + Shift + Alt + Backspace"
 +^x::Send, {Ctrl Down}{Shift Down}{Alt Down}{BackSpace}{Alt Up}{Shift Up}{Ctrl Up}
 ;Headers
@@ -501,6 +501,8 @@ Return
 !^3::Send, {Ctrl Down}{Alt Down}{3}{Alt Up}{Ctrl Up}
 ;Navigate Backward
 LCtrl & Esc::Send, {Alt Down}{Left}{Alt Up}
+;Zoom into Rem
++^Enter::Send, {Ctrl Down}{;}{Ctrl Up}
 Return
 
 
