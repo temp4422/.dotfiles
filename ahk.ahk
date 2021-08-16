@@ -426,6 +426,10 @@ if WinActive("ahk_exe WindowsTerminal.exe") {
 Return
 
 
+;Calculator
+SC163 & n::Send, {LWin Down}{8}{LWin Up}
+
+
 ;RemNote Quick Add "Ctrl + Alt + Shift + `"
 ;SC163 & n::Send, {Ctrl Down}{Shift Down}{Alt Down}{``}{Alt Up}{Shift Up}{Ctrl Up}
 
@@ -503,6 +507,15 @@ Return
 LCtrl & Esc::Send, {Alt Down}{Left}{Alt Up}
 ;Zoom into Rem
 +^Enter::Send, {Ctrl Down}{;}{Ctrl Up}
+;Navigate to Child (pair with Navigate to Parent)
++^k::
+Send, {PgDn}
+Sleep, 250
+Send, {Down}
+;Undo VK5A, SC02C
+;LCtrl & SC02C::Send, Hello
+;LCtrl & SC02C::Send,{ Ctrl Down}{z}{Ctrl Up}
+;LCtrl & SC02C::Send, ^{VK5A}
 Return
 
 
@@ -523,3 +536,6 @@ Return
 ; 	; WinActivate, Active_Process
 ; }
 ; Return
+
+
+;Add simple mappings like "SC163 & n::Send, {..}" above "#if WinActive()", because it breaks code. 
