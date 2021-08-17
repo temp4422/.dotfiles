@@ -538,4 +538,5 @@ Return
 ; Return
 
 
+
 ;Add simple mappings like "SC163 & n::Send, {..}" above "#if WinActive()", because it breaks code. 
