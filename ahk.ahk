@@ -434,12 +434,42 @@ SC163 & n::Send, {LWin Down}{8}{LWin Up}
 ;SC163 & n::Send, {Ctrl Down}{Shift Down}{Alt Down}{``}{Alt Up}{Shift Up}{Ctrl Up}
 
 
+;Google Translate
+^CapsLock::
+	Send, {LWin Down}{9}{Lwin Up}
+	Sleep, 100
+	if WinActive("ahk_exe chrome.exe") {
+		Send, {/}
+		;Send, {Ctrl Down}{q}{Ctrl Up}
+	} else {
+		Return
+	}
+Return
+; if WinActive("ahk_exe chrome.exe") {
+; 	Send, {Ctrl Down}{Shift Down}{1}{Shift Up}{Ctrl Up}
+; 	Sleep, 100
+; 	Send, {/}
+; } else {
+; 	Send, {Ctrl Down}{1}{Ctrl Up}
+; 	Sleep, 500
+; 	}
+; Return
+
+
+;Windows Terminal
 ;Terminal Ctrl+Backspace
-#if WinActive("ahk_class VirtualConsoleClass","","powershell") ;Windows Terminal
+#if WinActive("ahk_class VirtualConsoleClass","","powershell") 
 	^BS::Send, {Alt Down}{BackSpace}{Alt Up}
 Return
-#if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell") ;Windows Terminal
+#if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell") 
 	^BS::Send, {Alt Down}{BackSpace}{Alt Up}
+Return
+; Select line with ctrl+a
+#if WinActive("ahk_exe WindowsTerminal.exe","","") 
+	^a::
+	Send, {Ctrl Down}{Shift Down}{c}{Shift Up}{Ctrl Up}
+	Sleep, 100
+	Send, {Space}{Home}{Right}{Right}
 Return
 
 
@@ -494,7 +524,11 @@ Return
 ;RemNote
 #if WinActive("ahk_exe RemNote.exe")
 ;Add Child Without Splitting Text "Alt + Enter"
-^Enter::Send, {Alt Down}{Enter}{Alt Up}
+^Enter::
+Send, {End}
+Sleep, 50
+Send, {Alt Down}{Enter}{Alt Up}
+Return
 ;Add Document "Alt + N"
 ;^t::Send, {Alt Down}{n}{Alt Up}
 ;Delete Rem "Ctrl + Shift + Alt + Backspace"
@@ -512,11 +546,24 @@ LCtrl & Esc::Send, {Alt Down}{Left}{Alt Up}
 Send, {PgDn}
 Sleep, 250
 Send, {Down}
+Return
+;Select word under cursor
+^d::
+Send, {Ctrl Down}{Left}{Ctrl Up}
+Send, {Ctrl Down}{Shift Down}{Right}{Shift Up}{Ctrl Up}
+Return
+^i::
+Send, {/}
+Sleep, 100
+Send, code
+Sleep, 100
+Send, {Enter}
+Return
 ;Undo VK5A, SC02C
 ;LCtrl & SC02C::Send, Hello
 ;LCtrl & SC02C::Send,{ Ctrl Down}{z}{Ctrl Up}
 ;LCtrl & SC02C::Send, ^{VK5A}
-Return
+
 
 
 ;Calculator
