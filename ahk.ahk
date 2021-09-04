@@ -247,7 +247,7 @@ SC163 & 9::Volume_Down
 SC163 & p::
 SC163 & 0::Volume_Up
 
-;This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
+
 ;JKL;+Ctrl,Shift,Alt,Win
 MoveCursor(key) {
 	control := GetKeyState("CONTROL","P")
@@ -532,5 +532,8 @@ Return
 ;LCtrl & SC02C::Send, ^{VK5A}
 
 
+
+;;;;;; INFO ;;;;;;
+;This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
 
 ;Add simple mappings like "SC163 & n::Send, {..}" above "#if WinActive()", because it breaks code. 
