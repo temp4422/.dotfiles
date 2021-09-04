@@ -239,7 +239,7 @@ SC163 & 8::BS.SetBrightness(10)
 
 
 
-;Volume (old #F1 and #F2)
+;Volume
 ^F1::
 SC163 & o::
 SC163 & 9::Volume_Down
@@ -396,19 +396,6 @@ Return
 Return
 
 
-;ConEmu
-#`::
-+#Enter::
-if WinActive("ahk_class VirtualConsoleClass") {
-	WinMinimize A	
-} else if WinExist("ahk_class VirtualConsoleClass") {
-	WinActivate, ahk_class VirtualConsoleClass
-} else {
-	Run, C:\Program Files\ConEmu\ConEmu64.exe -Dir C:\Users\user
-	WinWait, ahk_class VirtualConsoleClass
-	WinActivate, ahk_class VirtualConsoleClass
-}
-Return
 ;Windows Terminal
 ^`::
 #Enter::
@@ -430,10 +417,6 @@ Return
 SC163 & n::Send, {LWin Down}{8}{LWin Up}
 
 
-;RemNote Quick Add "Ctrl + Alt + Shift + `"
-;SC163 & n::Send, {Ctrl Down}{Shift Down}{Alt Down}{``}{Alt Up}{Shift Up}{Ctrl Up}
-
-
 ;Google Translate
 ^CapsLock::
 	Send, {LWin Down}{9}{Lwin Up}
@@ -445,15 +428,6 @@ SC163 & n::Send, {LWin Down}{8}{LWin Up}
 		Return
 	}
 Return
-; if WinActive("ahk_exe chrome.exe") {
-; 	Send, {Ctrl Down}{Shift Down}{1}{Shift Up}{Ctrl Up}
-; 	Sleep, 100
-; 	Send, {/}
-; } else {
-; 	Send, {Ctrl Down}{1}{Ctrl Up}
-; 	Sleep, 500
-; 	}
-; Return
 
 
 ;Windows Terminal
@@ -476,12 +450,6 @@ Return
 ; VSCode jumpy
 #if WinActive("ahk_exe Code.exe")
 SC163 & f::^!f
-Return
-
-
-;Google Chrome Vimium search 
-#if WinActive("ahk_exe chrome.exe")
-SC163 & f::f
 Return
 
 
@@ -529,8 +497,6 @@ Send, {End}
 Sleep, 50
 Send, {Alt Down}{Enter}{Alt Up}
 Return
-;Add Document "Alt + N"
-;^t::Send, {Alt Down}{n}{Alt Up}
 ;Delete Rem "Ctrl + Shift + Alt + Backspace"
 +^x::Send, {Ctrl Down}{Shift Down}{Alt Down}{BackSpace}{Alt Up}{Shift Up}{Ctrl Up}
 ;Headers
@@ -552,7 +518,8 @@ Return
 Send, {Ctrl Down}{Left}{Ctrl Up}
 Send, {Ctrl Down}{Shift Down}{Right}{Shift Up}{Ctrl Up}
 Return
-^i::
+;Insert code block
++^i::
 Send, {/}
 Sleep, 100
 Send, code
@@ -563,26 +530,6 @@ Return
 ;LCtrl & SC02C::Send, Hello
 ;LCtrl & SC02C::Send,{ Ctrl Down}{z}{Ctrl Up}
 ;LCtrl & SC02C::Send, ^{VK5A}
-
-
-
-;Calculator
-; SC163 & n::
-; WinGet, Active_ID, ID, A
-; WinGet, Active_Process, ProcessName, ahk_id %Active_ID%
-; if ( Active_Process ="Calculator.exe" ) {
-; 	WinMinimize A	
-; ; } else if WinExist("ahk_exe WindowsTerminal.exe") {
-; ; 	WinActivate, ahk_exe WindowsTerminal.exe
-; } else {
-; 	MsgBox, Running %Active_Process%
-; 	; WinGet, calc_ID, ID, calculator.exe
-; 	; WinGet, Active_Process, ProcessName, ahk_id %Active_ID%
-; 	; Run, calc.exe
-; 	; Sleep, 100
-; 	; WinActivate, Active_Process
-; }
-; Return
 
 
 
