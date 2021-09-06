@@ -56,21 +56,36 @@
             },
             "keys": "alt+shift+d"
         },
+
         //
         // MY CUSTOM KEYBINDINGS
         //
-        {"command": "unbound", "keys": "ctrl+t"},
-        {"command": "unbound", "keys": "ctrl+tab"},
-
-
+        { "command": "unbound", "keys": "ctrl+t"},
+        { "command": "unbound", "keys": "ctrl+tab"},
         { "command": "unbound", "keys": "ctrl+shift+down" },
         { "command": "unbound", "keys": "ctrl+shift+pgdn" },
         { "command": "unbound", "keys": "ctrl+shift+up" },
         { "command": "unbound", "keys": "ctrl+shift+pgup" },
         { "command": "unbound", "keys": "ctrl+shift+home" },
         { "command": "unbound", "keys": "ctrl+shift+end" },
-
+		
+		{
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001f" // ctrl+_
+            },
+            "keys": "ctrl+z"
+        },
         
+{
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001a" // ctrl+z
+            },
+            "keys": "ctrl+_"
+        },
 
         { 
             "command": 
