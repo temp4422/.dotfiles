@@ -417,7 +417,7 @@ Return
 SC163 & n::Send, {LWin Down}{8}{LWin Up}
 
 
-;Google Translate
+;Google Chrome Translate
 ^CapsLock::
 	Send, {LWin Down}{9}{Lwin Up}
 	Sleep, 100
@@ -428,7 +428,10 @@ SC163 & n::Send, {LWin Down}{8}{LWin Up}
 		Return
 	}
 Return
-
+;Google Chrome disable bookmark
+#if WinActive("ahk_exe chrome.exe","","") 
+	^d::
+Return
 
 ;Windows Terminal
 ;Terminal Ctrl+Backspace
