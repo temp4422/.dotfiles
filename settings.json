@@ -68,7 +68,62 @@
         { "command": "unbound", "keys": "ctrl+shift+pgup" },
         { "command": "unbound", "keys": "ctrl+shift+home" },
         { "command": "unbound", "keys": "ctrl+shift+end" },
+
+		{
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u0003  c \u000d"
+            },
+            "keys": "ctrl+shift+l"
+        },
 		
+
+		{
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "ll \u000d"
+            },
+            "keys": "ctrl+s"
+        },
+
+		{
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "source ~/.zshrc \u000d"
+            },
+            "keys": "ctrl+shift+r"
+        },
+
+		{
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "vi ~/.zshrc \u000d"
+            },
+            "keys": "ctrl+shift+i"
+        },
+
+		{
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "gf \u000d" // Enter
+            },
+            "keys": "ctrl+i"
+        },
+
+		{
+            "command": 
+            {
+                "action": "sendInput",
+                "input": "\u001d" // ctrl+]
+            },
+            "keys": "ctrl+shift+e"
+        },
+
 		{
             "command": 
             {
@@ -78,7 +133,7 @@
             "keys": "ctrl+z"
         },
         
-{
+		{
             "command": 
             {
                 "action": "sendInput",
@@ -103,9 +158,9 @@
             }, 
              "keys": "ctrl+tab"
          },
-        // { "command":"newTab", "keys": "ctrl+t" },
-        
 
+
+        // { "command":"newTab", "keys": "ctrl+t" },
         // {
         //     "command": 
         //     {
@@ -114,9 +169,14 @@
         //     },
         //     "keys": "ctrl+t"
         // },
-
-
-
+        // {
+  		//     "command": 
+		//     {
+  		//         "action": "sendInput",
+  		//         "input": "\u001b\u0063" // alt+c
+  		//     },
+  		//     "keys": "ctrl+g"
+  		// },
         // {
         //     "command": 
         //     {
@@ -230,7 +290,6 @@
         //     },
         //     "keys": "ctrl+9"
         // },
-
         
         {
             "command": "toggleFocusMode",

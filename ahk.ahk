@@ -432,6 +432,9 @@ Return
 #if WinActive("ahk_exe chrome.exe","","") 
 	^d::
 Return
+	+^f::Send, {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
+Return
+
 
 ;Windows Terminal
 ;Terminal Ctrl+Backspace
