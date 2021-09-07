@@ -71,6 +71,7 @@ alias gm='git add . && git commit -am'
 alias gc='git checkout'
 alias gb='git branch'
 alias gp='git push'
+alias gd='git diff'
 # apps
 alias fd='fdfind'
 alias exp='explorer.exe'
@@ -78,8 +79,31 @@ alias pwsh='powershell.exe'
 alias chrome='/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
 alias p='pnpm'
 
+
+# cd to desktop, d
+cd() {
+  if [ "$1" = "d" ]; then
+    builtin cd "/mnt/d/"
+  elif [ "$1" = "des" ]; then
+    builtin cd "/mnt/c/Users/user/Desktop/"
+  else
+		builtin cd "$1"
+ fi
+}
+
+
 # tmux 
 tmux new -As0
+
+
+# Initialize fasd
+eval "$(fasd --init auto)"
+#alias j='fasd_cd -d'
+
+# Initialize fuck
+eval $(thefuck --alias)
+
+
 
 # fzf
 #/usr/share/doc/fzf/README.Debian enable fzf keybindings for Bash, https://raw.githubusercontent.com/mskar/setup/main/.zshrc
@@ -118,16 +142,12 @@ v() {
    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
 }
 
-
-
-
-# Initialize fasd
-eval "$(fasd --init auto)"
-#alias j='fasd_cd -d'
-
-# Initialize fuck
-#eval $(thefuck --alias)
-
+# fasd & fzf change directory - open best matched file using `fasd` if given argument, filter output of `fasd` using `fzf` else
+j() {
+    [ $# -gt 0 ] && fasd -f -e ${EDITOR} "$*" && return
+    local file
+    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
+}
 
 
 
