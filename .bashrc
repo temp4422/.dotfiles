@@ -17,7 +17,7 @@ shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
-HISTFILESIZE=2000
+HISTFILESIZE=1000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -129,7 +129,9 @@ alias cd..='cd ..'
 alias cd-='cd -'
 alias grep='grep --color=auto'
 alias chrome='/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
-
+alias g='git'
+alias du='du -sh'
+alias p='pnpm'
 
 
 
@@ -172,5 +174,33 @@ function countdown(){
      echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
      sleep 0.1
    done
+}
+
+# Initialize fasd
+#eval "$(fasd --init auto)"
+#alias j='fasd_cd -d'
+# Initialize fuck
+eval $(thefuck --alias)
+alias fd='fdfind'
+
+
+
+# fzf
+#/usr/share/doc/fzf/README.Debian enable fzf keybindings for Bash
+source /usr/share/doc/fzf/examples/key-bindings.bash
+#bind '"\C-g": "__fzf_cd__\n"' # bind inside Windows Terminal settings.json ctrl+g -> alt+c
+export FZF_ALT_C_COMMAND='fd --type d .'
+export FZF_ALT_C_OPTS="--height 40% --layout=reverse --border"
+
+
+#export FZF_DEFAULT_OPTS='--history-size=1000 --height=30% --layout=reverse'
+export FZF_CTRL_R_OPTS='--history-size=1000 --layout=reverse'
+
+
+# fasd & fzf change directory - open best matched file using `fasd` if given argument, filter output of `fasd` using `fzf` else
+v() {
+    [ $# -gt 0 ] && fasd -f -e ${EDITOR} "$*" && return
+    local file
+    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
 }
 
