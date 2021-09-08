@@ -37,26 +37,29 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 
+
+
 ### MY CONFIGS ###
-# Custom prompt
-#autoload -U colors && colors
-PROMPT="%F{magenta}%n@WSL%f %~
-%F{magenta}⚡%f " # ❯
+# Custom prompt # ❯⚡
+PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f ' 
 
 # key mappings
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[4~" end-of-line
+bindkey "^[[1;5D" backward-word #ctrl-left
+bindkey "^[[1;5C" forward-word #ctrl-right
+bindkey "^[[1~" beginning-of-line #home
+bindkey "^[[4~" end-of-line #end
 
-bindkey "^[[1;3D" up-directory
-up-directory() {
+up-dir() {
     builtin cd .. && zle reset-prompt
 }
-zle -N up-directory
+zle -N up-dir
+bindkey "^[[1;3D" up-dir #alt-left
+prev-dir(){
+	builtin cd - && zle reset-prompt
+}
+zle -N prev-dir
+bindkey "^[[1;3C" prev-dir #alt-right
 
-# Start in home dir
-cd ~
 
 # Aliases
 # common
@@ -86,7 +89,11 @@ alias exp='explorer.exe'
 alias pwsh='powershell.exe'
 alias chrome='/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
 alias p='pnpm'
+alias j='fasd_cd -d'
 
+
+# Start in home dir
+cd ~
 
 # cd d, desktop, ~
 cd() {
@@ -106,9 +113,8 @@ cd() {
 tmux new -As0
 
 
-### Init fasd ###
+# fasd
 eval "$(fasd --init auto)"
-#alias j='fasd_cd -d'
 bindkey '^k^i' fasd-complete # test autocomplete
 
 
@@ -117,13 +123,15 @@ bindkey '^k^i' fasd-complete # test autocomplete
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
+# Set fzf env vars
+# $FZF_TMUX_OPTS $FZF_CTRL_T_COMMAND $FZF_CTRL_T_OPTS $FZF_CTRL_R_OPTS $FZF_ALT_C_COMMAND $FZF_ALT_C_OPTS
+export FZF_DEFAULT_OPTS='--height 50% --history-size=1000 --layout=reverse --border --bind "ctrl-c:execute-silent(echo {} | clip.exe)+abort"' 
 
 # Map fzf commands to keybindings 
-# ctrl+t to ctrl+o with bindkey
-export FZF_DEFAULT_OPTS='--height 50% --history-size=1000 --layout=reverse --border'
-# CTRL-T - Paste the selected file path(s) into the command line
-__fsel() {
-  local cmd="${FZF_CTRL_T_COMMAND:-"command find '/' -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -type f -iname '*' 2>/dev/null"}"
+# ctrl+shif+f search all global
+fzf-file-widget() {
+  LBUFFER="${LBUFFER}$(
+  local cmd="${FZF_CTRL_T_COMMAND:-"command find '/' -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -iname '*' 2>/dev/null"}"
   setopt localoptions pipefail no_aliases 2> /dev/null
   local item
   eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
@@ -132,34 +140,38 @@ __fsel() {
   local ret=$?
   echo
   return $ret
-}
-__fzfcmd() {
-  [ -n "$TMUX_PANE" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "$FZF_TMUX_OPTS" ]; } &&
-    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
-}
-
-fzf-file-widget() {
-  LBUFFER="${LBUFFER}$(__fsel)"
-  zle accept-line
+  )"
+#  zle accept-line
   local ret=$?
   zle reset-prompt
   return $ret
 }
 zle     -N   fzf-file-widget
-bindkey '^o' fzf-file-widget
-#export FZF_DEFAULT_COMMAND="fd --type file"
-#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+bindkey '^]' fzf-file-widget
 
-# ctrl+shift+e (ctrl+] Windows terminal)
-fzf-hidden-files () { fd --type file --hidden --no-ignore | fzf }
-zle -N fzf-hidden-files
-bindkey '^]' fzf-hidden-files
+# ctrl+f search file local
+fzf-file-widget-2() {
+  LBUFFER="${LBUFFER}$(
+  local cmd="${FZF_CTRL_T_COMMAND:-"command find . -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -type f -iname '*' 2>/dev/null"}"
+  setopt localoptions pipefail no_aliases 2> /dev/null
+  local item
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
+    echo -n "${(q)item} "
+  done
+  local ret=$?
+  echo
+  return $ret
+  )"
+  zle accept-line
+  local ret=$?
+  zle reset-prompt
+  return $ret
+}
+zle     -N   fzf-file-widget-2
+bindkey '^f' fzf-file-widget-2
 
-# ctrl+k+o
-export FZF_ALT_C_OPTS="--height 50% --layout=reverse --border"
-# ALT-C (ctrl+k+o) - cd into the selected directory
+# ctrl+k+o cd folder global
 fzf-cd-widget() {
-  #local cmd="${FZF_ALT_C_COMMAND:-"command fdfind --type directory"}"
   local cmd="${FZF_ALT_C_COMMAND:-"command find '/' -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -type d -iname '*' 2>/dev/null"}"
   setopt localoptions pipefail no_aliases 2> /dev/null
   local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
@@ -178,9 +190,15 @@ fzf-cd-widget() {
 zle     -N    fzf-cd-widget
 bindkey '^k^o' fzf-cd-widget
 
-# ctrl+r
-export FZF_CTRL_R_OPTS='--history-size=1000 --layout=reverse --border'
-# CTRL-R - Paste the selected command from history into the command line
+# ctrl+o open vi file global
+vi-file() {
+   file="$( find '/' -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -type f -iname '*' 2>/dev/null | fzf -1 -0 --no-sort +m)" && (vi "${file}" < /dev/tty) || return 1
+   zle accept-line
+}
+zle -N vi-file
+bindkey '^o' vi-file
+
+# ctrl+r history
 fzf-history-widget() {
   local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
@@ -200,36 +218,24 @@ fzf-history-widget() {
 zle     -N   fzf-history-widget
 bindkey '^R' fzf-history-widget
 
-#export FZF_COMPLETION_TRIGGER='**' 
-
-
-# fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
-fasd-dir() {
+# ctrl+g fasd-fzf cd dir
+fasd-cd() {
     [ $# -gt 0 ] && fasd_cd -d "$*" && return
     local dir
     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
 	  zle accept-line
 }
-zle -N fasd-dir
-bindkey '^g' fasd-dir
+zle -N fasd-cd
+bindkey '^g' fasd-cd
 
-# fzf-vim file
-fasd-file() {
-   #[ $# -gt 0 ] && fasd -f -e ${EDITOR} "$*" && return
-   #local file
+# ctrl+e fasd-fzf vi file
+fasd-vi() {
    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && (vi "${file}" < /dev/tty) || return 1
    zle accept-line
 }
-zle -N fasd-file
-bindkey '^e' fasd-file
-
-
-# go() { fasd | sort -nr | fzf | awk -F ' ' '{print $2}' }
-#zle -N go
-#bindkey '^k^g' go
-
+zle -N fasd-vi
+bindkey '^e' fasd-vi
 
 
 # Init fuck
 eval $(thefuck --alias)
-
