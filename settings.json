@@ -106,14 +106,6 @@
             "keys": "ctrl+shift+i"
         },
 
-		{
-            "command": 
-            {
-                "action": "sendInput",
-                "input": "gf \u000d" // Enter
-            },
-            "keys": "ctrl+i"
-        },
 
 		{
             "command": 
@@ -121,7 +113,7 @@
                 "action": "sendInput",
                 "input": "\u001d" // ctrl+]
             },
-            "keys": "ctrl+shift+e"
+            "keys": "ctrl+shift+f"
         },
 
 		{
