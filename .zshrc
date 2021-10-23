@@ -98,17 +98,19 @@ alias j='fasd_cd -d'
 cd ~
 
 # cd d, desktop, ~
-cd() {
-  if [ "$1" = "d" ]; then
-    builtin cd "/mnt/d/"
-  elif [ "$1" = "des" ]; then
-    builtin cd "/mnt/c/Users/user/Desktop/"
-  elif [ "$1" = "" ]; then
-    builtin cd "/home/user/"
-  else
-		builtin cd "$1"
- fi
-}
+#cd() {
+#  if [ "$1" = "d" ]; then
+#    builtin cd "/mnt/d/"
+#  elif [ "$1" = "des" ]; then
+#    builtin cd "/mnt/c/Users/user/Desktop/"
+#  elif [ "$1" = "" ]; then
+#    builtin cd "/home/user/"
+#  else
+#		builtin cd "$1"
+# fi
+#}
+
+
 
 
 # tmux 
@@ -130,6 +132,26 @@ source /usr/share/doc/fzf/examples/completion.zsh
 export FZF_DEFAULT_OPTS='--height 50% --history-size=1000 --layout=reverse --border --bind "ctrl-c:execute-silent(echo {} | clip.exe)+abort"' 
 
 # Map fzf commands to keybindings 
+# ctrl+r history
+fzf-history-widget() {
+  local selected num
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+  selected=( $(fc -rl 1 | perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort,ctrl-z:ignore $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+  local ret=$?
+  if [ -n "$selected" ]; then
+    num=$selected[1]
+    if [ -n "$num" ]; then
+      zle vi-fetch-history -n $num
+    fi
+  fi
+  zle accept-line
+  zle reset-prompt
+  return $ret
+}
+zle     -N   fzf-history-widget
+bindkey '^R' fzf-history-widget
+
 # ctrl+shif+f search all global
 fzf-file-widget() {
   LBUFFER="${LBUFFER}$(
@@ -172,6 +194,42 @@ fzf-file-widget-2() {
 zle     -N   fzf-file-widget-2
 bindkey '^f' fzf-file-widget-2
 
+# ctrl+e fasd-fzf vi files/folders
+fasd-vi() {
+   item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)" 
+	if [[ -d ${item} ]]; then
+		cd "${item}" || return 1
+#    echo "${item} is a directory"
+	elif [[ -f ${item} ]]; then
+		(vi "${item}" < /dev/tty) || return 1
+#    echo "${item} is a file"
+	else
+    echo "${item} is not valid"
+#    exit 1
+	fi
+   zle accept-line
+}
+zle -N fasd-vi
+bindkey '^e' fasd-vi
+
+# ctrl+g fasd-fzf cd dir
+#fasd-cd() {
+#    [ $# -gt 0 ] && fasd_cd -d "$*" && return
+#    local dir
+#    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+#	  zle accept-line
+#}
+#zle -N fasd-cd
+#bindkey '^g' fasd-cd
+
+# ctrl+e fasd-fzf vi files
+#fasd-vi() {
+#   file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && (vi "${file}" < /dev/tty) || return 1
+#   zle accept-line
+#}
+#zle -N fasd-vi
+#bindkey '^e' fasd-vi
+
 # ctrl+k+o cd folder global
 fzf-cd-widget() {
   local cmd="${FZF_ALT_C_COMMAND:-"command find '/' -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -type d -iname '*' 2>/dev/null"}"
@@ -200,45 +258,8 @@ vi-file() {
 zle -N vi-file
 bindkey '^o' vi-file
 
-# ctrl+r history
-fzf-history-widget() {
-  local selected num
-  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-  selected=( $(fc -rl 1 | perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |
-    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort,ctrl-z:ignore $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
-  local ret=$?
-  if [ -n "$selected" ]; then
-    num=$selected[1]
-    if [ -n "$num" ]; then
-      zle vi-fetch-history -n $num
-    fi
-  fi
-  zle accept-line
-  zle reset-prompt
-  return $ret
-}
-zle     -N   fzf-history-widget
-bindkey '^R' fzf-history-widget
-
-# ctrl+g fasd-fzf cd dir
-fasd-cd() {
-    [ $# -gt 0 ] && fasd_cd -d "$*" && return
-    local dir
-    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-	  zle accept-line
-}
-zle -N fasd-cd
-bindkey '^g' fasd-cd
-
-# ctrl+e fasd-fzf vi file
-fasd-vi() {
-   file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && (vi "${file}" < /dev/tty) || return 1
-   zle accept-line
-}
-zle -N fasd-vi
-bindkey '^e' fasd-vi
-
-
 # Init fuck
 eval $(thefuck --alias)
 
+# zsh-autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
