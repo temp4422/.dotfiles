@@ -173,28 +173,7 @@ fzf-file-widget() {
 zle     -N   fzf-file-widget
 bindkey '^]' fzf-file-widget
 
-# ctrl+f search file local
-#fzf-file-widget-2() {
-#  LBUFFER="${LBUFFER}$(
-#  local cmd="${FZF_CTRL_T_COMMAND:-"command find . -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -type f -iname '*' 2>/dev/null"}"
-#  setopt localoptions pipefail no_aliases 2> /dev/null
-#  local item
-#  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
-#    echo -n "${(q)item} "
-#  done
-#  local ret=$?
-#  echo
-#  return $ret
-#  )"
-#  zle accept-line
-#  local ret=$?
-#  zle reset-prompt
-#  return $ret
-#}
-#zle     -N   fzf-file-widget-2
-#bindkey '^f' fzf-file-widget-2
-
-# ctrl+f search all local and vi/cd
+# ctrl+f search all local and cd/vi
 fzf-file-widget-2() {
    item="$(find . -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")" 
 	if [[ -d ${item} ]]; then
@@ -209,41 +188,20 @@ fzf-file-widget-2() {
 zle     -N   fzf-file-widget-2
 bindkey '^f' fzf-file-widget-2
 
-# ctrl+e fasd-fzf vi/cd for recent files/folders
-fasd-vi() {
+# ctrl+e fasd-fzf cd/vi for recent folders/files
+fasd-fzf-cd-vi() {
    item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)" 
 	if [[ -d ${item} ]]; then
 		cd "${item}" || return 1
-#    echo "${item} is a directory"
 	elif [[ -f ${item} ]]; then
 		(vi "${item}" < /dev/tty) || return 1
-#    echo "${item} is a file"
 	else
-    echo "${item} is not valid"
-#    exit 1
+		return 1
 	fi
    zle accept-line
 }
-zle -N fasd-vi
-bindkey '^e' fasd-vi
-
-# ctrl+g fasd-fzf cd dir
-#fasd-cd() {
-#    [ $# -gt 0 ] && fasd_cd -d "$*" && return
-#    local dir
-#    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-#	  zle accept-line
-#}
-#zle -N fasd-cd
-#bindkey '^g' fasd-cd
-
-# ctrl+e fasd-fzf vi files
-#fasd-vi() {
-#   file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && (vi "${file}" < /dev/tty) || return 1
-#   zle accept-line
-#}
-#zle -N fasd-vi
-#bindkey '^e' fasd-vi
+zle -N fasd-fzf-cd-vi
+bindkey '^e' fasd-fzf-cd-vi
 
 # ctrl+k+o cd folder global
 fzf-cd-widget() {
