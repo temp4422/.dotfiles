@@ -1,0 +1,11 @@
+#!/bin/zsh
+   item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)"
+  if [[ -d ${item} ]]; then
+    cd "${item}" || return 1
+  elif [[ -f ${item} ]]; then
+    (vi "${item}" < /dev/tty) || return 1
+  else
+    return 1
+  fi
+   zle accept-line
+

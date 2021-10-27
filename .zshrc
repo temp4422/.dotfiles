@@ -236,3 +236,7 @@ eval $(thefuck --alias)
 
 # zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+
+# Ranger
+ranger

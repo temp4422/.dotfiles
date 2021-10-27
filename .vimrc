@@ -20,3 +20,6 @@ set visualbell
 "set <Right>=^[[C
 "set <Left>=^[[D
 set mouse=a
+
+set timeoutlen=10
+set ttimeoutlen=10 " wait up to 10ms after Esc for special key
