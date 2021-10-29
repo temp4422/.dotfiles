@@ -132,9 +132,9 @@ map x
 map xx extract # compress with tar and zip cmds
 map xe $$f # execute file (map x $$f)
 map xs !$f # execute in shell (map X !$f)
-map sz !echo $PWD
+map sz $$SHELL
 
-map w # unmap 'map w $$SHELL'
+#map w # unmap 'map w $$SHELL'
 #previewer      string    (default ”) (not filtered if empty)
 
 # cmd key maps

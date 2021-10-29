@@ -68,7 +68,7 @@ bindkey "^[[1;3C" prev-dir #alt-right
 # common
 alias l='ls --color'
 alias ls='ls --color'
-alias ll='ls -l --almost-all --human-readable --sort=size --reverse --color --group-directories-first' # ls -lAHSr
+alias ll='ls -l --almost-all --human-readable --color --group-directories-first' # ls -lAHSr
 alias c='clear'
 alias rm='rm -r'
 alias cp='cp -r'
@@ -122,8 +122,10 @@ tmux new -As0
 
 
 # fasd
-eval "$(fasd --init auto)"
+#eval "$(fasd --init auto)"
+eval "$(fasd --init zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
 bindkey '^k^i' fasd-complete # test autocomplete
+
 
 
 #### Init fzf ###
