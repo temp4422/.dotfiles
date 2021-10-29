@@ -241,43 +241,7 @@ eval $(thefuck --alias)
 # zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-
-
-# nnn 
-export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview'
-
-
-# Enironment variables
-export FPATH=$HOME/.fpath:$FPATH
-
-
-
-
-# deer
-autoload -U deer
-zle -N deer
-bindkey '\ek' deer
-
-# zranger
-autoload -U zranger
-bindkey -s '\ez' "\eq zranger\n"
-
-alias r.ranger='SHELL=/usr/local/bin/r.shell ranger'
-
-# Ranger
-#prevent nested ranger instances
-ranger() {
-    if [ -z "$RANGER_LEVEL" ]; then
-        /usr/bin/ranger "$@"
-    else
-        exit
-
-    fi
-}
-
-
-
-# lf
+# LF
 #lfcd allow keep current dir on exit
 lfcd () {
     tmp="$(mktemp)"
