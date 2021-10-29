@@ -112,17 +112,30 @@ set incsearch on
 set incfilter on
 
 # key maps
-map l #unmap key
-map <c-d>
+map l #unmap 'map l open'
 map <enter> open
+map <c-d> #unmap 'map <c-d> half-down'
+map <c-d> quit
 map <backspace2> updir
 map ll set hidden!
+map y #unmap 'map y copy'
+map yy copy
+map d #unmap 'map d cut'
+map dx cut
+map dd delete
 map <delete> delete
+map du !clear && du -h --max-depth=1 | sort -h
 map <f-2> rename
 map ~ $lf -remote "send $id cd /home/user"
 map <delete> trash
 map x
-map x extract
+map xx extract # compress with tar and zip cmds
+map xe $$f # execute file (map x $$f)
+map xs !$f # execute in shell (map X !$f)
+map sz !echo $PWD
+
+map w # unmap 'map w $$SHELL'
+#previewer      string    (default ”) (not filtered if empty)
 
 # cmd key maps
 cmap <up> cmd-history-prev
