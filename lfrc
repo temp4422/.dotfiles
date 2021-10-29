@@ -1,0 +1,174 @@
+# interpreter for shell commands
+set shell sh
+
+# set '-eu' options for shell commands
+# These options are used to have safer shell commands. Option '-e' is used to
+# exit on error and option '-u' is used to give error for unset variables.
+# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
+# $fx variables contain names with '*' or '?' characters. However, this option
+# is used selectively within individual commands as it can be limiting at
+# times.
+set shellopts '-eu'
+
+# set internal field separator (IFS) to "\n" for shell commands
+# This is useful to automatically split file names in $fs and $fx properly
+# since default file separator used in these variables (i.e. 'filesep' option)
+# is newline. You need to consider the values of these options and create your
+# commands accordingly.
+set ifs "\n"
+
+# leave some space at the top and the bottom of the screen
+set scrolloff 10
+
+# use enter for shell commands
+map <enter> shell
+
+# execute current file (must be executable)
+map x $$f
+map X !$f
+
+# dedicated keys for file opener actions
+map o &mimeopen $f
+map O $mimeopen --ask $f
+
+# define a custom 'open' command
+# This command is called when current file is not a directory. You may want to
+# use either file extensions and/or mime types here. Below uses an editor for
+# text files and a file opener for the rest.
+cmd open ${{
+    test -L $f && f=$(readlink -f $f)
+    case $(file --mime-type $f -b) in
+        text/*) $EDITOR $fx;;
+        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+    esac
+}}
+
+# define a custom 'rename' command without prompt for overwrite
+# cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+# map r push :rename<space>
+
+# make sure trash folder exists
+# %mkdir -p ~/.trash
+
+# move current file or selected files to trash folder
+# (also see 'man mv' for backup/overwrite options)
+cmd trash %set -f; mv $fx ~/.trash
+
+# define a custom 'delete' command
+# cmd delete ${{
+#     set -f
+#     printf "$fx\n"
+#     printf "delete?[y/n]"
+#     read ans
+#     [ $ans = "y" ] && rm -rf $fx
+# }}
+
+# use '<delete>' key for either 'trash' or 'delete' command
+# map <delete> trash
+# map <delete> delete
+
+# extract the current file with the right command
+# (xkcd link: https://xkcd.com/1168/)
+cmd extract ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.zip) unzip $f;;
+        *.rar) unrar x $f;;
+        *.7z) 7z x $f;;
+    esac
+}}
+
+# compress current file or selected files with tar and gunzip
+cmd tar ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    tar czf $1.tar.gz $1
+    rm -rf $1
+}}
+
+# compress current file or selected files with zip
+cmd zip ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    zip -r $1.zip $1
+    rm -rf $1
+}}
+
+
+
+
+
+### MY CODE ###
+#'map' is used to bind a key to a command which can be builtin command, custom command, or shell command.
+
+# options
+set incsearch on
+set incfilter on
+
+# key maps
+map l #unmap key
+map <c-d>
+map <enter> open
+map <backspace2> updir
+map ll set hidden!
+map <delete> delete
+map <f-2> rename
+map ~ $lf -remote "send $id cd /home/user"
+map <delete> trash
+map x
+map x extract
+
+# cmd key maps
+cmap <up> cmd-history-prev
+cmap <down> cmd-history-next
+cmap <tab>
+cmap <tab> cmd-menu-complete
+#cmap <c-backspace2> cmd-delete-unix-word # not working!
+
+# commands
+# ctrl+e fasd-fzf cd/vi for recent folders/files
+cmd fasd-fzf ${{
+    res="$(fasd -Rl | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ]; then
+        cmd="cd"
+    else 
+        cmd="select"                                                       
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+map <c-e> :fasd-fzf
+
+
+# ctrl+f find-fzf local
+cmd find-fzf ${{
+    res="$(find . -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path     '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*    git*' \) -prune -false -o -iname '*' 2>/dev/null | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ]; then
+        cmd="cd"
+    else 
+        cmd="select"                                                       
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+map <c-f> :find-fzf
+
+
+# ctrl+shift+f find-fzf global
+cmd find-fzf-global ${{
+    res="$(find / -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path     '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*    git*' \) -prune -false -o -iname '*' 2>/dev/null | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ]; then
+        cmd="cd"
+    else 
+        cmd="select"                                                       
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+map <c-]> :find-fzf-global
+
+
+# zsh file picker / directory changer - not work!
+# https://github.com/gokcehan/lf/wiki/Integrations

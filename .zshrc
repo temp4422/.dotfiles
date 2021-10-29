@@ -43,6 +43,9 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # Custom prompt # ❯⚡
 PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f ' 
 
+# Environment variables
+export PATH=/home/user:/bin:/usr/bin:/usr/local/bin:${PATH}
+
 # key mappings
 bindkey "^[[1;5D" backward-word #ctrl-left
 bindkey "^[[1;5C" forward-word #ctrl-right
@@ -92,6 +95,7 @@ alias chrome='/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.ex
 alias y='yarn'
 alias p='pnpm'
 alias j='fasd_cd -d'
+alias bat='batcat'
 
 
 # Start in home dir
@@ -238,5 +242,84 @@ eval $(thefuck --alias)
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
+
+# nnn 
+export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview'
+
+
+# Enironment variables
+export FPATH=$HOME/.fpath:$FPATH
+
+
+
+
+# deer
+autoload -U deer
+zle -N deer
+bindkey '\ek' deer
+
+# zranger
+autoload -U zranger
+bindkey -s '\ez' "\eq zranger\n"
+
+alias r.ranger='SHELL=/usr/local/bin/r.shell ranger'
+
 # Ranger
-ranger
+#prevent nested ranger instances
+ranger() {
+    if [ -z "$RANGER_LEVEL" ]; then
+        /usr/bin/ranger "$@"
+    else
+        exit
+
+    fi
+}
+
+
+
+# lf
+#lfcd allow keep current dir on exit
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
+
+# ctrl+k open lf in right tmux pane
+_zlf() {
+    emulate -L zsh
+    local d=$(mktemp -d) || return 1
+    {
+        mkfifo -m 600 $d/fifo || return 1
+        tmux split -fh zsh -c "exec {ZLE_FIFO}>$d/fifo; export ZLE_FIFO; exec lf" || return 1
+        local fd
+        exec {fd}<$d/fifo
+        zle -Fw $fd _zlf_handler
+    } always {
+        rm -rf $d
+    }
+}
+zle -N _zlf
+bindkey '^k' _zlf
+
+_zlf_handler() {
+    emulate -L zsh
+    local line
+    if ! read -r line <&$1; then
+        zle -F $1
+        exec {1}<&-
+        return 1
+    fi
+    eval $line
+    zle -R
+}
+zle -N _zlf_handler
+
