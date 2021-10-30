@@ -204,3 +204,5 @@ v() {
     file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
 }
 
+# enable control-s and control-q
+stty -ixon

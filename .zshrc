@@ -52,6 +52,7 @@ bindkey "^[[1;5C" forward-word #ctrl-right
 bindkey "^[[1~" beginning-of-line #home
 bindkey "^[[4~" end-of-line #end
 
+
 up-dir() {
     builtin cd .. && zle reset-prompt
 }
@@ -270,7 +271,11 @@ lfcd () {
             fi
         fi
     fi
+  zle reset-prompt
 }
+zle -N lfcd
+#bindkey '^[[18~' lfcd
+bindkey '^s' lfcd
 
 # ctrl+k open lf in right tmux pane
 _zlf() {
@@ -302,3 +307,7 @@ _zlf_handler() {
 }
 zle -N _zlf_handler
 
+# enable control-s and control-q
+stty start undef
+stty stop undef
+setopt noflowcontrol

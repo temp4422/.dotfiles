@@ -132,8 +132,19 @@ map x
 map xx extract # compress with tar and zip cmds
 map xe $$f # execute file (map x $$f)
 map xs !$f # execute in shell (map X !$f)
+
 map sz $$SHELL
 
+map e
+map ee $$EDITOR "$f"
+
+map r
+map rr rename
+map c
+map cc clear
+
+map <c-s> quit
+#map <f-7> quit # ctrl+s from windows terminal remap
 #map w # unmap 'map w $$SHELL'
 #previewer      string    (default ”) (not filtered if empty)
 
