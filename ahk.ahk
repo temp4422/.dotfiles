@@ -417,6 +417,20 @@ Return
 SC163 & n::Send, {LWin Down}{8}{LWin Up}
 
 
+;Snip & Sketch
++#s::
+	Run, ms-screensketch:
+	WinWait, ahk_exe ApplicationFrameHost.exe
+	WinActivate, ahk_exe ApplicationFrameHost.exe
+	if WinActive("ahk_exe ApplicationFrameHost.exe") {
+	; #if WinActive("ahk_class VirtualConsoleClass","","powershell") 
+		Send, {Ctrl Down}{n}{Ctrl Up}
+	} else {
+		Return
+	}
+Return
+
+
 ;Google Chrome Translate
 ^CapsLock::
 	Send, {LWin Down}{9}{Lwin Up}
@@ -434,6 +448,7 @@ Return
 Return
 	+^f::Send, {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
 Return
+
 
 
 ;Windows Terminal
@@ -456,6 +471,7 @@ Return
 ; VSCode jumpy
 #if WinActive("ahk_exe Code.exe")
 SC163 & f::^!f
+^l::Send, {Home}{Shift Down}{End}{Shift Up}
 Return
 
 
@@ -536,6 +552,7 @@ Return
 ;LCtrl & SC02C::Send, Hello
 ;LCtrl & SC02C::Send,{ Ctrl Down}{z}{Ctrl Up}
 ;LCtrl & SC02C::Send, ^{VK5A}
+
 
 
 
