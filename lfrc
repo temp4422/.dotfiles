@@ -142,7 +142,7 @@ map r
 map rr rename
 map c
 map cc clear
-
+map cp copy
 map <c-s> quit
 #map <f-7> quit # ctrl+s from windows terminal remap
 #map w # unmap 'map w $$SHELL'
