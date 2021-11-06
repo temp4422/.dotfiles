@@ -197,3 +197,11 @@ map <c-]> :find-fzf-global
 
 # zsh file picker / directory changer - not work!
 # https://github.com/gokcehan/lf/wiki/Integrations
+
+cmd open ${{
+    test -L $f && f=$(readlink -f $f)
+    case $(file --mime-type $f -b) in
+        text/*) vi $fx;;
+        *) for f in $fx; do xdg-open $f > /dev/null 2> /dev/null & done;;
+    esac
+}}

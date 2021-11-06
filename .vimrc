@@ -34,3 +34,4 @@ vnoremap <c-s> <Esc>:w<CR> " visual mode: escape to normal and save
 
 
 nnoremap q :q<CR> " normal mode: quit
+nnoremap Q :q<CR> " normal mode: quit
