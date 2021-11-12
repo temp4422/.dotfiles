@@ -29,9 +29,15 @@ map <Enter> n
 "set <Left>=^[[D
 
 nnoremap <c-s> :w<CR> " normal mode: save
-inoremap <c-s> <Esc>:w<CR>l " insert mode: escape to normal and save
+inoremap <c-s> <Esc>:w<CR> " insert mode: escape to normal and save
 vnoremap <c-s> <Esc>:w<CR> " visual mode: escape to normal and save
 
 
 nnoremap q :q<CR> " normal mode: quit
 nnoremap Q :q<CR> " normal mode: quit
+
+"search in 3 modes
+nnoremap <c-f> /
+inoremap <c-f> <Esc>/
+vnoremap <c-f> <Esc>/
+
