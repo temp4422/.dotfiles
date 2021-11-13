@@ -28,16 +28,23 @@ map <Enter> n
 "set <Right>=^[[C
 "set <Left>=^[[D
 
+"save in 3 modes
 nnoremap <c-s> :w<CR> " normal mode: save
 inoremap <c-s> <Esc>:w<CR> " insert mode: escape to normal and save
 vnoremap <c-s> <Esc>:w<CR> " visual mode: escape to normal and save
 
-
-nnoremap q :q<CR> " normal mode: quit
-nnoremap Q :q<CR> " normal mode: quit
+"quit in normal mode
+nnoremap q :q<CR>
+nnoremap Q :q<CR>
 
 "search in 3 modes
 nnoremap <c-f> /
 inoremap <c-f> <Esc>/
 vnoremap <c-f> <Esc>/
+
+"quit in 3 modes
+nnoremap <c-d> :q<CR>
+inoremap <c-d> <Esc>:q<CR>
+vnoremap <c-d> <Esc>:q<CR>
+
 
