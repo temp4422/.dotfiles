@@ -543,10 +543,26 @@ Return
 ;Insert code block
 +^i::
 Send, {/}
-Sleep, 100
+Sleep, 50
 Send, code
-Sleep, 100
+Sleep, 150
 Send, {Enter}
+Return
+;Insert text from code block
++^u::
+Send, {/}
+Sleep, 50
+Send, code
+Sleep, 150
+Send, {Enter}
+Sleep, 150
+Send, {Ctrl Down}{v}{Ctrl Up}
+Sleep, 50
+Send, {Ctrl Down}{a}{Ctrl Up}
+Sleep, 50
+Send, {Ctrl Down}{x}{Ctrl Up}
+Sleep, 150
+Send, {Ctrl Down}{v}{Ctrl Up}
 Return
 ;Undo VK5A, SC02C
 ;LCtrl & SC02C::Send, Hello
