@@ -414,7 +414,7 @@ Return
 
 
 ;Calculator
-SC163 & n::Send, {LWin Down}{8}{LWin Up}
+SC163 & n::Send, {LWin Down}{9}{LWin Up}
 
 
 ;Snip & Sketch
@@ -433,7 +433,7 @@ Return
 
 ;Google Chrome Translate
 ^CapsLock::
-	Send, {LWin Down}{9}{Lwin Up}
+	Send, {LWin Down}{0}{Lwin Up}
 	Sleep, 100
 	if WinActive("ahk_exe chrome.exe") {
 		Send, {/}
@@ -557,7 +557,7 @@ Sleep, 150
 Send, {Enter}
 Sleep, 150
 Send, {Ctrl Down}{v}{Ctrl Up}
-Sleep, 50
+Sleep, 100
 Send, {Ctrl Down}{a}{Ctrl Up}
 Sleep, 50
 Send, {Ctrl Down}{x}{Ctrl Up}
