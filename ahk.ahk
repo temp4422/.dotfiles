@@ -3,27 +3,22 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-
 ;*** MY CODE ***
 ; Terminal Ctrl+Backspace match title
 ; RegEx or digits: 1 - title must start with the specified WinTitle, 2 - title can contain WinTitle anywhere inside it, 3 - title must exactly match WinTitle.
 SetTitleMatchMode 2 
-
-
 
 ;BRIGHTNESS
 class BrightnessSetter {
 	; qwerty12 - 27/05/17
 	; https://github.com/qwerty12/AutoHotkeyScripts/tree/master/LaptopBrightnessSetter
 	static _WM_POWERBROADCAST := 0x218, _osdHwnd := 0, hPowrprofMod := DllCall("LoadLibrary", "Str", "powrprof.dll", "Ptr") 
-
 	__New() {
 		if (BrightnessSetter.IsOnAc(AC))
 			this._AC := AC
 		if ((this.pwrAcNotifyHandle := DllCall("RegisterPowerSettingNotification", "Ptr", A_ScriptHwnd, "Ptr", BrightnessSetter._GUID_ACDC_POWER_SOURCE(), "UInt", DEVICE_NOTIFY_WINDOW_HANDLE := 0x00000000, "Ptr"))) ; Sadly the callback passed to *PowerSettingRegister*Notification runs on a new threadl
 			OnMessage(this._WM_POWERBROADCAST, ((this.pwrBroadcastFunc := ObjBindMethod(this, "_On_WM_POWERBROADCAST"))))
 	}
-
 	__Delete() {
 		if (this.pwrAcNotifyHandle) {
 			OnMessage(BrightnessSetter._WM_POWERBROADCAST, this.pwrBroadcastFunc, 0)
@@ -32,7 +27,6 @@ class BrightnessSetter {
 			,this.pwrBroadcastFunc := ""
 		}
 	}
-
 	SetBrightness(increment, jump := False, showOSD := True, autoDcOrAc := -1, ptrAnotherScheme := 0)
 	{
 		static PowerGetActiveScheme := DllCall("GetProcAddress", "Ptr", BrightnessSetter.hPowrprofMod, "AStr", "PowerGetActiveScheme", "Ptr")
@@ -40,13 +34,11 @@ class BrightnessSetter {
 			  ,PowerWriteACValueIndex := DllCall("GetProcAddress", "Ptr", BrightnessSetter.hPowrprofMod, "AStr", "PowerWriteACValueIndex", "Ptr")
 			  ,PowerWriteDCValueIndex := DllCall("GetProcAddress", "Ptr", BrightnessSetter.hPowrprofMod, "AStr", "PowerWriteDCValueIndex", "Ptr")
 			  ,PowerApplySettingChanges := DllCall("GetProcAddress", "Ptr", BrightnessSetter.hPowrprofMod, "AStr", "PowerApplySettingChanges", "Ptr")
-
 		if (increment == 0 && !jump) {
 			if (showOSD)
 				BrightnessSetter._ShowBrightnessOSD()
 			return
 		}
-
 		if (!ptrAnotherScheme ? DllCall(PowerGetActiveScheme, "Ptr", 0, "Ptr*", currSchemeGuid, "UInt") == 0 : DllCall("powrprof\PowerDuplicateScheme", "Ptr", 0, "Ptr", ptrAnotherScheme, "Ptr*", currSchemeGuid, "UInt") == 0) {
 			if (autoDcOrAc == -1) {
 				if (this != BrightnessSetter) {
@@ -60,12 +52,10 @@ class BrightnessSetter {
 			} else {
 				AC := !!autoDcOrAc
 			}
-
 			currBrightness := 0
 			if (jump || BrightnessSetter._GetCurrentBrightness(currSchemeGuid, AC, currBrightness)) {
 				 maxBrightness := BrightnessSetter.GetMaxBrightness()
 				,minBrightness := BrightnessSetter.GetMinBrightness()
-
 				if (jump || !((currBrightness == maxBrightness && increment > 0) || (currBrightness == minBrightness && increment < minBrightness))) {
 					if (currBrightness + increment > maxBrightness)
 						increment := maxBrightness
@@ -73,42 +63,35 @@ class BrightnessSetter {
 						increment := minBrightness
 					else
 						increment += currBrightness
-
 					if (DllCall(AC ? PowerWriteACValueIndex : PowerWriteDCValueIndex, "Ptr", 0, "Ptr", currSchemeGuid, "Ptr", BrightnessSetter._GUID_VIDEO_SUBGROUP(), "Ptr", BrightnessSetter._GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS(), "UInt", increment, "UInt") == 0) {
 						; PowerApplySettingChanges is undocumented and exists only in Windows 8+. Since both the Power control panel and the brightness slider use this, we'll do the same, but fallback to PowerSetActiveScheme if on Windows 7 or something
 						if (!PowerApplySettingChanges || DllCall(PowerApplySettingChanges, "Ptr", BrightnessSetter._GUID_VIDEO_SUBGROUP(), "Ptr", BrightnessSetter._GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS(), "UInt") != 0)
 							DllCall(PowerSetActiveScheme, "Ptr", 0, "Ptr", currSchemeGuid, "UInt")
 					}
 				}
-
 				if (showOSD)
 					BrightnessSetter._ShowBrightnessOSD()
 			}
 			DllCall("LocalFree", "Ptr", currSchemeGuid, "Ptr")
 		}
 	}
-
 	IsOnAc(ByRef acStatus)
 	{
 		static SystemPowerStatus
 		if (!VarSetCapacity(SystemPowerStatus))
 			VarSetCapacity(SystemPowerStatus, 12)
-
 		if (DllCall("GetSystemPowerStatus", "Ptr", &SystemPowerStatus)) {
 			acStatus := NumGet(SystemPowerStatus, 0, "UChar") == 1
 			return True
 		}
-
 		return False
 	}
-	
 	GetDefaultBrightnessIncrement()
 	{
 		static ret := 10
 		DllCall("powrprof\PowerReadValueIncrement", "Ptr", BrightnessSetter._GUID_VIDEO_SUBGROUP(), "Ptr", BrightnessSetter._GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS(), "UInt*", ret, "UInt")
 		return ret
 	}
-
 	GetMinBrightness()
 	{
 		static ret := -1
@@ -117,7 +100,6 @@ class BrightnessSetter {
 				ret := 0
 		return ret
 	}
-
 	GetMaxBrightness()
 	{
 		static ret := -1
@@ -126,14 +108,12 @@ class BrightnessSetter {
 				ret := 100
 		return ret
 	}
-
 	_GetCurrentBrightness(schemeGuid, AC, ByRef currBrightness)
 	{
 		static PowerReadACValueIndex := DllCall("GetProcAddress", "Ptr", BrightnessSetter.hPowrprofMod, "AStr", "PowerReadACValueIndex", "Ptr")
 			  ,PowerReadDCValueIndex := DllCall("GetProcAddress", "Ptr", BrightnessSetter.hPowrprofMod, "AStr", "PowerReadDCValueIndex", "Ptr")
 		return DllCall(AC ? PowerReadACValueIndex : PowerReadDCValueIndex, "Ptr", 0, "Ptr", schemeGuid, "Ptr", BrightnessSetter._GUID_VIDEO_SUBGROUP(), "Ptr", BrightnessSetter._GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS(), "UInt*", currBrightness, "UInt") == 0
 	}
-	
 	_ShowBrightnessOSD()
 	{
 		static PostMessagePtr := DllCall("GetProcAddress", "Ptr", DllCall("GetModuleHandle", "Str", "user32.dll", "Ptr"), "AStr", A_IsUnicode ? "PostMessageW" : "PostMessageA", "Ptr")
@@ -145,7 +125,6 @@ class BrightnessSetter {
 		if (BrightnessSetter._osdHwnd)
 			DllCall(PostMessagePtr, "Ptr", BrightnessSetter._osdHwnd, "UInt", WM_SHELLHOOK, "Ptr", 0x37, "Ptr", 0)
 	}
-
 	_RealiseOSDWindowIfNeeded()
 	{
 		static IsWindow := DllCall("GetProcAddress", "Ptr", DllCall("GetModuleHandle", "Str", "user32.dll", "Ptr"), "AStr", "IsWindow", "Ptr")
@@ -169,13 +148,11 @@ class BrightnessSetter {
 			}
 		}
 	}
-	
 	_FindAndSetOSDWindow()
 	{
 		static FindWindow := DllCall("GetProcAddress", "Ptr", DllCall("GetModuleHandle", "Str", "user32.dll", "Ptr"), "AStr", A_IsUnicode ? "FindWindowW" : "FindWindowA", "Ptr")
 		return !!((BrightnessSetter._osdHwnd := DllCall(FindWindow, "Str", "NativeHWNDHost", "Str", "", "Ptr")))
 	}
-
 	_On_WM_POWERBROADCAST(wParam, lParam)
 	{
 		;OutputDebug % &this
@@ -184,7 +161,6 @@ class BrightnessSetter {
 			return True
 		}
 	}
-
 	_GUID_VIDEO_SUBGROUP()
 	{
 		static GUID_VIDEO_SUBGROUP__
@@ -195,7 +171,6 @@ class BrightnessSetter {
 		}
 		return &GUID_VIDEO_SUBGROUP__
 	}
-
 	_GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS()
 	{
 		static GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS__
@@ -206,7 +181,6 @@ class BrightnessSetter {
 		}
 		return &GUID_DEVICE_POWER_POLICY_VIDEO_BRIGHTNESS__
 	}
-
 	_GUID_ACDC_POWER_SOURCE()
 	{
 		static GUID_ACDC_POWER_SOURCE_
@@ -217,13 +191,10 @@ class BrightnessSetter {
 		}
 		return &GUID_ACDC_POWER_SOURCE_
 	}
-
 }
-
 BrightnessSetter_new() {
 	return new BrightnessSetter()
 }
-
 BS := new BrightnessSetter()
 
 ;Set keyboard shortcuts
@@ -231,9 +202,6 @@ SC163 & u::
 SC163 & 7::BS.SetBrightness(-10)
 SC163 & i::
 SC163 & 8::BS.SetBrightness(10)
-
-
-
 
 
 
@@ -247,6 +215,37 @@ SC163 & 9::Volume_Down
 SC163 & p::
 SC163 & 0::Volume_Up
 
+;win+1,2,3,4,5,6
+^1::#1
+^2::#2
+^3::#3
+^4::#4
+^5::#5
+^6::#6
+#1::Send,{Ctrl Down}{1}{Ctrl Up}
+#2::Send,{Ctrl Down}{2}{Ctrl Up}
+#3::Send,{Ctrl Down}{3}{Ctrl Up}
+#4::Send,{Ctrl Down}{4}{Ctrl Up}
+#5::Send,{Ctrl Down}{5}{Ctrl Up}
+#6::Send,{Ctrl Down}{6}{Ctrl Up}
+;Alternative 
+SC163 & 1::Send,{Ctrl Down}{1}{Ctrl Up}
+SC163 & 2::Send,{Ctrl Down}{2}{Ctrl Up}
+SC163 & 3::Send,{Ctrl Down}{3}{Ctrl Up}
+SC163 & 4::Send,{Ctrl Down}{4}{Ctrl Up}
+SC163 & 5::Send,{Ctrl Down}{5}{Ctrl Up}
+SC163 & 6::Send,{Ctrl Down}{6}{Ctrl Up}
+;
++^1::Send,{Ctrl Down}{1}{Ctrl Up}
++^2::Send,{Ctrl Down}{2}{Ctrl Up}
++^3::Send,{Ctrl Down}{3}{Ctrl Up}
++^4::Send,{Ctrl Down}{4}{Ctrl Up}
++^5::Send,{Ctrl Down}{5}{Ctrl Up}
++^6::Send,{Ctrl Down}{6}{Ctrl Up}
++^7::Send,{Ctrl Down}{7}{Ctrl Up}
++^8::Send,{Ctrl Down}{8}{Ctrl Up}
++^9::Send,{Ctrl Down}{9}{Ctrl Up}
++^0::Send,{Ctrl Down}{0}{Ctrl Up}
 
 ;JKL;+Ctrl,Shift,Alt,Win
 MoveCursor(key) {
@@ -287,11 +286,6 @@ SC163 & .::MoveCursor("{PGUP}")
 SC163 & /::MoveCursor("{END}")
 SC163 & BS::MoveCursor("{DEL}")
 
-
-;Send F7 Caret Browsing
-SC163 & '::Send, {F7}
-
-
 ;Ctrl(+Shift)+Tab to Alt(+Shift)+Tab
 LCtrl & Tab::AltTab ;Alternative 'LWin & Tab::AltTab'
 LShift & Tab::
@@ -300,58 +294,29 @@ LShift & Tab::
 		Send, {Shift Down}{Alt Down}{Tab}{Alt Up}{Shift Up}
 Return
 
-
 ;Ctrl(+Shift)+Esc to Ctrl(+Shift)+Tab
-LCtrl & Esc::
-;OneNote go back to the last page visited Alt+Left arrow
-if WinActive("ahk_class ApplicationFrameWindow") {
-	Send, {Alt Down}{Left}{Alt Up}
-} Else {
-	Send, {Ctrl Down}{Tab}{Ctrl Up}
-}
-Return
-LShift & Esc::
-	GetKeyState, state, Control
-	if state = D
-		Send, {Shift Down}{Ctrl Down}{Tab}{Ctrl Up}{Shift Up}
-Return
+LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
 
+;Close active window(Alt+F4)
++^w::Send {Alt down}{F4}{Alt up}
 
 ;AppsKey (context menu Shift+F10)
 SC163 & Enter::AppsKey
 
-;win+1,2,3...
-^1::#1
-^2::#2
-^3::#3
-^4::#4
-^5::#5
-^6::#6
-#1::Send,{Ctrl Down}{1}{Ctrl Up}
-#2::Send,{Ctrl Down}{2}{Ctrl Up}
-#3::Send,{Ctrl Down}{3}{Ctrl Up}
-#4::Send,{Ctrl Down}{4}{Ctrl Up}
-#5::Send,{Ctrl Down}{5}{Ctrl Up}
-#6::Send,{Ctrl Down}{6}{Ctrl Up}
-;Alternative 
-SC163 & 1::Send,{Ctrl Down}{1}{Ctrl Up}
-SC163 & 2::Send,{Ctrl Down}{2}{Ctrl Up}
-SC163 & 3::Send,{Ctrl Down}{3}{Ctrl Up}
-SC163 & 4::Send,{Ctrl Down}{4}{Ctrl Up}
-SC163 & 5::Send,{Ctrl Down}{5}{Ctrl Up}
-SC163 & 6::Send,{Ctrl Down}{6}{Ctrl Up}
-;
-+^1::Send,{Ctrl Down}{1}{Ctrl Up}
-+^2::Send,{Ctrl Down}{2}{Ctrl Up}
-+^3::Send,{Ctrl Down}{3}{Ctrl Up}
-+^4::Send,{Ctrl Down}{4}{Ctrl Up}
-+^5::Send,{Ctrl Down}{5}{Ctrl Up}
-+^6::Send,{Ctrl Down}{6}{Ctrl Up}
-+^7::Send,{Ctrl Down}{7}{Ctrl Up}
-+^8::Send,{Ctrl Down}{8}{Ctrl Up}
-+^9::Send,{Ctrl Down}{9}{Ctrl Up}
-+^0::Send,{Ctrl Down}{0}{Ctrl Up}
+;Send F7 Caret Browsing
+SC163 & '::Send, {F7}
 
+;Calculator
+SC163 & n::Send, {LWin Down}{9}{LWin Up}
+
+;Google Chrome Translate
+^CapsLock::Send, {LWin Down}{0}{Lwin Up}
+
+;undo, cut, copy, paste
+!z::Send, {Ctrl Down}{z}{Ctrl Up}
+!x::Send, {Ctrl Down}{x}{Ctrl Up}
+!c::Send, {Ctrl Down}{c}{Ctrl Up}
+!v::Send, {Ctrl Down}{v}{Ctrl Up}
 
 ;Maximize active window
 #f::
@@ -361,7 +326,6 @@ WinGet MX, MinMax, A
    Else WinMaximize A
 Return
 
-
 ;Minimize active window Win+Esc
 #Esc::
 WinGet MX, MinMax, A
@@ -369,11 +333,6 @@ WinGet MX, MinMax, A
         WinMinimize A
    Else WinMinimize A
 Return
-
-
-;Close active window(Alt+F4)
-+^w::Send {Alt down}{F4}{Alt up}
-
 
 ;File Explorer
 #e::
@@ -395,7 +354,6 @@ Return
 	WinActivate, ahk_class CabinetWClass
 Return
 
-
 ;Windows Terminal
 ^`::
 #Enter::
@@ -412,11 +370,6 @@ if WinActive("ahk_exe WindowsTerminal.exe") {
 }
 Return
 
-
-;Calculator
-SC163 & n::Send, {LWin Down}{9}{LWin Up}
-
-
 ;Snip & Sketch
 +#s::
 	Run, ms-screensketch:
@@ -430,149 +383,11 @@ SC163 & n::Send, {LWin Down}{9}{LWin Up}
 	}
 Return
 
-
-;Google Chrome Translate
-^CapsLock::
-	Send, {LWin Down}{0}{Lwin Up}
-	Sleep, 100
-	if WinActive("ahk_exe chrome.exe") {
-		Send, {/}
-		;Send, {Ctrl Down}{q}{Ctrl Up}
-	} else {
-		Return
-	}
-Return
-;Google Chrome disable bookmark
-#if WinActive("ahk_exe chrome.exe","","") 
-	^d::
-Return
-	+^f::Send, {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
-Return
-
-
-
 ;Windows Terminal
-;Terminal Ctrl+Backspace
-#if WinActive("ahk_class VirtualConsoleClass","","powershell") 
-	^BS::Send, {Alt Down}{BackSpace}{Alt Up}
-Return
 #if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell") 
 	^BS::Send, {Alt Down}{BackSpace}{Alt Up}
 Return
-; Select line with ctrl+a
-#if WinActive("ahk_exe WindowsTerminal.exe","","") 
-	^a::
-	Send, {Ctrl Down}{Shift Down}{c}{Shift Up}{Ctrl Up}
-	Sleep, 100
-	Send, {Space}{Home}{Right}{Right}
-Return
-
-
-; VSCode jumpy
-#if WinActive("ahk_exe Code.exe")
-SC163 & f::^!f
-^l::Send, {Home}{Shift Down}{End}{Shift Up}
-Return
-
-
-;OneNote
-;Toggle Navigation panel
-#if WinActive("ahk_class ApplicationFrameWindow")
-+^e::
-^b::
-count++
-if (count=1) {
-	Send, {Ctrl Down}{Alt Down}{-}{Alt Up}{Ctrl Up}
-}
-if (count=2) {
-	Send, {Ctrl Down}{Alt Down}{=}{Alt Up}{Ctrl Up}
-	Send, {Ctrl Down}{Alt Down}{g}{Alt Up}{Ctrl Up}
-	count := 0
-}
-Return
-;Send ctrl+alt+g
-#if WinActive("ahk_class ApplicationFrameWindow")
-^g::Send, {Ctrl Down}{Alt Down}{g}{Alt Up}{Ctrl Up}
-;Search ctrl+e to ctrl+shift+f
-+^f::Send, {Ctrl Down}{e}{Ctrl Up}
-;Send shift+tab
-Shift & Tab::Send {Shift Down}{Tab}{Shift Up}
-;Redo ctrl+shit+z
-+^z::Send, {Ctrl Down}{y}{Ctrl Up}
-;Send end+enter
-^Enter::Send, {End}{Enter}
-;Create a Quick Note
-^t::
-Send, {Ctrl Down}{Shift Down}{g}{Shift Up}{Ctrl Up}
-Sleep, 200
-Send, {Home}
-Sleep, 200
-Send, {Ctrl Down}{n}{Ctrl Up}
-Return
-
-
-;RemNote
-#if WinActive("ahk_exe RemNote.exe")
-;Add Child Without Splitting Text "Alt + Enter"
-^Enter::
-Send, {End}
-Sleep, 50
-Send, {Alt Down}{Enter}{Alt Up}
-Return
-;Delete Rem "Ctrl + Shift + Alt + Backspace"
-+^x::Send, {Ctrl Down}{Shift Down}{Alt Down}{BackSpace}{Alt Up}{Shift Up}{Ctrl Up}
-;Headers
-!^1::Send, {Ctrl Down}{Alt Down}{1}{Alt Up}{Ctrl Up}
-!^2::Send, {Ctrl Down}{Alt Down}{2}{Alt Up}{Ctrl Up}
-!^3::Send, {Ctrl Down}{Alt Down}{3}{Alt Up}{Ctrl Up}
-;Navigate Backward
-LCtrl & Esc::Send, {Alt Down}{Left}{Alt Up}
-;Zoom into Rem
-+^Enter::Send, {Ctrl Down}{;}{Ctrl Up}
-;Navigate to Child (pair with Navigate to Parent)
-+^k::
-Send, {PgDn}
-Sleep, 250
-Send, {Down}
-Return
-;Select word under cursor
-^d::
-Send, {Ctrl Down}{Left}{Ctrl Up}
-Send, {Ctrl Down}{Shift Down}{Right}{Shift Up}{Ctrl Up}
-Return
-;Insert code block
-+^i::
-Send, {/}
-Sleep, 50
-Send, code
-Sleep, 150
-Send, {Enter}
-Return
-;Insert text from code block
-+^u::
-Send, {/}
-Sleep, 50
-Send, code
-Sleep, 150
-Send, {Enter}
-Sleep, 150
-Send, {Ctrl Down}{v}{Ctrl Up}
-Sleep, 100
-Send, {Ctrl Down}{a}{Ctrl Up}
-Sleep, 50
-Send, {Ctrl Down}{x}{Ctrl Up}
-Sleep, 150
-Send, {Ctrl Down}{v}{Ctrl Up}
-Return
-;Undo VK5A, SC02C
-;LCtrl & SC02C::Send, Hello
-;LCtrl & SC02C::Send,{ Ctrl Down}{z}{Ctrl Up}
-;LCtrl & SC02C::Send, ^{VK5A}
-
-
-
 
 ;;;;;; INFO ;;;;;;
 ;This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
-
 ;Add simple mappings like "SC163 & n::Send, {..}" above "#if WinActive()", because it breaks code. 
