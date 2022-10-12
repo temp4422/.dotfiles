@@ -167,6 +167,24 @@ unmap s
 })();
 ```
 
+## Windows
+### Uninstall apps
+```
+winget uninstall  "Microsoft People"
+...WIP...
+```
+
+### Install apps
+```
+winget install Lexikos.AutoHotkey;
+winget install hluk.CopyQ;
+winget install Microsoft.WindowsTerminal.Preview; 
+winget install Microsoft.VisualStudioCode;
+winget install Google.Chrome;
+winget install Telegram.TelegramDesktop;
+winget install Kingsoft.WPSOffice;
+```
+
 ## Archive
 
 Shutdown shortcut (Target: "C:\Windows\System32\shutdown.exe -s -t 600")
