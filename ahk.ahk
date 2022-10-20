@@ -198,9 +198,7 @@ BrightnessSetter_new() {
 BS := new BrightnessSetter()
 
 ;Set keyboard shortcuts
-SC163 & u::
 SC163 & 7::BS.SetBrightness(-10)
-SC163 & i::
 SC163 & 8::BS.SetBrightness(10)
 
 
@@ -209,10 +207,8 @@ SC163 & 8::BS.SetBrightness(10)
 
 ;Volume
 ^F1::
-SC163 & o::
 SC163 & 9::Volume_Down
 ^F2::
-SC163 & p::
 SC163 & 0::Volume_Up
 
 ;win+1,2,3,4,5,6
@@ -303,20 +299,24 @@ LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
 ;AppsKey (context menu Shift+F10)
 SC163 & Enter::AppsKey
 
-;Send F7 Caret Browsing
-SC163 & '::Send, {F7}
-
 ;Calculator
 SC163 & n::Send, {LWin Down}{9}{LWin Up}
 
+;Map in apps
+SC163 & '::Send, {Ctrl Down}{Shift Down}{Alt Down}{'}{Alt Up}{Shift Up}{Ctrl Up}
+;
+SC163 & h::Send, {Ctrl Down}{Shift Down}{Alt Down}{h}{Alt Up}{Shift Up}{Ctrl Up}
+;
+SC163 & u::Send, {Ctrl Down}{Shift Down}{Alt Down}{u}{Alt Up}{Shift Up}{Ctrl Up}
+;
+SC163 & i::Send, {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
+;
+SC163 & o::Send, {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
+;
+SC163 & p::Send, {Ctrl Down}{Shift Down}{Alt Down}{p}{Alt Up}{Shift Up}{Ctrl Up}
+
 ;Google Chrome Translate
 ^CapsLock::Send, {LWin Down}{0}{Lwin Up}
-
-;undo, cut, copy, paste
-!z::Send, {Ctrl Down}{z}{Ctrl Up}
-!x::Send, {Ctrl Down}{x}{Ctrl Up}
-!c::Send, {Ctrl Down}{c}{Ctrl Up}
-!v::Send, {Ctrl Down}{v}{Ctrl Up}
 
 ;Maximize active window
 #f::
@@ -384,9 +384,9 @@ Return
 Return
 
 ;Windows Terminal
-#if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell") 
-	^BS::Send, {Alt Down}{BackSpace}{Alt Up}
-Return
+; #if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell") 
+; 	^BS::Send, {Alt Down}{BackSpace}{Alt Up}
+; Return
 
 ;;;;;; INFO ;;;;;;
 ;This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
