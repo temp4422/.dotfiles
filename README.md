@@ -32,7 +32,7 @@ New-Item -Path "C:\Users\user\AppData\Local\Packages\Microsoft.WindowsTerminalPr
 
 ## Browser Extensions
 
-uBlock Origin, Vimium, Tempermonkey, Google Translate, Dark Reader, Wappalyzer, Disable HTML5 Autoplay, QuicKey
+uBlock Origin, Vimium, Tampermonkey, Google Translate, Dark Reader, Wappalyzer, Disable HTML5 Autoplay, QuicKey
 
 ## Vimium Options
 
@@ -79,91 +79,41 @@ unmap s
 
 \+ Ignore keyboard layout
 
-## Tempermonkey
-
-### Google Search and Dictionary
-
-```JavaScript
-(function() {
-    'use strict';
-    window.addEventListener("keydown", checkKey, false);
-    async function checkKey(thisKey) {
-        let box = document.querySelector('.dw-sbi')
-        let speaker = document.querySelector('div.brWULd')
-        let enter = (new KeyboardEvent('keydown', { bubbles: true, keyCode: 13 }));
-        function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms));}
-
-        if (thisKey.key == 'q' && thisKey.ctrlKey) {
-            //box.dispatchEvent(enter)
-            //await sleep(500)
-            speaker.click()
-            await sleep(500)
-            box.focus()
-            box.select()
-            //console.log("Greetings my friend! Good Work! ")
-        }
-    }
-})();
-```
+## Tampermonkey
 
 ### Google Translate
 
 ```JavaScript
+// ==UserScript==
+// @name         Google Translate Press Button
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://translate.google.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=google.com
+// @grant        none
+// ==/UserScript==
+
 (function() {
     'use strict';
 
-    // Trigger Listen button
-    let xButton = document.querySelector('.tmJved'); // button class
-    window.addEventListener('keydown', pressKey, false);
-    function pressKey(x) {
-        if (x.key == 'q' && x.ctrlKey || x.key == 'й' && x.ctrlKey) {
-            xButton.click();
-            setTimeout( function() {
-                xBox.focus();
-                xBox.select();
-            }, 350);
-            // xButton.style.backgroundColor = "green";
-            // setTimeout( function() { xButton.style.backgroundColor = ""}, 500);
+    // Press listen button and select input box
+    window.addEventListener("keydown", pressKey, false)
+
+    async function pressKey(key) {
+        let box = document.querySelector('.er8xn') // select text area
+        let button = document.querySelector('.SSgGrd') // select listen button
+        function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms))} // timeout function to be set later
+        if (key.key == 'q' && key.ctrlKey || key.key == 'й' && key.ctrlKey) { // if 'q' and 'ctrl' keypress
+            button.click()
+            await sleep(500)
+            box.focus()
+            box.select()
+            //alert("Greetings my friend! Good Work! ")
         }
     }
 
-    // Focus search box
-    let xBox = document.querySelector('.er8xn'); // textarea class
-    window.addEventListener('keydown', pressKey2, false);
-    function pressKey2(x) {
-        if (x.key == '/') {
-            setTimeout( function() {
-                xBox.focus();
-                xBox.select();
-            }, 250);
-        }
-    }
-})();
-```
-
-### YouTube
-
-```JavaScript
-(function() {
-    'use strict';
-
-    // Control YouTube playback speed with "Video speed controls" chrome extentsion
-    window.addEventListener("keydown", checkKey0, false);
-    function checkKey0(key) {
-        if (key.key == '>') {
-            // Simulate key press using standard KeyboardEvent https://stackoverflow.com/questions/3276794/jquery-or-pure-js-simulate-enter-key-pressed-for-testing/18937620#18937620
-            const ke = new KeyboardEvent('keydown', {
-            bubbles: true, cancelable: true, keyCode: 68 // Character "d" https://www.w3.org/2002/09/tests/keys.html
-            });
-            document.body.dispatchEvent(ke);
-        }
-        if (key.key == '<') {
-            const ke = new KeyboardEvent('keydown', {
-            bubbles: true, cancelable: true, keyCode: 83 // Character "s" https://www.w3.org/2002/09/tests/keys.html
-            });
-            document.body.dispatchEvent(ke);
-        }
-    }
 })();
 ```
 
