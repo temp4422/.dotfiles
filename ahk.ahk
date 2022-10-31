@@ -8,6 +8,26 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; RegEx or digits: 1 - title must start with the specified WinTitle, 2 - title can contain WinTitle anywhere inside it, 3 - title must exactly match WinTitle.
 SetTitleMatchMode 2 
 
+
+
+;*************************** RUN AS ADMIN **************************
+full_command_line := DllCall("GetCommandLine", "str")
+
+if not (A_IsAdmin or RegExMatch(full_command_line, " /restart(?!\S)"))
+{
+    try
+    {
+        if A_IsCompiled
+            Run *RunAs "%A_ScriptFullPath%" /restart
+        else
+            Run *RunAs "%A_AhkPath%" /restart "%A_ScriptFullPath%"
+    }
+    ExitApp
+}
+;********************************************************************
+
+
+
 ;BRIGHTNESS
 class BrightnessSetter {
 	; qwerty12 - 27/05/17
@@ -198,7 +218,9 @@ BrightnessSetter_new() {
 BS := new BrightnessSetter()
 
 ;Set keyboard shortcuts
+#F1::
 SC163 & 7::BS.SetBrightness(-10)
+#F2::
 SC163 & 8::BS.SetBrightness(10)
 
 
@@ -299,14 +321,7 @@ LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
 ;AppsKey (context menu Shift+F10)
 SC163 & Enter::AppsKey
 
-;Calculator
-SC163 & n::Send, {LWin Down}{9}{LWin Up}
-
 ;Map in apps
-SC163 & '::Send, {Ctrl Down}{Shift Down}{Alt Down}{'}{Alt Up}{Shift Up}{Ctrl Up}
-;
-SC163 & h::Send, {Ctrl Down}{Shift Down}{Alt Down}{h}{Alt Up}{Shift Up}{Ctrl Up}
-;
 SC163 & u::Send, {Ctrl Down}{Shift Down}{Alt Down}{u}{Alt Up}{Shift Up}{Ctrl Up}
 ;
 SC163 & i::Send, {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
@@ -314,6 +329,13 @@ SC163 & i::Send, {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
 SC163 & o::Send, {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
 ;
 SC163 & p::Send, {Ctrl Down}{Shift Down}{Alt Down}{p}{Alt Up}{Shift Up}{Ctrl Up}
+;
+SC163 & h::Send, {Alt Down}{Left}{Alt Up}
+;
+SC163 & '::Send, {Alt Down}{Right}{Alt Up}
+;
+SC163 & n::Send, {LWin Down}{9}{LWin Up}
+
 
 ;Google Chrome Translate
 ^CapsLock::Send, {LWin Down}{0}{Lwin Up}
@@ -383,10 +405,7 @@ Return
 	}
 Return
 
-;Windows Terminal
-; #if WinActive("ahk_exe WindowsTerminal.exe","","Windows PowerShell") 
-; 	^BS::Send, {Alt Down}{BackSpace}{Alt Up}
-; Return
+
 
 ;;;;;; INFO ;;;;;;
 ;This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
