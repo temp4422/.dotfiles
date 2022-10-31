@@ -51,6 +51,7 @@ bindkey "^[[1;5D" backward-word #ctrl-left
 bindkey "^[[1;5C" forward-word #ctrl-right
 bindkey "^[[1~" beginning-of-line #home
 bindkey "^[[4~" end-of-line #end
+bindkey "^H" backward-kill-word # ctrl-backspace
 
 
 up-dir() {
@@ -255,7 +256,7 @@ bindkey '^o' vi-file
 
 
 # zsh-autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # LF
 #lfcd allow keep current dir on exit
