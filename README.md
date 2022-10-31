@@ -118,6 +118,10 @@ unmap s
 ```
 
 ## Windows
+### Settings
+Keyboard Properties -> Character repeat -> Repeat delay / Repeat rate -> Short
+
+
 ### Uninstall apps
 ```
 winget uninstall  "Microsoft People"
