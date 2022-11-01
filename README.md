@@ -26,7 +26,8 @@ New-Item -Path "C:\Users\user\AppData\Local\Packages\Microsoft.WindowsTerminalPr
 | Special: Caps Lock (00_3A)    | Special: Escape (00_01)       |
 | Special: Escape (00_01)       | Special: Caps Lock (00_3A)    |
 | Special: Left Alt (00_38)     | Special: Left Ctrl (00_1D)    |
-| Special: Left Ctrl (00_1D)    | Special: Left Alt (00_38)     |
+| Special: Left Ctrl (00_1D)    | Special: Left Windows (E0_5B) |
+| Special: Left Windows (E0_5B) | Special: Left Alt (00_38)     |
 | Special: Right Alt (E0_38)    | Special: Wake (or Fn) (E0_63) |
 | Special: Wake (or Fn) (E0_63) | Special: Right Alt (E0_38)    |
 
