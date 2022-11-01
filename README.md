@@ -130,6 +130,7 @@ winget uninstall  "Microsoft People"
 
 ### Install apps
 ```
+winget install RandyRants.SharpKeys
 winget install Lexikos.AutoHotkey;
 winget install hluk.CopyQ;
 winget install Microsoft.WindowsTerminal.Preview; 
