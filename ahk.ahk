@@ -4,13 +4,14 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ;*** MY CODE ***
+;******************************************************************************
 ; Terminal Ctrl+Backspace match title
 ; RegEx or digits: 1 - title must start with the specified WinTitle, 2 - title can contain WinTitle anywhere inside it, 3 - title must exactly match WinTitle.
 SetTitleMatchMode 2 
 
 
-
-;*************************** RUN AS ADMIN **************************
+; RUN AS ADMIN
+;******************************************************************************
 full_command_line := DllCall("GetCommandLine", "str")
 
 if not (A_IsAdmin or RegExMatch(full_command_line, " /restart(?!\S)"))
@@ -24,11 +25,11 @@ if not (A_IsAdmin or RegExMatch(full_command_line, " /restart(?!\S)"))
     }
     ExitApp
 }
-;********************************************************************
+;******************************************************************************
 
 
-
-;BRIGHTNESS
+; BRIGHTNESS
+;******************************************************************************
 class BrightnessSetter {
 	; qwerty12 - 27/05/17
 	; https://github.com/qwerty12/AutoHotkeyScripts/tree/master/LaptopBrightnessSetter
@@ -217,55 +218,23 @@ BrightnessSetter_new() {
 }
 BS := new BrightnessSetter()
 
-;Set keyboard shortcuts
-#F1::
+; Brightness
+!F1::
 SC163 & 7::BS.SetBrightness(-10)
-#F2::
+!F2::
 SC163 & 8::BS.SetBrightness(10)
+;******************************************************************************
 
-
-
-
-
-;Volume
+; Volume
 ^F1::
 SC163 & 9::Volume_Down
 ^F2::
 SC163 & 0::Volume_Up
 
-;win+1,2,3,4,5,6
-^1::#1
-^2::#2
-^3::#3
-^4::#4
-^5::#5
-^6::#6
-#1::Send,{Ctrl Down}{1}{Ctrl Up}
-#2::Send,{Ctrl Down}{2}{Ctrl Up}
-#3::Send,{Ctrl Down}{3}{Ctrl Up}
-#4::Send,{Ctrl Down}{4}{Ctrl Up}
-#5::Send,{Ctrl Down}{5}{Ctrl Up}
-#6::Send,{Ctrl Down}{6}{Ctrl Up}
-;Alternative 
-SC163 & 1::Send,{Ctrl Down}{1}{Ctrl Up}
-SC163 & 2::Send,{Ctrl Down}{2}{Ctrl Up}
-SC163 & 3::Send,{Ctrl Down}{3}{Ctrl Up}
-SC163 & 4::Send,{Ctrl Down}{4}{Ctrl Up}
-SC163 & 5::Send,{Ctrl Down}{5}{Ctrl Up}
-SC163 & 6::Send,{Ctrl Down}{6}{Ctrl Up}
-;
-+^1::Send,{Ctrl Down}{1}{Ctrl Up}
-+^2::Send,{Ctrl Down}{2}{Ctrl Up}
-+^3::Send,{Ctrl Down}{3}{Ctrl Up}
-+^4::Send,{Ctrl Down}{4}{Ctrl Up}
-+^5::Send,{Ctrl Down}{5}{Ctrl Up}
-+^6::Send,{Ctrl Down}{6}{Ctrl Up}
-+^7::Send,{Ctrl Down}{7}{Ctrl Up}
-+^8::Send,{Ctrl Down}{8}{Ctrl Up}
-+^9::Send,{Ctrl Down}{9}{Ctrl Up}
-+^0::Send,{Ctrl Down}{0}{Ctrl Up}
 
-;JKL;+Ctrl,Shift,Alt,Win
+; JKL; + Ctrl, Shift, Alt, Win
+;*** Remap arrow keys onto JKLI whenever holding down a certain modifier key
+;******************************************************************************
 MoveCursor(key) {
 	control := GetKeyState("CONTROL","P")
 	shift := GetKeyState("SHIFT","P")
@@ -303,25 +272,36 @@ SC163 & ,::MoveCursor("{PGDN}")
 SC163 & .::MoveCursor("{PGUP}")
 SC163 & /::MoveCursor("{END}")
 SC163 & BS::MoveCursor("{DEL}")
+;******************************************************************************
 
-;Ctrl(+Shift)+Tab to Alt(+Shift)+Tab
-LCtrl & Tab::AltTab ;Alternative 'LWin & Tab::AltTab'
-LShift & Tab::
-	GetKeyState, state, Control
-	if state = D
-		Send, {Shift Down}{Alt Down}{Tab}{Alt Up}{Shift Up}
-Return
 
-;Ctrl(+Shift)+Esc to Ctrl(+Shift)+Tab
+; win+1,2,3,4,5,6
+^1::#1
+^2::#2
+^3::#3
+^4::#4
+^5::#5
+^6::#6
+!1::Send,{Ctrl Down}{1}{Ctrl Up}
+!2::Send,{Ctrl Down}{2}{Ctrl Up}
+!3::Send,{Ctrl Down}{3}{Ctrl Up}
+!4::Send,{Ctrl Down}{4}{Ctrl Up}
+!5::Send,{Ctrl Down}{5}{Ctrl Up}
+!6::Send,{Ctrl Down}{6}{Ctrl Up}
+
+; Ctrl+Tab to Alt+Tab
+LCtrl & Tab::AltTab 
+
+; Ctrl+Esc to Ctrl+Tab
 LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
 
-;Close active window(Alt+F4)
+; Close active window(Alt+F4)
 +^w::Send {Alt down}{F4}{Alt up}
 
-;AppsKey (context menu Shift+F10)
+; AppsKey (context menu Shift+F10)
 SC163 & Enter::AppsKey
 
-;Map in apps
+; Map in apps
 SC163 & u::Send, {Ctrl Down}{Shift Down}{Alt Down}{u}{Alt Up}{Shift Up}{Ctrl Up}
 ;
 SC163 & i::Send, {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
@@ -329,6 +309,7 @@ SC163 & i::Send, {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
 SC163 & o::Send, {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
 ;
 SC163 & p::Send, {Ctrl Down}{Shift Down}{Alt Down}{p}{Alt Up}{Shift Up}{Ctrl Up}
+
 ;
 SC163 & h::Send, {Alt Down}{Left}{Alt Up}
 ;
@@ -336,28 +317,23 @@ SC163 & '::Send, {Alt Down}{Right}{Alt Up}
 ;
 SC163 & n::Send, {LWin Down}{9}{LWin Up}
 
-
-;Google Chrome Translate
+; Google Chrome Translate
 ^CapsLock::Send, {LWin Down}{0}{Lwin Up}
 
-;Maximize active window
-#f::
+; Show Desktop Alt+D
+!d::Send, {LWin Down}{d}{LWin Up}
+
+
+; Maximize active window
+!f::
 WinGet MX, MinMax, A
    If MX
         WinRestore A
    Else WinMaximize A
 Return
 
-;Minimize active window Win+Esc
-#Esc::
-WinGet MX, MinMax, A
-   If MX
-        WinMinimize A
-   Else WinMinimize A
-Return
-
-;File Explorer
-#e::
+; File Explorer
+!e::
 if WinActive("ahk_class CabinetWClass") {
 	WinMinimize A	
 } else if WinExist("ahk_class CabinetWClass") {
@@ -369,16 +345,15 @@ if WinActive("ahk_class CabinetWClass") {
 	WinActivate, ahk_class CabinetWClass
 }
 Return
-+#e::
++!e::
 	Run, explorer.exe
 	WinWait, ahk_class CabinetWClass
 	WinMove, ahk_class CabinetWClass,,952,0,976,1038
 	WinActivate, ahk_class CabinetWClass
 Return
 
-;Windows Terminal
+; Windows Terminal
 ^`::
-#Enter::
 if WinActive("ahk_exe WindowsTerminal.exe") {
 	WinMinimize A	
 } else if WinExist("ahk_exe WindowsTerminal.exe") {
@@ -392,8 +367,8 @@ if WinActive("ahk_exe WindowsTerminal.exe") {
 }
 Return
 
-;Snip & Sketch
-+#s::
+; Snip & Sketch
++!s::
 	Run, ms-screensketch:
 	WinWait, ahk_exe ApplicationFrameHost.exe
 	WinActivate, ahk_exe ApplicationFrameHost.exe
@@ -404,7 +379,6 @@ Return
 		Return
 	}
 Return
-
 
 
 ;;;;;; INFO ;;;;;;
