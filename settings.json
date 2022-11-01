@@ -63,20 +63,6 @@
         {
             "command": {
                 "action": "sendInput",
-                "input": "clear -x && ll \r"
-            },
-            "keys": "ctrl+shift+s"
-        },
-        {
-            "command": {
-                "action": "sendInput",
-                "input": "\u001d"
-            },
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "command": {
-                "action": "sendInput",
                 "input": "source ~/.zshrc \r"
             },
             "keys": "ctrl+shift+r"
@@ -84,28 +70,21 @@
         {
             "command": {
                 "action": "sendInput",
-                "input": "\u001f"
+                "input": "\u001d" //ctrl+]
             },
-            "keys": "ctrl+z"
+            "keys": "ctrl+shift+f"
         },
         {
             "command": {
                 "action": "sendInput",
-                "input": "\u001a"
-            },
-            "keys": "ctrl+shift+minus"
-        },
-        {
-            "command": {
-                "action": "sendInput",
-                "input": "\u0002["
+                "input": "\u0002[" // ctrl+b [
             },
             "keys": "ctrl+shift+c"
         },
         {
             "command": {
                 "action": "sendInput",
-                "input": "\u0002o"
+                "input": "\u0002o" // ctrl+b o
             },
             "keys": "ctrl+tab"
         }
