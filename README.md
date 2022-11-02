@@ -136,8 +136,9 @@ winget install Lexikos.AutoHotkey;
 winget install hluk.CopyQ;
 winget install Microsoft.WindowsTerminal.Preview; 
 winget install Microsoft.VisualStudioCode;
-winget install Google.Chrome;
 winget install Telegram.TelegramDesktop;
+winget install Brave.Brave;
+winget install Google.Chrome;
 winget install Kingsoft.WPSOffice;
 ```
 
