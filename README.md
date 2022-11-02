@@ -8,7 +8,7 @@ git clone https://github.com/webdev4422/.dotfiles.git
 
 ### Install apps
 ```bash
-sudo apt install git zip zsh fzf fasd tmux
+sudo apt install git curl zip zsh fzf fasd ripgrep tmux
 ```
 
 ### Set zsh
