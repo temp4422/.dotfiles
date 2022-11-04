@@ -1,3 +1,132 @@
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/refined.zsh-theme
+# Set ohmyzsh refined theme
+setopt prompt_subst
+
+# Load required modules
+autoload -Uz vcs_info
+
+# Set vcs_info parameters
+zstyle ':vcs_info:*' enable hg bzr git
+zstyle ':vcs_info:*:*' unstagedstr '!'
+zstyle ':vcs_info:*:*' stagedstr '+'
+zstyle ':vcs_info:*:*' formats "$FX[bold]%r$FX[no-bold]/%S" "%s:%b" "%%u%c"
+zstyle ':vcs_info:*:*' actionformats "$FX[bold]%r$FX[no-bold]/%S" "%s:%b" "%u%c (%a)"
+zstyle ':vcs_info:*:*' nvcsformats "%~" "" ""
+
+# Fastest possible way to check if repo is dirty
+git_dirty() {
+    # Check if we're in a git repo
+    command git rev-parse --is-inside-work-tree &>/dev/null || return
+    # Check if it's dirty
+    command git diff --quiet --ignore-submodules HEAD &>/dev/null; [ $? -eq 1 ] && echo "*"
+}
+
+# Display information about the current repository
+repo_information() {
+    echo "%F{blue}${vcs_info_msg_0_%%/.} %F{8}$vcs_info_msg_1_`git_dirty` $vcs_info_msg_2_%f"
+}
+
+# Displays the exec time of the last command if set threshold was exceeded
+cmd_exec_time() {
+    local stop=`date +%s`
+    local start=${cmd_timestamp:-$stop}
+    let local elapsed=$stop-$start
+    [ $elapsed -gt 5 ] && echo ${elapsed}s
+}
+
+# Get the initial timestamp for cmd_exec_time
+preexec() {
+    cmd_timestamp=`date +%s`
+}
+
+# Output additional information about paths, repos and exec time
+precmd() {
+    setopt localoptions nopromptsubst
+    vcs_info # Get version control info before we start outputting stuff
+    print -P "\n$(repo_information) %F{yellow}$(cmd_exec_time)%f"
+    unset cmd_timestamp #Reset cmd exec time.
+}
+
+# Define prompts
+PROMPT="%(?.%F{magenta}.%F{red})❯%f " # Display a red prompt char on failure
+RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
+
+# ------------------------------------------------------------------------------
+#
+# List of vcs_info format strings:
+#
+# %b => current branch
+# %a => current action (rebase/merge)
+# %s => current version control system
+# %r => name of the root directory of the repository
+# %S => current path relative to the repository root directory
+# %m => in case of Git, show information about stashes
+# %u => show unstaged changes in the repository
+# %c => show staged changes in the repository
+#
+# List of prompt format strings:
+#
+# prompt:
+# %F => color dict
+# %f => reset color
+# %~ => current path
+# %* => time
+# %n => username
+# %m => shortname host
+# %(?..) => prompt conditional - %(condition.true.false)
+#
+# ------------------------------------------------------------------------------
+
+
+# Default zsh settings OLD!!!
+###############################################################################
+# autoload -Uz promptinit
+# promptinit
+
+# setopt histignorealldups sharehistory
+
+# # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+# HISTSIZE=1000
+# SAVEHIST=1000
+# HISTFILE=~/.zsh_history
+
+# # Use modern completion system
+# autoload -Uz compinit
+# compinit
+
+# zstyle ':completion:*' auto-description 'specify: %d'
+# zstyle ':completion:*' completer _expand _complete _correct _approximate
+# zstyle ':completion:*' format 'Completing %d'
+# zstyle ':completion:*' group-name ''
+# zstyle ':completion:*' menu select=2
+# eval "$(dircolors -b)"
+# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+# zstyle ':completion:*' list-colors ''
+# zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+# zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+# zstyle ':completion:*' menu select=long
+# zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+# zstyle ':completion:*' use-compctl false
+# zstyle ':completion:*' verbose true
+
+# zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+# zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+###############################################################################
+
+
+# Set environment variables
+###############################################################################
+#export PATH=/home/user:/bin:/usr/bin:/usr/local/bin:${PATH}
+
+# Disable ctrl+s and ctrl+q flow control
+setopt noflowcontrol
+#stty start undef
+#stty stop undef
+
+# Set custom prompt '⚡❯'
+#PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f '
+
+
 # Keyboard shortcuts
 ###############################################################################
 bindkey "^[[1;5D" backward-word #ctrl-left
@@ -21,52 +150,6 @@ prev-dir(){
 zle -N prev-dir
 bindkey "^[[1;3C" prev-dir #alt-right
 # zsh commands https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
-
-# Set environment variables
-export PATH=/home/user:/bin:/usr/bin:/usr/local/bin:${PATH}
-
-# Disable ctrl+s and ctrl+q flow control
-setopt noflowcontrol
-#stty start undef
-#stty stop undef
-
-# Set custom prompt '⚡❯'
-PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f '
-
-
-# zsh settings
-###############################################################################
-autoload -Uz promptinit
-promptinit
-
-setopt histignorealldups sharehistory
-
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
-
-# Use modern completion system
-autoload -Uz compinit
-compinit
-
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 
 # Aliases
@@ -288,14 +371,18 @@ _zlf_handler() {
     zle -R
 }
 zle -N _zlf_handler
+###############################################################################
+
 
 # zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+
+# nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+
 # tmux
 # Attach to an existing session if it exists, or create a new one if it does not.
 tmux new-session -As0
-
-# load nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
