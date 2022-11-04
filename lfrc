@@ -100,16 +100,14 @@ cmd zip ${{
 }}
 
 
-
-
-
-
 ### MY CODE ###
+###############################################################################
 #'map' is used to bind a key to a command which can be builtin command, custom command, or shell command.
 
 # options
 set incsearch on
 set incfilter on
+set hidden on
 
 # key maps
 map l #unmap 'map l open'
@@ -161,8 +159,8 @@ cmd fasd-fzf ${{
     res="$(fasd -Rl | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
     if [ -d "$res" ]; then
         cmd="cd"
-    else 
-        cmd="select"                                                       
+    else
+        cmd="select"
     fi
     lf -remote "send $id $cmd \"$res\""
 }}
@@ -174,8 +172,8 @@ cmd find-fzf ${{
     res="$(find . -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path     '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*    git*' \) -prune -false -o -iname '*' 2>/dev/null | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
     if [ -d "$res" ]; then
         cmd="cd"
-    else 
-        cmd="select"                                                       
+    else
+        cmd="select"
     fi
     lf -remote "send $id $cmd \"$res\""
 }}
@@ -187,8 +185,8 @@ cmd find-fzf-global ${{
     res="$(find / -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path     '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*    git*' \) -prune -false -o -iname '*' 2>/dev/null | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
     if [ -d "$res" ]; then
         cmd="cd"
-    else 
-        cmd="select"                                                       
+    else
+        cmd="select"
     fi
     lf -remote "send $id $cmd \"$res\""
 }}

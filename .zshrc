@@ -20,9 +20,7 @@ prev-dir(){
 }
 zle -N prev-dir
 bindkey "^[[1;3C" prev-dir #alt-right
-
 # zsh commands https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
-
 
 # Set environment variables
 export PATH=/home/user:/bin:/usr/bin:/usr/local/bin:${PATH}
@@ -33,7 +31,7 @@ setopt noflowcontrol
 #stty stop undef
 
 # Set custom prompt '⚡❯'
-PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f ' 
+PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f '
 
 
 # zsh settings
@@ -88,7 +86,7 @@ alias grep='grep --ignore-case --color=auto'
 # git
 alias g='git'
 alias gs='git status'
-alias gl='git log --oneline -15 --graph --all'
+alias gl='git log --oneline -20 --graph --all'
 alias gm='git add . && git commit -am'
 alias gc='git checkout'
 alias gb='git branch'
@@ -115,19 +113,19 @@ bindkey '^k^i' fasd-complete # test autocomplete
 
 # fzf
 ###############################################################################
-# Init fzf 
+# Init fzf
 #/usr/share/doc/fzf/README.Debian enable fzf keybindings for Bash, https://raw.githubusercontent.com/mskar/setup/main/.zshrc
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
 # Set fzf env vars
 # $FZF_TMUX_OPTS $FZF_CTRL_T_COMMAND $FZF_CTRL_T_OPTS $FZF_CTRL_R_OPTS $FZF_ALT_C_COMMAND $FZF_ALT_C_OPTS
-export FZF_DEFAULT_OPTS='--height 50% --history-size=1000 --layout=reverse --border --bind "ctrl-c:execute-silent(echo {} | clip.exe)+abort"' 
+export FZF_DEFAULT_OPTS='--height 50% --history-size=1000 --layout=reverse --border --bind "ctrl-c:execute-silent(echo {} | clip.exe)+abort"'
 
-# Map fzf commands to keybindings 
+# Map fzf commands to keybindings
 # ctrl+e cd/vi recent folders/files
 fzf-fasd-cd-vi() {
-   item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)" 
+   item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)"
 	if [[ -d ${item} ]]; then
 		cd "${item}" || return 1
 	elif [[ -f ${item} ]]; then
@@ -183,7 +181,7 @@ bindkey '^R' fzf-history
 
 # ctrl+shift+f search all modified
 fzf-find-all() {
-   item="$(find '/' -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")" 
+   item="$(find '/' -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
 	if [[ -d ${item} ]]; then
 		cd "${item}" || return 1
 	elif [[ -f ${item} ]]; then
@@ -198,7 +196,7 @@ bindkey '^]' fzf-find-all
 
 # ctrl+f search local and cd/vi
 fzf-find-local() {
-   item="$(find . -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")" 
+   item="$(find . -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
 	if [[ -d ${item} ]]; then
 		cd "${item}" || return 1
 	elif [[ -f ${item} ]]; then
@@ -294,5 +292,10 @@ zle -N _zlf_handler
 # zsh-autosuggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-# tmux 
-tmux new -As0
+# tmux
+# Attach to an existing session if it exists, or create a new one if it does not.
+tmux new-session -As0
+
+# load nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
