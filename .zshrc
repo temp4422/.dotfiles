@@ -83,12 +83,11 @@ RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
 # autoload -Uz promptinit
 # promptinit
 
-# setopt histignorealldups sharehistory
-
-# # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-# HISTSIZE=1000
-# SAVEHIST=1000
-# HISTFILE=~/.zsh_history
+# Set history options
+setopt histignorealldups sharehistory
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
 
 # # Use modern completion system
 # autoload -Uz compinit
