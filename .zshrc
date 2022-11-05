@@ -51,6 +51,9 @@ precmd() {
 PROMPT="%(?.%F{magenta}.%F{red})❯%f " # Display a red prompt char on failure
 RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
 
+#PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f ' # My custom prompt '⚡❯' Interfere with refined theme!!!
+
+
 # ------------------------------------------------------------------------------
 #
 # List of vcs_info format strings:
@@ -78,10 +81,10 @@ RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
 # ------------------------------------------------------------------------------
 
 
-# Default zsh settings OLD!!!
+# Default zsh settings
 ###############################################################################
-# autoload -Uz promptinit
-# promptinit
+ autoload -Uz promptinit
+ promptinit
 
 # Set history options
 setopt histignorealldups sharehistory
@@ -89,27 +92,27 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-# # Use modern completion system
-# autoload -Uz compinit
-# compinit
+# Use modern completion system
+autoload -Uz compinit
+compinit
 
-# zstyle ':completion:*' auto-description 'specify: %d'
-# zstyle ':completion:*' completer _expand _complete _correct _approximate
-# zstyle ':completion:*' format 'Completing %d'
-# zstyle ':completion:*' group-name ''
-# zstyle ':completion:*' menu select=2
-# eval "$(dircolors -b)"
-# zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-# zstyle ':completion:*' list-colors ''
-# zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-# zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-# zstyle ':completion:*' menu select=long
-# zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-# zstyle ':completion:*' use-compctl false
-# zstyle ':completion:*' verbose true
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
 
-# zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-# zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 ###############################################################################
 
 
@@ -121,9 +124,6 @@ HISTFILE=~/.zsh_history
 setopt noflowcontrol
 #stty start undef
 #stty stop undef
-
-# Set custom prompt '⚡❯'
-#PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f '
 
 
 # Keyboard shortcuts
@@ -138,13 +138,17 @@ bindkey "^Z" undo # ctrl-z
 bindkey -e # Use emacs keybindings even if our EDITOR is set to vi
 
 up-dir() {
-    builtin cd .. && zle reset-prompt
+  builtin cd ..
+  zle accept-line
+  zle reset-prompt
 }
 zle -N up-dir
 bindkey "^[[1;3D" up-dir #alt-left
 
 prev-dir(){
-	builtin cd - && zle reset-prompt
+  builtin cd -
+  zle accept-line
+  zle reset-prompt
 }
 zle -N prev-dir
 bindkey "^[[1;3C" prev-dir #alt-right
@@ -322,19 +326,20 @@ bindkey '^o' fzf-vi
 
 # LF
 ###############################################################################
-#lfcd allow keep current dir on exit
+#ctrl+s lfcd allow keep current dir on exit
 lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$(pwd)" ]; then
-                cd "$dir"
-            fi
-        fi
-    fi
+  tmp="$(mktemp)"
+  lf -last-dir-path="$tmp" "$@"
+  if [ -f "$tmp" ]; then
+      dir="$(cat "$tmp")"
+      rm -f "$tmp"
+      if [ -d "$dir" ]; then
+          if [ "$dir" != "$(pwd)" ]; then
+              cd "$dir"
+          fi
+      fi
+  fi
+  zle accept-line
   zle reset-prompt
 }
 zle -N lfcd
