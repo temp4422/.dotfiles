@@ -78,7 +78,7 @@ map <c-/> enterFindMode
         let box = document.querySelector('.er8xn') // select text area
         let button = document.querySelector('.SSgGrd') // select listen button
         function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms))} // timeout function to be set later
-        if (key.key == 'd' && key.ctrlKey || key.key == 'в' && key.ctrlKey) { // if 'q' and 'ctrl' keypress
+        if (key.key == 'q' && key.ctrlKey || key.key == 'й' && key.ctrlKey) { // if 'q' and 'ctrl' keypress
             button.click()
             await sleep(500)
             box.focus()
