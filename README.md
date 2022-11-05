@@ -9,10 +9,6 @@ My Windows files and configs for productivity.
 ```PowerShell
 #AutoHotkey
 New-Item -Path "C:\Users\user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\ahk.ahk" -ItemType SymbolicLink -Value "D:\Apps\Winfiles\ahk.ahk"
-#PowerShell
-New-Item -Path "C:\Users\user\Documents\WindowsPowerShell\profile.ps1" -ItemType SymbolicLink -Value "D:\Apps\Winfiles\profile.ps1"
-#ConEmu
-New-Item -Path "C:\Program Files\ConEmu\ConEmu.xml" -ItemType SymbolicLink -Value "D:\Apps\Winfiles\ConEmu.xml"
 #Windows Terminal
 New-Item -Path "C:\Users\user\AppData\Local\Packages\Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe\LocalState\settings.json" -ItemType SymbolicLink -Value "D:\Apps\Winfiles\settings.json"
 ```
