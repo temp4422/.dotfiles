@@ -3,11 +3,12 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+
 ;*** MY CODE ***
 ;******************************************************************************
 ; Terminal Ctrl+Backspace match title
 ; RegEx or digits: 1 - title must start with the specified WinTitle, 2 - title can contain WinTitle anywhere inside it, 3 - title must exactly match WinTitle.
-SetTitleMatchMode 2 
+SetTitleMatchMode 2
 
 
 ; RUN AS ADMIN
@@ -33,7 +34,7 @@ if not (A_IsAdmin or RegExMatch(full_command_line, " /restart(?!\S)"))
 class BrightnessSetter {
 	; qwerty12 - 27/05/17
 	; https://github.com/qwerty12/AutoHotkeyScripts/tree/master/LaptopBrightnessSetter
-	static _WM_POWERBROADCAST := 0x218, _osdHwnd := 0, hPowrprofMod := DllCall("LoadLibrary", "Str", "powrprof.dll", "Ptr") 
+	static _WM_POWERBROADCAST := 0x218, _osdHwnd := 0, hPowrprofMod := DllCall("LoadLibrary", "Str", "powrprof.dll", "Ptr")
 	__New() {
 		if (BrightnessSetter.IsOnAc(AC))
 			this._AC := AC
@@ -218,11 +219,13 @@ BrightnessSetter_new() {
 }
 BS := new BrightnessSetter()
 
+
 ; Brightness
 !F1::
 SC163 & 7::BS.SetBrightness(-10)
 !F2::
 SC163 & 8::BS.SetBrightness(10)
+
 ;******************************************************************************
 
 ; Volume
@@ -230,6 +233,12 @@ SC163 & 8::BS.SetBrightness(10)
 SC163 & 9::Volume_Down
 ^F2::
 SC163 & 0::Volume_Up
+
+
+
+
+
+
 
 
 ; JKL; + Ctrl, Shift, Alt, Win
@@ -241,9 +250,9 @@ MoveCursor(key) {
 	alt := GetKeyState("ALT","P")
 	win := GetKeyState("LWIN","P")
 	ctrlShift := control && shift
-	ctrlAlt := control && alt 
+	ctrlAlt := control && alt
 	altShift := alt && shift
-	ctrlAltShift := control && alt && shift    
+	ctrlAltShift := control && alt && shift
 if ctrlAltShift {
 	Send, ^!+%key%
 } else if altShift {
@@ -290,42 +299,33 @@ SC163 & BS::MoveCursor("{DEL}")
 !6::Send,{Ctrl Down}{6}{Ctrl Up}
 
 ; Ctrl+Tab to Alt+Tab
-LCtrl & Tab::AltTab 
+LCtrl & Tab::AltTab
 
 ; Ctrl+Esc to Ctrl+Tab
 LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
 
-; Close active window(Alt+F4)
+; Close active window (Alt+F4)
 +^w::Send {Alt down}{F4}{Alt up}
 
-; AppsKey (context menu Shift+F10)
+; Context menu Shift+F10 / AppsKey
 SC163 & Enter::AppsKey
 
 ; Map in apps
 SC163 & u::Send, {Ctrl Down}{Shift Down}{Alt Down}{u}{Alt Up}{Shift Up}{Ctrl Up}
-;
 SC163 & i::Send, {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
-;
 SC163 & o::Send, {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
-;
 SC163 & p::Send, {Ctrl Down}{Shift Down}{Alt Down}{p}{Alt Up}{Shift Up}{Ctrl Up}
-
-;
 SC163 & h::Send, {Alt Down}{Left}{Alt Up}
-;
 SC163 & '::Send, {Alt Down}{Right}{Alt Up}
-;
+
+; Calculator
 SC163 & n::Send, {LWin Down}{9}{LWin Up}
 
 ; Google Chrome Translate
 ^CapsLock::Send, {LWin Down}{0}{Lwin Up}
 
-; Show Desktop Alt+D
-!d::Send, {LWin Down}{d}{LWin Up}
-
-
 ; Maximize active window
-!f::
+LAlt & CapsLock::
 WinGet MX, MinMax, A
    If MX
         WinRestore A
@@ -335,7 +335,7 @@ Return
 ; File Explorer
 !e::
 if WinActive("ahk_class CabinetWClass") {
-	WinMinimize A	
+	WinMinimize A
 } else if WinExist("ahk_class CabinetWClass") {
 	WinActivate, ahk_class CabinetWClass
 } else {
@@ -355,7 +355,7 @@ Return
 ; Windows Terminal
 ^`::
 if WinActive("ahk_exe WindowsTerminal.exe") {
-	WinMinimize A	
+	WinMinimize A
 } else if WinExist("ahk_exe WindowsTerminal.exe") {
 	WinActivate, ahk_exe WindowsTerminal.exe
 } else {
@@ -373,14 +373,51 @@ Return
 	WinWait, ahk_exe ApplicationFrameHost.exe
 	WinActivate, ahk_exe ApplicationFrameHost.exe
 	if WinActive("ahk_exe ApplicationFrameHost.exe") {
-	; #if WinActive("ahk_class VirtualConsoleClass","","powershell") 
+	; #if WinActive("ahk_class VirtualConsoleClass","","powershell")
 		Send, {Ctrl Down}{n}{Ctrl Up}
 	} else {
 		Return
 	}
 Return
 
+; Show Desktop Alt+D
+!d::Send, {LWin Down}{d}{LWin Up}
+
+; Change language Alt+Space
+!Space::Send, {LWin Down}{Space}{LWin Up}
+
+; Windows key
+LAlt::Lwin
+
+
+; RemNote shortcuts (browser like)
+#if WinActive("ahk_exe RemNote.exe")
+;Zoom into rem
+!Enter::Send, {Ctrl Down}{`;}{Ctrl Up}
+SC163 & Enter::Send, {Ctrl Down}{`;}{Ctrl Up}
+;Zoom out of rem
+LAlt & BackSpace::Send, {Ctrl Down}{j}{Ctrl Up}
+;Shift pane focus left
+ctrlPgUp(key) {
+	control := GetKeyState("CONTROL","P")
+if control {
+	Send, {Alt Down}{Shift Down}{t}{Shift Up}{Alt Up}
+} else {
+	Send, %key%
+}}
+SC163 & .::ctrlPgUp("{PGUP}")
+;Shift pane focus right
+ctrlPgDn(key) {
+	control := GetKeyState("CONTROL","P")
+if control {
+	Send, {Ctrl Down}{Shift Down}{t}{Shift Up}{Ctrl Up}
+} else {
+	Send, %key%
+}}
+SC163 & ,::ctrlPgDn("{PGDN}")
+Return
+
 
 ;;;;;; INFO ;;;;;;
 ;This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
-;Add simple mappings like "SC163 & n::Send, {..}" above "#if WinActive()", because it breaks code. 
+;Add simple mappings like "SC163 & n::Send, {..}" above "#if WinActive()", because it breaks code.
