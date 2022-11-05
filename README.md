@@ -29,7 +29,7 @@ New-Item -Path "C:\Users\user\AppData\Local\Packages\Microsoft.WindowsTerminalPr
 
 ## Browser Extensions
 
-uBlock Origin, Vimium, Tampermonkey, Google Translate, Dark Reader, Wappalyzer, Disable HTML5 Autoplay, QuicKey
+uBlock Origin, Vimium, Tampermonkey, Google Translate, Dark Reader, Wappalyzer, Bitwarden, I don't care about cookies
 
 ## Vimium Options
 
@@ -42,34 +42,10 @@ uBlock Origin, Vimium, Tampermonkey, Google Translate, Dark Reader, Wappalyzer, 
 ### Custom key mappings
 
 ```
-# Remap hjkl to jkl;
-unmap h
-unmap j
-unmap k
-unmap l
-
-map j scrollLeft
-map k scrollDown
-map l scrollUp
-map ; scrollRight
-
 unmap /
-map <c-/> enterFindMode
-
-unmap H
-unmap L
-map J goBack
-map : goForward
-#map <c-left> goBack
-#map <c-right> goForward
-
-#map <c-tab> visitPreviousTab
-
 map / focusInput
 
-# Control YouTube playback speed with "Video speed controls" chrome extentsion in Tampermonkey
-unmap d
-unmap s
+map <c-/> enterFindMode
 ```
 
 ### Miscellaneous options
@@ -102,7 +78,7 @@ unmap s
         let box = document.querySelector('.er8xn') // select text area
         let button = document.querySelector('.SSgGrd') // select listen button
         function sleep(ms) {return new Promise(resolve => setTimeout(resolve, ms))} // timeout function to be set later
-        if (key.key == 'q' && key.ctrlKey || key.key == 'й' && key.ctrlKey) { // if 'q' and 'ctrl' keypress
+        if (key.key == 'd' && key.ctrlKey || key.key == 'в' && key.ctrlKey) { // if 'q' and 'ctrl' keypress
             button.click()
             await sleep(500)
             box.focus()
@@ -137,9 +113,3 @@ winget install Brave.Brave;
 winget install Google.Chrome;
 winget install Kingsoft.WPSOffice;
 ```
-
-## Archive
-
-Shutdown shortcut (Target: "C:\Windows\System32\shutdown.exe -s -t 600")
-AutoKey for linux
-Notepad++ (config.xml)
