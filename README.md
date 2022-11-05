@@ -20,14 +20,12 @@ sudo apt install vim git curl zip zsh fzf fasd ripgrep tmux
 chsh -s $(which zsh)
 ```
 
-### Install lf, zsh-autosuggestions, nvm
+### Install lf, zsh-autosuggestions
 
 ```bash
 wget https://github.com/gokcehan/lf/releases/download/r6/lf-linux-amd64.tar.gz -O lf-linux-amd64.tar.gz && tar xvf lf-linux-amd64.tar.gz && rm lf-linux-amd64.tar.gz && chmod +x lf && sudo mv lf /usr/local/bin && wget https://raw.githubusercontent.com/gokcehan/lf/master/lf.1 && sudo mv lf.1 /usr/share/man/man1/;
 
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions;
-
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 ```
 
 ### Link files
