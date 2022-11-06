@@ -395,6 +395,8 @@ LAlt::Lwin
 ;Zoom into rem
 !Enter::Send, {Ctrl Down}{`;}{Ctrl Up}
 SC163 & Enter::Send, {Ctrl Down}{`;}{Ctrl Up}
+;Add child without splitting text
+^Enter::Send, {Alt Down}{Enter}{Alt Up}
 ;Zoom out of rem
 LAlt & BackSpace::Send, {Ctrl Down}{j}{Ctrl Up}
 ;Shift pane focus left
