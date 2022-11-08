@@ -5,14 +5,22 @@ set showmatch
 set tabstop=2
 set incsearch
 set hlsearch
-set laststatus=2
-set statusline=%#PmenuSel#%F\ %=\ %p%%\ %l:%c\
+set laststatus=2 "always display status line
+set statusline=%#PmenuSel#%F\ %=\ %p%%\ %l:%c
 set visualbell
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 set mouse=a
 set timeoutlen=10
 set ttimeoutlen=10 "wait up to 10ms after Esc for special key
+
+"copy to windows clipboard
+if system('uname -r') =~ "microsoft"
+    augroup Yank
+        autocmd!
+        autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
+        augroup END
+endif
 
 
 "Remap keys, meaning: n(normal-mode) nore(non-recursive) map(mapping)
