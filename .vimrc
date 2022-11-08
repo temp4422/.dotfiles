@@ -32,3 +32,28 @@ nnoremap Q :q<CR>
 
 "search next
 map <CR> n "Enter
+
+"redo
+nnoremap <c-y> <c-r>
+inoremap <c-y> <Esc><c-r>i
+vnoremap <c-y> <c-r>
+
+"undo
+nnoremap <c-z> u
+inoremap <c-z> <Esc>ui
+vnoremap <c-z> u
+
+"cut
+nnoremap <c-x> dd
+inoremap <c-x> <Esc>ui
+vnoremap <c-x> dd
+
+"copy
+nnoremap <c-c> yy
+inoremap <c-c> <Esc>ui
+vnoremap <c-c> yy
+
+"paste
+nnoremap <c-v> pp
+inoremap <c-v> <Esc>pi
+vnoremap <c-v> pp
