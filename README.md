@@ -8,9 +8,9 @@ My Windows files and configs for productivity.
 
 ```PowerShell
 #AutoHotkey
-New-Item -Path "C:\Users\user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\ahk.ahk" -ItemType SymbolicLink -Value "C:\Users\user\Winfiles\ahk.ahk"
+New-Item -Path "C:\Users\user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\ahk.ahk" -ItemType SymbolicLink -Value "C:\Users\user\.winfiles\ahk.ahk"
 #Windows Terminal
-New-Item -Path "C:\Users\user\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -ItemType SymbolicLink -Value "C:\Users\user\Winfiles\settings.json"
+New-Item -Path "C:\Users\user\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -ItemType SymbolicLink -Value "C:\Users\user\.winfiles\settings.json"
 ```
 
 ## SharpKeys
