@@ -28,19 +28,19 @@ zle -N prev-dir
 bindkey "^[[1;3C" prev-dir #alt-right
 # zsh commands https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
 
+# Set options
+###############################################################################
+# Disable ctrl+s and ctrl+q flow control
+setopt noflowcontrol
+#stty start undef
+#stty stop undef
 
 # Set environment variables
-###############################################################################
 #export PATH=/home/user:/bin:/usr/bin:/usr/local/bin:${PATH}
 #export SHELL=/usr/bin/zsh
 #export EDITOR=/usr/bin/vim # !!! Interfere tmux copy-mode
 #export PAGER=/usr/bin/less
 #export OPENER=/usr/bin/xdg-open
-
-# Disable ctrl+s and ctrl+q flow control
-setopt noflowcontrol
-#stty start undef
-#stty stop undef
 
 
 # Set ohmyzsh refined theme
@@ -225,27 +225,6 @@ fzf-history() {
 }
 zle -N fzf-history
 bindkey '^R' fzf-history
-
-# ctrl+shif+f search global default
-#fzf-widget() {
-#  LBUFFER="${LBUFFER}$(
-#  local cmd="${FZF_CTRL_T_COMMAND:-"command find '/' -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -iname '*' 2>/dev/null"}"
-#  setopt localoptions pipefail no_aliases 2> /dev/null
-#  local item
-#  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
-#    echo -n "${(q)item} "
-#  done
-#  local ret=$?
-#  echo
-#  return $ret
-#  )"
-##  zle accept-line
-#  local ret=$?
-#  zle reset-prompt
-#  return $ret
-#}
-#zle -N fzf-widget
-#bindkey '^]' fzf-widget
 
 # ctrl+shif+f search global modified
 fzf-find-global() {
