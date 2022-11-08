@@ -297,6 +297,12 @@ SC163 & BS::MoveCursor("{DEL}")
 !4::Send,{Ctrl Down}{4}{Ctrl Up}
 !5::Send,{Ctrl Down}{5}{Ctrl Up}
 !6::Send,{Ctrl Down}{6}{Ctrl Up}
++^1::Send,{Ctrl Down}{1}{Ctrl Up}
++^2::Send,{Ctrl Down}{2}{Ctrl Up}
++^3::Send,{Ctrl Down}{3}{Ctrl Up}
++^4::Send,{Ctrl Down}{4}{Ctrl Up}
++^5::Send,{Ctrl Down}{5}{Ctrl Up}
++^6::Send,{Ctrl Down}{6}{Ctrl Up}
 
 ; Ctrl+Tab to Alt+Tab
 LCtrl & Tab::AltTab
@@ -387,7 +393,14 @@ Return
 !Space::Send, {LWin Down}{Space}{LWin Up}
 
 ; Windows key
-LAlt::Lwin
+LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
+
+; Microsoft Edge or Google Chrome: Search Tab 
++^f::
+if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe")) {
+	Send, {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
+} 
+Return
 
 
 ; RemNote shortcuts (browser like)
