@@ -1,5 +1,51 @@
-# https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/refined.zsh-theme
+# Keyboard shortcuts
+###############################################################################
+bindkey "^[[1;5D" backward-word #ctrl-left
+bindkey "^[[1;5C" forward-word #ctrl-right
+bindkey "^[[1~" beginning-of-line #home
+bindkey "^[[4~" end-of-line #end
+bindkey "^H" backward-kill-word # ctrl-backspace
+bindkey "^Z" undo # ctrl-z
+#bindkey -s "^W" "^D"
+#bindkey -s "^D" "^W"
+
+bindkey -e # Use emacs keybindings even if our EDITOR is set to vi
+
+up-dir() {
+  builtin cd ..
+  zle accept-line
+  zle reset-prompt
+}
+zle -N up-dir
+bindkey "^[[1;3D" up-dir #alt-left
+
+prev-dir(){
+  builtin cd -
+  zle accept-line
+  zle reset-prompt
+}
+zle -N prev-dir
+bindkey "^[[1;3C" prev-dir #alt-right
+# zsh commands https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
+
+
+# Set environment variables
+###############################################################################
+#export PATH=/home/user:/bin:/usr/bin:/usr/local/bin:${PATH}
+#export SHELL=/usr/bin/zsh
+#export EDITOR=/usr/bin/vim # !!! Interfere tmux copy-mode
+#export PAGER=/usr/bin/less
+#export OPENER=/usr/bin/xdg-open
+
+# Disable ctrl+s and ctrl+q flow control
+setopt noflowcontrol
+#stty start undef
+#stty stop undef
+
+
 # Set ohmyzsh refined theme
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/refined.zsh-theme
+###############################################################################
 setopt prompt_subst
 
 # Load required modules
@@ -50,35 +96,8 @@ precmd() {
 # Define prompts
 PROMPT="%(?.%F{magenta}.%F{red})❯%f " # Display a red prompt char on failure
 RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
-
 #PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f ' # My custom prompt '⚡❯' Interfere with refined theme!!!
-
-
-# ------------------------------------------------------------------------------
-#
-# List of vcs_info format strings:
-#
-# %b => current branch
-# %a => current action (rebase/merge)
-# %s => current version control system
-# %r => name of the root directory of the repository
-# %S => current path relative to the repository root directory
-# %m => in case of Git, show information about stashes
-# %u => show unstaged changes in the repository
-# %c => show staged changes in the repository
-#
-# List of prompt format strings:
-#
-# prompt:
-# %F => color dict
-# %f => reset color
-# %~ => current path
-# %* => time
-# %n => username
-# %m => shortname host
-# %(?..) => prompt conditional - %(condition.true.false)
-#
-# ------------------------------------------------------------------------------
+###############################################################################
 
 
 # Default zsh settings
@@ -114,50 +133,6 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 ###############################################################################
-
-
-# Set environment variables
-###############################################################################
-#export PATH=/home/user:/bin:/usr/bin:/usr/local/bin:${PATH}
-#export SHELL=/usr/bin/zsh
-#export EDITOR=/usr/bin/vim # !!! Interfere tmux copy-mode
-#export PAGER=/usr/bin/less
-#export OPENER=/usr/bin/xdg-open
-
-
-# Disable ctrl+s and ctrl+q flow control
-setopt noflowcontrol
-#stty start undef
-#stty stop undef
-
-
-# Keyboard shortcuts
-###############################################################################
-bindkey "^[[1;5D" backward-word #ctrl-left
-bindkey "^[[1;5C" forward-word #ctrl-right
-bindkey "^[[1~" beginning-of-line #home
-bindkey "^[[4~" end-of-line #end
-bindkey "^H" backward-kill-word # ctrl-backspace
-bindkey "^Z" undo # ctrl-z
-
-bindkey -e # Use emacs keybindings even if our EDITOR is set to vi
-
-up-dir() {
-  builtin cd ..
-  zle accept-line
-  zle reset-prompt
-}
-zle -N up-dir
-bindkey "^[[1;3D" up-dir #alt-left
-
-prev-dir(){
-  builtin cd -
-  zle accept-line
-  zle reset-prompt
-}
-zle -N prev-dir
-bindkey "^[[1;3C" prev-dir #alt-right
-# zsh commands https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
 
 
 # Aliases

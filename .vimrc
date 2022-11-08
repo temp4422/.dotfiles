@@ -21,12 +21,12 @@ nnoremap <c-f> /
 inoremap <c-f> <Esc>/
 vnoremap <c-f> <Esc>/
 
-"save in 3 modes
+"save
 nnoremap <c-s> :w<CR> "normal mode: save
 inoremap <c-s> <Esc>:w<CR> "insert mode: escape to normal and save
 vnoremap <c-s> <Esc>:w<CR> "visual mode: escape to normal and save
 
-"quit in normal mode
+"quit
 nnoremap q :q<CR>
 nnoremap Q :q<CR>
 
