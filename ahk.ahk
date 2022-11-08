@@ -398,6 +398,7 @@ LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
 ; Microsoft Edge or Google Chrome: Search Tab
 #if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
 +^f::Send, {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
+SC163 & i::Send, {f7}
 Return
 
 ; RemNote shortcuts (browser like)
