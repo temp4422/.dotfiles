@@ -227,7 +227,7 @@ map xs !$f
 # Custom commands with apps
 ###############################################################################
 # ctrl+e fasd-fzf cd/vi for recent folders/files
-cmd fasd-fzf ${{
+cmd fzf-fasd ${{
     res="$(fasd -Rl | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
     if [ -d "$res" ]; then
         cmd="cd"
@@ -236,23 +236,11 @@ cmd fasd-fzf ${{
     fi
     lf -remote "send $id $cmd \"$res\""
 }}
-map <c-e> :fasd-fzf
-
-# ctrl+f find-fzf local
-cmd find-fzf ${{
-    res="$(find . -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path     '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*    git*' \) -prune -false -o -iname '*' 2>/dev/null | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
-    if [ -d "$res" ]; then
-        cmd="cd"
-    else
-        cmd="select"
-    fi
-    lf -remote "send $id $cmd \"$res\""
-}}
-map <c-f> :find-fzf
+map <c-e> :fzf-fasd
 
 # ctrl+shift+f find-fzf global
-cmd find-fzf-global ${{
-    res="$(find / -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path     '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*    git*' \) -prune -false -o -iname '*' 2>/dev/null | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
+cmd fzf-find-global ${{
+    res="$(find '/' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
     if [ -d "$res" ]; then
         cmd="cd"
     else
@@ -260,8 +248,19 @@ cmd find-fzf-global ${{
     fi
     lf -remote "send $id $cmd \"$res\""
 }}
-map <c-]> :find-fzf-global
+map <c-]> :fzf-find-global
 
+# ctrl+f find-fzf local
+cmd fzf-find-local ${{
+    res="$(find . -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ]; then
+        cmd="cd"
+    else
+        cmd="select"
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+map <c-f> :fzf-find-local
 
 # zsh file picker / directory changer - not work!
 # https://github.com/gokcehan/lf/wiki/Integrations

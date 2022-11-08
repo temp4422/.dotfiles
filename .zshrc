@@ -251,7 +251,7 @@ fzf-history() {
 zle -N fzf-history
 bindkey '^R' fzf-history
 
-# ctrl+shif+f search all default
+# ctrl+shif+f search global default
 #fzf-widget() {
 #  LBUFFER="${LBUFFER}$(
 #  local cmd="${FZF_CTRL_T_COMMAND:-"command find '/' -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -iname '*' 2>/dev/null"}"
@@ -272,8 +272,8 @@ bindkey '^R' fzf-history
 #zle -N fzf-widget
 #bindkey '^]' fzf-widget
 
-fzf-find-all() {
-  #item="$(find '/' -type d \( -path '/mnt/*' -o -path '/proc/*' -o -path '/dev/*' -o -path '/home/user/.cache/*' -o -path '/home/user/.vscode*' -o -name 'node_modules' -o -name '*git*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
+# ctrl+shif+f search global modified
+fzf-find-global() {
    item="$(find '/' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
 	if [[ -d ${item} ]]; then
 		cd "${item}" || return 1
@@ -284,8 +284,8 @@ fzf-find-all() {
 	fi
    zle accept-line
 }
-zle -N fzf-find-all
-bindkey '^]' fzf-find-all
+zle -N fzf-find-global
+bindkey '^]' fzf-find-global
 
 # ctrl+f search local and cd/vi
 fzf-find-local() {
