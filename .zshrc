@@ -6,8 +6,8 @@ bindkey "^[[1~" beginning-of-line #home
 bindkey "^[[4~" end-of-line #end
 bindkey "^H" backward-kill-word # ctrl-backspace
 bindkey "^Z" undo # ctrl-z
-#bindkey -s "^W" "^D"
-#bindkey -s "^D" "^W"
+#bindkey -s "^W" "^D" set in terminal!
+#bindkey -s "^D" "^W" set in terminal!
 
 bindkey -e # Use emacs keybindings even if our EDITOR is set to vi
 
