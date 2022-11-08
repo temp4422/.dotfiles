@@ -11,7 +11,7 @@ git clone https://github.com/webdev4422/.dotfiles.git
 ### Install apps
 
 ```bash
-sudo apt install vim git curl zip zsh fzf fasd ripgrep tmux
+sudo apt install vim git curl zip zsh fzf fasd ripgrep fd-find tmux
 ```
 
 ### Set zsh
