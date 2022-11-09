@@ -253,25 +253,26 @@ MoveCursor(key) {
 	ctrlAlt := control && alt
 	altShift := alt && shift
 	ctrlAltShift := control && alt && shift
-if ctrlAltShift {
-	Send, ^!+%key%
-} else if altShift {
-	Send, !+%key%
-} else if ctrlShift {
-	Send, ^+%key%
-} else if ctrlAlt {
-	Send, ^!%key%
-} else if control {
-	Send, ^%key%
-} else if shift {
-	Send, +%key%
-} else if alt {
-	Send, !%key%
-} else if win {
-	Send, #%key%
-} else {
-	Send, %key%
-}}
+  if ctrlAltShift {
+    Send, ^!+%key%
+  } else if altShift {
+    Send, !+%key%
+  } else if ctrlShift {
+    Send, ^+%key%
+  } else if ctrlAlt {
+    Send, ^!%key%
+  } else if control {
+    Send, ^%key%
+  } else if shift {
+    Send, +%key%
+  } else if alt {
+    Send, !%key%
+  } else if win {
+    Send, #%key%
+  } else {
+    Send, %key%
+  }
+}
 SC163 & j::MoveCursor("{LEFT}")
 SC163 & k::MoveCursor("{DOWN}")
 SC163 & l::MoveCursor("{UP}")
@@ -333,29 +334,40 @@ SC163 & n::Send, {LWin Down}{9}{LWin Up}
 ; Maximize active window
 LAlt & CapsLock::
 WinGet MX, MinMax, A
-   If MX
-        WinRestore A
-   Else WinMaximize A
+  If MX
+    WinRestore A
+  Else WinMaximize A
 Return
 
-; File Explorer
-!e::
-if WinActive("ahk_class CabinetWClass") {
-	WinMinimize A
-} else if WinExist("ahk_class CabinetWClass") {
-	WinActivate, ahk_class CabinetWClass
-} else {
-	Run, explorer.exe
-	WinWait, ahk_class CabinetWClass
-	WinMove, ahk_class CabinetWClass,,-8,0,976,1038
-	WinActivate, ahk_class CabinetWClass
+
+;File Explorer
+shiftSpace(key) {
+	shift := GetKeyState("SHIFT","P")
+  ; If ctrl+shift+space open Windows Search
+  if shift {
+  	Send, {LWin Down}{s}{LWin Up}
+  } else {
+  ; If ctrl+space open new File Explorer or toggle existing
+    if WinActive("ahk_class CabinetWClass") {
+      WinMinimize A
+    } else if WinExist("ahk_class CabinetWClass") {
+      WinActivate, ahk_class CabinetWClass
+    } else {
+      Run, explorer.exe
+      WinWait, ahk_class CabinetWClass
+      WinMove, ahk_class CabinetWClass,,-8,0,976,1028
+      WinActivate, ahk_class CabinetWClass
+    }
+    Return
+    ; +!e::
+    ;   Run, explorer.exe
+    ;   WinWait, ahk_class CabinetWClass
+    ;   WinMove, ahk_class CabinetWClass,,952,0,976,1038
+    ;   WinActivate, ahk_class CabinetWClass
+    ; Return
+  }
 }
-Return
-+!e::
-	Run, explorer.exe
-	WinWait, ahk_class CabinetWClass
-	WinMove, ahk_class CabinetWClass,,952,0,976,1038
-	WinActivate, ahk_class CabinetWClass
+LCtrl & Space::shiftSpace("{Space}")
 Return
 
 ; Windows Terminal
@@ -392,9 +404,6 @@ Return
 ; Change language Alt+Space
 !Space::Send, {LWin Down}{Space}{LWin Up}
 
-; Windows key
-LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
-
 
 ; Microsoft Edge or Google Chrome: Search Tab
 #if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
@@ -430,7 +439,6 @@ if control {
 }}
 SC163 & ,::ctrlPgDn("{PGDN}")
 Return
-
 
 
 ;;;;;; INFO ;;;;;;
