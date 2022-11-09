@@ -1,6 +1,6 @@
-# Winfiles
+# .dotfiles
 
-My Windows files and configs for productivity.
+My Windows, Linux, WSL files and configs for productivity.
 
 ## Settings
 
@@ -126,9 +126,7 @@ winget install Mozilla.Firefox;
 winget install Kingsoft.WPSOffice;
 ```
 
-## .dotfiles
-
-My dotfiles with settings. Set zsh development environment.
+## ZSH environment
 
 ### Clone repo
 
