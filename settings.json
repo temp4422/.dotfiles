@@ -3,15 +3,29 @@
   "$schema": "https://aka.ms/terminal-profiles-schema",
   "actions": [
     {
-      "command": "paste",
-      "keys": "ctrl+v"
-    },
-    {
       "command": {
         "action": "copy",
         "singleLine": false
       },
       "keys": "ctrl+c"
+    },
+    {
+      "command": {
+        "action": "sendInput",
+        "input": "clear -x && ls -a\r"
+      },
+      "keys": "ctrl+shift+s"
+    },
+    {
+      "command": "paste",
+      "keys": "ctrl+v"
+    },
+    {
+      "command": {
+        "action": "sendInput",
+        "input": "vi ~/.zshrc \r"
+      },
+      "keys": "ctrl+shift+i"
     },
     {
       "command": {
@@ -24,6 +38,13 @@
     {
       "command": "toggleFocusMode",
       "keys": "shift+f11"
+    },
+    {
+      "command": {
+        "action": "sendInput",
+        "input": "\u0002["
+      },
+      "keys": "ctrl+shift+c"
     },
     {
       "command": "unbound",
@@ -56,13 +77,6 @@
     {
       "command": {
         "action": "sendInput",
-        "input": "vi ~/.zshrc \r"
-      },
-      "keys": "ctrl+shift+i"
-    },
-    {
-      "command": {
-        "action": "sendInput",
         "input": "source ~/.zshrc \r"
       },
       "keys": "ctrl+shift+r"
@@ -70,43 +84,28 @@
     {
       "command": {
         "action": "sendInput",
-        "input": "clear -x && ls -a\r"
-      },
-      "keys": "ctrl+shift+s"
-    },
-    {
-      "command": {
-        "action": "sendInput",
-        "input": "\u001d" //ctrl+]
-      },
-      "keys": "ctrl+shift+f"
-    },
-    {
-      "command": {
-        "action": "sendInput",
-        "input": "\u0002[" // ctrl+b [
-      },
-      "keys": "ctrl+shift+c"
-    },
-    {
-      "command": {
-        "action": "sendInput",
-        "input": "\u0002o" // ctrl+b o
-      },
-      "keys": "ctrl+tab"
-    },
-    // Switch ctrl+w to ctrl+d
-    {
-      "command": {
-        "action": "sendInput",
-        "input": "\u0004" // ctrl+d
+        "input": "\u0004"
       },
       "keys": "ctrl+w"
     },
     {
       "command": {
         "action": "sendInput",
-        "input": "\u0017" // ctrl+w
+        "input": "\u001d"
+      },
+      "keys": "ctrl+shift+f"
+    },
+    {
+      "command": {
+        "action": "sendInput",
+        "input": "\u0002o"
+      },
+      "keys": "ctrl+tab"
+    },
+    {
+      "command": {
+        "action": "sendInput",
+        "input": "\u0017"
       },
       "keys": "ctrl+d"
     }
@@ -117,7 +116,7 @@
   "disableAnimations": true,
   "initialCols": 188,
   "initialPosition": "0,483",
-  "initialRows": 24,
+  "initialRows": 23,
   "launchMode": "focus",
   "multiLinePasteWarning": false,
   "profiles": {
@@ -146,6 +145,9 @@
         "source": "Windows.Terminal.Azure"
       },
       {
+        "font": {
+          "face": "mononoki NF"
+        },
         "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
         "hidden": false,
         "name": "Ubuntu",
