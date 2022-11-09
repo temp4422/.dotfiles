@@ -404,6 +404,9 @@ Return
 ; Change language Alt+Space
 !Space::Send, {LWin Down}{Space}{LWin Up}
 
+; Reload ahk
+SC163 & CapsLock::reload
+
 
 ; Microsoft Edge or Google Chrome: Search Tab
 #if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
