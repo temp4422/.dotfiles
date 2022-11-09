@@ -13,6 +13,14 @@ New-Item -Path "C:\Users\user\AppData\Roaming\Microsoft\Windows\Start Menu\Progr
 New-Item -Path "C:\Users\user\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -ItemType SymbolicLink -Value "C:\Users\user\.winfiles\settings.json"
 ```
 
+### Create shortcuts
+
+Target:
+
+```
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "Start-Sleep -Seconds 10; Start-Process 'C:\Program Files (x86)\CopyQ\copyq.exe'"
+```
+
 ## SharpKeys
 
 ### Remapping keys for Windows
