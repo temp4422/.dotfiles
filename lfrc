@@ -1,0 +1,266 @@
+# Info 'lf -doc'
+# Options
+###############################################################################
+#ignorecase  (default on)
+set incsearch on
+set incfilter on
+set hidden on
+
+# interpreter for shell commands
+set shell sh
+
+# set '-eu' options for shell commands
+# These options are used to have safer shell commands. Option '-e' is used to
+# exit on error and option '-u' is used to give error for unset variables.
+# Option '-f' disables pathname expansion which can be useful when $f, $fs, and
+# $fx variables contain names with '*' or '?' characters. However, this option
+# is used selectively within individual commands as it can be limiting at
+# times.
+set shellopts '-eu'
+
+# set internal field separator (IFS) to "\n" for shell commands
+# This is useful to automatically split file names in $fs and $fx properly
+# since default file separator used in these variables (i.e. 'filesep' option)
+# is newline. You need to consider the values of these options and create your
+# commands accordingly.
+set ifs "\n"
+
+# leave some space at the top and the bottom of the screen
+set scrolloff 10
+
+# use enter for shell commands
+#map <enter> shell
+
+# execute current file (must be executable)
+#map x $$f
+#map X !$f
+
+# dedicated keys for file opener actions
+#map o &mimeopen $f
+#map O $mimeopen --ask $f
+
+# define a custom 'open' command
+# This command is called when current file is not a directory. You may want to
+# use either file extensions and/or mime types here. Below uses an editor for
+# text files and a file opener for the rest.
+cmd open ${{
+    test -L $f && f=$(readlink -f $f)
+    case $(file --mime-type $f -b) in
+        text/*) $EDITOR $fx;;
+        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+    esac
+}}
+map <enter> open
+
+# define a custom 'rename' command without prompt for overwrite
+cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+map <f-2> push :rename<space>
+
+# make sure trash folder exists
+%mkdir -p ~/.trash
+
+# move current file or selected files to trash folder
+# (also see 'man mv' for backup/overwrite options)
+cmd trash %set -f; mv $fx ~/.trash
+map <delete> trash
+map dt trash
+
+# define a custom 'delete' command
+# cmd delete ${{
+#     set -f
+#     printf "$fx\n"
+#     printf "delete?[y/n]"
+#     read ans
+#     [ $ans = "y" ] && rm -rf $fx
+# }}
+#map <delete> delete
+#map dd delete
+
+# extract the current file with the right command
+# (xkcd link: https://xkcd.com/1168/)
+cmd extract ${{
+    set -f
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.zip) unzip $f;;
+        *.rar) unrar x $f;;
+        *.7z) 7z x $f;;
+    esac
+}}
+map xx extract
+
+# compress current file or selected files with tar and gunzip
+# cmd tar ${{
+#     set -f
+#     mkdir $1
+#     cp -r $fx $1
+#     tar czf $1.tar.gz $1
+#     rm -rf $1
+# }}
+# map zt tar
+
+# compress current file or selected files with zip
+# cmd zip ${{
+#     set -f
+#     mkdir $1
+#     cp -r $fx $1
+#     zip -r $1.zip $1
+#     rm -rf $1
+# }}
+# cmd zip %[ -e $1 ] && printf "file exists" || zip $f.zip $f
+# map zz push :zip<space>a<enter>
+cmd zip %set -f; zip $f.zip $f
+map zz zip
+
+
+# Keyboard shortcuts
+###############################################################################
+# 'map' is used to bind a key to a command which can be builtin command, custom command, or shell command.
+# Example: a A <c-a> <a-a> <f-1> <enter> <lt>
+# The following commands/keybindings are provided by default:
+# unix                     windows
+# cmd open &$OPENER "$f"   cmd open &%OPENER% %f%
+# map e $$EDITOR "$f"      map e $%EDITOR% %f%
+# map i $$PAGER "$f"       map i !%PAGER% %f%
+# map w $$SHELL            map w $%SHELL%
+
+
+# Unmap some default builtin commands
+###############################################################################
+# q quit
+map h # updir
+map j # down
+map k # up
+map l # open
+map <c-u> # half-up
+map <c-d> # half-down
+map <c-b> # page-up
+map <c-f> # page-down
+mag gg # top
+mag G # bottom
+# toggle
+map v # invert (invert toggle)
+map u # unselect
+# glob-select
+# glob-unselect
+map y # copy
+map d # cut
+map p # paste
+map c # clear
+# sync
+# draw
+map <c-l> # redraw
+# load
+map <c-r> # reload
+# echo
+# echomsg
+# echoerr
+# cd
+# select
+
+# delete         (modal)
+# rename         (modal)   (default 'r')
+# source
+# push
+# read           (modal)   (default ':')
+# shell          (modal)   (default '$')
+# shell-pipe     (modal)   (default '%')
+# shell-wait     (modal)   (default '!')
+# shell-async    (modal)   (default '&')
+# find           (modal)   (default 'f')
+# find-back      (modal)   (default 'F')
+# find-next                (default ';')
+# find-prev                (default ',')
+# search         (modal)   (default '/')
+# search-back    (modal)   (default '?')
+# search-next              (default 'n')
+# search-prev              (default 'N')
+# mark-save      (modal)   (default 'm')
+# mark-load      (modal)   (default "'")
+# mark-remove    (modal)   (default `"`)
+
+
+# Custom builtin commands
+###############################################################################
+map <bs2> updir
+map <c-s> quit
+map cc clear
+map dx cut
+map <c-x> cut
+map yy copy
+map cp copy
+map <c-c> copy
+map pp paste
+map <c-v> paste
+
+
+# Custom commands
+###############################################################################
+# Default commands/keybindings
+#cmd open &$OPENER "$f"
+max e # $$EDITOR "$f"
+map i # $$PAGER "$f"
+map w # $$SHELL
+map ee $$EDITOR "$f"
+map ii $$PAGER "$f"
+map ww $$SHELL
+
+map ~ $lf -remote "send $id cd /home/user"
+
+map x # execute file 'map x $$f'
+map X # execute file in shell 'map X !$f'
+map xe $$f
+map xs !$f
+
+#map du !clear && du -h --max-depth=1 | sort -h
+
+
+# Command line commands
+###############################################################################
+
+# cmd-escape               (default '<esc>')
+# cmd-complete             (default '<tab>')
+
+
+# Custom commands with apps
+###############################################################################
+# ctrl+e fasd-fzf cd/vi for recent folders/files
+cmd fzf-fasd ${{
+    res="$(fasd -Rl | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ]; then
+        cmd="cd"
+    else
+        cmd="select"
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+map <c-e> :fzf-fasd
+
+# ctrl+shift+f find-fzf global
+cmd fzf-find-global ${{
+    res="$(find '/' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ]; then
+        cmd="cd"
+    else
+        cmd="select"
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+map <c-]> :fzf-find-global
+
+# ctrl+f find-fzf local
+cmd fzf-find-local ${{
+    res="$(find . -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | fzf --reverse | sed 's/\\/\\\\/g;s/"/\\"/g')"
+    if [ -d "$res" ]; then
+        cmd="cd"
+    else
+        cmd="select"
+    fi
+    lf -remote "send $id $cmd \"$res\""
+}}
+map <c-f> :fzf-find-local
+
+# zsh file picker / directory changer - not work!
+# https://github.com/gokcehan/lf/wiki/Integrations
