@@ -111,7 +111,6 @@
       "keys": "ctrl+d"
     }
   ],
-  "closeOnExit": "always",
   "copyFormatting": "none",
   "copyOnSelect": false,
   "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
