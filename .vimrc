@@ -7,14 +7,14 @@ set incsearch
 set hlsearch
 set laststatus=2 "always display status line
 set statusline=%#PmenuSel#%F\ %=\ %p%%\ %l:%c
-set visualbell
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
 set mouse=a
 set timeoutlen=10
 set ttimeoutlen=10 "wait up to 10ms after Esc for special key
 
-"copy to windows clipboard
+"keep last edit place
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+"copy to Windows clipboard
 if system('uname -r') =~ "microsoft"
     augroup Yank
         autocmd!
@@ -38,30 +38,41 @@ vnoremap <c-s> <Esc>:w<CR> "visual mode: escape to normal and save
 nnoremap q :q<CR>
 nnoremap Q :q<CR>
 
-"search next
+"next search
 map <CR> n "Enter
-
-"redo
-nnoremap <c-y> <c-r>
-inoremap <c-y> <Esc><c-r>i
-vnoremap <c-y> <c-r>
 
 "undo
 nnoremap <c-z> u
 inoremap <c-z> <Esc>ui
 vnoremap <c-z> u
 
+"redo
+nnoremap <c-y> <c-r>
+inoremap <c-y> <Esc><c-r>i
+vnoremap <c-y> <c-r>
+
 "cut
 nnoremap <c-x> dd
-inoremap <c-x> <Esc>ui
-vnoremap <c-x> dd
+"inoremap <c-x> <Esc>ui
+vnoremap <c-x> d
 
 "copy
 nnoremap <c-c> yy
-inoremap <c-c> <Esc>ui
-vnoremap <c-c> yy
+"inoremap <c-c> <Esc>
+vnoremap <c-c> y
 
 "paste
 nnoremap <c-v> pp
-inoremap <c-v> <Esc>pi
-vnoremap <c-v> pp
+"inoremap <c-v> <Esc>pi
+vnoremap <c-v> p
+
+
+"hi NormalColor guifg=Black guibg=Green ctermbg=46 ctermfg=0
+"hi InsertColor guifg=Black guibg=Cyan ctermbg=51 ctermfg=0
+"hi ReplaceColor guifg=Black guibg=maroon1 ctermbg=165 ctermfg=0
+"hi VisualColor guifg=Black guibg=Orange ctermbg=202 ctermfg=0
+"
+"set statusline+=%#NormalColor#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+"set statusline+=%#InsertColor#%{(mode()=='i')?'\ \ INSERT\ ':''}
+"set statusline+=%#ReplaceColor#%{(mode()=='R')?'\ \ REPLACE\ ':''}
+"set statusline+=%#VisualColor#%{(mode()=='v')?'\ \ VISUAL\ ':''}
