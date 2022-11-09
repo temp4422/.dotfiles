@@ -10,22 +10,8 @@
       "keys": "ctrl+c"
     },
     {
-      "command": {
-        "action": "sendInput",
-        "input": "clear -x && ls -a\r"
-      },
-      "keys": "ctrl+shift+s"
-    },
-    {
       "command": "paste",
       "keys": "ctrl+v"
-    },
-    {
-      "command": {
-        "action": "sendInput",
-        "input": "vi ~/.zshrc \r"
-      },
-      "keys": "ctrl+shift+i"
     },
     {
       "command": {
@@ -33,46 +19,34 @@
         "split": "auto",
         "splitMode": "duplicate"
       },
-      "keys": "alt+shift+d"
+      "keys": "ctrl+t"
+    },
+    {
+      "command": "closePane",
+      "keys": "ctrl+w"
+    },
+    {
+      "command": {
+        "action": "moveFocus",
+        "direction": "previousInOrder"
+      },
+      "keys": "ctrl+tab"
+    },
+    {
+      "command": "markMode",
+      "keys": "ctrl+shift+c"
     },
     {
       "command": "toggleFocusMode",
       "keys": "shift+f11"
     },
+    // ZSH shortcuts
     {
       "command": {
         "action": "sendInput",
-        "input": "\u0002["
+        "input": "\u0017"
       },
-      "keys": "ctrl+shift+c"
-    },
-    {
-      "command": "unbound",
-      "keys": "ctrl+t"
-    },
-    {
-      "command": "unbound",
-      "keys": "ctrl+shift+down"
-    },
-    {
-      "command": "unbound",
-      "keys": "ctrl+shift+pgdn"
-    },
-    {
-      "command": "unbound",
-      "keys": "ctrl+shift+up"
-    },
-    {
-      "command": "unbound",
-      "keys": "ctrl+shift+pgup"
-    },
-    {
-      "command": "unbound",
-      "keys": "ctrl+shift+home"
-    },
-    {
-      "command": "unbound",
-      "keys": "ctrl+shift+end"
+      "keys": "ctrl+d"
     },
     {
       "command": {
@@ -84,13 +58,6 @@
     {
       "command": {
         "action": "sendInput",
-        "input": "\u0004"
-      },
-      "keys": "ctrl+w"
-    },
-    {
-      "command": {
-        "action": "sendInput",
         "input": "\u001d"
       },
       "keys": "ctrl+shift+f"
@@ -98,17 +65,66 @@
     {
       "command": {
         "action": "sendInput",
-        "input": "\u0002o"
+        "input": "clear -x && ls -a\r"
       },
-      "keys": "ctrl+tab"
+      "keys": "ctrl+shift+s"
     },
     {
       "command": {
         "action": "sendInput",
-        "input": "\u0017"
+        "input": "vi ~/.zshrc \r"
       },
-      "keys": "ctrl+d"
+      "keys": "ctrl+shift+i"
     }
+    // {
+    //   "command": {
+    //     "action": "sendInput",
+    //     "input": "\u0004"
+    //   },
+    //   "keys": "ctrl+w"
+    // },
+    // {
+    //   "command": {
+    //     "action": "sendInput",
+    //     "input": "\u0002["
+    //   },
+    //   "keys": "ctrl+shift+c"
+    // },
+    // {
+    //   "command": {
+    //     "action": "sendInput",
+    //     "input": "\u0002o"
+    //   },
+    //   "keys": "ctrl+tab"
+    // },
+    // {
+    //   "command": "unbound",
+    //   "keys": "ctrl+t"
+    // },
+    // {
+    //   "command": "unbound",
+    //   "keys": "ctrl+shift+down"
+    // },
+    // {
+    //   "command": "unbound",
+    //   "keys": "ctrl+shift+pgdn"
+    // },
+    // {
+    //   "command": "unbound",
+    //   "keys": "ctrl+shift+up"
+    // },
+    // {
+    //   "command": "unbound",
+    //   "keys": "ctrl+shift+pgup"
+    // },
+    // {
+    //   "command": "unbound",
+    //   "keys": "ctrl+shift+home"
+    // },
+    // {
+    //   "command": "unbound",
+    //   "keys": "ctrl+shift+end"
+    // },
   ],
   "copyFormatting": "none",
   "copyOnSelect": false,
