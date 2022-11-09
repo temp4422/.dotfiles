@@ -94,6 +94,21 @@
         "input": "\u0002o" // ctrl+b o
       },
       "keys": "ctrl+tab"
+    },
+    // Switch ctrl+w to ctrl+d
+    {
+      "command": {
+        "action": "sendInput",
+        "input": "\u0004" // ctrl+d
+      },
+      "keys": "ctrl+w"
+    },
+    {
+      "command": {
+        "action": "sendInput",
+        "input": "\u0017" // ctrl+w
+      },
+      "keys": "ctrl+d"
     }
   ],
   "closeOnExit": "always",

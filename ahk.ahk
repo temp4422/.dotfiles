@@ -395,6 +395,7 @@ Return
 ; Windows key
 LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
 
+
 ; Microsoft Edge or Google Chrome: Search Tab
 #if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
 +^f::Send, {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
@@ -429,6 +430,7 @@ if control {
 }}
 SC163 & ,::ctrlPgDn("{PGDN}")
 Return
+
 
 
 ;;;;;; INFO ;;;;;;
