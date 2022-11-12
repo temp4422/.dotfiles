@@ -142,7 +142,7 @@ alias l='ls --color'
 alias ls='ls --color'
 alias ll='ls -l --almost-all --human-readable --color --group-directories-first' # ls -lAHSr
 alias c='clear'
-alias rm='rm -r'
+alias rm='rm -rf'
 alias cp='cp -r'
 alias cd..='cd ..'
 alias ..='cd ..'
@@ -167,10 +167,11 @@ alias chrome='/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.ex
 alias y='yarn'
 alias p='pnpm'
 alias j='fasd_cd -d'
-alias bat='batcat'
 alias grep='rg --ignore-case'
 alias rg='rg --ignore-case'
-
+alias bat='batcat'
+alias cat='batcat'
+alias vi='nvim'
 
 # fasd
 ###############################################################################
