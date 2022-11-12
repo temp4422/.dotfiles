@@ -147,7 +147,7 @@ alias cp='cp -r'
 alias cd..='cd ..'
 alias ..='cd ..'
 alias cd-='cd -'
-alias grep='grep --ignore-case --color=auto'
+#alias grep='grep --ignore-case --color=auto'
 #alias du='du -sh'
 # git
 alias g='git'
@@ -167,6 +167,7 @@ alias chrome='/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.ex
 alias y='yarn'
 alias p='pnpm'
 alias j='fasd_cd -d'
+#alias cd='fasd_cd -d'
 alias grep='rg --ignore-case'
 alias rg='rg --ignore-case'
 alias bat='batcat'
@@ -175,9 +176,9 @@ alias vi='nvim'
 
 # fasd
 ###############################################################################
-#eval "$(fasd --init auto)"
-eval "$(fasd --init zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
-bindkey '^k^i' fasd-complete # test autocomplete
+eval "$(fasd --init auto)"
+#eval "$(fasd --init zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
+#bindkey '^k^i' fasd-complete # test autocomplete
 
 
 # fzf
