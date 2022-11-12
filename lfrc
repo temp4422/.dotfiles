@@ -66,14 +66,15 @@ map <delete> trash
 map dt trash
 
 # define a custom 'delete' command
-# cmd delete ${{
-#     set -f
-#     printf "$fx\n"
-#     printf "delete?[y/n]"
-#     read ans
-#     [ $ans = "y" ] && rm -rf $fx
-# }}
-#map <delete> delete
+cmd delete ${{
+    set -f
+    #printf "$fx\n"
+    #printf "delete?[y/n]"
+    #read ans
+    #[ $ans = "y" ] && 
+rm -rf $fx
+}}
+map dd delete
 #map dd delete
 
 # extract the current file with the right command
