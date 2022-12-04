@@ -102,14 +102,14 @@ RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
 
 # Default zsh settings
 ###############################################################################
- autoload -Uz promptinit
- promptinit
-
 # Set history options
 setopt histignorealldups sharehistory
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
+
+autoload -Uz promptinit
+promptinit
 
 # Use modern completion system
 autoload -Uz compinit
@@ -358,3 +358,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"
+
+# Show startup time. Profiling: 'zmodload zsh/zprof' 'zprof'
+#time zsh -c exit #{ time zsh -c exit ; } 2> time.txt 
