@@ -164,6 +164,7 @@ alias fd='fdfind'
 alias exp='explorer.exe'
 alias pwsh='powershell.exe'
 alias chrome='/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
+alias ni='npm install'
 alias y='yarn'
 alias p='pnpm'
 alias j='fasd_cd -d'
@@ -176,13 +177,15 @@ alias vi='nvim'
 
 # fasd
 ###############################################################################
-eval "$(fasd --init auto)"
-#eval "$(fasd --init zsh-hook zsh-ccomp zsh-ccomp-install zsh-wcomp zsh-wcomp-install)"
+eval "$(fasd --init posix-alias zsh-hook)" # minimal zsh setup
+#eval "$(fasd --init auto)"
 #bindkey '^k^i' fasd-complete # test autocomplete
+# Cache fasd list on shell startup in background
+($(fasd -Rl > ~/.fasd_cache) &) # Use subshell to get rid of the job control messages. A command enclosed in $(...) is replaced with its output.
 
 
 # fzf
-###############################################################################
+##############################################################################
 # Init fzf
 #/usr/share/doc/fzf/README.Debian enable fzf keybindings for Bash, https://raw.githubusercontent.com/mskar/setup/main/.zshrc
 source /usr/share/doc/fzf/examples/key-bindings.zsh
@@ -195,7 +198,8 @@ export FZF_DEFAULT_OPTS='--height 50% --history-size=1000 --layout=reverse --bor
 # Map fzf commands to keybindings
 # ctrl+e cd/vi recent folders/files
 fzf-fasd-cd-vi() {
-   item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)"
+#   item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)"
+   item="$(cat ~/.fasd_cache | fzf -1 -0 --no-sort +m)"
 	if [[ -d ${item} ]]; then
 		cd "${item}" || return 1
 	elif [[ -f ${item} ]]; then
