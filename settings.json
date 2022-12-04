@@ -139,7 +139,8 @@
     "defaults": {
       "font": {
         "size": 10
-      }
+      },
+      "background": "#1e222a", // NvChad OneDark bg color
     },
     "list": [
       {
