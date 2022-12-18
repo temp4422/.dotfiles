@@ -173,7 +173,7 @@ alias grep='rg --ignore-case'
 alias rg='rg --ignore-case'
 alias bat='batcat'
 alias cat='batcat'
-alias vi='nvim'
+#alias vi='nvim'
 
 # fasd
 ###############################################################################

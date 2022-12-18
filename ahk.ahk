@@ -343,11 +343,8 @@ Return
 ;File Explorer
 shiftSpace(key) {
 	shift := GetKeyState("SHIFT","P")
-  ; If ctrl+shift+space open Windows Search
   if shift {
-  	Send, {LWin Down}{s}{LWin Up}
-  } else {
-  ; If ctrl+space open new File Explorer or toggle existing
+    ; If ctrl+shift+space open new File Explorer or toggle existing
     if WinActive("ahk_class CabinetWClass") {
       WinMinimize A
     } else if WinExist("ahk_class CabinetWClass") {
@@ -365,6 +362,10 @@ shiftSpace(key) {
     ;   WinMove, ahk_class CabinetWClass,,952,0,976,1038
     ;   WinActivate, ahk_class CabinetWClass
     ; Return
+  } else {
+    ; If ctrl+space open Windows Search
+    Send, {LWin Down}{s}{LWin Up}
+    Return
   }
 }
 LCtrl & Space::shiftSpace("{Space}")
