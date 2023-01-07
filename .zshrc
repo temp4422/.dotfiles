@@ -174,6 +174,7 @@ alias rg='rg --ignore-case'
 alias bat='batcat'
 alias cat='batcat'
 #alias vi='nvim'
+alias fman='fman.exe .'
 
 # fasd
 ###############################################################################
@@ -210,7 +211,7 @@ fzf-fasd-cd-vi() {
    zle accept-line
 }
 zle -N fzf-fasd-cd-vi
-bindkey '^e' fzf-fasd-cd-vi
+bindkey '^p' fzf-fasd-cd-vi
 
 # ctrl+r search history
 fzf-history() {
@@ -260,7 +261,7 @@ fzf-find-local() {
    zle accept-line
 }
 zle -N fzf-find-local
-bindkey '^f' fzf-find-local
+bindkey '^e' fzf-find-local
 
 # ctrl+k+o cd folder global
 fzf-cd() {
