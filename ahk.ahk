@@ -301,8 +301,7 @@ LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
 SC163 & Enter::AppsKey
 ; Reload ahk
 SC163 & CapsLock::reload
-; Send space alone, need to work with other space shortcuts
-Space:: Send {Space}
+
 ; Windows Search or PowerToys Run
 ; LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
 Space & c::Send, {LWin Down}{s}{LWin Up}
@@ -536,6 +535,8 @@ Return
 ; }
 ; LCtrl & Space::shiftSpace("{Space}")
 ;Return
+; Send space alone, need to work with other space shortcuts
+Space:: Send {Space}
 ;******************************************************************************
 
 
