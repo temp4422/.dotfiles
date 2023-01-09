@@ -303,9 +303,9 @@ SC163 & Enter::AppsKey
 SC163 & CapsLock::reload
 ; Send space alone, need to work with other space shortcuts
 Space:: Send {Space}
-; Ctrl+space open Windows Search
-LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
-
+; Windows Search or PowerToys Run
+; LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
+Space & c::Send, {LWin Down}{s}{LWin Up}
 ; Change language Alt+Space
 !Space::Send, {LWin Down}{Space}{LWin Up}
 ; Close active window (Alt+F4)
@@ -325,7 +325,7 @@ Return
 ; Run Apps ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Windows Terminal wt.exe
 ;^`::
-Space & `::
+;Space & `::
 Space & a::
 if WinActive("ahk_exe WindowsTerminal.exe") {
   WinMinimize A
@@ -408,6 +408,19 @@ if WinActive("ahk_exe RemNote.exe") {
   WinMove, ahk_exe RemNote.exe,,-8,,,
 }
 Return
+; Google Translate
+Space & CapsLock::
+SetTitleMatchMode 3
+if WinActive("Google Translate") {
+  WinMinimize A
+} else if WinExist("Google Translate") {
+  WinActivate, Google Translate
+} else {
+  Run, "C:\Users\user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Chrome Apps\Google Translate.lnk"
+  WinWait, Google Translate
+  WinActivate, Google Translate
+}
+Return
 ; Calculator
 ;Space & n::
 SC163 & n::
@@ -422,21 +435,8 @@ if WinActive("Calculator") {
   WinActivate, Calculator
 }
 Return
-; Google Translate
-Space & CapsLock::
-SetTitleMatchMode 3
-if WinActive("Google Translate") {
-  WinMinimize A
-} else if WinExist("Google Translate") {
-  WinActivate, Google Translate
-} else {
-  Run, "C:\Users\user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Chrome Apps\Google Translate.lnk"
-  WinWait, Google Translate
-  WinActivate, Google Translate
-}
-Return
 ; Snip & Sketch
-+s & Space::
+SC163 & s::
   Run, ms-screensketch:
   WinWait, ahk_exe ApplicationFrameHost.exe
   WinActivate, ahk_exe ApplicationFrameHost.exe
@@ -538,6 +538,11 @@ Return
 ;Return
 ;******************************************************************************
 
+
+; Sublime open recent files
+#if WinActive("ahk_exe sublime_text.exe")
+^r::Send, {Alt Down}{f}{Alt Up}{r}
+Return
 
 ; Microsoft Edge or Google Chrome: Search Tab
 #if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
