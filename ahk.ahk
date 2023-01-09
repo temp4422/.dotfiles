@@ -292,12 +292,6 @@ SC163 & BS::MoveCursor("{DEL}")
 ^4::#4
 ^5::#5
 ^6::#6
-!1::Send,{Ctrl Down}{1}{Ctrl Up}
-!2::Send,{Ctrl Down}{2}{Ctrl Up}
-!3::Send,{Ctrl Down}{3}{Ctrl Up}
-!4::Send,{Ctrl Down}{4}{Ctrl Up}
-!5::Send,{Ctrl Down}{5}{Ctrl Up}
-!6::Send,{Ctrl Down}{6}{Ctrl Up}
 +^1::Send,{Ctrl Down}{1}{Ctrl Up}
 +^2::Send,{Ctrl Down}{2}{Ctrl Up}
 +^3::Send,{Ctrl Down}{3}{Ctrl Up}
@@ -313,6 +307,8 @@ LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
 SC163 & Enter::AppsKey
 ; Close active window (Alt+F4)
 +^w::Send {Alt down}{F4}{Alt up}
+; Send space alone, need to work with other space shortcuts
+Space:: Send {Space}
 
 ; Maximize active window
 LAlt & CapsLock::
@@ -334,7 +330,7 @@ shiftSpace(key) {
     } else {
       Run, explorer.exe
       WinWait, ahk_class CabinetWClass
-      WinMove, ahk_class CabinetWClass,,-8,0,976,1028
+      ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
       WinActivate, ahk_class CabinetWClass
     }
     Return
@@ -459,7 +455,7 @@ Return
 ; Run Apps
 ; Terminal
 ;!a::
-SC163 & a::
+Space & a::
 if WinActive("ahk_exe WindowsTerminal.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe WindowsTerminal.exe") {
@@ -474,7 +470,7 @@ if WinActive("ahk_exe WindowsTerminal.exe") {
 Return
 ;Browser msedge.exe
 ;!s::
-SC163 & s::
+Space & s::
 if WinActive("ahk_exe msedge.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe msedge.exe") {
@@ -501,9 +497,9 @@ Return
 ;   WinMove, ahk_exe sublime_text.exe,,-8,,,
 ; }
 ; Return
-; CoDe sublime_text.exe
+; CoDe VSCode.exe
 ;!d::
-SC163 & d::
+Space & d::
 if WinActive("ahk_exe code.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe code.exe") {
@@ -518,7 +514,7 @@ if WinActive("ahk_exe code.exe") {
 Return
 ; Files Explorer.exe
 ;!f::
-SC163 & f::
+Space & f::
 if WinActive("ahk_class CabinetWClass") {
   WinMinimize A
 } else if WinExist("ahk_class CabinetWClass") {
@@ -546,7 +542,7 @@ Return
 ; Return
 ; Notes RemNote.exe
 ;!q::
-SC163 & q::
+Space & q::
 if WinActive("ahk_exe RemNote.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe RemNote.exe") {
@@ -560,7 +556,7 @@ if WinActive("ahk_exe RemNote.exe") {
 }
 Return
 ; Calculator
-SC163 & n::
+Space & n::
 SetTitleMatchMode 3
 if WinActive("Calculator") {
   WinMinimize A
