@@ -286,12 +286,12 @@ SC163 & BS::MoveCursor("{DEL}")
 
 
 ; Taskbar
-Space & 1::#1
-Space & 2::#2
-Space & 3::#3
-Space & 4::#4
-Space & 5::#5
-Space & 6::#6
+; Space & 1::#1
+; Space & 2::#2
+; Space & 3::#3
+; Space & 4::#4
+; Space & 5::#5
+; Space & 6::#6
 
 ; Ctrl+Tab to Alt+Tab
 LCtrl & Tab::AltTab
@@ -301,16 +301,16 @@ LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
 SC163 & Enter::AppsKey
 ; Reload ahk
 SC163 & CapsLock::reload
-
-; Windows Search or PowerToys Run
-; LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
-Space & c::Send, {LWin Down}{s}{LWin Up}
-; Change language Alt+Space
-!Space::Send, {LWin Down}{Space}{LWin Up}
 ; Close active window (Alt+F4)
 +^w::Send {Alt down}{F4}{Alt up}
 ; Show Desktop Alt+D
 !d::Send, {LWin Down}{d}{LWin Up}
+; Change language Alt+Space
+!Space::Send, {LWin Down}{Space}{LWin Up}
+; Windows Search or PowerToys Run
+; LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
+Space & c::Send, {LWin Down}{s}{LWin Up}
+
 
 ; Maximize active window
 SC163 & f::
@@ -322,10 +322,35 @@ Return
 
 
 ; Run Apps ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Send space alone, need to work with other space shortcuts
+Space:: Send {Space}
+
+;~a::
+  ; KeyWait, a, T0.05
+  ; If (ErrorLevel == 0) {
+  ;   ;Send {Blind}{a}
+  ; } Else {
+  ;   if GetKeyState("Space", "D") {
+  ;     if WinActive("ahk_exe WindowsTerminal.exe") {
+  ;       WinMinimize A
+  ;     } else if WinExist("ahk_exe WindowsTerminal.exe") {
+  ;       WinActivate, ahk_exe WindowsTerminal.exe
+  ;     } else {
+  ;       Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
+  ;       Sleep, 750
+  ;       WinWait, ahk_exe WindowsTerminal.exe
+  ;       WinActivate, ahk_exe WindowsTerminal.exe
+  ;     }
+  ;   Return
+  ; }
+  ;Return
+  ;}
+;Return
+
+
 ; Windows Terminal wt.exe
-;^`::
-;Space & `::
-Space & a::
+;Space & a::
+Space & a up::
 if WinActive("ahk_exe WindowsTerminal.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe WindowsTerminal.exe") {
@@ -339,7 +364,7 @@ if WinActive("ahk_exe WindowsTerminal.exe") {
 }
 Return
 ; Browser msedge.exe
-Space & s::
+Space & s up::
 if WinActive("ahk_exe msedge.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe msedge.exe") {
@@ -353,7 +378,7 @@ if WinActive("ahk_exe msedge.exe") {
 }
 Return
 ; CoDe sublime_text.exe
-Space & d::
+Space & d up::
 if WinActive("ahk_exe sublime_text.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe sublime_text.exe") {
@@ -366,22 +391,8 @@ if WinActive("ahk_exe sublime_text.exe") {
   WinMove, ahk_exe sublime_text.exe,,-8,,,
 }
 Return
-; CoDe VSCode.exe
-; Space & d::
-; if WinActive("ahk_exe code.exe") {
-;   WinMinimize A
-; } else if WinExist("ahk_exe code.exe") {
-;   WinActivate, ahk_exe code.exe
-; } else {
-;   Run, "C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe"
-;   Sleep, 750
-;   WinWait, ahk_exe code.exe
-;   WinActivate, ahk_exe code.exe
-;   WinMove, ahk_exe code.exe,,-8,,,
-; }
-; Return
-; Files Explorer.exe
-Space & f::
+; File Explorer
+Space & f up::
 if WinActive("ahk_class CabinetWClass") {
   WinMinimize A
 } else if WinExist("ahk_class CabinetWClass") {
@@ -394,7 +405,7 @@ if WinActive("ahk_class CabinetWClass") {
 }
 Return
 ; Notes RemNote.exe
-Space & q::
+Space & q up::
 if WinActive("ahk_exe RemNote.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe RemNote.exe") {
@@ -408,7 +419,7 @@ if WinActive("ahk_exe RemNote.exe") {
 }
 Return
 ; Google Translate
-Space & CapsLock::
+Space & CapsLock up::
 SetTitleMatchMode 3
 if WinActive("Google Translate") {
   WinMinimize A
@@ -421,7 +432,7 @@ if WinActive("Google Translate") {
 }
 Return
 ; Calculator
-;Space & n::
+Space & n up::
 SC163 & n::
 SetTitleMatchMode 3
 if WinActive("Calculator") {
@@ -435,7 +446,7 @@ if WinActive("Calculator") {
 }
 Return
 ; Snip & Sketch
-SC163 & s::
++!s::
   Run, ms-screensketch:
   WinWait, ahk_exe ApplicationFrameHost.exe
   WinActivate, ahk_exe ApplicationFrameHost.exe
@@ -505,7 +516,7 @@ Return
 ; SC163 & Space::shiftSpaceSuper("{Space}")
 ; Return
 
-;File Explorer
+;If "ctrl+shift+space" send File Explorer, if "ctrl+space" send Windows Search
 ; shiftSpace(key) {
 ;   shift := GetKeyState("SHIFT","P")
 ;   if shift {
@@ -535,8 +546,39 @@ Return
 ; }
 ; LCtrl & Space::shiftSpace("{Space}")
 ;Return
-; Send space alone, need to work with other space shortcuts
-Space:: Send {Space}
+
+; Send space if it's pressed less then 0.1s, otherwise send text
+; *Space::
+;   KeyWait, Space, T0.1
+;   If (ErrorLevel == 0) {
+;     Send {Blind}{Space}
+;   } Else {
+;     Send {Blind}{Text} test_text_here
+;   }
+; Return
+; Alternative
+; *Space::
+;   KeyWait, Space, T0.1     ; Wait for Space to be released for 1 second
+;   If (ErrorLevel == 0) {    ; Space released in less than a second
+;     Send {Blind}{Space}     ; Send backtick
+;   } Else {
+;     if GetKeyState("s", "D") {
+;       if WinActive("ahk_exe WindowsTerminal.exe") {
+;         WinMinimize A
+;       } else if WinExist("ahk_exe WindowsTerminal.exe") {
+;         WinActivate, ahk_exe WindowsTerminal.exe
+;       } else {
+;         Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
+;         Sleep, 750
+;         WinWait, ahk_exe WindowsTerminal.exe
+;         WinActivate, ahk_exe WindowsTerminal.exe
+;       }
+;     Return
+;   }
+;   Return
+;   }
+; Return
+
 ;******************************************************************************
 
 

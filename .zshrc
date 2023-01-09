@@ -148,7 +148,7 @@ alias cd..='cd ..'
 alias ..='cd ..'
 alias cd-='cd -'
 #alias grep='grep --ignore-case --color=auto'
-#alias du='du -sh'
+alias du='du -sh'
 # git
 alias g='git'
 alias gs='git status'
