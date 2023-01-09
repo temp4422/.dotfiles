@@ -390,9 +390,9 @@ Return
 ; Reload ahk
 SC163 & CapsLock::reload
 ; Calculator
-SC163 & n::Send, {LWin Down}{9}{LWin Up}
+;SC163 & n::Send, {LWin Down}{9}{LWin Up}
 ; Google Chrome Translate
-^CapsLock::Send, {LWin Down}{0}{Lwin Up}
+;^CapsLock::Send, {LWin Down}{0}{Lwin Up}
 ; Win+. Emoji
 ;!.::Send {LWin down}{.}{LWin up}
 
@@ -457,7 +457,7 @@ Return
 
 
 ; Run Apps
-; Terminal or notes ?
+; Terminal
 ;!a::
 SC163 & a::
 if WinActive("ahk_exe WindowsTerminal.exe") {
@@ -559,7 +559,34 @@ if WinActive("ahk_exe RemNote.exe") {
   WinMove, ahk_exe RemNote.exe,,-8,,,
 }
 Return
-
+; Calculator
+SC163 & n::
+SetTitleMatchMode 3
+if WinActive("Calculator") {
+  WinMinimize A
+} else if WinExist("Calculator") {
+  WinActivate, Calculator
+} else {
+  Run, "C:\Windows\System32\calc.exe"
+  WinWait, Calculator
+  ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
+  WinActivate, Calculator
+}
+Return
+; Google Translate
+^CapsLock::
+SetTitleMatchMode 3
+if WinActive("Google Translate") {
+  WinMinimize A
+} else if WinExist("Google Translate") {
+  WinActivate, Google Translate
+} else {
+  Run, ""C:\Program Files\Google\Chrome\Application\chrome_proxy.exe"  --profile-directory=Default --app-id=edanbjnaiofggfmimiidpfmhggkbokck"
+  WinWait, Google Translate
+  ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
+  WinActivate, Google Translate
+}
+Return
 
 
 ; Microsoft Edge or Google Chrome: Search Tab
