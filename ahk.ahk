@@ -305,6 +305,7 @@ SC163 & CapsLock::reload
 Space:: Send {Space}
 ; Ctrl+space open Windows Search
 LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
+
 ; Change language Alt+Space
 !Space::Send, {LWin Down}{Space}{LWin Up}
 ; Close active window (Alt+F4)
@@ -393,20 +394,6 @@ if WinActive("ahk_class CabinetWClass") {
   WinActivate, ahk_class CabinetWClass
 }
 Return
-; Files Fman.exe
-; !f::
-; if WinActive("ahk_exe fman.exe") {
-;   WinMinimize A
-; } else if WinExist("ahk_exe fman.exe") {
-;   WinActivate, ahk_exe fman.exe
-; } else {
-;   Run, "C:\Users\user\AppData\Local\fman\Versions\1.7.3\fman.exe"
-;   Sleep, 750
-;   WinWait, ahk_exe fman.exe
-;   WinActivate, ahk_exe fman.exe
-;   WinMove, ahk_exe fman.exe,,-8,,,
-; }
-; Return
 ; Notes RemNote.exe
 Space & q::
 if WinActive("ahk_exe RemNote.exe") {
@@ -432,7 +419,6 @@ if WinActive("Calculator") {
 } else {
   Run, "C:\Windows\System32\calc.exe"
   WinWait, Calculator
-  ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
   WinActivate, Calculator
 }
 Return
@@ -444,19 +430,17 @@ if WinActive("Google Translate") {
 } else if WinExist("Google Translate") {
   WinActivate, Google Translate
 } else {
-  Run, ""C:\Program Files\Google\Chrome\Application\chrome_proxy.exe"  --profile-directory=Default --app-id=edanbjnaiofggfmimiidpfmhggkbokck"
+  Run, "C:\Users\user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Chrome Apps\Google Translate.lnk"
   WinWait, Google Translate
-  ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
   WinActivate, Google Translate
 }
 Return
 ; Snip & Sketch
-+!s::
++s & Space::
   Run, ms-screensketch:
   WinWait, ahk_exe ApplicationFrameHost.exe
   WinActivate, ahk_exe ApplicationFrameHost.exe
   if WinActive("ahk_exe ApplicationFrameHost.exe") {
-  ; #if WinActive("ahk_class VirtualConsoleClass","","powershell")
     Send, {Ctrl Down}{n}{Ctrl Up}
   } else {
     Return

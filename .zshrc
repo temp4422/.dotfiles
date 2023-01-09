@@ -362,3 +362,4 @@ alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"
 
 # Show startup time. Profiling: 'zmodload zsh/zprof' 'zprof'
 #time zsh -c exit #{ time zsh -c exit ; } 2> time.txt 
+source ~/.local/share/zsh/plugins/zsh-shift-select/zsh-shift-select.plugin.zsh
