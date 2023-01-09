@@ -305,65 +305,157 @@ LCtrl & Tab::AltTab
 LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
 ; Context menu Shift+F10 / AppsKey
 SC163 & Enter::AppsKey
-; Close active window (Alt+F4)
-+^w::Send {Alt down}{F4}{Alt up}
+; Reload ahk
+SC163 & CapsLock::reload
 ; Send space alone, need to work with other space shortcuts
 Space:: Send {Space}
+; Ctrl+space open Windows Search
+LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
+; Change language Alt+Space
+!Space::Send, {LWin Down}{Space}{LWin Up}
+; Close active window (Alt+F4)
++^w::Send {Alt down}{F4}{Alt up}
+; Show Desktop Alt+D
+!d::Send, {LWin Down}{d}{LWin Up}
 
 ; Maximize active window
-LAlt & CapsLock::
+SC163 & f::
 WinGet MX, MinMax, A
   If MX
     WinRestore A
   Else WinMaximize A
 Return
 
-;File Explorer
-shiftSpace(key) {
-  shift := GetKeyState("SHIFT","P")
-  if shift {
-    ; If ctrl+shift+space open new File Explorer or toggle existing
-    if WinActive("ahk_class CabinetWClass") {
-      WinMinimize A
-    } else if WinExist("ahk_class CabinetWClass") {
-      WinActivate, ahk_class CabinetWClass
-    } else {
-      Run, explorer.exe
-      WinWait, ahk_class CabinetWClass
-      ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
-      WinActivate, ahk_class CabinetWClass
-    }
-    Return
-    ; +!e::
-    ;   Run, explorer.exe
-    ;   WinWait, ahk_class CabinetWClass
-    ;   WinMove, ahk_class CabinetWClass,,952,0,976,1038
-    ;   WinActivate, ahk_class CabinetWClass
-    ; Return
-  } else {
-    ; If ctrl+space open Windows Search
-    Send, {LWin Down}{s}{LWin Up}
-    Return
-  }
-}
-LCtrl & Space::shiftSpace("{Space}")
-Return
 
-; Windows Terminal
-^`::
+; Run Apps ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Windows Terminal wt.exe
+;^`::
+Space & `::
+Space & a::
 if WinActive("ahk_exe WindowsTerminal.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe WindowsTerminal.exe") {
   WinActivate, ahk_exe WindowsTerminal.exe
 } else {
-  Run, wt.exe
+  Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
   Sleep, 750
   WinWait, ahk_exe WindowsTerminal.exe
   WinActivate, ahk_exe WindowsTerminal.exe
-  WinMove, ahk_exe WindowsTerminal.exe,,-8,,,
+  ;WinMove, ahk_exe WindowsTerminal.exe,,-8,,,
 }
 Return
-
+; Browser msedge.exe
+Space & s::
+if WinActive("ahk_exe msedge.exe") {
+  WinMinimize A
+} else if WinExist("ahk_exe msedge.exe") {
+  WinActivate, ahk_exe msedge.exe
+} else {
+  Run, msedge.exe
+  Sleep, 750
+  WinWait, ahk_exe msedge.exe
+  WinActivate, ahk_exe msedge.exe
+  WinMove, ahk_exe msedge.exe,,-8,,,
+}
+Return
+; CoDe sublime_text.exe
+Space & d::
+if WinActive("ahk_exe sublime_text.exe") {
+  WinMinimize A
+} else if WinExist("ahk_exe sublime_text.exe") {
+  WinActivate, ahk_exe sublime_text.exe
+} else {
+  Run, sublime_text.exe
+  Sleep, 750
+  WinWait, ahk_exe sublime_text.exe
+  WinActivate, ahk_exe sublime_text.exe
+  WinMove, ahk_exe sublime_text.exe,,-8,,,
+}
+Return
+; CoDe VSCode.exe
+; Space & d::
+; if WinActive("ahk_exe code.exe") {
+;   WinMinimize A
+; } else if WinExist("ahk_exe code.exe") {
+;   WinActivate, ahk_exe code.exe
+; } else {
+;   Run, "C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+;   Sleep, 750
+;   WinWait, ahk_exe code.exe
+;   WinActivate, ahk_exe code.exe
+;   WinMove, ahk_exe code.exe,,-8,,,
+; }
+; Return
+; Files Explorer.exe
+Space & f::
+if WinActive("ahk_class CabinetWClass") {
+  WinMinimize A
+} else if WinExist("ahk_class CabinetWClass") {
+  WinActivate, ahk_class CabinetWClass
+} else {
+  Run, explorer.exe
+  WinWait, ahk_class CabinetWClass
+  ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
+  WinActivate, ahk_class CabinetWClass
+}
+Return
+; Files Fman.exe
+; !f::
+; if WinActive("ahk_exe fman.exe") {
+;   WinMinimize A
+; } else if WinExist("ahk_exe fman.exe") {
+;   WinActivate, ahk_exe fman.exe
+; } else {
+;   Run, "C:\Users\user\AppData\Local\fman\Versions\1.7.3\fman.exe"
+;   Sleep, 750
+;   WinWait, ahk_exe fman.exe
+;   WinActivate, ahk_exe fman.exe
+;   WinMove, ahk_exe fman.exe,,-8,,,
+; }
+; Return
+; Notes RemNote.exe
+Space & q::
+if WinActive("ahk_exe RemNote.exe") {
+  WinMinimize A
+} else if WinExist("ahk_exe RemNote.exe") {
+  WinActivate, ahk_exe RemNote.exe
+} else {
+  Run, "C:\Program Files\RemNote\RemNote.exe"
+  Sleep, 750
+  WinWait, ahk_exe RemNote.exe
+  WinActivate, ahk_exe RemNote.exe
+  WinMove, ahk_exe RemNote.exe,,-8,,,
+}
+Return
+; Calculator
+;Space & n::
+SC163 & n::
+SetTitleMatchMode 3
+if WinActive("Calculator") {
+  WinMinimize A
+} else if WinExist("Calculator") {
+  WinActivate, Calculator
+} else {
+  Run, "C:\Windows\System32\calc.exe"
+  WinWait, Calculator
+  ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
+  WinActivate, Calculator
+}
+Return
+; Google Translate
+Space & CapsLock::
+SetTitleMatchMode 3
+if WinActive("Google Translate") {
+  WinMinimize A
+} else if WinExist("Google Translate") {
+  WinActivate, Google Translate
+} else {
+  Run, ""C:\Program Files\Google\Chrome\Application\chrome_proxy.exe"  --profile-directory=Default --app-id=edanbjnaiofggfmimiidpfmhggkbokck"
+  WinWait, Google Translate
+  ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
+  WinActivate, Google Translate
+}
+Return
 ; Snip & Sketch
 +!s::
   Run, ms-screensketch:
@@ -378,20 +470,6 @@ Return
 Return
 
 
-; Show Desktop Alt+D
-+!d::Send, {LWin Down}{d}{LWin Up}
-Return
-; Change language Alt+Space
-!Space::Send, {LWin Down}{Space}{LWin Up}
-; Reload ahk
-SC163 & CapsLock::reload
-; Calculator
-;SC163 & n::Send, {LWin Down}{9}{LWin Up}
-; Google Chrome Translate
-;^CapsLock::Send, {LWin Down}{0}{Lwin Up}
-; Win+. Emoji
-;!.::Send {LWin down}{.}{LWin up}
-
 ; VSCode console.log()
 ;SC163 & u::Send, {Shift Down}{Alt Down}{Left}{Alt Up}{Shift Up}
 SC163 & i::Send, {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
@@ -402,7 +480,6 @@ SC163 & o::Send, {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
 SC163 & h::Send, {Alt Down}{Left}{Alt Up}
 SC163 & '::Send, {Alt Down}{Right}{Alt Up}
 
-;Ctrl & s::Send,{Ctrl Down}{Shift Down}{[}{Shift Up}{Ctrl Up}
 ; Fold/Unfold, Send different keys with single key RemNote, Obsidian, VSCode
 variable1 = 0 ; Set variable
 SC163 & Space::
@@ -451,138 +528,37 @@ Return
 ; SC163 & Space::shiftSpaceSuper("{Space}")
 ; Return
 
-
-; Run Apps
-; Terminal
-;!a::
-Space & a::
-if WinActive("ahk_exe WindowsTerminal.exe") {
-  WinMinimize A
-} else if WinExist("ahk_exe WindowsTerminal.exe") {
-  WinActivate, ahk_exe WindowsTerminal.exe
-} else {
-  Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
-  Sleep, 750
-  WinWait, ahk_exe WindowsTerminal.exe
-  WinActivate, ahk_exe WindowsTerminal.exe
-  WinMove, ahk_exe WindowsTerminal.exe,,-8,,,
-}
-Return
-;Browser msedge.exe
-;!s::
-Space & s::
-if WinActive("ahk_exe msedge.exe") {
-  WinMinimize A
-} else if WinExist("ahk_exe msedge.exe") {
-  WinActivate, ahk_exe msedge.exe
-} else {
-  Run, msedge.exe
-  Sleep, 750
-  WinWait, ahk_exe msedge.exe
-  WinActivate, ahk_exe msedge.exe
-  WinMove, ahk_exe msedge.exe,,-8,,,
-}
-Return
-; ; CoDe sublime_text.exe
-; !d::
-; if WinActive("ahk_exe sublime_text.exe") {
-;   WinMinimize A
-; } else if WinExist("ahk_exe sublime_text.exe") {
-;   WinActivate, ahk_exe sublime_text.exe
-; } else {
-;   Run, sublime_text.exe
-;   Sleep, 750
-;   WinWait, ahk_exe sublime_text.exe
-;   WinActivate, ahk_exe sublime_text.exe
-;   WinMove, ahk_exe sublime_text.exe,,-8,,,
+;File Explorer
+; shiftSpace(key) {
+;   shift := GetKeyState("SHIFT","P")
+;   if shift {
+;     ; If ctrl+shift+space open new File Explorer or toggle existing
+;     if WinActive("ahk_class CabinetWClass") {
+;       WinMinimize A
+;     } else if WinExist("ahk_class CabinetWClass") {
+;       WinActivate, ahk_class CabinetWClass
+;     } else {
+;       Run, explorer.exe
+;       WinWait, ahk_class CabinetWClass
+;       ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
+;       WinActivate, ahk_class CabinetWClass
+;     }
+;     Return
+;     ; +!e::
+;     ;   Run, explorer.exe
+;     ;   WinWait, ahk_class CabinetWClass
+;     ;   WinMove, ahk_class CabinetWClass,,952,0,976,1038
+;     ;   WinActivate, ahk_class CabinetWClass
+;     ; Return
+;   } else {
+;     ; If ctrl+space open Windows Search
+;     Send, {LWin Down}{s}{LWin Up}
+;     Return
+;   }
 ; }
-; Return
-; CoDe VSCode.exe
-;!d::
-Space & d::
-if WinActive("ahk_exe code.exe") {
-  WinMinimize A
-} else if WinExist("ahk_exe code.exe") {
-  WinActivate, ahk_exe code.exe
-} else {
-  Run, "C:\Users\user\AppData\Local\Programs\Microsoft VS Code\Code.exe"
-  Sleep, 750
-  WinWait, ahk_exe code.exe
-  WinActivate, ahk_exe code.exe
-  WinMove, ahk_exe code.exe,,-8,,,
-}
-Return
-; Files Explorer.exe
-;!f::
-Space & f::
-if WinActive("ahk_class CabinetWClass") {
-  WinMinimize A
-} else if WinExist("ahk_class CabinetWClass") {
-  WinActivate, ahk_class CabinetWClass
-} else {
-  Run, explorer.exe
-  WinWait, ahk_class CabinetWClass
-  ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
-  WinActivate, ahk_class CabinetWClass
-}
-Return
-; Files Fman.exe
-; !f::
-; if WinActive("ahk_exe fman.exe") {
-;   WinMinimize A
-; } else if WinExist("ahk_exe fman.exe") {
-;   WinActivate, ahk_exe fman.exe
-; } else {
-;   Run, "C:\Users\user\AppData\Local\fman\Versions\1.7.3\fman.exe"
-;   Sleep, 750
-;   WinWait, ahk_exe fman.exe
-;   WinActivate, ahk_exe fman.exe
-;   WinMove, ahk_exe fman.exe,,-8,,,
-; }
-; Return
-; Notes RemNote.exe
-;!q::
-Space & q::
-if WinActive("ahk_exe RemNote.exe") {
-  WinMinimize A
-} else if WinExist("ahk_exe RemNote.exe") {
-  WinActivate, ahk_exe RemNote.exe
-} else {
-  Run, "C:\Program Files\RemNote\RemNote.exe"
-  Sleep, 750
-  WinWait, ahk_exe RemNote.exe
-  WinActivate, ahk_exe RemNote.exe
-  WinMove, ahk_exe RemNote.exe,,-8,,,
-}
-Return
-; Calculator
-Space & n::
-SetTitleMatchMode 3
-if WinActive("Calculator") {
-  WinMinimize A
-} else if WinExist("Calculator") {
-  WinActivate, Calculator
-} else {
-  Run, "C:\Windows\System32\calc.exe"
-  WinWait, Calculator
-  ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
-  WinActivate, Calculator
-}
-Return
-; Google Translate
-^CapsLock::
-SetTitleMatchMode 3
-if WinActive("Google Translate") {
-  WinMinimize A
-} else if WinExist("Google Translate") {
-  WinActivate, Google Translate
-} else {
-  Run, ""C:\Program Files\Google\Chrome\Application\chrome_proxy.exe"  --profile-directory=Default --app-id=edanbjnaiofggfmimiidpfmhggkbokck"
-  WinWait, Google Translate
-  ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
-  WinActivate, Google Translate
-}
-Return
+; LCtrl & Space::shiftSpace("{Space}")
+;Return
+;******************************************************************************
 
 
 ; Microsoft Edge or Google Chrome: Search Tab
