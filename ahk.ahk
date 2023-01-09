@@ -284,15 +284,6 @@ SC163 & /::MoveCursor("{END}")
 SC163 & BS::MoveCursor("{DEL}")
 ;******************************************************************************
 
-
-; Taskbar
-; Space & 1::#1
-; Space & 2::#2
-; Space & 3::#3
-; Space & 4::#4
-; Space & 5::#5
-; Space & 6::#6
-
 ; Ctrl+Tab to Alt+Tab
 LCtrl & Tab::AltTab
 ; Ctrl+Esc to Ctrl+Tab
@@ -305,12 +296,6 @@ SC163 & CapsLock::reload
 +^w::Send {Alt down}{F4}{Alt up}
 ; Show Desktop Alt+D
 !d::Send, {LWin Down}{d}{LWin Up}
-; Change language Alt+Space
-!Space::Send, {LWin Down}{Space}{LWin Up}
-; Windows Search or PowerToys Run
-; LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
-Space & c::Send, {LWin Down}{s}{LWin Up}
-
 
 ; Maximize active window
 SC163 & f::
@@ -321,9 +306,21 @@ WinGet MX, MinMax, A
 Return
 
 
-; Run Apps ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Run Apps with Space key ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Send space alone, need to work with other space shortcuts
 Space:: Send {Space}
+; Change language Alt+Space
+!Space::Send, {LWin Down}{Space}{LWin Up}
+; Windows Search or PowerToys Run
+; LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
+Space & c::Send, {LWin Down}{s}{LWin Up}
+; Taskbar
+Space & 1::#1
+Space & 2::#2
+Space & 3::#3
+Space & 4::#4
+Space & 5::#5
+Space & 6::#6
 
 ;~a::
   ; KeyWait, a, T0.05
