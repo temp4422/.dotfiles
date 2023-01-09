@@ -285,19 +285,13 @@ SC163 & BS::MoveCursor("{DEL}")
 ;******************************************************************************
 
 
-; win+1,2,3,4,5,6
-^1::#1
-^2::#2
-^3::#3
-^4::#4
-^5::#5
-^6::#6
-+^1::Send,{Ctrl Down}{1}{Ctrl Up}
-+^2::Send,{Ctrl Down}{2}{Ctrl Up}
-+^3::Send,{Ctrl Down}{3}{Ctrl Up}
-+^4::Send,{Ctrl Down}{4}{Ctrl Up}
-+^5::Send,{Ctrl Down}{5}{Ctrl Up}
-+^6::Send,{Ctrl Down}{6}{Ctrl Up}
+; Taskbar
+Space & 1::#1
+Space & 2::#2
+Space & 3::#3
+Space & 4::#4
+Space & 5::#5
+Space & 6::#6
 
 ; Ctrl+Tab to Alt+Tab
 LCtrl & Tab::AltTab
