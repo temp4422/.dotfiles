@@ -306,13 +306,20 @@ WinGet MX, MinMax, A
 Return
 
 
-; Run Apps with Space key ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Send space alone, need to work with other space shortcuts
+;******************************************************************************
+; Run Apps with Space key
+; Goal: make reliable key combination to run apps faster without interruptions
+; Task: Press "space+key" to open specific application
+; Issue: While typing text, sometimes "space+key" is pressed accidentally and typing is being interrupted
+; TODO: Send "space+key" without innterruption
+; NEED: Send "space+key" only if "space" is down and "key" is up, no other keys should be able to be pressed in this combination otherwise they should interrupt combination
+
+; IMPORTANT! Send "space" alone, need to work with other "space" shortcuts
 Space:: Send {Space}
 ; Change language Alt+Space
 !Space::Send {LWin Down}{Space}{LWin Up}
 ; Windows Search or PowerToys Run
-LCtrl & Space::Send {LWin Down}{s}{LWin Up}
+^Space::Send {LWin Down}{s}{LWin Up}
 ; Taskbar
 Space & 1::#1
 Space & 2::#2
@@ -321,46 +328,34 @@ Space & 4::#4
 Space & 5::#5
 Space & 6::#6
 
-~a::
-  KeyWait, a, T0.05
-  If (ErrorLevel == 0) {
-    ;Send {Blind}{a}
-  } Else {
-    if GetKeyState("Space", "D") {
-      if WinActive("ahk_exe WindowsTerminal.exe") {
-        WinMinimize A
-      } else if WinExist("ahk_exe WindowsTerminal.exe") {
-        WinActivate, ahk_exe WindowsTerminal.exe
-      } else {
-        Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
-        Sleep, 750
-        WinWait, ahk_exe WindowsTerminal.exe
-        WinActivate, ahk_exe WindowsTerminal.exe
-      }
-    Return
-  }
-  Return
-  }
-Return
-
 
 ; Windows Terminal wt.exe
 ;Space & a::
-;Space & a up::
+Space & a up:: ; Trigger shortcut on "space down" + "key up"
+;~Space & a::
+;Suspend on
+KeyWait, a ; Wait for "key" to release
 if WinActive("ahk_exe WindowsTerminal.exe") {
   WinMinimize A
+  ;Suspend off
+  Return
 } else if WinExist("ahk_exe WindowsTerminal.exe") {
   WinActivate, ahk_exe WindowsTerminal.exe
+  ;Suspend off
+  Return
 } else {
   Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
   Sleep, 750
   WinWait, ahk_exe WindowsTerminal.exe
   WinActivate, ahk_exe WindowsTerminal.exe
   ;WinMove, ahk_exe WindowsTerminal.exe,,-8,,,
+  ;Suspend off
+  Return
 }
 Return
 ; Browser msedge.exe
 Space & s up::
+KeyWait, s
 if WinActive("ahk_exe msedge.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe msedge.exe") {
@@ -375,6 +370,7 @@ if WinActive("ahk_exe msedge.exe") {
 Return
 ; CoDe sublime_text.exe
 Space & d up::
+KeyWait, d
 if WinActive("ahk_exe sublime_text.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe sublime_text.exe") {
@@ -389,6 +385,7 @@ if WinActive("ahk_exe sublime_text.exe") {
 Return
 ; File Explorer
 Space & f up::
+KeyWait, f
 if WinActive("ahk_class CabinetWClass") {
   WinMinimize A
 } else if WinExist("ahk_class CabinetWClass") {
@@ -402,6 +399,7 @@ if WinActive("ahk_class CabinetWClass") {
 Return
 ; Notes RemNote.exe
 Space & q up::
+KeyWait, q
 if WinActive("ahk_exe RemNote.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe RemNote.exe") {
@@ -416,6 +414,7 @@ if WinActive("ahk_exe RemNote.exe") {
 Return
 ; Google Translate
 Space & CapsLock up::
+KeyWait, CapsLock
 SetTitleMatchMode 3
 if WinActive("Google Translate") {
   WinMinimize A
@@ -440,6 +439,8 @@ if WinActive("Calculator") {
   WinActivate, Calculator
 }
 Return
+
+
 ; Snip & Sketch
 +!s::
   Run, ms-screensketch:
@@ -451,7 +452,6 @@ Return
     Return
   }
 Return
-
 
 ; VSCode console.log()
 ;SC163 & u::Send {Shift Down}{Alt Down}{Left}{Alt Up}{Shift Up}
@@ -571,6 +571,25 @@ Return
 ;     Return
 ;   }
 ;   Return
+;   }
+; Return
+
+; $a::
+;   GetKeyState, state, space ; Check key state "D" = down, "U" = up, "P" = physical state, "T" = toggle
+;   if (state = "D") { ; if key state down
+;     if WinActive("ahk_exe WindowsTerminal.exe") {
+;       WinMinimize A
+;     } else if WinExist("ahk_exe WindowsTerminal.exe") {
+;       WinActivate, ahk_exe WindowsTerminal.exe
+;     } else {
+;       Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
+;       WinWait, ahk_exe WindowsTerminal.exe
+;       ;WinMove, ahk_exe WindowsTerminal.exe,,-8,0,976,1028
+;       WinActivate, ahk_exe WindowsTerminal.exe
+;     }
+;     Return
+;   } else {
+;     Send {a}
 ;   }
 ; Return
 

@@ -175,6 +175,7 @@ alias bat='batcat'
 alias cat='batcat'
 #alias vi='nvim'
 alias fman='fman.exe .'
+alias sb='subl.exe .'
 
 # fasd
 ###############################################################################
