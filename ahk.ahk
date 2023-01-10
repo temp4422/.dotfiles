@@ -287,7 +287,7 @@ SC163 & BS::MoveCursor("{DEL}")
 ; Ctrl+Tab to Alt+Tab
 LCtrl & Tab::AltTab
 ; Ctrl+Esc to Ctrl+Tab
-LCtrl & Esc::Send, {Ctrl Down}{Tab}{Ctrl Up}
+LCtrl & Esc::Send {Ctrl Down}{Tab}{Ctrl Up}
 ; Context menu Shift+F10 / AppsKey
 SC163 & Enter::AppsKey
 ; Reload ahk
@@ -295,7 +295,7 @@ SC163 & CapsLock::reload
 ; Close active window (Alt+F4)
 +^w::Send {Alt down}{F4}{Alt up}
 ; Show Desktop Alt+D
-!d::Send, {LWin Down}{d}{LWin Up}
+!d::Send {LWin Down}{d}{LWin Up}
 
 ; Maximize active window
 SC163 & f::
@@ -310,10 +310,9 @@ Return
 ; Send space alone, need to work with other space shortcuts
 Space:: Send {Space}
 ; Change language Alt+Space
-!Space::Send, {LWin Down}{Space}{LWin Up}
+!Space::Send {LWin Down}{Space}{LWin Up}
 ; Windows Search or PowerToys Run
-; LCtrl & Space::Send, {LWin Down}{s}{LWin Up}
-Space & c::Send, {LWin Down}{s}{LWin Up}
+LCtrl & Space::Send {LWin Down}{s}{LWin Up}
 ; Taskbar
 Space & 1::#1
 Space & 2::#2
@@ -448,7 +447,7 @@ Return
   WinWait, ahk_exe ApplicationFrameHost.exe
   WinActivate, ahk_exe ApplicationFrameHost.exe
   if WinActive("ahk_exe ApplicationFrameHost.exe") {
-    Send, {Ctrl Down}{n}{Ctrl Up}
+    Send {Ctrl Down}{n}{Ctrl Up}
   } else {
     Return
   }
@@ -456,14 +455,14 @@ Return
 
 
 ; VSCode console.log()
-;SC163 & u::Send, {Shift Down}{Alt Down}{Left}{Alt Up}{Shift Up}
-SC163 & i::Send, {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
-SC163 & o::Send, {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
-;SC163 & p::Send, {Shift Down}{Alt Down}{Right}{Alt Up}{Shift Up}
+;SC163 & u::Send {Shift Down}{Alt Down}{Left}{Alt Up}{Shift Up}
+SC163 & i::Send {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
+SC163 & o::Send {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
+;SC163 & p::Send {Shift Down}{Alt Down}{Right}{Alt Up}{Shift Up}
 
 ; VSCode smart select
-SC163 & h::Send, {Alt Down}{Left}{Alt Up}
-SC163 & '::Send, {Alt Down}{Right}{Alt Up}
+SC163 & h::Send {Alt Down}{Left}{Alt Up}
+SC163 & '::Send {Alt Down}{Right}{Alt Up}
 
 ; Fold/Unfold, Send different keys with single key RemNote, Obsidian, VSCode
 variable1 = 0 ; Set variable
@@ -474,24 +473,24 @@ If (variable1 == 1){
 if WinActive("ahk_exe RemNote.exe") {
   ; RemNote collapse descendants of children
   if GetKeyState("Shift"){
-    Send, {Ctrl Down}{Shift Down}{p}{Shift Up}{Ctrl Up}
+    Send {Ctrl Down}{Shift Down}{p}{Shift Up}{Ctrl Up}
     Sleep, 200
-    Send, coll
+    Send coll
     Sleep, 600
-    Send, {Enter}
+    Send {Enter}
     Return
   }
 }
-Send, {Ctrl Down}{Shift Down}{[}{Shift Up}{Ctrl Up}
+Send {Ctrl Down}{Shift Down}{[}{Shift Up}{Ctrl Up}
 variable1 = 2
 Return
 } else if (variable1 == 2){
   ; Special for Obsidian "toggle fold"
   if WinActive("ahk_exe Obsidian.exe") {
-    Send, {Ctrl Down}{Shift Down}{[}{Shift Up}{Ctrl Up}
+    Send {Ctrl Down}{Shift Down}{[}{Shift Up}{Ctrl Up}
   }
   ; Unfold/Expand
-  Send, {Ctrl Down}{Shift Down}{]}{Shift Up}{Ctrl Up}
+  Send {Ctrl Down}{Shift Down}{]}{Shift Up}{Ctrl Up}
   variable1 = 1
   Return
 } else {
@@ -504,9 +503,9 @@ Return
 ; shiftSpaceSuper(key) {
 ;   shift := GetKeyState("SHIFT","P")
 ;   if shift {
-;     Send, {Ctrl Down}{Shift Down}{up}{Shift Up}{Ctrl Up}
+;     Send {Ctrl Down}{Shift Down}{up}{Shift Up}{Ctrl Up}
 ;   } else {
-;     Send, {Ctrl Down}{Shift Down}{down}{Shift Up}{Ctrl Up}
+;     Send {Ctrl Down}{Shift Down}{down}{Shift Up}{Ctrl Up}
 ;     Return
 ;   }
 ; }
@@ -537,7 +536,7 @@ Return
 ;     ; Return
 ;   } else {
 ;     ; If ctrl+space open Windows Search
-;     Send, {LWin Down}{s}{LWin Up}
+;     Send {LWin Down}{s}{LWin Up}
 ;     Return
 ;   }
 ; }
@@ -581,18 +580,18 @@ Return
 
 ; Sublime open recent files
 #if WinActive("ahk_exe sublime_text.exe")
-^r::Send, {Alt Down}{f}{Alt Up}{r}
+^r::Send {Alt Down}{f}{Alt Up}{r}
 Return
 
 ; Microsoft Edge or Google Chrome: Search Tab
 #if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
-+^f::Send, {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
-SC163 & i::Send, {f7}
++^f::Send {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
+SC163 & i::Send {f7}
 Return
 
 ; Fman switch panes
 #if WinActive("ahk_exe fman.exe")
-LCtrl & Esc::Send, {Tab}
+LCtrl & Esc::Send {Tab}
 Return
 
 ; RemNote shortcuts (browser like)
@@ -601,10 +600,10 @@ variable2 = 0 ; Set variable
 ; Switch panes with ctrl+esc
 LCtrl & Esc::
 If (variable2 == 1){
-  Send, {Ctrl Down}{Shift Down}{t}{Shift Up}{Ctrl Up}
+  Send {Ctrl Down}{Shift Down}{t}{Shift Up}{Ctrl Up}
   variable2 = 2
 } else if (variable2 == 2){
-  Send, {Alt Down}{Shift Down}{t}{Shift Up}{Alt Up}
+  Send {Alt Down}{Shift Down}{t}{Shift Up}{Alt Up}
   variable2 = 1
 } else {
   variable2 = 1
@@ -614,29 +613,29 @@ Return
 ; modKey1(key) {
 ;   control := GetKeyState("CONTROL","P")
 ; if control {
-;   Send, {Ctrl Down}{l}{Ctrl Up}
+;   Send {Ctrl Down}{l}{Ctrl Up}
 ; } else {
-;   Send, %key%
+;   Send %key%
 ; }}
 ; SC163 & l::modKey1("{Up}")
 ; modKey2(key) {
 ;   control := GetKeyState("CONTROL","P")
 ; if control {
-;   Send, {Ctrl Down}{k}{Ctrl Up}
+;   Send {Ctrl Down}{k}{Ctrl Up}
 ; } else {
-;   Send, %key%
+;   Send %key%
 ; }}
 ; SC163 & k::modKey2("{Down}")
 ;Zoom into rem
-^Enter::Send, {Ctrl Down}{`;}{Ctrl Up}
-+^Enter::Send, {Ctrl Down}{Shift Down}{:}{Shift Up}{Ctrl Up}
+^Enter::Send {Ctrl Down}{`;}{Ctrl Up}
++^Enter::Send {Ctrl Down}{Shift Down}{:}{Shift Up}{Ctrl Up}
 ; ;Add child without splitting text
-; ^Enter::Send, {Alt Down}{Enter}{Alt Up}
+; ^Enter::Send {Alt Down}{Enter}{Alt Up}
 ; ;Zoom out of rem
-; LAlt & BackSpace::Send, {Ctrl Down}{j}{Ctrl Up}
+; LAlt & BackSpace::Send {Ctrl Down}{j}{Ctrl Up}
 Return
 
 
 ;;;;;; INFO ;;;;;;
 ;This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
-;Add simple mappings like "SC163 & n::Send, {..}" above "#if WinActive()", because it breaks code.
+;Add simple mappings like "SC163 & n::Send {..}" above "#if WinActive()", because it breaks code.
