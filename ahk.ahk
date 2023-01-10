@@ -321,32 +321,32 @@ Space & 4::#4
 Space & 5::#5
 Space & 6::#6
 
-;~a::
-  ; KeyWait, a, T0.05
-  ; If (ErrorLevel == 0) {
-  ;   ;Send {Blind}{a}
-  ; } Else {
-  ;   if GetKeyState("Space", "D") {
-  ;     if WinActive("ahk_exe WindowsTerminal.exe") {
-  ;       WinMinimize A
-  ;     } else if WinExist("ahk_exe WindowsTerminal.exe") {
-  ;       WinActivate, ahk_exe WindowsTerminal.exe
-  ;     } else {
-  ;       Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
-  ;       Sleep, 750
-  ;       WinWait, ahk_exe WindowsTerminal.exe
-  ;       WinActivate, ahk_exe WindowsTerminal.exe
-  ;     }
-  ;   Return
-  ; }
-  ;Return
-  ;}
-;Return
+~a::
+  KeyWait, a, T0.05
+  If (ErrorLevel == 0) {
+    ;Send {Blind}{a}
+  } Else {
+    if GetKeyState("Space", "D") {
+      if WinActive("ahk_exe WindowsTerminal.exe") {
+        WinMinimize A
+      } else if WinExist("ahk_exe WindowsTerminal.exe") {
+        WinActivate, ahk_exe WindowsTerminal.exe
+      } else {
+        Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
+        Sleep, 750
+        WinWait, ahk_exe WindowsTerminal.exe
+        WinActivate, ahk_exe WindowsTerminal.exe
+      }
+    Return
+  }
+  Return
+  }
+Return
 
 
 ; Windows Terminal wt.exe
 ;Space & a::
-Space & a up::
+;Space & a up::
 if WinActive("ahk_exe WindowsTerminal.exe") {
   WinMinimize A
 } else if WinExist("ahk_exe WindowsTerminal.exe") {
@@ -428,8 +428,7 @@ if WinActive("Google Translate") {
 }
 Return
 ; Calculator
-Space & n up::
-SC163 & n::
+SC163 & n up::
 SetTitleMatchMode 3
 if WinActive("Calculator") {
   WinMinimize A
