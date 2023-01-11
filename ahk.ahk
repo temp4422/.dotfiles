@@ -103,6 +103,10 @@ SC163 & CapsLock::reload
 +^w::Send {Alt down}{F4}{Alt up}
 ; Show Desktop Alt+D
 !d::Send {LWin Down}{d}{LWin Up}
+; Change language Alt+Space
+!Space::Send {LWin Down}{Space}{LWin Up}
+; Windows Search or PowerToys Run
+^Space::Send {LWin Down}{s}{LWin Up}
 
 ; Maximize active window
 SC163 & f::
@@ -113,14 +117,22 @@ WinGet MX, MinMax, A
 return
 
 
-;******************************************************************************
 ; SPACE KEY
+;******************************************************************************
 ; Run Apps with Space key
 ; Goal: make reliable key combination to run apps faster without interruptions
 ; Task: Press "space+key" to open specific application
 ; Issue: While typing text, sometimes "space+key" is pressed accidentally and typing is being interrupted
+; Ways to resolve:
+; - use delay
+; - use key combination blocking/suspend
+; - send right sequence
+; SOURCES:
+; - https://www.autohotkey.com/boards/viewtopic.php?t=31113
+; - https://www.autohotkey.com/boards/viewtopic.php?t=36437
+; - KeyWait, Space, T0.1
 ; TODO: Send "space+key" without innterruption
-; NEED: Send "space+key" only if "space" is down and "key" is up, no other keys should be able to be pressed in this combination otherwise they should interrupt combination
+; DOING: Send "space+key" only if "space" is down and "key" is up, no other keys should be able to be pressed in this combination otherwise they should interrupt combination
 ; RESULTS:
 ; if run with: "space+key up" (also require space:: send {space} to work) it causing small delays - what interrup typing.
 ; if run with: "#if GetKeyState("space", "P") key:: Send ..." delays are smaller, but still random interrupts occur, but "sapce + key up" must be in script to work properly.
@@ -129,20 +141,14 @@ return
 ; space + key up::send ...
 ; #if GetKeyState("space", "P") key::send ...
 
-; Ways to resolve:
-; - use delay
-; - use key combination blocking/suspend
-; - send right sequence
-
-;TODO: https://www.autohotkey.com/boards/viewtopic.php?t=31113
 
 ; IMPORTANT! Send "space" alone, need to work with other "space + key up" shortcuts
-Space::Send {Space}
+;Space::Send {Space}
 ; Change language Alt+Space
-!Space::Send {LWin Down}{Space}{LWin Up}
+;!Space::Send {LWin Down}{Space}{LWin Up}
 ; Windows Search or PowerToys Run
 ;^Space::Send {LWin Down}{s}{LWin Up}
-^Space::Send {LAlt Down}{Space}{LAlt Up}
+;^Space::Send {LAlt Down}{Space}{LAlt Up}
 ; Taskbar
 ; Space & 1::#1
 ; Space & 2::#2
@@ -158,9 +164,7 @@ Space::Send {Space}
 ; Space & ` up::Send {LWin Down}{0}{LWin Up} ; Terminal
 
 
-
-
-; Key modification ideas
+; Key modification ideas:
 
 ; $Space::
 ; Send {Space down}
@@ -228,12 +232,9 @@ Space::Send {Space}
 ; MsgBox, %A_ThisHotkey%
 ; Return
 
-; a::return
-; b::MsgBox, % A_TimeSincePriorHotkey
-
 
 ; Google Translate
-Space & CapsLock up::
+;Space & CapsLock up::
 KeyWait, CapsLock
 SetTitleMatchMode 3
 if WinActive("Google Translate") {
@@ -271,18 +272,16 @@ return
   }
 return
 
-; VSCode console.log()
-;SC163 & u::Send {Shift Down}{Alt Down}{Left}{Alt Up}{Shift Up}
-SC163 & i::Send {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
-SC163 & o::Send {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
-;SC163 & p::Send {Shift Down}{Alt Down}{Right}{Alt Up}{Shift Up}
-; VSCode smart select
+; Alias backward/forward
 SC163 & h::Send {Alt Down}{Left}{Alt Up}
 SC163 & '::Send {Alt Down}{Right}{Alt Up}
+; VSCode console.log()
+SC163 & i::Send {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
+SC163 & o::Send {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
 
 ; Fold/Unfold, Send different keys with single key RemNote, Obsidian, VSCode
 variable1 = 0 ; Set variable
-SC163 & Space::
+;SC163 & Space::
 ;Ctrl & s::
 if (variable1 == 1){
 ; Fold/Collapse
@@ -361,86 +360,160 @@ return
 ;******************************************************************************
 
 
-#if GetKeyState("space", "P")
-1::#1
-2::#2
-3::#3
-4::#4
-5::#5
-6::#6
-q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
-a::Send {LWin Down}{0}{LWin Up} ; Terminal
-s::Send {LWin Down}{7}{LWin Up} ; Browser Search
-d::Send {LWin Down}{8}{LWin Up} ; CoDe Editor
-e::Send {LWin Down}{9}{LWin Up} ; File Explorer
-f::Send {LWin Down}{s}{LWin Up} ; File Explorer
-;`::Send {LWin Down}{0}{LWin Up} ; Terminal
-return
+; #if GetKeyState("space", "P")
+; 1::#1
+; 2::#2
+; 3::#3
+; 4::#4
+; 5::#5
+; 6::#6
+; q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
+; a::Send {LWin Down}{0}{LWin Up} ; Terminal
+; s::Send {LWin Down}{7}{LWin Up} ; Browser Search
+; d::Send {LWin Down}{8}{LWin Up} ; CoDe Editor
+; e::Send {LWin Down}{9}{LWin Up} ; File Explorer
+; f::Send {LWin Down}{s}{LWin Up} ; File Explorer
+; ;`::Send {LWin Down}{0}{LWin Up} ; Terminal
+; return
 
 
-#if WinActive("ahk_exe WindowsTerminal.exe")
-^a::Send {End}{Shift Down}{Home}{Shift Up}
-return
+; #if WinActive("ahk_exe WindowsTerminal.exe")
+; ^a::Send {End}{Shift Down}{Home}{Shift Up}
+; return
 
-; Sublime open recent files
-#if WinActive("ahk_exe sublime_text.exe")
-^r::Send {Alt Down}{f}{Alt Up}{r}
-return
+; ; Sublime open recent files
+; #if WinActive("ahk_exe sublime_text.exe")
+; ^r::Send {Alt Down}{f}{Alt Up}{r}
+; return
 
-; Microsoft Edge or Google Chrome: Search Tab
-#if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
-+^f::Send {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
-SC163 & i::Send {f7}
-return
+; ; Microsoft Edge or Google Chrome: Search Tab
+; #if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
+; +^f::Send {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
+; SC163 & i::Send {f7}
+; return
 
-; Fman switch panes
-#if WinActive("ahk_exe fman.exe")
-LCtrl & Esc::Send {Tab}
-return
+; ; Fman switch panes
+; #if WinActive("ahk_exe fman.exe")
+; LCtrl & Esc::Send {Tab}
+; return
 
-; RemNote shortcuts (browser like)
-variable2 = 0 ; Set variable
-#if WinActive("ahk_exe RemNote.exe")
-; Switch panes with ctrl+esc
-LCtrl & Esc::
-if (variable2 == 1){
-  Send {Ctrl Down}{Shift Down}{t}{Shift Up}{Ctrl Up}
-  variable2 = 2
-} else if (variable2 == 2){
-  Send {Alt Down}{Shift Down}{t}{Shift Up}{Alt Up}
-  variable2 = 1
-} else {
-  variable2 = 1
+; ; RemNote shortcuts (browser like)
+; variable2 = 0 ; Set variable
+; #if WinActive("ahk_exe RemNote.exe")
+; ; Switch panes with ctrl+esc
+; LCtrl & Esc::
+; if (variable2 == 1){
+;   Send {Ctrl Down}{Shift Down}{t}{Shift Up}{Ctrl Up}
+;   variable2 = 2
+; } else if (variable2 == 2){
+;   Send {Alt Down}{Shift Down}{t}{Shift Up}{Alt Up}
+;   variable2 = 1
+; } else {
+;   variable2 = 1
+; }
+; return
+; ; Navigate to sibling above/below
+; ; modKey1(key) {
+; ;   control := GetKeyState("CONTROL","P")
+; ; if control {
+; ;   Send {Ctrl Down}{l}{Ctrl Up}
+; ; } else {
+; ;   Send %key%
+; ; }}
+; ; SC163 & l::modKey1("{Up}")
+; ; modKey2(key) {
+; ;   control := GetKeyState("CONTROL","P")
+; ; if control {
+; ;   Send {Ctrl Down}{k}{Ctrl Up}
+; ; } else {
+; ;   Send %key%
+; ; }}
+; ; SC163 & k::modKey2("{Down}")
+; ;Zoom into rem
+; ^Enter::Send {Ctrl Down}{`;}{Ctrl Up}
+; +^Enter::Send {Ctrl Down}{Shift Down}{:}{Shift Up}{Ctrl Up}
+; ; ;Add child without splitting text
+; ; ^Enter::Send {Alt Down}{Enter}{Alt Up}
+; ; ;Zoom out of rem
+; ; LAlt & BackSpace::Send {Ctrl Down}{j}{Ctrl Up}
+; return
+
+
+; ; Info ***********************************************************************
+; ; This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
+; ; Add simple mappings like "SC163 & n::Send {..}" above "#if WinActive()", because it breaks code.
+; ; GetKeyState, state, space ; Check key state "D" = down, "U" = up, "P" = physical state, "T" = toggle
+
+
+
+;
+; AutoHotkey Version: 1.x
+; Language:       English
+; Platform:       Win9x/NT
+; Author:         cy18 <thecy18@gmail.com>
+;
+; An improved script to use space as modifier
+; In normal cases, if space is pressed for more than 0.1 second, it becomes a modifier, this time could be modified in the script
+; If no other keys are pressed during space is pressed, a space is output when space is released
+; Severial tunes are made so that the script works well when typing in fast speed
+; Note that repeating space no longer works
+
+#NoEnv  ; Recommended for performesfsfsdfspts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
+AnyKeyPressedOtherThanSpace(mode = "P") {
+  ;keys = 1234567890-=qwertyuiop[]\asdfghjkl;'zxcvbnm,./
+  keys = qwerasdf
+  Loop, Parse, keys
+  {
+    isDown :=  GetKeyState(A_LoopField, mode)
+    if (isDown)
+      return True
+  }
+  return False
 }
-return
-; Navigate to sibling above/below
-; modKey1(key) {
-;   control := GetKeyState("CONTROL","P")
-; if control {
-;   Send {Ctrl Down}{l}{Ctrl Up}
-; } else {
-;   Send %key%
-; }}
-; SC163 & l::modKey1("{Up}")
-; modKey2(key) {
-;   control := GetKeyState("CONTROL","P")
-; if control {
-;   Send {Ctrl Down}{k}{Ctrl Up}
-; } else {
-;   Send %key%
-; }}
-; SC163 & k::modKey2("{Down}")
-;Zoom into rem
-^Enter::Send {Ctrl Down}{`;}{Ctrl Up}
-+^Enter::Send {Ctrl Down}{Shift Down}{:}{Shift Up}{Ctrl Up}
-; ;Add child without splitting text
-; ^Enter::Send {Alt Down}{Enter}{Alt Up}
-; ;Zoom out of rem
-; LAlt & BackSpace::Send {Ctrl Down}{j}{Ctrl Up}
-return
 
-
-; Info ***********************************************************************
-; This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
-; Add simple mappings like "SC163 & n::Send {..}" above "#if WinActive()", because it breaks code.
-; GetKeyState, state, space ; Check key state "D" = down, "U" = up, "P" = physical state, "T" = toggle
+Space Up::
+  space_up := true
+  Send, {F18}
+  return
+Space::
+  if AnyKeyPressedOtherThanSpace() {
+    SendInput, {Blind}{Space}
+    Return
+  }
+  space_up := False
+  inputed := False
+  input, UserInput, L1 T0.05, {F18}
+  if (space_up) {
+    Send, {Blind}{Space}
+    return
+  } else if (StrLen(UserInput) == 1) {
+    Send, {Space}%UserInput%
+    return
+  }
+  while true {
+    input, UserInput, L1, {F18}
+    if (space_up) {
+      if (!inputed) {
+        Send, {Blind}{Space}
+      }
+      break
+    } else if (StrLen(UserInput) == 1) {
+      inputed := True
+      StringLower, UserInput, UserInput
+      if      (UserInput == "a")
+        Send, {Blind}{LWin Down}{7}{LWin Up}
+      else if (UserInput == "s")
+        Send, {Blind}{LWin Down}{8}{LWin Up}
+      else if (UserInput == "d")
+        Send, {Blind}{LWin Down}{9}{LWin Up}
+      else if (UserInput == "e")
+        Send, {Blind}{LWin Down}{0}{LWin Up}
+      else if (UserInput == "f")
+        Send, {Blind}{LCtrl Down}{f12}{LCtrl Up}
+      else
+        Send, {Blind}%UserInput%
+    }
+  }
+return
