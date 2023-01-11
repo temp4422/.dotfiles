@@ -262,7 +262,7 @@ fzf-find-local() {
    zle accept-line
 }
 zle -N fzf-find-local
-bindkey '^e' fzf-find-local
+bindkey '^f' fzf-find-local
 
 # ctrl+k+o cd folder global
 fzf-cd() {
