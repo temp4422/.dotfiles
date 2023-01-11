@@ -307,6 +307,7 @@ return
 
 
 ;******************************************************************************
+; SPACE KEY
 ; Run Apps with Space key
 ; Goal: make reliable key combination to run apps faster without interruptions
 ; Task: Press "space+key" to open specific application
@@ -321,6 +322,12 @@ return
 ; space + key up::send ...
 ; #if GetKeyState("space", "P") key::send ...
 
+; Ways to resolve:
+; - use delay
+; - use key combination blocking/suspend
+; - send right sequence
+
+
 
 ; IMPORTANT! Send "space" alone, need to work with other "space + key up" shortcuts
 Space::Send {Space}
@@ -328,97 +335,86 @@ Space::Send {Space}
 !Space::Send {LWin Down}{Space}{LWin Up}
 ; Windows Search or PowerToys Run
 ^Space::Send {LWin Down}{s}{LWin Up}
-; Taskbar
-;Space & 1::#1
-;Space & 2::#2
-;Space & 3::#3
-;Space & 4::#4
-;Space & 5::#5
-;Space & 6::#6
+ ; Taskbar
+; Space & 1::#1
+; Space & 2::#2
+; Space & 3::#3
+; Space & 4::#4
+; Space & 5::#5
+; Space & 6::#6
+; Space & q up::Send {LWin Down}{6}{LWin Up} ; Quick Notes
+; Space & a up::Send {LWin Down}{0}{LWin Up} ; Terminal
+; Space & s up::Send {LWin Down}{7}{LWin Up} ; Browser Search
+; Space & d up::Send {LWin Down}{8}{LWin Up} ; CoDe Editor
+; Space & f up::Send {LWin Down}{9}{LWin Up} ; File Explorer
+; Space & ` up::Send {LWin Down}{0}{LWin Up} ; Terminal
 
-; ; Windows Terminal wt.exe
-; ; Tried: Space & a, Space & a, ~Space & a;
-; ;Space & ` up::
-; Space & a up:: ; Trigger shortcut on "space down" + "key up"
-; ;Suspend on
-; KeyWait, a ; Wait for "key" to release
-; if WinActive("ahk_exe WindowsTerminal.exe") {
-;   WinMinimize A
-;   ;Suspend off
-;   return
-; } else if WinExist("ahk_exe WindowsTerminal.exe") {
-;   WinActivate, ahk_exe WindowsTerminal.exe
-;   ;Suspend off
-;   return
-; } else {
-;   Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
-;   Sleep, 750
-;   WinWait, ahk_exe WindowsTerminal.exe
-;   WinActivate, ahk_exe WindowsTerminal.exe
-;   ;WinMove, ahk_exe WindowsTerminal.exe,,-8,,,
-;   ;Suspend off
-;   return
+
+; $Space::
+; Send, {Space down}
+; Sleep 250
+; Send {Space up}
+; Return
+
+
+; Space & `;::
+; GetKeyState, state, CapsLock, T ; D if CapsLock is ON or U otherwise.
+; If state := GetKeyState("Capslock", "T") ; True if CapsLock is ON, false otherwise.
+; {
+; Send A
 ; }
-; return
-; ; Browser msedge.exe
-; Space & s up::
-; KeyWait, s
-; if WinActive("ahk_exe msedge.exe") {
-;   WinMinimize A
-; } else if WinExist("ahk_exe msedge.exe") {
-;   WinActivate, ahk_exe msedge.exe
-; } else {
-;   Run, msedge.exe
-;   Sleep, 750
-;   WinWait, ahk_exe msedge.exe
-;   WinActivate, ahk_exe msedge.exe
-;   WinMove, ahk_exe msedge.exe,,-8,,,
+; Else
+; {
+; Send a
 ; }
-; return
-; ; CoDe sublime_text.exe
-; Space & d up::
-; KeyWait, d
-; if WinActive("ahk_exe sublime_text.exe") {
-;   WinMinimize A
-; } else if WinExist("ahk_exe sublime_text.exe") {
-;   WinActivate, ahk_exe sublime_text.exe
-; } else {
-;   Run, sublime_text.exe
-;   Sleep, 750
-;   WinWait, ahk_exe sublime_text.exe
-;   WinActivate, ahk_exe sublime_text.exe
-;   WinMove, ahk_exe sublime_text.exe,,-8,,,
+; Return
+; Toggle := False
+; $Space::
+;   KeyWait, Space, T0.15 ; Adjust this value to control the delay before switching modes
+;   If ErrorLevel
+;     Toggle := True
+;   Else
+;     Send {Space}
+;   Return
+; #If Toggle
+; Space UP::Toggle := False
+; q::p
+; w::o
+; #if ;if at the end ??????????
+
+
+; LShift up::
+;     if (A_PriorHotkey == "*~LShift")
+;     {
+;         Send, {space}
+;     }
+;     Return
+
+
+;     '::
+; if (A_PriorHotKey = "!^h" and A_TimeSincePriorHotkey < 600 and A_TimeSincePriorHotkey > -1)
+; {
+; Send, '
 ; }
+; Return
+
+
+; ~!^h::return
+; #if (A_PriorHotKey = "~!^h" and A_TimeSincePriorHotkey < 600)
+; '::Sendraw, '
+
+
+; Send space if it's pressed less then 0.1s, otherwise send text
+; *Space::
+;   KeyWait, Space, T0.1
+;   if (ErrorLevel == 0) {
+;     Send {Blind}{Space}
+;   } Else {
+;     Send {Blind}{Text} test_text_here
+;   }
 ; return
-; ; File Explorer
-; Space & f up::
-; KeyWait, f
-; if WinActive("ahk_class CabinetWClass") {
-;   WinMinimize A
-; } else if WinExist("ahk_class CabinetWClass") {
-;   WinActivate, ahk_class CabinetWClass
-; } else {
-;   Run, explorer.exe
-;   WinWait, ahk_class CabinetWClass
-;   ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
-;   WinActivate, ahk_class CabinetWClass
-; }
-; return
-; ; Notes RemNote.exe
-; Space & q up::
-; KeyWait, q
-; if WinActive("ahk_exe RemNote.exe") {
-;   WinMinimize A
-; } else if WinExist("ahk_exe RemNote.exe") {
-;   WinActivate, ahk_exe RemNote.exe
-; } else {
-;   Run, "C:\Program Files\RemNote\RemNote.exe"
-;   Sleep, 750
-;   WinWait, ahk_exe RemNote.exe
-;   WinActivate, ahk_exe RemNote.exe
-;   WinMove, ahk_exe RemNote.exe,,-8,,,
-; }
-; return
+
+
 ; Google Translate
 Space & CapsLock up::
 KeyWait, CapsLock
@@ -446,7 +442,6 @@ if WinActive("Calculator") {
   WinActivate, Calculator
 }
 return
-
 ; Snip & Sketch
 +!s::
   Run, ms-screensketch:
@@ -464,7 +459,6 @@ return
 SC163 & i::Send {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
 SC163 & o::Send {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
 ;SC163 & p::Send {Shift Down}{Alt Down}{Right}{Alt Up}{Shift Up}
-
 ; VSCode smart select
 SC163 & h::Send {Alt Down}{Left}{Alt Up}
 SC163 & '::Send {Alt Down}{Right}{Alt Up}
@@ -547,76 +541,22 @@ return
 ; }
 ; LCtrl & Space::shiftSpace("{Space}")
 ;return
-
-; Send space if it's pressed less then 0.1s, otherwise send text
-; *Space::
-;   KeyWait, Space, T0.1
-;   if (ErrorLevel == 0) {
-;     Send {Blind}{Space}
-;   } Else {
-;     Send {Blind}{Text} test_text_here
-;   }
-; return
-; Alternative
-; *Space::
-;   KeyWait, Space, T0.1     ; Wait for Space to be released for 1 second
-;   if (ErrorLevel == 0) {    ; Space released in less than a second
-;     Send {Blind}{Space}     ; Send backtick
-;   } Else {
-;     if GetKeyState("s", "D") {
-;       if WinActive("ahk_exe WindowsTerminal.exe") {
-;         WinMinimize A
-;       } else if WinExist("ahk_exe WindowsTerminal.exe") {
-;         WinActivate, ahk_exe WindowsTerminal.exe
-;       } else {
-;         Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
-;         Sleep, 750
-;         WinWait, ahk_exe WindowsTerminal.exe
-;         WinActivate, ahk_exe WindowsTerminal.exe
-;       }
-;     return
-;   }
-;   return
-;   }
-; return
-
-; $a::
-;   GetKeyState, state, space ; Check key state "D" = down, "U" = up, "P" = physical state, "T" = toggle
-;   if (state = "D") { ; if key state down
-;     if WinActive("ahk_exe WindowsTerminal.exe") {
-;       WinMinimize A
-;     } else if WinExist("ahk_exe WindowsTerminal.exe") {
-;       WinActivate, ahk_exe WindowsTerminal.exe
-;     } else {
-;       Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
-;       WinWait, ahk_exe WindowsTerminal.exe
-;       ;WinMove, ahk_exe WindowsTerminal.exe,,-8,0,976,1028
-;       WinActivate, ahk_exe WindowsTerminal.exe
-;     }
-;     return
-;   } else {
-;     Send {a}
-;   }
-; return
-
 ;******************************************************************************
 
 
-; if "space" pressed
 #if GetKeyState("space", "P")
-; Taskbar
 1::#1
 2::#2
 3::#3
 4::#4
 5::#5
 6::#6
-; Apps
 q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
-a::Send {LWin Down}{7}{LWin Up} ; ASCII Terminal
-s::Send {LWin Down}{8}{LWin Up} ; Browser Search
-d::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
-f::Send {LWin Down}{0}{LWin Up} ; File Explorer
+a::Send {LWin Down}{0}{LWin Up} ; Terminal
+s::Send {LWin Down}{7}{LWin Up} ; Browser Search
+d::Send {LWin Down}{8}{LWin Up} ; CoDe Editor
+f::Send {LWin Down}{9}{LWin Up} ; File Explorer
+`::Send {LWin Down}{0}{LWin Up} ; Terminal
 return
 
 
@@ -682,6 +622,7 @@ return
 return
 
 
-;;;;;; INFO ;;;;;;
-;This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
-;Add simple mappings like "SC163 & n::Send {..}" above "#if WinActive()", because it breaks code.
+; Info ***********************************************************************
+; This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
+; Add simple mappings like "SC163 & n::Send {..}" above "#if WinActive()", because it breaks code.
+; GetKeyState, state, space ; Check key state "D" = down, "U" = up, "P" = physical state, "T" = toggle
