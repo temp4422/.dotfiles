@@ -152,7 +152,7 @@ alias du='du -sh'
 # git
 alias g='git'
 alias gs='git status'
-alias gl='git log --oneline -20 --graph --all'
+alias gl='git log --oneline -15 --graph --all'
 alias gm='git add . && git commit -am'
 alias gc='git checkout'
 alias gb='git branch'
