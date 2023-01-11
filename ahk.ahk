@@ -98,7 +98,7 @@ LCtrl & Esc::Send {Ctrl Down}{Tab}{Ctrl Up}
 ; Context menu Shift+F10 / AppsKey
 SC163 & Enter::AppsKey
 ; Reload ahk
-SC163 & CapsLock::reload
+SC163 & f8::reload
 ; Close active window (Alt+F4)
 +^w::Send {Alt down}{F4}{Alt up}
 ; Show Desktop Alt+D
@@ -109,7 +109,7 @@ SC163 & CapsLock::reload
 ^Space::Send {LWin Down}{s}{LWin Up}
 
 ; Maximize active window
-SC163 & f::
+;SC163 & f::
 WinGet MX, MinMax, A
   if MX
     WinRestore A
@@ -137,105 +137,14 @@ return
 ; if run with: "space+key up" (also require space:: send {space} to work) it causing small delays - what interrup typing.
 ; if run with: "#if GetKeyState("space", "P") key:: Send ..." delays are smaller, but still random interrupts occur, but "sapce + key up" must be in script to work properly.
 ; Current requirements to work with small interrupts:
-; space::send {space}
+; space::send {spacej}
 ; space + key up::send ...
 ; #if GetKeyState("space", "P") key::send ...
 
 
-; IMPORTANT! Send "space" alone, need to work with other "space + key up" shortcuts
-;Space::Send {Space}
-; Change language Alt+Space
-;!Space::Send {LWin Down}{Space}{LWin Up}
-; Windows Search or PowerToys Run
-;^Space::Send {LWin Down}{s}{LWin Up}
-;^Space::Send {LAlt Down}{Space}{LAlt Up}
-; Taskbar
-; Space & 1::#1
-; Space & 2::#2
-; Space & 3::#3
-; Space & 4::#4
-; Space & 5::#5
-; Space & 6::#6
-; Space & q up::Send {LWin Down}{6}{LWin Up} ; Quick Notes
-; Space & a up::Send {LWin Down}{0}{LWin Up} ; Terminal
-; Space & s up::Send {LWin Down}{7}{LWin Up} ; Browser Search
-; Space & d up::Send {LWin Down}{8}{LWin Up} ; CoDe Editor
-; Space & f up::Send {LWin Down}{9}{LWin Up} ; File Explorer
-; Space & ` up::Send {LWin Down}{0}{LWin Up} ; Terminal
-
-
-; Key modification ideas:
-
-; $Space::
-; Send {Space down}
-; Sleep 250
-; Send {Space up}
-; Return
-
-; Space & `;::
-; GetKeyState, state, CapsLock, T ; D if CapsLock is ON or U otherwise.
-; If state := GetKeyState("Capslock", "T") ; True if CapsLock is ON, false otherwise.
-; {
-; Send A
-; }
-; Else
-; {
-; Send a
-; }
-; Return
-; Toggle := False
-; $Space::
-;   KeyWait, Space, T0.15 ; Adjust this value to control the delay before switching modes
-;   If ErrorLevel
-;     Toggle := True
-;   Else
-;     Send {Space}
-;   Return
-; #If Toggle
-; Space UP::Toggle := False
-; q::p
-; w::o
-; #if ;if at the end ??????????
-
-; LShift up::
-;     if (A_PriorHotkey == "*~LShift")
-;     {
-;         Send, {space}
-;     }
-;     Return
-
-;'::
-; if (A_PriorHotKey = "!^h" and A_TimeSincePriorHotkey < 600 and A_TimeSincePriorHotkey > -1)
-; {
-; Send, '
-; }
-; Return
-
-; ~!^h::return
-; #if (A_PriorHotKey = "~!^h" and A_TimeSincePriorHotkey < 600)
-; '::Sendraw, '
-
-; Send space if it's pressed less then 0.1s, otherwise send text
-; *Space::
-;   KeyWait, Space, T0.1
-;   if (ErrorLevel == 0) {
-;     Send {Blind}{Space}
-;   } Else {
-;     Send {Blind}{Text} test_text_here
-;   }
-; return
-
-; a::
-; if (A_PriorKey = "Space") {
-; Send, a
-; }
-; MsgBox, %A_ThisHotkey%
-; Return
-
-
 ; Google Translate
 ;Space & CapsLock up::
-KeyWait, CapsLock
+;KeyWait, CapsLock
 SetTitleMatchMode 3
 if WinActive("Google Translate") {
   WinMinimize A
@@ -281,7 +190,7 @@ SC163 & o::Send {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
 
 ; Fold/Unfold, Send different keys with single key RemNote, Obsidian, VSCode
 variable1 = 0 ; Set variable
-;SC163 & Space::
+SC163 & Space::
 ;Ctrl & s::
 if (variable1 == 1){
 ; Fold/Collapse
@@ -360,21 +269,22 @@ return
 ;******************************************************************************
 
 
-; #if GetKeyState("space", "P")
-; 1::#1
-; 2::#2
-; 3::#3
-; 4::#4
-; 5::#5
-; 6::#6
-; q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
-; a::Send {LWin Down}{0}{LWin Up} ; Terminal
-; s::Send {LWin Down}{7}{LWin Up} ; Browser Search
-; d::Send {LWin Down}{8}{LWin Up} ; CoDe Editor
-; e::Send {LWin Down}{9}{LWin Up} ; File Explorer
-; f::Send {LWin Down}{s}{LWin Up} ; File Explorer
-; ;`::Send {LWin Down}{0}{LWin Up} ; Terminal
-; return
+;#if GetKeyState("SC163", "P")
+SC163 & 1::#1
+SC163 & 2::#2
+SC163 & 3::#3
+SC163 & 4::#4
+SC163 & 5::#5
+SC163 & 6::#6
+SC163 & q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
+SC163 & a::Send {LWin Down}{7}{LWin Up} ; Terminal
+SC163 & s::Send {LWin Down}{8}{LWin Up} ; Browser Search
+SC163 & d::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
+SC163 & e::Send {LWin Down}{0}{LWin Up} ; File Explorer
+SC163 & f::Send {LCtrl Down}{f12}{LCtrl Up} ; File Explorer
+;SC163 & f::Send {LWin Down}{s}{LWin Up} ; File Explorer
+;`::Send {LWin Down}{0}{LWin Up} ; Terminal
+;return
 
 
 ; #if WinActive("ahk_exe WindowsTerminal.exe")
@@ -443,77 +353,3 @@ return
 ; ; This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
 ; ; Add simple mappings like "SC163 & n::Send {..}" above "#if WinActive()", because it breaks code.
 ; ; GetKeyState, state, space ; Check key state "D" = down, "U" = up, "P" = physical state, "T" = toggle
-
-
-
-;
-; AutoHotkey Version: 1.x
-; Language:       English
-; Platform:       Win9x/NT
-; Author:         cy18 <thecy18@gmail.com>
-;
-; An improved script to use space as modifier
-; In normal cases, if space is pressed for more than 0.1 second, it becomes a modifier, this time could be modified in the script
-; If no other keys are pressed during space is pressed, a space is output when space is released
-; Severial tunes are made so that the script works well when typing in fast speed
-; Note that repeating space no longer works
-
-#NoEnv  ; Recommended for performesfsfsdfspts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-
-AnyKeyPressedOtherThanSpace(mode = "P") {
-  ;keys = 1234567890-=qwertyuiop[]\asdfghjkl;'zxcvbnm,./
-  keys = qwerasdf
-  Loop, Parse, keys
-  {
-    isDown :=  GetKeyState(A_LoopField, mode)
-    if (isDown)
-      return True
-  }
-  return False
-}
-
-Space Up::
-  space_up := true
-  Send, {F18}
-  return
-Space::
-  if AnyKeyPressedOtherThanSpace() {
-    SendInput, {Blind}{Space}
-    Return
-  }
-  space_up := False
-  inputed := False
-  input, UserInput, L1 T0.05, {F18}
-  if (space_up) {
-    Send, {Blind}{Space}
-    return
-  } else if (StrLen(UserInput) == 1) {
-    Send, {Space}%UserInput%
-    return
-  }
-  while true {
-    input, UserInput, L1, {F18}
-    if (space_up) {
-      if (!inputed) {
-        Send, {Blind}{Space}
-      }
-      break
-    } else if (StrLen(UserInput) == 1) {
-      inputed := True
-      StringLower, UserInput, UserInput
-      if      (UserInput == "a")
-        Send, {Blind}{LWin Down}{7}{LWin Up}
-      else if (UserInput == "s")
-        Send, {Blind}{LWin Down}{8}{LWin Up}
-      else if (UserInput == "d")
-        Send, {Blind}{LWin Down}{9}{LWin Up}
-      else if (UserInput == "e")
-        Send, {Blind}{LWin Down}{0}{LWin Up}
-      else if (UserInput == "f")
-        Send, {Blind}{LCtrl Down}{f12}{LCtrl Up}
-      else
-        Send, {Blind}%UserInput%
-    }
-  }
-return
