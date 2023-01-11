@@ -350,12 +350,13 @@ Space::Send {Space}
 ; Space & ` up::Send {LWin Down}{0}{LWin Up} ; Terminal
 
 
+; Key modification ideas
+
 ; $Space::
-; Send, {Space down}
+; Send {Space down}
 ; Sleep 250
 ; Send {Space up}
 ; Return
-
 
 ; Space & `;::
 ; GetKeyState, state, CapsLock, T ; D if CapsLock is ON or U otherwise.
@@ -382,7 +383,6 @@ Space::Send {Space}
 ; w::o
 ; #if ;if at the end ??????????
 
-
 ; LShift up::
 ;     if (A_PriorHotkey == "*~LShift")
 ;     {
@@ -390,19 +390,16 @@ Space::Send {Space}
 ;     }
 ;     Return
 
-
-;     '::
+;'::
 ; if (A_PriorHotKey = "!^h" and A_TimeSincePriorHotkey < 600 and A_TimeSincePriorHotkey > -1)
 ; {
 ; Send, '
 ; }
 ; Return
 
-
 ; ~!^h::return
 ; #if (A_PriorHotKey = "~!^h" and A_TimeSincePriorHotkey < 600)
 ; '::Sendraw, '
-
 
 ; Send space if it's pressed less then 0.1s, otherwise send text
 ; *Space::
@@ -413,6 +410,16 @@ Space::Send {Space}
 ;     Send {Blind}{Text} test_text_here
 ;   }
 ; return
+
+; a::
+; if (A_PriorKey = "Space") {
+; Send, a
+; }
+; MsgBox, %A_ThisHotkey%
+; Return
+
+; a::return
+; b::MsgBox, % A_TimeSincePriorHotkey
 
 
 ; Google Translate
@@ -556,7 +563,7 @@ a::Send {LWin Down}{0}{LWin Up} ; Terminal
 s::Send {LWin Down}{7}{LWin Up} ; Browser Search
 d::Send {LWin Down}{8}{LWin Up} ; CoDe Editor
 f::Send {LWin Down}{9}{LWin Up} ; File Explorer
-`::Send {LWin Down}{0}{LWin Up} ; Terminal
+;`::Send {LWin Down}{0}{LWin Up} ; Terminal
 return
 
 
@@ -570,7 +577,7 @@ return
 return
 
 ; Microsoft Edge or Google Chrome: Search Tab
-p#if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
+#if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
 +^f::Send {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
 SC163 & i::Send {f7}
 return
