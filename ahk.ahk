@@ -3,13 +3,11 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
-
 ;*** MY CODE ***
 ;******************************************************************************
 ; Terminal Ctrl+Backspace match title
 ; RegEx or digits: 1 - title must start with the specified WinTitle, 2 - title can contain WinTitle anywhere inside it, 3 - title must exactly match WinTitle.
 SetTitleMatchMode 2
-
 
 ; RUN AS ADMIN
 ;******************************************************************************
@@ -25,37 +23,30 @@ if not (A_IsAdmin or RegExMatch(full_command_line, " /restart(?!\S)")) {
 }
 ;******************************************************************************
 
-
 ; BRIGHTNESS
 ;******************************************************************************
-ChangeBrightness( ByRef brightness, timeout = 1 ) {
-  if ( brightness > 0 && brightness < 100 ) {
-    For property in ComObjGet("winmgmts:\\.\root\WMI" ).ExecQuery( "SELECT * FROM WmiMonitorBrightnessMethods")
-      property.WmiSetBrightness( timeout, brightness )
-  } else if ( brightness >= 100 ) {
+ChangeBrightness(ByRef brightness, timeout = 1) {
+  if (brightness > 0 && brightness < 100) {
+    For property in ComObjGet("winmgmts:\\.\root\WMI").ExecQuery("SELECT * FROM WmiMonitorBrightnessMethods")
+      property.WmiSetBrightness(timeout, brightness)
+  } else if (brightness >= 100) {
     brightness := 100
-  } else if ( brightness <= 0 ) {
+  } else if (brightness <= 0) {
     brightness := 0
   }
 }
 GetCurrentBrightNess() {
-  For property in ComObjGet( "winmgmts:\\.\root\WMI" ).ExecQuery( "SELECT * FROM WmiMonitorBrightness" )
+  For property in ComObjGet("winmgmts:\\.\root\WMI").ExecQuery("SELECT * FROM WmiMonitorBrightness")
     currentBrightness := property.CurrentBrightness
   return currentBrightness
 }
-Increments := 9 ; brightness step
 CurrentBrightness := GetCurrentBrightNess()
-!f1::ChangeBrightness( CurrentBrightness -= Increments ) ; decrease
-!f2::ChangeBrightness( CurrentBrightness += Increments ) ; increase
+!F1::ChangeBrightness(CurrentBrightness -= 9) ;decrease
+!F2::ChangeBrightness(CurrentBrightness += 9) ;increase
 ;******************************************************************************
-
 ; Volume
 ^F1::Volume_Down
 ^F2::Volume_Up
-
-
-
-
 
 ; JKL; + Ctrl, Shift, Alt, Win
 ;*** Remap arrow keys onto JKLI whenever holding down a certain modifier key
