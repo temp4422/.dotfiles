@@ -300,10 +300,10 @@ SC163 & CapsLock::reload
 ; Maximize active window
 SC163 & f::
 WinGet MX, MinMax, A
-  If MX
+  if MX
     WinRestore A
-  Else WinMaximize A
-Return
+  else WinMaximize A
+return
 
 
 ;******************************************************************************
@@ -313,105 +313,112 @@ Return
 ; Issue: While typing text, sometimes "space+key" is pressed accidentally and typing is being interrupted
 ; TODO: Send "space+key" without innterruption
 ; NEED: Send "space+key" only if "space" is down and "key" is up, no other keys should be able to be pressed in this combination otherwise they should interrupt combination
+; RESULTS:
+; if run with: "space+key up" (also require space:: send {space} to work) it causing small delays - what interrup typing.
+; if run with: "#if GetKeyState("space", "P") key:: Send ..." delays are smaller, but still random interrupts occur, but "sapce + key up" must be in script to work properly.
+; Current requirements to work with small interrupts:
+; space::send {space}
+; space + key up::send ...
+; #if GetKeyState("space", "P") key::send ...
 
-; IMPORTANT! Send "space" alone, need to work with other "space" shortcuts
-Space:: Send {Space}
+
+; IMPORTANT! Send "space" alone, need to work with other "space + key up" shortcuts
+Space::Send {Space}
 ; Change language Alt+Space
 !Space::Send {LWin Down}{Space}{LWin Up}
 ; Windows Search or PowerToys Run
 ^Space::Send {LWin Down}{s}{LWin Up}
 ; Taskbar
-Space & 1::#1
-Space & 2::#2
-Space & 3::#3
-Space & 4::#4
-Space & 5::#5
-Space & 6::#6
+;Space & 1::#1
+;Space & 2::#2
+;Space & 3::#3
+;Space & 4::#4
+;Space & 5::#5
+;Space & 6::#6
 
-
-; Windows Terminal wt.exe
-;Space & a::
-Space & a up:: ; Trigger shortcut on "space down" + "key up"
-;~Space & a::
-;Suspend on
-KeyWait, a ; Wait for "key" to release
-if WinActive("ahk_exe WindowsTerminal.exe") {
-  WinMinimize A
-  ;Suspend off
-  Return
-} else if WinExist("ahk_exe WindowsTerminal.exe") {
-  WinActivate, ahk_exe WindowsTerminal.exe
-  ;Suspend off
-  Return
-} else {
-  Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
-  Sleep, 750
-  WinWait, ahk_exe WindowsTerminal.exe
-  WinActivate, ahk_exe WindowsTerminal.exe
-  ;WinMove, ahk_exe WindowsTerminal.exe,,-8,,,
-  ;Suspend off
-  Return
-}
-Return
-; Browser msedge.exe
-Space & s up::
-KeyWait, s
-if WinActive("ahk_exe msedge.exe") {
-  WinMinimize A
-} else if WinExist("ahk_exe msedge.exe") {
-  WinActivate, ahk_exe msedge.exe
-} else {
-  Run, msedge.exe
-  Sleep, 750
-  WinWait, ahk_exe msedge.exe
-  WinActivate, ahk_exe msedge.exe
-  WinMove, ahk_exe msedge.exe,,-8,,,
-}
-Return
-; CoDe sublime_text.exe
-Space & d up::
-KeyWait, d
-if WinActive("ahk_exe sublime_text.exe") {
-  WinMinimize A
-} else if WinExist("ahk_exe sublime_text.exe") {
-  WinActivate, ahk_exe sublime_text.exe
-} else {
-  Run, sublime_text.exe
-  Sleep, 750
-  WinWait, ahk_exe sublime_text.exe
-  WinActivate, ahk_exe sublime_text.exe
-  WinMove, ahk_exe sublime_text.exe,,-8,,,
-}
-Return
-; File Explorer
-Space & f up::
-KeyWait, f
-if WinActive("ahk_class CabinetWClass") {
-  WinMinimize A
-} else if WinExist("ahk_class CabinetWClass") {
-  WinActivate, ahk_class CabinetWClass
-} else {
-  Run, explorer.exe
-  WinWait, ahk_class CabinetWClass
-  ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
-  WinActivate, ahk_class CabinetWClass
-}
-Return
-; Notes RemNote.exe
-Space & q up::
-KeyWait, q
-if WinActive("ahk_exe RemNote.exe") {
-  WinMinimize A
-} else if WinExist("ahk_exe RemNote.exe") {
-  WinActivate, ahk_exe RemNote.exe
-} else {
-  Run, "C:\Program Files\RemNote\RemNote.exe"
-  Sleep, 750
-  WinWait, ahk_exe RemNote.exe
-  WinActivate, ahk_exe RemNote.exe
-  WinMove, ahk_exe RemNote.exe,,-8,,,
-}
-Return
+; ; Windows Terminal wt.exe
+; ; Tried: Space & a, Space & a, ~Space & a;
+; ;Space & ` up::
+; Space & a up:: ; Trigger shortcut on "space down" + "key up"
+; ;Suspend on
+; KeyWait, a ; Wait for "key" to release
+; if WinActive("ahk_exe WindowsTerminal.exe") {
+;   WinMinimize A
+;   ;Suspend off
+;   return
+; } else if WinExist("ahk_exe WindowsTerminal.exe") {
+;   WinActivate, ahk_exe WindowsTerminal.exe
+;   ;Suspend off
+;   return
+; } else {
+;   Run, "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.15.3466.0_x64__8wekyb3d8bbwe\wt.exe"
+;   Sleep, 750
+;   WinWait, ahk_exe WindowsTerminal.exe
+;   WinActivate, ahk_exe WindowsTerminal.exe
+;   ;WinMove, ahk_exe WindowsTerminal.exe,,-8,,,
+;   ;Suspend off
+;   return
+; }
+; return
+; ; Browser msedge.exe
+; Space & s up::
+; KeyWait, s
+; if WinActive("ahk_exe msedge.exe") {
+;   WinMinimize A
+; } else if WinExist("ahk_exe msedge.exe") {
+;   WinActivate, ahk_exe msedge.exe
+; } else {
+;   Run, msedge.exe
+;   Sleep, 750
+;   WinWait, ahk_exe msedge.exe
+;   WinActivate, ahk_exe msedge.exe
+;   WinMove, ahk_exe msedge.exe,,-8,,,
+; }
+; return
+; ; CoDe sublime_text.exe
+; Space & d up::
+; KeyWait, d
+; if WinActive("ahk_exe sublime_text.exe") {
+;   WinMinimize A
+; } else if WinExist("ahk_exe sublime_text.exe") {
+;   WinActivate, ahk_exe sublime_text.exe
+; } else {
+;   Run, sublime_text.exe
+;   Sleep, 750
+;   WinWait, ahk_exe sublime_text.exe
+;   WinActivate, ahk_exe sublime_text.exe
+;   WinMove, ahk_exe sublime_text.exe,,-8,,,
+; }
+; return
+; ; File Explorer
+; Space & f up::
+; KeyWait, f
+; if WinActive("ahk_class CabinetWClass") {
+;   WinMinimize A
+; } else if WinExist("ahk_class CabinetWClass") {
+;   WinActivate, ahk_class CabinetWClass
+; } else {
+;   Run, explorer.exe
+;   WinWait, ahk_class CabinetWClass
+;   ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
+;   WinActivate, ahk_class CabinetWClass
+; }
+; return
+; ; Notes RemNote.exe
+; Space & q up::
+; KeyWait, q
+; if WinActive("ahk_exe RemNote.exe") {
+;   WinMinimize A
+; } else if WinExist("ahk_exe RemNote.exe") {
+;   WinActivate, ahk_exe RemNote.exe
+; } else {
+;   Run, "C:\Program Files\RemNote\RemNote.exe"
+;   Sleep, 750
+;   WinWait, ahk_exe RemNote.exe
+;   WinActivate, ahk_exe RemNote.exe
+;   WinMove, ahk_exe RemNote.exe,,-8,,,
+; }
+; return
 ; Google Translate
 Space & CapsLock up::
 KeyWait, CapsLock
@@ -425,7 +432,7 @@ if WinActive("Google Translate") {
   WinWait, Google Translate
   WinActivate, Google Translate
 }
-Return
+return
 ; Calculator
 SC163 & n up::
 SetTitleMatchMode 3
@@ -438,8 +445,7 @@ if WinActive("Calculator") {
   WinWait, Calculator
   WinActivate, Calculator
 }
-Return
-
+return
 
 ; Snip & Sketch
 +!s::
@@ -449,9 +455,9 @@ Return
   if WinActive("ahk_exe ApplicationFrameHost.exe") {
     Send {Ctrl Down}{n}{Ctrl Up}
   } else {
-    Return
+    return
   }
-Return
+return
 
 ; VSCode console.log()
 ;SC163 & u::Send {Shift Down}{Alt Down}{Left}{Alt Up}{Shift Up}
@@ -467,7 +473,7 @@ SC163 & '::Send {Alt Down}{Right}{Alt Up}
 variable1 = 0 ; Set variable
 SC163 & Space::
 ;Ctrl & s::
-If (variable1 == 1){
+if (variable1 == 1){
 ; Fold/Collapse
 if WinActive("ahk_exe RemNote.exe") {
   ; RemNote collapse descendants of children
@@ -477,12 +483,12 @@ if WinActive("ahk_exe RemNote.exe") {
     Send coll
     Sleep, 600
     Send {Enter}
-    Return
+    return
   }
 }
 Send {Ctrl Down}{Shift Down}{[}{Shift Up}{Ctrl Up}
 variable1 = 2
-Return
+return
 } else if (variable1 == 2){
   ; Special for Obsidian "toggle fold"
   if WinActive("ahk_exe Obsidian.exe") {
@@ -491,13 +497,13 @@ Return
   ; Unfold/Expand
   Send {Ctrl Down}{Shift Down}{]}{Shift Up}{Ctrl Up}
   variable1 = 1
-  Return
+  return
 } else {
   ; Initiate variable
   variable1 = 1
-  Return
+  return
 }
-Return
+return
 ; Use shift+space
 ; shiftSpaceSuper(key) {
 ;   shift := GetKeyState("SHIFT","P")
@@ -505,17 +511,17 @@ Return
 ;     Send {Ctrl Down}{Shift Down}{up}{Shift Up}{Ctrl Up}
 ;   } else {
 ;     Send {Ctrl Down}{Shift Down}{down}{Shift Up}{Ctrl Up}
-;     Return
+;     return
 ;   }
 ; }
 ; SC163 & Space::shiftSpaceSuper("{Space}")
-; Return
+; return
 
-;If "ctrl+shift+space" send File Explorer, if "ctrl+space" send Windows Search
+;if "ctrl+shift+space" send File Explorer, if "ctrl+space" send Windows Search
 ; shiftSpace(key) {
 ;   shift := GetKeyState("SHIFT","P")
 ;   if shift {
-;     ; If ctrl+shift+space open new File Explorer or toggle existing
+;     ; if ctrl+shift+space open new File Explorer or toggle existing
 ;     if WinActive("ahk_class CabinetWClass") {
 ;       WinMinimize A
 ;     } else if WinExist("ahk_class CabinetWClass") {
@@ -526,35 +532,35 @@ Return
 ;       ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
 ;       WinActivate, ahk_class CabinetWClass
 ;     }
-;     Return
+;     return
 ;     ; +!e::
 ;     ;   Run, explorer.exe
 ;     ;   WinWait, ahk_class CabinetWClass
 ;     ;   WinMove, ahk_class CabinetWClass,,952,0,976,1038
 ;     ;   WinActivate, ahk_class CabinetWClass
-;     ; Return
+;     ; return
 ;   } else {
-;     ; If ctrl+space open Windows Search
+;     ; if ctrl+space open Windows Search
 ;     Send {LWin Down}{s}{LWin Up}
-;     Return
+;     return
 ;   }
 ; }
 ; LCtrl & Space::shiftSpace("{Space}")
-;Return
+;return
 
 ; Send space if it's pressed less then 0.1s, otherwise send text
 ; *Space::
 ;   KeyWait, Space, T0.1
-;   If (ErrorLevel == 0) {
+;   if (ErrorLevel == 0) {
 ;     Send {Blind}{Space}
 ;   } Else {
 ;     Send {Blind}{Text} test_text_here
 ;   }
-; Return
+; return
 ; Alternative
 ; *Space::
 ;   KeyWait, Space, T0.1     ; Wait for Space to be released for 1 second
-;   If (ErrorLevel == 0) {    ; Space released in less than a second
+;   if (ErrorLevel == 0) {    ; Space released in less than a second
 ;     Send {Blind}{Space}     ; Send backtick
 ;   } Else {
 ;     if GetKeyState("s", "D") {
@@ -568,11 +574,11 @@ Return
 ;         WinWait, ahk_exe WindowsTerminal.exe
 ;         WinActivate, ahk_exe WindowsTerminal.exe
 ;       }
-;     Return
+;     return
 ;   }
-;   Return
+;   return
 ;   }
-; Return
+; return
 
 ; $a::
 ;   GetKeyState, state, space ; Check key state "D" = down, "U" = up, "P" = physical state, "T" = toggle
@@ -587,37 +593,55 @@ Return
 ;       ;WinMove, ahk_exe WindowsTerminal.exe,,-8,0,976,1028
 ;       WinActivate, ahk_exe WindowsTerminal.exe
 ;     }
-;     Return
+;     return
 ;   } else {
 ;     Send {a}
 ;   }
-; Return
+; return
 
 ;******************************************************************************
+
+
+; if "space" pressed
+#if GetKeyState("space", "P")
+; Taskbar
+1::#1
+2::#2
+3::#3
+4::#4
+5::#5
+6::#6
+; Apps
+q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
+a::Send {LWin Down}{7}{LWin Up} ; ASCII Terminal
+s::Send {LWin Down}{8}{LWin Up} ; Browser Search
+d::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
+f::Send {LWin Down}{0}{LWin Up} ; File Explorer
+return
 
 
 ; Sublime open recent files
 #if WinActive("ahk_exe sublime_text.exe")
 ^r::Send {Alt Down}{f}{Alt Up}{r}
-Return
+return
 
 ; Microsoft Edge or Google Chrome: Search Tab
-#if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
+p#if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
 +^f::Send {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
 SC163 & i::Send {f7}
-Return
+return
 
 ; Fman switch panes
 #if WinActive("ahk_exe fman.exe")
 LCtrl & Esc::Send {Tab}
-Return
+return
 
 ; RemNote shortcuts (browser like)
 variable2 = 0 ; Set variable
 #if WinActive("ahk_exe RemNote.exe")
 ; Switch panes with ctrl+esc
 LCtrl & Esc::
-If (variable2 == 1){
+if (variable2 == 1){
   Send {Ctrl Down}{Shift Down}{t}{Shift Up}{Ctrl Up}
   variable2 = 2
 } else if (variable2 == 2){
@@ -626,7 +650,7 @@ If (variable2 == 1){
 } else {
   variable2 = 1
 }
-Return
+return
 ; Navigate to sibling above/below
 ; modKey1(key) {
 ;   control := GetKeyState("CONTROL","P")
@@ -651,7 +675,7 @@ Return
 ; ^Enter::Send {Alt Down}{Enter}{Alt Up}
 ; ;Zoom out of rem
 ; LAlt & BackSpace::Send {Ctrl Down}{j}{Ctrl Up}
-Return
+return
 
 
 ;;;;;; INFO ;;;;;;
