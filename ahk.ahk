@@ -95,10 +95,6 @@ SC163 & BS::MoveCursor("{DEL}")
 LCtrl & Tab::AltTab
 ; Ctrl+Esc to Ctrl+Tab
 LCtrl & Esc::Send {Ctrl Down}{Tab}{Ctrl Up}
-; Context menu Shift+F10 / AppsKey
-SC163 & Enter::AppsKey
-; Reload ahk
-SC163 & f8::reload
 ; Close active window (Alt+F4)
 +^w::Send {Alt down}{F4}{Alt up}
 ; Show Desktop Alt+D
@@ -108,6 +104,30 @@ SC163 & f8::reload
 ; Windows Search or PowerToys Run
 ^Space::Send {LWin Down}{s}{LWin Up}
 
+; Reload ahk
+SC163 & f8::reload
+; Context menu Shift+F10 / AppsKey
+SC163 & Enter::AppsKey
+; Taskbar
+SC163 & 1::#1
+SC163 & 2::#2
+SC163 & 3::#3
+SC163 & 4::#4
+SC163 & 5::#5
+SC163 & 6::#6
+SC163 & q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
+SC163 & a::Send {LWin Down}{7}{LWin Up} ; Terminal
+SC163 & s::Send {LWin Down}{8}{LWin Up} ; Browser Search
+SC163 & d::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
+SC163 & e::Send {LWin Down}{0}{LWin Up} ; File Explorer
+SC163 & f::Send {LCtrl Down}{f12}{LCtrl Up} ; Windows Search/Run
+; Alias backward/forward
+SC163 & h::Send {Alt Down}{Left}{Alt Up}
+SC163 & '::Send {Alt Down}{Right}{Alt Up}
+; VSCode console.log()
+SC163 & i::Send {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
+SC163 & o::Send {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
+
 ; Maximize active window
 ;SC163 & f::
 WinGet MX, MinMax, A
@@ -115,35 +135,8 @@ WinGet MX, MinMax, A
     WinRestore A
   else WinMaximize A
 return
-
-
-; SPACE KEY
-;******************************************************************************
-; Run Apps with Space key
-; Goal: make reliable key combination to run apps faster without interruptions
-; Task: Press "space+key" to open specific application
-; Issue: While typing text, sometimes "space+key" is pressed accidentally and typing is being interrupted
-; Ways to resolve:
-; - use delay
-; - use key combination blocking/suspend
-; - send right sequence
-; SOURCES:
-; - https://www.autohotkey.com/boards/viewtopic.php?t=31113
-; - https://www.autohotkey.com/boards/viewtopic.php?t=36437
-; - KeyWait, Space, T0.1
-; TODO: Send "space+key" without innterruption
-; DOING: Send "space+key" only if "space" is down and "key" is up, no other keys should be able to be pressed in this combination otherwise they should interrupt combination
-; RESULTS:
-; if run with: "space+key up" (also require space:: send {space} to work) it causing small delays - what interrup typing.
-; if run with: "#if GetKeyState("space", "P") key:: Send ..." delays are smaller, but still random interrupts occur, but "sapce + key up" must be in script to work properly.
-; Current requirements to work with small interrupts:
-; space::send {spacej}
-; space + key up::send ...
-; #if GetKeyState("space", "P") key::send ...
-
-
 ; Google Translate
-;Space & CapsLock up::
+SC163 & u::
 ;KeyWait, CapsLock
 SetTitleMatchMode 3
 if WinActive("Google Translate") {
@@ -181,12 +174,6 @@ return
   }
 return
 
-; Alias backward/forward
-SC163 & h::Send {Alt Down}{Left}{Alt Up}
-SC163 & '::Send {Alt Down}{Right}{Alt Up}
-; VSCode console.log()
-SC163 & i::Send {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
-SC163 & o::Send {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
 
 ; Fold/Unfold, Send different keys with single key RemNote, Obsidian, VSCode
 variable1 = 0 ; Set variable
@@ -269,87 +256,111 @@ return
 ;******************************************************************************
 
 
-;#if GetKeyState("SC163", "P")
-SC163 & 1::#1
-SC163 & 2::#2
-SC163 & 3::#3
-SC163 & 4::#4
-SC163 & 5::#5
-SC163 & 6::#6
-SC163 & q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
-SC163 & a::Send {LWin Down}{7}{LWin Up} ; Terminal
-SC163 & s::Send {LWin Down}{8}{LWin Up} ; Browser Search
-SC163 & d::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
-SC163 & e::Send {LWin Down}{0}{LWin Up} ; File Explorer
-SC163 & f::Send {LCtrl Down}{f12}{LCtrl Up} ; File Explorer
-;SC163 & f::Send {LWin Down}{s}{LWin Up} ; File Explorer
+
+
+#if WinActive("ahk_exe WindowsTerminal.exe")
+^a::Send {End}{Shift Down}{Home}{Shift Up}
+return
+
+; Sublime open recent files
+#if WinActive("ahk_exe sublime_text.exe")
+^r::Send {Alt Down}{f}{Alt Up}{r}
+return
+
+; Microsoft Edge or Google Chrome: Search Tab
+#if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
++^f::Send {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
+SC163 & i::Send {f7}
+return
+
+; Fman switch panes
+#if WinActive("ahk_exe fman.exe")
+LCtrl & Esc::Send {Tab}
+return
+
+; RemNote shortcuts (browser like)
+variable2 = 0 ; Set variable
+#if WinActive("ahk_exe RemNote.exe")
+; Switch panes with ctrl+esc
+LCtrl & Esc::
+if (variable2 == 1){
+  Send {Ctrl Down}{Shift Down}{t}{Shift Up}{Ctrl Up}
+  variable2 = 2
+} else if (variable2 == 2){
+  Send {Alt Down}{Shift Down}{t}{Shift Up}{Alt Up}
+  variable2 = 1
+} else {
+  variable2 = 1
+}
+return
+; Navigate to sibling above/below
+; modKey1(key) {
+;   control := GetKeyState("CONTROL","P")
+; if control {
+;   Send {Ctrl Down}{l}{Ctrl Up}
+; } else {
+;   Send %key%
+; }}
+; SC163 & l::modKey1("{Up}")
+; modKey2(key) {
+;   control := GetKeyState("CONTROL","P")
+; if control {
+;   Send {Ctrl Down}{k}{Ctrl Up}
+; } else {
+;   Send %key%
+; }}
+; SC163 & k::modKey2("{Down}")
+;Zoom into rem
+^Enter::Send {Ctrl Down}{`;}{Ctrl Up}
++^Enter::Send {Ctrl Down}{Shift Down}{:}{Shift Up}{Ctrl Up}
+; ;Add child without splitting text
+; ^Enter::Send {Alt Down}{Enter}{Alt Up}
+; ;Zoom out of rem
+; LAlt & BackSpace::Send {Ctrl Down}{j}{Ctrl Up}
+return
+
+
+; Info ***********************************************************************
+; This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
+; Add simple mappings like "SC163 & n::Send {..}" above "#if WinActive()", because it breaks code.
+; GetKeyState, state, space ; Check key state "D" = down, "U" = up, "P" = physical state, "T" = toggle
+
+; SPACE KEY
+;******************************************************************************
+; Run Apps with Space key
+; Goal: make reliable key combination to run apps faster without interruptions
+; Task: Press "space+key" to open specific application
+; Issue: While typing text, sometimes "space+key" is pressed accidentally and typing is being interrupted
+; Ways to resolve:
+; - use delay
+; - use key combination blocking/suspend
+; - send right sequence
+; SOURCES:
+; - https://www.autohotkey.com/boards/viewtopic.php?t=31113
+; - https://www.autohotkey.com/boards/viewtopic.php?t=36437
+; - KeyWait, Space, T0.1
+; TODO: Send "space+key" without innterruption
+; DOING: Send "space+key" only if "space" is down and "key" is up, no other keys should be able to be pressed in this combination otherwise they should interrupt combination
+; RESULTS:
+; if run with: "space+key up" (also require space:: send {space} to work) it causing small delays - what interrup typing.
+; if run with: "#if GetKeyState("space", "P") key:: Send ..." delays are smaller, but still random interrupts occur, but "sapce + key up" must be in script to work properly.
+; Current requirements to work with small interrupts:
+; space::send {spacej}
+; space + key up::send ...
+; #if GetKeyState("space", "P") key::send ...
+
+;#if GetKeyState("Space", "P")
+; 1::#1
+; 2::#2
+; 3::#3
+; 4::#4
+; 5::#5
+; 6::#6
+; q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
+; a::Send {LWin Down}{7}{LWin Up} ; Terminal
+; s::Send {LWin Down}{8}{LWin Up} ; Browser Search
+; d::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
+; e::Send {LWin Down}{0}{LWin Up} ; File Explorer
+; f::Send {LCtrl Down}{f12}{LCtrl Up} ; File Explorer
 ;`::Send {LWin Down}{0}{LWin Up} ; Terminal
 ;return
-
-
-; #if WinActive("ahk_exe WindowsTerminal.exe")
-; ^a::Send {End}{Shift Down}{Home}{Shift Up}
-; return
-
-; ; Sublime open recent files
-; #if WinActive("ahk_exe sublime_text.exe")
-; ^r::Send {Alt Down}{f}{Alt Up}{r}
-; return
-
-; ; Microsoft Edge or Google Chrome: Search Tab
-; #if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
-; +^f::Send {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
-; SC163 & i::Send {f7}
-; return
-
-; ; Fman switch panes
-; #if WinActive("ahk_exe fman.exe")
-; LCtrl & Esc::Send {Tab}
-; return
-
-; ; RemNote shortcuts (browser like)
-; variable2 = 0 ; Set variable
-; #if WinActive("ahk_exe RemNote.exe")
-; ; Switch panes with ctrl+esc
-; LCtrl & Esc::
-; if (variable2 == 1){
-;   Send {Ctrl Down}{Shift Down}{t}{Shift Up}{Ctrl Up}
-;   variable2 = 2
-; } else if (variable2 == 2){
-;   Send {Alt Down}{Shift Down}{t}{Shift Up}{Alt Up}
-;   variable2 = 1
-; } else {
-;   variable2 = 1
-; }
-; return
-; ; Navigate to sibling above/below
-; ; modKey1(key) {
-; ;   control := GetKeyState("CONTROL","P")
-; ; if control {
-; ;   Send {Ctrl Down}{l}{Ctrl Up}
-; ; } else {
-; ;   Send %key%
-; ; }}
-; ; SC163 & l::modKey1("{Up}")
-; ; modKey2(key) {
-; ;   control := GetKeyState("CONTROL","P")
-; ; if control {
-; ;   Send {Ctrl Down}{k}{Ctrl Up}
-; ; } else {
-; ;   Send %key%
-; ; }}
-; ; SC163 & k::modKey2("{Down}")
-; ;Zoom into rem
-; ^Enter::Send {Ctrl Down}{`;}{Ctrl Up}
-; +^Enter::Send {Ctrl Down}{Shift Down}{:}{Shift Up}{Ctrl Up}
-; ; ;Add child without splitting text
-; ; ^Enter::Send {Alt Down}{Enter}{Alt Up}
-; ; ;Zoom out of rem
-; ; LAlt & BackSpace::Send {Ctrl Down}{j}{Ctrl Up}
-; return
-
-
-; ; Info ***********************************************************************
-; ; This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
-; ; Add simple mappings like "SC163 & n::Send {..}" above "#if WinActive()", because it breaks code.
-; ; GetKeyState, state, space ; Check key state "D" = down, "U" = up, "P" = physical state, "T" = toggle
