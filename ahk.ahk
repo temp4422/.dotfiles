@@ -620,6 +620,10 @@ f::Send {LWin Down}{0}{LWin Up} ; File Explorer
 return
 
 
+#if WinActive("ahk_exe WindowsTerminal.exe")
+^a::Send {End}{Shift Down}{Home}{Shift Up}
+return
+
 ; Sublime open recent files
 #if WinActive("ahk_exe sublime_text.exe")
 ^r::Send {Alt Down}{f}{Alt Up}{r}
