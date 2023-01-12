@@ -481,3 +481,15 @@ for key     kcap    seq           widget              arg (
   zle -N key-$key
   bindkey ${terminfo[$kcap]-$seq} key-$key
 }
+# Select entire prompt
+# https://stackoverflow.com/a/68987551/13658418
+function widget::select-all() {
+  local buflen=$(echo -n "$BUFFER" | wc -m | bc)
+  CURSOR=$buflen   # if this is messing up try: CURSOR=9999999
+  zle set-mark-command
+  while [[ $CURSOR > 0 ]]; do
+    zle beginning-of-line
+  done
+}
+zle -N widget::select-all
+bindkey '^a' widget::select-all
