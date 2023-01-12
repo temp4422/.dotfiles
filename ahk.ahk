@@ -103,23 +103,69 @@ LCtrl & Esc::Send {Ctrl Down}{Tab}{Ctrl Up}
 !Space::Send {LWin Down}{Space}{LWin Up}
 ; Windows Search or PowerToys Run
 ^Space::Send {LWin Down}{s}{LWin Up}
+;^Space::Send {LCtrl}{LCtrl}
 
 ; Reload ahk
 SC163 & f8::reload
 ; Context menu Shift+F10 / AppsKey
 SC163 & Enter::AppsKey
 ; Taskbar
-SC163 & 1::#1
-SC163 & 2::#2
-SC163 & 3::#3
-SC163 & 4::#4
-SC163 & 5::#5
-SC163 & 6::#6
-SC163 & q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
-SC163 & a::Send {LWin Down}{7}{LWin Up} ; Terminal
-SC163 & s::Send {LWin Down}{8}{LWin Up} ; Browser Search
-SC163 & d::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
-SC163 & e::Send {LWin Down}{0}{LWin Up} ; File Explorer
+SC163 & 1::
+  Send {LWin Down}{1}
+  Sleep 200
+  Send {LWin Up}
+return
+SC163 & 2::
+  Send {LWin Down}{2}
+  Sleep 200
+  Send {LWin Up}
+return
+SC163 & 3::
+  Send {LWin Down}{3}
+  Sleep 200
+  Send {LWin Up}
+return
+SC163 & 4::
+  Send {LWin Down}{4}
+  Sleep 200
+  Send {LWin Up}
+return
+SC163 & 5::
+  Send {LWin Down}{5}
+  Sleep 200
+  Send {LWin Up}
+return
+SC163 & 6::
+  Send {LWin Down}{6}
+  Sleep 200
+  Send {LWin Up}
+return
+SC163 & q::
+  Send {LWin Down}{6}  ; Quick Notes
+  Sleep 200
+  Send {LWin Up}
+return
+SC163 & a::
+  Send {LWin Down}{7}  ; Terminal
+  Sleep 200
+  Send {LWin Up}
+return
+SC163 & s::
+  Send {LWin Down}{8}  ; Browser Search
+  Sleep 200
+  Send {LWin Up}
+return
+SC163 & d::
+  Send {LWin Down}{9}  ; CoDe Editor
+  Sleep 200
+  Send {LWin Up}
+return
+SC163 & e::
+  Send {LWin Down}{0} ; File Explorer
+  Sleep 200
+  Send {LWin Up}
+return
+;
 SC163 & f::Send {LCtrl Down}{f12}{LCtrl Up} ; Windows Search/Run
 ; Alias backward/forward
 SC163 & h::Send {Alt Down}{Left}{Alt Up}
@@ -254,8 +300,34 @@ return
 ; LCtrl & Space::shiftSpace("{Space}")
 ;return
 ;******************************************************************************
-
-
+#if WinActive("ahk_exe Listary.exe")
+^Enter::
+  Send +{Home}
+  Send ^{x}
+  Send {g}
+  Send {Space}
+  Send ^{v}
+  Sleep 300
+  Send {Enter}
+return
++^Enter::
+  Send +{Home}
+  Send ^{x}
+  Send {y}
+  Send {Space}
+  Send ^{v}
+  Sleep 400
+  Send {Enter}
+return
+; !Enter::
+;   Send +{Home}
+;   Send ^{x}
+;   Send {g}{h}
+;   Send {Space}
+;   Send ^{v}
+;   Sleep 400
+;   Send {Enter}
+; return
 
 
 #if WinActive("ahk_exe WindowsTerminal.exe")
