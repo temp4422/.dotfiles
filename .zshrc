@@ -212,7 +212,7 @@ fzf-fasd-cd-vi() {
    zle accept-line
 }
 zle -N fzf-fasd-cd-vi
-bindkey '^p' fzf-fasd-cd-vi
+bindkey '^e' fzf-fasd-cd-vi
 
 # ctrl+r search history
 fzf-history() {
@@ -424,6 +424,13 @@ for key     kcap   seq        mode   widget (
   zle -N key-$key
   bindkey ${terminfo[$kcap]-$seq} key-$key
 }
+# Fix zsh-autosuggestions. Fixes autosuggest completion being overriden by keybindings:
+# to have [zsh] autosuggest [plugin feature] complete visible suggestions, you can assign
+# an array of shell functions to the `ZSH_AUTOSUGGEST_ACCEPT_WIDGETS` variable. When these functions
+# are triggered, they will also complete any visible suggestion. https://stackoverflow.com/a/30899296
+export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
+  key-right
+)
 # ctrl+x,c,v
 # https://superuser.com/a/271890
 function zle-clipboard-cut {
