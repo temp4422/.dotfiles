@@ -78,7 +78,7 @@ cmd delete ${{
     #printf "$fx\n"
     #printf "delete?[y/n]"
     #read ans
-    #[ $ans = "y" ] && 
+    #[ $ans = "y" ] &&
 rm -rf $fx
 }}
 map dd delete
@@ -146,8 +146,8 @@ map <c-u> # half-up
 map <c-d> # half-down
 map <c-b> # page-up
 map <c-f> # page-down
-mag gg # top
-mag G # bottom
+map gg # top
+map G # bottom
 # toggle
 map v # invert (invert toggle)
 map u # unselect
@@ -208,7 +208,7 @@ map <c-v> paste
 ###############################################################################
 # Default commands/keybindings
 #cmd open &$OPENER "$f"
-max e # $$EDITOR "$f"
+map e # $$EDITOR "$f"
 map i # $$PAGER "$f"
 map w # $$SHELL
 map ee $$EDITOR "$f"
