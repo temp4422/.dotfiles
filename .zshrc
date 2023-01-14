@@ -313,7 +313,7 @@ lfcd () {
 }
 zle -N lfcd
 #bindkey '^[[18~' lfcd
-bindkey '^s' lfcd
+#bindkey '^s' lfcd
 ###############################################################################
 
 
@@ -476,5 +476,10 @@ bindkey '^a' widget::select-all
 export PNPM_HOME="/home/user/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
 # LunarVim configs
 export PATH=/home/user/.local/bin:$PATH
+
+# broot
+source /home/user/.config/broot/launcher/bash/br
+bindkey -s "^s" 'br^M'
