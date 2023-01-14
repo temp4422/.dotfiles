@@ -37,6 +37,7 @@ vnoremap <c-s> <Esc>:w<CR> "visual mode: escape to normal and save
 "quit
 nnoremap q :q<CR>
 nnoremap Q :q<CR>
+nnoremap <c-q> :q<CR>
 
 "next search
 map <CR> n "Enter

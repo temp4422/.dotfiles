@@ -482,4 +482,10 @@ export PATH=/home/user/.local/bin:$PATH
 
 # broot
 source /home/user/.config/broot/launcher/bash/br
-bindkey -s "^s" 'br^M'
+bindkey -s "^s" 'br -h^M'
+
+cmd1 () {
+  br -h < $TTY
+}
+#zle -N cmd1
+#bindkey '^s' cmd1
