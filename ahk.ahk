@@ -304,7 +304,7 @@ return
 ^Enter::
   Send +{Home}
   Send ^{x}
-  Send {g}
+  Send g
   Send {Space}
   Send ^{v}
   Sleep 300
@@ -313,7 +313,7 @@ return
 +^Enter::
   Send +{Home}
   Send ^{x}
-  Send {y}
+  Send y
   Send {Space}
   Send ^{v}
   Sleep 400
