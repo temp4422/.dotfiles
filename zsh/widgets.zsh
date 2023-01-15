@@ -1,3 +1,59 @@
+# # Oh My Zsh "refined" theme
+# # https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/refined.zsh-theme
+# ###############################################################################
+# setopt prompt_subst
+
+# # Load required modules
+# autoload -Uz vcs_info
+
+# # Set vcs_info parameters
+# zstyle ':vcs_info:*' enable hg bzr git
+# zstyle ':vcs_info:*:*' unstagedstr '!'
+# zstyle ':vcs_info:*:*' stagedstr '+'
+# zstyle ':vcs_info:*:*' formats "$FX[bold]%r$FX[no-bold]/%S" "%s:%b" "%%u%c"
+# zstyle ':vcs_info:*:*' actionformats "$FX[bold]%r$FX[no-bold]/%S" "%s:%b" "%u%c (%a)"
+# zstyle ':vcs_info:*:*' nvcsformats "%~" "" ""
+
+# # Fastest possible way to check if repo is dirty
+# git_dirty() {
+#     # Check if we're in a git repo
+#     command git rev-parse --is-inside-work-tree &>/dev/null || return
+#     # Check if it's dirty
+#     command git diff --quiet --ignore-submodules HEAD &>/dev/null; [ $? -eq 1 ] && echo "*"
+# }
+
+# # Display information about the current repository
+# repo_information() {
+#     echo "%F{blue}${vcs_info_msg_0_%%/.} %F{8}$vcs_info_msg_1_`git_dirty` $vcs_info_msg_2_%f"
+# }
+
+# # Displays the exec time of the last command if set threshold was exceeded
+# cmd_exec_time() {
+#     local stop=`date +%s`
+#     local start=${cmd_timestamp:-$stop}
+#     let local elapsed=$stop-$start
+#     [ $elapsed -gt 5 ] && echo ${elapsed}s
+# }
+
+# # Get the initial timestamp for cmd_exec_time
+# preexec() {
+#     cmd_timestamp=`date +%s`
+# }
+
+# # Output additional information about paths, repos and exec time
+# precmd() {
+#     setopt localoptions nopromptsubst
+#     vcs_info # Get version control info before we start outputting stuff
+#     print -P "\n$(repo_information) %F{yellow}$(cmd_exec_time)%f"
+#     unset cmd_timestamp #Reset cmd exec time.
+# }
+
+# # Define prompts
+# PROMPT="%(?.%F{magenta}.%F{red})❯%f " # Display a red prompt char on failure
+# RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
+# ###############################################################################
+
+
 # Shell movement
 ###############################################################################
 up-dir() {
@@ -20,6 +76,9 @@ bindkey "^[[1;3C" prev-dir #alt-right
 
 # SHIFT-SELECT
 ##############################################################################
+# zsh-shift-select
+#source ~/.local/share/zsh/plugins/zsh-shift-select/zsh-shift-select.plugin.zsh
+
 # zsh-shift-select combined with ctrl+x,c,v
 # https://stackoverflow.com/a/30899296
 r-delregion() {
@@ -73,6 +132,7 @@ for key     kcap   seq        mode   widget (
   zle -N key-$key
   bindkey ${terminfo[$kcap]-$seq} key-$key
 }
+
 # Fix zsh-autosuggestions. Fixes autosuggest completion being overriden by keybindings:
 # to have [zsh] autosuggest [plugin feature] complete visible suggestions, you can assign
 # an array of shell functions to the `ZSH_AUTOSUGGEST_ACCEPT_WIDGETS` variable. When these functions
@@ -80,8 +140,9 @@ for key     kcap   seq        mode   widget (
 export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
   key-right
 )
+
 # ctrl+x,c,v
-# https://superuser.com/a/271890
+# https://unix.stackexchange.com/a/634916/424080
 function zle-clipboard-cut {
   if ((REGION_ACTIVE)); then
     zle copy-region-as-kill
@@ -111,7 +172,9 @@ zle -N zle-clipboard-paste
 function zle-pre-cmd {
   # We are now in buffer editing mode. Clear the interrupt combo `Ctrl + C` by setting it to the null character, so it
   # can be used as the copy-to-clipboard key instead
-  stty intr "^@"
+  # stty intr "^@" # IMPORTANT! interfere with Powerlevel10k Instant prompt
+  # FIX! https://github.com/romkatv/powerlevel10k/issues/388#issuecomment-567679874
+  stty intr "^@" <$TTY >$TTY
 }
 precmd_functions=("zle-pre-cmd" ${precmd_functions[@]})
 function zle-pre-exec {
@@ -137,6 +200,7 @@ for key     kcap    seq           widget              arg (
   zle -N key-$key
   bindkey ${terminfo[$kcap]-$seq} key-$key
 }
+
 # Select entire prompt
 # https://stackoverflow.com/a/68987551/13658418
 function widget::select-all() {

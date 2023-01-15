@@ -5,8 +5,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+#PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f ' # My custom prompt, interfere with "refined" oh-my-zsh theme!!!
+
 # Keyboard shortcuts
 ###############################################################################
+bindkey -e # Use emacs keybindings even if our EDITOR is set to vi
 bindkey "^[[1;5D" backward-word #ctrl-left
 bindkey "^[[1;5C" forward-word #ctrl-right
 bindkey "^[[1~" beginning-of-line #home
@@ -16,7 +19,6 @@ bindkey "^Z" undo # ctrl-z
 #bindkey -s "^W" "^D" set in terminal!
 #bindkey -s "^D" "^W" set in terminal!
 
-bindkey -e # Use emacs keybindings even if our EDITOR is set to vi
 
 # Set options
 ###############################################################################
@@ -32,66 +34,9 @@ setopt noflowcontrol
 #export PAGER=/usr/bin/less
 #export OPENER=/usr/bin/xdg-open
 
-
-# Set ohmyzsh refined theme
-# https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/refined.zsh-theme
-###############################################################################
-setopt prompt_subst
-
-# Load required modules
-autoload -Uz vcs_info
-
-# Set vcs_info parameters
-zstyle ':vcs_info:*' enable hg bzr git
-zstyle ':vcs_info:*:*' unstagedstr '!'
-zstyle ':vcs_info:*:*' stagedstr '+'
-zstyle ':vcs_info:*:*' formats "$FX[bold]%r$FX[no-bold]/%S" "%s:%b" "%%u%c"
-zstyle ':vcs_info:*:*' actionformats "$FX[bold]%r$FX[no-bold]/%S" "%s:%b" "%u%c (%a)"
-zstyle ':vcs_info:*:*' nvcsformats "%~" "" ""
-
-# Fastest possible way to check if repo is dirty
-git_dirty() {
-    # Check if we're in a git repo
-    command git rev-parse --is-inside-work-tree &>/dev/null || return
-    # Check if it's dirty
-    command git diff --quiet --ignore-submodules HEAD &>/dev/null; [ $? -eq 1 ] && echo "*"
-}
-
-# Display information about the current repository
-repo_information() {
-    echo "%F{blue}${vcs_info_msg_0_%%/.} %F{8}$vcs_info_msg_1_`git_dirty` $vcs_info_msg_2_%f"
-}
-
-# Displays the exec time of the last command if set threshold was exceeded
-cmd_exec_time() {
-    local stop=`date +%s`
-    local start=${cmd_timestamp:-$stop}
-    let local elapsed=$stop-$start
-    [ $elapsed -gt 5 ] && echo ${elapsed}s
-}
-
-# Get the initial timestamp for cmd_exec_time
-preexec() {
-    cmd_timestamp=`date +%s`
-}
-
-# Output additional information about paths, repos and exec time
-precmd() {
-    setopt localoptions nopromptsubst
-    vcs_info # Get version control info before we start outputting stuff
-    print -P "\n$(repo_information) %F{yellow}$(cmd_exec_time)%f"
-    unset cmd_timestamp #Reset cmd exec time.
-}
-
-# Define prompts
-PROMPT="%(?.%F{magenta}.%F{red})❯%f " # Display a red prompt char on failure
-RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
-#PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f ' # My custom prompt '⚡❯' Interfere with refined theme!!!
-###############################################################################
-
-
 # Default zsh settings
 ###############################################################################
+
 # Set history options
 setopt histignorealldups sharehistory
 HISTSIZE=1000
@@ -183,34 +128,46 @@ eval "$(fasd --init posix-alias zsh-hook)" # minimal zsh setup
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
 
-
 # Set fzf env vars
 # $FZF_TMUX_OPTS $FZF_CTRL_T_COMMAND $FZF_CTRL_T_OPTS $FZF_CTRL_R_OPTS $FZF_ALT_C_COMMAND $FZF_ALT_C_OPTS
 export FZF_DEFAULT_OPTS='--height 50% --history-size=1000 --layout=reverse --border --bind "ctrl-c:execute-silent(echo {} | clip.exe)+abort"'
 
 # zsh-autosuggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+##############################################################################
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # tmux
+##############################################################################
 # Attach to an existing session if it exists, or create a new one if it does not.
 #tmux new-session -As0
+
+
+# Powerlevel10k
+##############################################################################
+source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.config/.p10k.zsh ]] || source ~/.config/.p10k.zsh
+
 
 # Load widgets.zsh
 ##############################################################################
 source $HOME/.dotfiles/zsh/widgets.zsh
 
+# broot
+source /home/user/.config/broot/launcher/bash/br
+bindkey -s "^s" 'br -h^M'
+
 
 # nvm
+##############################################################################
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${kXDG_CONFIG_HOME}/nvm")"
 #[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"
 
+
 # Show startup time. Profiling: 'zmodload zsh/zprof' 'zprof'
 #time zsh -c exit #{ time zsh -c exit ; } 2> time.txt
-
-# zsh-shift-select
-#source ~/.local/share/zsh/plugins/zsh-shift-select/zsh-shift-select.plugin.zsh
 
 # pnpm
 export PNPM_HOME="/home/user/.local/share/pnpm"
@@ -219,17 +176,3 @@ export PATH="$PNPM_HOME:$PATH"
 
 # LunarVim configs
 export PATH=/home/user/.local/bin:$PATH
-
-# broot
-source /home/user/.config/broot/launcher/bash/br
-bindkey -s "^s" 'br -h^M'
-
-#cmd1 () {
-#  br -h < $TTY
-#}
-#zle -N cmd1
-#bindkey '^s' cmd1source ~/powerlevel10k/powerlevel10k.zsh-theme
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
