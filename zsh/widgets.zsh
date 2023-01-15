@@ -219,7 +219,7 @@ bindkey '^a' widget::select-all
 ###############################################################################
 # ctrl+e cd/vi recent folders/files
 fzf-fasd-cd-vi() {
-#   item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)"
+# item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)" # fasdter when reading cache
    item="$(cat ~/.config/.fasd_cache | fzf -1 -0 --no-sort +m)"
   if [[ -d ${item} ]]; then
     cd "${item}" || return 1
@@ -228,10 +228,13 @@ fzf-fasd-cd-vi() {
   else
     return 1
   fi
-   zle accept-line
+  zle accept-line
 }
-zle -N fzf-fasd-cd-vi
-bindkey '^e' fzf-fasd-cd-vi
+#zle -N fzf-fasd-cd-vi; bindkey '^e' fzf-fasd-cd-vi
+# Run widget from another function to work properly
+run-fzf-fasd-cd-vi(){fzf-fasd-cd-vi; local ret=$?; zle reset-prompt; return $ret}
+zle -N run-fzf-fasd-cd-vi
+bindkey '^e' run-fzf-fasd-cd-vi
 
 # ctrl+r search history
 fzf-history() {
@@ -265,8 +268,10 @@ fzf-find-global() {
   fi
    zle accept-line
 }
-zle -N fzf-find-global
-bindkey '^]' fzf-find-global
+#zle -N fzf-find-global; bindkey '^]' fzf-find-global
+run-fzf-find-global(){fzf-find-global; local ret=$?; zle reset-prompt; return $ret}
+zle -N run-fzf-find-global
+bindkey '^]' run-fzf-find-global
 
 # ctrl+f search local and cd/vi
 fzf-find-local() {
@@ -280,8 +285,10 @@ fzf-find-local() {
   fi
    zle accept-line
 }
-zle -N fzf-find-local
-bindkey '^f' fzf-find-local
+#zle -N fzf-find-local; bindkey '^f' fzf-find-local
+run-fzf-find-local(){fzf-find-local; local ret=$?; zle reset-prompt; return $ret}
+zle -N run-fzf-find-local
+bindkey '^f' run-fzf-find-local
 
 # ctrl+k+o cd folder global
 fzf-cd() {
@@ -308,28 +315,29 @@ fzf-vi() {
    file="$( find '/' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -type f -iname '*' 2>/dev/null | fzf -1 -0 --no-sort +m)" && (vi "${file}" < /dev/tty) || return 1
    zle acceptl-line
 }
-zle -N fzf-vi
-bindkey '^o' fzf-vi
-
+#zle -N fzf-vi; bindkey '^o' fzf-vi
+run-fzf-vi(){fzf-vi; local ret=$?; zle reset-prompt; return $ret}
+zle -N run-fzf-vi
+bindkey '^o' run-fzf-vi
 
 # LF
 ###############################################################################
-#ctrl+s lfcd allow keep current dir on exit
-lfcd () {
-  tmp="$(mktemp)"
-  lf -last-dir-path="$tmp" "$@"
-  if [ -f "$tmp" ]; then
-      dir="$(cat "$tmp")"
-      rm -f "$tmp"
-      if [ -d "$dir" ]; then
-          if [ "$dir" != "$(pwd)" ]; then
-              cd "$dir"
-          fi
-      fi
-  fi
-  zle accept-line
-  zle reset-prompt
-}
-zle -N lfcd
-#bindkey '^[[18~' lfcd
-#bindkey '^s' lfcd
+# #ctrl+s lfcd allow keep current dir on exit
+# lfcd () {
+#   tmp="$(mktemp)"
+#   lf -last-dir-path="$tmp" "$@"
+#   if [ -f "$tmp" ]; then
+#       dir="$(cat "$tmp")"
+#       rm -f "$tmp"
+#       if [ -d "$dir" ]; then
+#           if [ "$dir" != "$(pwd)" ]; then
+#               cd "$dir"
+#           fi
+#       fi
+#   fi
+#   zle accept-line
+#   zle reset-prompt
+# }
+# zle -N lfcd
+# bindkey '^[[18~' lfcd
+# bindkey '^s' lfcd

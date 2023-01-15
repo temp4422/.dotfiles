@@ -1,6 +1,7 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+# Still need to wait for keybinds
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -45,6 +46,7 @@ autoload -Uz compinit; compinit
 # Chose completion options
 zstyle ':completion:*' menu select
 # Use colors: set variable and use in completion system
+# https://linuxhint.com/ls_colors_bash/
 LS_COLORS='di=94:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 export LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
