@@ -1,6 +1,6 @@
 # .dotfiles
 
-My Windows, Linux, WSL files and configs for productivity.
+My Windows, WSL, Mac files and configs for productivity.
 
 ## Settings
 
@@ -8,9 +8,10 @@ My Windows, Linux, WSL files and configs for productivity.
 
 ```PowerShell
 #AutoHotkey
-New-Item -Path "C:\Users\user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\ahk.ahk" -ItemType SymbolicLink -Value "C:\Users\user\.winfiles\ahk.ahk"
+New-Item -Path "C:\Users\user\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\ahk.ahk" -ItemType SymbolicLink -Value "\\wsl.localhost\Ubuntu\home\user\.dotfiles\windows\ahk.ahk"
+
 #Windows Terminal
-New-Item -Path "C:\Users\user\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -ItemType SymbolicLink -Value "C:\Users\user\.winfiles\settings.json"
+New-Item -Path "C:\Users\user\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -ItemType SymbolicLink -Value "\\wsl.localhost\Ubuntu\home\user\.dotfiles\windows\settings.json"
 ```
 
 ### Create shortcuts
