@@ -39,14 +39,13 @@ setopt noflowcontrol
 setopt histignorealldups sharehistory
 HISTSIZE=1000
 SAVEHIST=1000
-HISTFILE=~/.zsh_history
+HISTFILE=~/.config/.zsh_history
 
 # Use modern completion system, otherwise by default will be used old one
 autoload -Uz compinit; compinit
 # Chose completion options
 zstyle ':completion:*' menu select
-# Use colors: set variable and use in completion system
-# https://linuxhint.com/ls_colors_bash/
+# Use colors: set variable and use in completion system https://linuxhint.com/ls_colors_bash/
 LS_COLORS='di=94:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 export LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -143,10 +142,9 @@ bindkey -s "^s" 'br -h^M'
 # nvm
 ##############################################################################
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${kXDG_CONFIG_HOME}/nvm")"
-#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm. Comment this line and uncomment one below to make shell load faster.
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"
-
+#alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Alais to load nvm manually. To use node, run "nvm". Uncomment this line and comment one above to make shell load faster.
 
 # Show startup time. Profiling: 'zmodload zsh/zprof' 'zprof'
 #time zsh -c exit #{ time zsh -c exit ; } 2> time.txt
@@ -154,7 +152,9 @@ alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@"
 # pnpm
 export PNPM_HOME="/home/user/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-# pnpm end
 
 # LunarVim configs
 export PATH=/home/user/.local/bin:$PATH
+
+# Sublime Text
+export EDITOR=subl.exe
