@@ -147,18 +147,23 @@ sudo apt install vim git curl zip zsh fzf fasd ripgrep fd-find tmux
 chsh -s $(which zsh)
 ```
 
-### Install lf, zsh-autosuggestions
+### Install zsh-autosuggestions, broot, lf
 
 ```bash
-wget https://github.com/gokcehan/lf/releases/download/r6/lf-linux-amd64.tar.gz -O lf-linux-amd64.tar.gz && tar xvf lf-linux-amd64.tar.gz && rm lf-linux-amd64.tar.gz && chmod +x lf && sudo mv lf /usr/local/bin && wget https://raw.githubusercontent.com/gokcehan/lf/master/lf.1 && sudo mv lf.1 /usr/share/man/man1/;
-
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions;
+# zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/zsh-autosuggestions;
+# broot
+echo "deb [signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ stable main" | sudo tee /etc/apt/sources.list.d/azlux.list
+sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg
+sudo apt update && sudo apt install broot && br
+# lf
+wget https://github.com/gokcehan/lf/releases/download/r28/lf-linux-amd64.tar.gz -O lf-linux-amd64.tar.gz && tar xvf lf-linux-amd64.tar.gz && rm lf-linux-amd64.tar.gz && chmod +x lf && sudo mv lf /usr/local/bin && wget https://raw.githubusercontent.com/gokcehan/lf/master/lf.1 && sudo mv lf.1 /usr/share/man/man1/;
 ```
 
 ### Link files
 
 ```bash
-rm -rf ~/.zshrc ~/.vimrc ~/.tmux.conf .config/lf/lfrc;
+rm -rf ~/.zshrc ~/.vimrc ~/.tmux.conf ~/.config/lf/lfrc ~/.config/broot/verbs.hjson;
 
-ln -s ~/.dotfiles/.zshrc ~/.zshrc && ln -s ~/.dotfiles/.vimrc ~/.vimrc && ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf && ln -s ~/.dotfiles/lfrc ~/.config/lf/lfrc
+ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc && ln -s ~/.dotfiles/zsh/.vimrc ~/.vimrc && ln -s ~/.dotfiles/zsh/.tmux.conf ~/.config/.tmux.conf && ln -s ~/.dotfiles/zsh/verbs.hjson ~/.config/broot/verbs.hjson && ln -s ~/.dotfiles/zsh/lfrc ~/.config/lf/lfrc
 ```
