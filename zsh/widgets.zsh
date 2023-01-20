@@ -183,10 +183,10 @@ function zle-pre-exec {
 }
 preexec_functions=("zle-pre-exec" ${preexec_functions[@]})
 # The `key` column is only used to build a named reference for `zle`
-for key     kcap    seq           widget              arg (
-    cx      _       $'^X'         zle-clipboard-cut   _                     # `Ctrl + X`
-    cc      _       $'^C'         zle-clipboard-copy  _                     # `Ctrl + C`
-    cv      _       $'^V'         zle-clipboard-paste _                     # `Ctrl + V`
+for key kcap seq   widget              arg (
+    cx  _    $'^X' zle-clipboard-cut   _  # `Ctrl + X`
+    cc  _    $'^C' zle-clipboard-copy  _  # `Ctrl + C`
+    cv  _    $'^V' zle-clipboard-paste _  # `Ctrl + V`
 ) {
   if [ "${arg}" = "_" ]; then
     eval "key-$key() {
