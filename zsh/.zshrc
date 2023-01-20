@@ -51,7 +51,9 @@ export LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # case insensitivity
 zstyle ":completion:*" matcher-list 'm:{A-Zöäüa-zÖÄÜ}={a-zÖÄÜA-Zöäü}'
-
+# Select menu with single Enter https://superuser.com/questions/1498187/zsh-select-menu-auto-completion-with-single-enter-return-press
+zmodload -i zsh/complist
+bindkey -M menuselect '^M' .accept-line
 
 # Aliases
 ###############################################################################
@@ -138,7 +140,7 @@ source $HOME/.dotfiles/zsh/widgets.zsh
 
 # broot
 source /home/user/.config/broot/launcher/bash/br
-bindkey -s "^s" 'br -h^M'
+bindkey -s "^s" 'br --hidden --sort-by-type^M'
 
 
 # nvm
@@ -160,3 +162,9 @@ export PATH=/home/user/.local/bin:$PATH
 
 # Sublime Text
 export EDITOR=subl.exe
+
+# tere
+tere() {
+    local result=$(/home/user/dev/tere/target/debug/tere "$@")
+    [ -n "$result" ] && cd -- "$result"
+}
