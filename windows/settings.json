@@ -2,6 +2,7 @@
   "$help": "https://aka.ms/terminal-documentation",
   "$schema": "https://aka.ms/terminal-profiles-schema",
   "actions": [
+    { "command": null, "keys": "alt+enter" },
     {
       "command": {
         "action": "copy",
