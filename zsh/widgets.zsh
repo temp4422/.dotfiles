@@ -220,7 +220,7 @@ bindkey '^a' widget::select-all
 # ctrl+e cd/vi recent folders/files
 fzf-fasd-cd-vi() {
 # item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)" # fasdter when reading cache
-   item="$(cat ~/.config/.fasd_cache | fzf -1 -0 --no-sort +m)"
+   item="$(cat ~/.config/.fasd_cache | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
   if [[ -d ${item} ]]; then
     cd "${item}" || return 1
   elif [[ -f ${item} ]]; then
