@@ -95,7 +95,7 @@ alias bat='batcat'
 alias cat='batcat'
 #alias vi='nvim'
 alias fman='fman.exe .'
-alias sb='subl.exe'
+alias sb='subl'
 
 # fasd
 ###############################################################################
@@ -161,7 +161,7 @@ export PATH="$PNPM_HOME:$PATH"
 export PATH=/home/user/.local/bin:$PATH
 
 # Sublime Text
-export EDITOR=subl.exe
+export EDITOR=/usr/bin/subl
 
 # tere
 tere() {
