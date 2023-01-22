@@ -168,3 +168,14 @@ tere() {
     local result=$(/home/user/dev/tere/target/debug/tere "$@")
     [ -n "$result" ] && cd -- "$result"
 }
+
+# lama
+lama() {
+    ~/dev/llama_linux_amd64
+}
+
+# cdir installed with pip install cdir
+alias cdir='source cdir.sh'
+
+# my path
+export PATH=/home/user/dev:$PATH
