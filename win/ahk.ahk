@@ -49,7 +49,7 @@ CurrentBrightness := GetCurrentBrightNess()
 ^F2::Volume_Up
 
 ; JKL; + Ctrl, Shift, Alt, Win
-;*** Remap arrow keys onto JKLI whenever holding down a certain modifier key
+; Remap arrow keys onto JKL; whenever holding down a certain modifier key
 ;******************************************************************************
 MoveCursor(key) {
   control := GetKeyState("CONTROL","P")
@@ -101,14 +101,11 @@ LCtrl & Esc::Send {Ctrl Down}{Tab}{Ctrl Up}
 !d::Send {LWin Down}{d}{LWin Up}
 ; Change language Alt+Space
 !Space::Send {LWin Down}{Space}{LWin Up}
-; Windows Search or PowerToys Run
-;^Space::Send {LWin Down}{s}{LWin Up}
-;^Space::Send {LCtrl}{LCtrl}
-
 ; Reload ahk
 SC163 & f8::reload
 ; Context menu Shift+F10 / AppsKey
 SC163 & Enter::AppsKey
+
 ; Taskbar
 SC163 & 1::
   Send {LWin Down}{1}
@@ -165,8 +162,9 @@ SC163 & e::
   Sleep 200
   Send {LWin Up}
 return
-;
-SC163 & f::Send {LCtrl Down}{f12}{LCtrl Up} ; Windows Search/Run
+
+; Listary (Windows Search/Run)
+SC163 & f::Send {LCtrl Down}{f12}{LCtrl Up}
 ; Alias backward/forward
 SC163 & h::Send {Alt Down}{Left}{Alt Up}
 SC163 & '::Send {Alt Down}{Right}{Alt Up}
@@ -174,15 +172,8 @@ SC163 & '::Send {Alt Down}{Right}{Alt Up}
 SC163 & i::Send {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
 SC163 & o::Send {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
 
-; Maximize active window
-;SC163 & f::
-WinGet MX, MinMax, A
-if MX
-  WinRestore A
-else WinMaximize A
-return
 ; Google Translate
-SC163 & u::
+SC163 & u up::
   ;KeyWait, CapsLock
   SetTitleMatchMode 3
   if WinActive("Google Translate") {
@@ -209,7 +200,7 @@ SC163 & n up::
   }
 return
 ; Snip & Sketch
-+!s::
+SC163 & y up::
 Run, ms-screensketch:
   WinWait, ahk_exe ApplicationFrameHost.exe
   WinActivate, ahk_exe ApplicationFrameHost.exe
@@ -218,6 +209,13 @@ Run, ms-screensketch:
   } else {
     return
   }
+return
+; Maximize active window
+; +!f::
+WinGet MX, MinMax, A
+if MX
+  WinRestore A
+else WinMaximize A
 return
 
 ; Fold/Unfold, Send different keys with single key RemNote, Obsidian, VSCode
@@ -299,6 +297,8 @@ return
 ; LCtrl & Space::shiftSpace("{Space}")
 ;return
 ;******************************************************************************
+
+
 #if WinActive("ahk_exe Listary.exe")
 ^Enter::
 Send +{Home}
@@ -378,7 +378,7 @@ return
 ; SC163 & k::modKey2("{Down}")
 ;Zoom into rem
 ^Enter::Send {Ctrl Down}{`;}{Ctrl Up}
-  +^Enter::Send {Ctrl Down}{Shift Down}{:}{Shift Up}{Ctrl Up}
++^Enter::Send {Ctrl Down}{Shift Down}{:}{Shift Up}{Ctrl Up}
   ; ;Add child without splitting text
   ; ^Enter::Send {Alt Down}{Enter}{Alt Up}
   ; ;Zoom out of rem
@@ -410,22 +410,25 @@ return
 ; if run with: "space+key up" (also require space:: send {space} to work) it causing small delays - what interrup typing.
 ; if run with: "#if GetKeyState("space", "P") key:: Send ..." delays are smaller, but still random interrupts occur, but "sapce + key up" must be in script to work properly.
 ; Current requirements to work with small interrupts:
-; space::send {spacej}
+; space::send {space}
 ; space + key up::send ...
 ; #if GetKeyState("space", "P") key::send ...
+; Space up::Send {Space}
 
-;#if GetKeyState("Space", "P")
-; 1::#1
-; 2::#2
-; 3::#3
-; 4::#4
-; 5::#5
-; 6::#6
-; q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
-; a::Send {LWin Down}{7}{LWin Up} ; Terminal
-; s::Send {LWin Down}{8}{LWin Up} ; Browser Search
-; d::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
-; e::Send {LWin Down}{0}{LWin Up} ; File Explorer
-; f::Send {LCtrl Down}{f12}{LCtrl Up} ; File Explorer
-;`::Send {LWin Down}{0}{LWin Up} ; Terminal
-;return
+; #if GetKeyState("Space", "P")
+;   1::#1
+;   2::#2
+;   3::#3
+;   4::#4
+;   5::#5
+;   6::#6
+;   q up::Send {LWin Down}{6}{LWin Up} ; Quick Notes
+;   a up::Send {LWin Down}{7}{LWin Up} ; Terminal
+;   s up::Send {LWin Down}{8}{LWin Up} ; Browser Search
+;   d up::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
+;   e up::Send {LWin Down}{0}{LWin Up} ; File Explorer
+;   f up::Send {LCtrl Down}{f12}{LCtrl Up} ; File Explorer
+;  ;`::Send {LWin Down}{0}{LWin Up} ; Terminal
+; return
+
+; Appropriate way to implement "sapce + key" functionality is through SpaceFN keyboard layout https://github.com/lydell/spacefn-win
