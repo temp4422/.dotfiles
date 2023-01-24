@@ -5,8 +5,7 @@ SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
 
 ;*** MY CODE ***
 ;******************************************************************************
-; Terminal Ctrl+Backspace match title
-; RegEx or digits: 1 - title must start with the specified WinTitle, 2 - title can contain WinTitle anywhere inside it, 3 - title must exactly match WinTitle.
+; SetTitleMatchMode: 1 - title must start with the specified WinTitle, 2 - title can contain WinTitle anywhere inside it, 3 - title must exactly match WinTitle.
 SetTitleMatchMode 2
 
 ; RUN AS ADMIN
@@ -21,9 +20,8 @@ if not (A_IsAdmin or RegExMatch(full_command_line, " /restart(?!\S)")) {
   }
   ExitApp
 }
-;******************************************************************************
 
-; BRIGHTNESS
+; Brightness and Volume
 ;******************************************************************************
 ChangeBrightness(ByRef brightness, timeout = 1) {
   if (brightness > 0 && brightness < 100) {
@@ -43,8 +41,6 @@ GetCurrentBrightNess() {
 CurrentBrightness := GetCurrentBrightNess()
 !F1::ChangeBrightness(CurrentBrightness -= 9) ;decrease
 !F2::ChangeBrightness(CurrentBrightness += 9) ;increase
-;******************************************************************************
-; Volume
 ^F1::Volume_Down
 ^F2::Volume_Up
 
@@ -199,7 +195,7 @@ SC163 & n up::
     WinActivate, Calculator
   }
 return
-; Snip & Sketch
+; Snip & Sketch Screenshot
 SC163 & y up::
 Run, ms-screensketch:
   WinWait, ahk_exe ApplicationFrameHost.exe
@@ -221,134 +217,66 @@ return
 ; Fold/Unfold, Send different keys with single key RemNote, Obsidian, VSCode
 variable1 = 0 ; Set variable
 SC163 & Space::
-  ;Ctrl & s::
+  ; Fold/Collapse
   if (variable1 == 1){
-    ; Fold/Collapse
-    if WinActive("ahk_exe RemNote.exe") {
-      ; RemNote collapse descendants of children
-      if GetKeyState("Shift"){
-        Send {Ctrl Down}{Shift Down}{p}{Shift Up}{Ctrl Up}
-        Sleep, 200
-        Send coll
-        Sleep, 600
-        Send {Enter}
-        return
-      }
-    }
     Send {Ctrl Down}{Shift Down}{[}{Shift Up}{Ctrl Up}
     variable1 = 2
     return
+  ; Unfold/Expand
   } else if (variable1 == 2){
     ; Special for Obsidian "toggle fold"
     if WinActive("ahk_exe Obsidian.exe") {
       Send {Ctrl Down}{Shift Down}{[}{Shift Up}{Ctrl Up}
     }
-    ; Unfold/Expand
     Send {Ctrl Down}{Shift Down}{]}{Shift Up}{Ctrl Up}
     variable1 = 1
     return
+  ; Initiate variable
   } else {
-    ; Initiate variable
     variable1 = 1
     return
   }
 return
-; Use shift+space
-; shiftSpaceSuper(key) {
-;   shift := GetKeyState("SHIFT","P")
-;   if shift {
-;     Send {Ctrl Down}{Shift Down}{up}{Shift Up}{Ctrl Up}
-;   } else {
-;     Send {Ctrl Down}{Shift Down}{down}{Shift Up}{Ctrl Up}
-;     return
-;   }
-; }
-; SC163 & Space::shiftSpaceSuper("{Space}")
-; return
-
-;if "ctrl+shift+space" send File Explorer, if "ctrl+space" send Windows Search
-; shiftSpace(key) {
-;   shift := GetKeyState("SHIFT","P")
-;   if shift {
-;     ; if ctrl+shift+space open new File Explorer or toggle existing
-;     if WinActive("ahk_class CabinetWClass") {
-;       WinMinimize A
-;     } else if WinExist("ahk_class CabinetWClass") {
-;       WinActivate, ahk_class CabinetWClass
-;     } else {
-;       Run, explorer.exe
-;       WinWait, ahk_class CabinetWClass
-;       ;WinMove, ahk_class CabinetWClass,,-8,0,976,1028
-;       WinActivate, ahk_class CabinetWClass
-;     }
-;     return
-;     ; +!e::
-;     ;   Run, explorer.exe
-;     ;   WinWait, ahk_class CabinetWClass
-;     ;   WinMove, ahk_class CabinetWClass,,952,0,976,1038
-;     ;   WinActivate, ahk_class CabinetWClass
-;     ; return
-;   } else {
-;     ; if ctrl+space open Windows Search
-;     Send {LWin Down}{s}{LWin Up}
-;     return
-;   }
-; }
-; LCtrl & Space::shiftSpace("{Space}")
-;return
 ;******************************************************************************
 
 
 #if WinActive("ahk_exe Listary.exe")
-^Enter::
-Send +{Home}
-Send ^{x}
-Send g
-Send {Space}
-Send ^{v}
-Sleep 300
-Send {Enter}
-return
-+^Enter::
-  Send +{Home}
-  Send ^{x}
-  Send y
-  Send {Space}
-  Send ^{v}
-  Sleep 400
-  Send {Enter}
-return
-; !Enter::
-;   Send +{Home}
-;   Send ^{x}
-;   Send {g}{h}
-;   Send {Space}
-;   Send ^{v}
-;   Sleep 400
-;   Send {Enter}
-; return
+  ^Enter::
+    Send +{Home}
+    Send ^{x}
+    Send g
+    Send {Space}
+    Send ^{v}
+    Sleep 300
+    Send {Enter}
+  return
+  +^Enter::
+    Send +{Home}
+    Send ^{x}
+    Send y
+    Send {Space}
+    Send ^{v}
+    Sleep 400
+    Send {Enter}
+  return
+#if
 
 ; Sublime open recent files
 #if WinActive("ahk_exe sublime_text.exe")
   ^r::Send {Alt Down}{f}{Alt Up}{r}
-return
+#if
 
 ; Microsoft Edge or Google Chrome: Search Tab
 #if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
   +^f::Send {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
-SC163 & i::Send {f7}
-return
-
-; Fman switch panes
-#if WinActive("ahk_exe fman.exe")
-  LCtrl & Esc::Send {Tab}
-return
+  SC163 & i::Send {f7}
+#if
 
 ; RemNote shortcuts (browser like)
 variable2 = 0 ; Set variable
 #if WinActive("ahk_exe RemNote.exe")
   ; Switch panes with ctrl+esc
-LCtrl & Esc::
+  LCtrl & Esc::
   if (variable2 == 1){
     Send {Ctrl Down}{Shift Down}{t}{Shift Up}{Ctrl Up}
     variable2 = 2
@@ -358,34 +286,17 @@ LCtrl & Esc::
   } else {
     variable2 = 1
   }
-return
-; Navigate to sibling above/below
-; modKey1(key) {
-;   control := GetKeyState("CONTROL","P")
-; if control {
-;   Send {Ctrl Down}{l}{Ctrl Up}
-; } else {
-;   Send %key%
-; }}
-; SC163 & l::modKey1("{Up}")
-; modKey2(key) {
-;   control := GetKeyState("CONTROL","P")
-; if control {
-;   Send {Ctrl Down}{k}{Ctrl Up}
-; } else {
-;   Send %key%
-; }}
-; SC163 & k::modKey2("{Down}")
-;Zoom into rem
-^Enter::Send {Ctrl Down}{`;}{Ctrl Up}
-+^Enter::Send {Ctrl Down}{Shift Down}{:}{Shift Up}{Ctrl Up}
-  ; ;Add child without splitting text
-  ; ^Enter::Send {Alt Down}{Enter}{Alt Up}
-  ; ;Zoom out of rem
-  ; LAlt & BackSpace::Send {Ctrl Down}{j}{Ctrl Up}
-return
+  return
+  ; Zoom into rem
+  ^Enter::Send {Ctrl Down}{`;}{Ctrl Up}
+  ; Zoom into rem in new window
+  +^Enter::Send {Ctrl Down}{Shift Down}{:}{Shift Up}{Ctrl Up}
+#if
 
-; Info ***********************************************************************
+SC163 & t::Send {LCtrl Down}{f12}{LCtrl Up}
+
+; Info
+;******************************************************************************
 ; This symbol "`" is used for escaping in AHK, for example `n is a new line character. You can escape it with itself (``) to display the symbol.
 ; Add simple mappings like "SC163 & n::Send {..}" above "#if WinActive()", because it breaks code.
 ; GetKeyState, state, space ; Check key state "D" = down, "U" = up, "P" = physical state, "T" = toggle
