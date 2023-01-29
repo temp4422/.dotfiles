@@ -60,7 +60,7 @@ bindkey -M menuselect '^M' .accept-line
 # common
 alias l='ls --color'
 alias ls='ls --color'
-alias ll='ls -l --almost-all --human-readable --color --group-directories-first' # ls -lAHSr
+alias ll='ls -la --color' # ls -lAHSr
 alias c='clear'
 alias rm='rm -rf'
 alias cp='cp -r'
@@ -110,8 +110,8 @@ eval "$(fasd --init posix-alias zsh-hook)" # minimal zsh setup
 ##############################################################################
 # Init fzf
 #/usr/share/doc/fzf/README.Debian enable fzf keybindings for Bash, https://raw.githubusercontent.com/mskar/setup/main/.zshrc
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+#source /usr/share/doc/fzf/examples/key-bindings.zsh
+#source /usr/share/doc/fzf/examples/completion.zsh
 
 # Set fzf env vars
 # $FZF_TMUX_OPTS $FZF_CTRL_T_COMMAND $FZF_CTRL_T_OPTS $FZF_CTRL_R_OPTS $FZF_ALT_C_COMMAND $FZF_ALT_C_OPTS
@@ -119,7 +119,7 @@ export FZF_DEFAULT_OPTS='--ansi --height 50% --history-size=1000 --layout=revers
 
 # zsh-autosuggestions
 ##############################################################################
-source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # tmux
 ##############################################################################
@@ -129,17 +129,19 @@ source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Powerlevel10k
 ##############################################################################
-source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.config/.p10k.zsh ]] || source ~/.config/.p10k.zsh
+source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
 
 
-# Load widgets.zsh
+# Load widgets.zsh and 
 ##############################################################################
 source $HOME/.dotfiles/zsh/widgets.zsh
 
+
 # broot
-source /home/user/.config/broot/launcher/bash/br
+#source /home/user/.config/broot/launcher/bash/br
+source /Users/user/.config/broot/launcher/bash/br
 bindkey -s "^s" 'br --hidden --sort-by-type^M'
 
 
