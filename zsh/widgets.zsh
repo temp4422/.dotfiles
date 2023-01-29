@@ -217,6 +217,12 @@ bindkey '^a' widget::select-all
 
 # FZF
 ###############################################################################
+# Default command to work with other
+__fzfcmd() {
+  [ -n "${TMUX_PANE-}" ] && { [ "${FZF_TMUX:-0}    " != 0 ] || [ -n "${FZF_TMUX_OPTS-}" ]; } &&
+    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMU    X_HEIGHT:-40%}} -- " || echo "fzf"
+}
+
 # ctrl+e cd/vi recent folders/files
 fzf-fasd-cd-vi() {
 # item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)" # fasdter when reading cache
