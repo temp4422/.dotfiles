@@ -359,155 +359,6 @@
       "manipulators": [
         {
           "from": {
-            "key_code": "grave_accent_and_tilde",
-            "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "grave_accent_and_tilde",
-              "modifiers": [
-                "left_command",
-                "left_option",
-                "left_shift"
-              ]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "f",
-            "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.apple.finder"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "a",
-            "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.googlecode.iterm2"
-            }
-          ],
-          "type": "basic"
-        },
-        // {
-        //   "from": {
-        //     "key_code": "a",
-        //     "modifiers": {
-        //       "mandatory": [
-        //         "left_option"
-        //       ]
-        //     }
-        //   },
-        //   "to": [
-        //     {
-        //       "shell_command": "open -b com.googlecode.iterm2"
-        //     }
-        //   ],
-        //   "type": "basic"
-        // },
-        {
-          "from": {
-            "key_code": "s",
-            "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.google.Chrome"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "d",
-            "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.microsoft.VSCode"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "e",
-            "modifiers": {
-              "mandatory": [
-                "left_option"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b io.fman.fman"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "q",
-            "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b io.remnote"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "escape",
-            "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:6:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
             "key_code": "1",
             "modifiers": {
               "mandatory": [
@@ -598,6 +449,158 @@
           "to": [
             {
               "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:5:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.googlecode.iterm2"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.google.Chrome"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.sublimetext.4"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar",
+              "modifiers": [
+                "left_command"
+              ]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "e",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.apple.finder"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b io.remnote"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "grave_accent_and_tilde",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "grave_accent_and_tilde",
+              "modifiers": [
+                "left_command",
+                "left_option",
+                "left_shift"
+              ]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "n",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.apple.calculator"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.google.Chrome.app.edanbjnaiofggfmimiidpfmhggkbokck"
             }
           ],
           "type": "basic"
