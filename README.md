@@ -110,6 +110,7 @@ ln -s ~/.dotfiles/zsh/verbs.hjson ~/.config/broot/verbs.hjson
 # All apps
 brew install coreutils fzf fasd ripgrep fd tmux
 ```
+#### Karabiner-Elements
 
 ### zsh environment
 
@@ -142,9 +143,10 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh-autosug
 echo "deb [signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ stable main" | sudo tee /etc/apt/sources.list.d/azlux.list;
 sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg;
 sudo apt update && sudo apt install broot && br;
-ln -s ~/.dotfiles/zsh/verbs.hjson ~/.config/broot/verbs.hjson
+ln -s ~/.dotfiles/mac/verbs.hjson ~/.config/broot/verbs.hjson
 ```
 
+### Sublime Text
 
 # Browser
 
