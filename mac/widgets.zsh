@@ -146,7 +146,7 @@ export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
 function zle-clipboard-cut {
   if ((REGION_ACTIVE)); then
     zle copy-region-as-kill
-    print -rn -- $CUTBUFFER | clip.exe #xclip -selection clipboard -in
+    print -rn -- $CUTBUFFER | pbcopy #xclip -selection clipboard -in
     zle kill-region
   fi
 }
@@ -154,7 +154,7 @@ zle -N zle-clipboard-cut
 function zle-clipboard-copy {
   if ((REGION_ACTIVE)); then
     zle copy-region-as-kill
-    print -rn -- $CUTBUFFER | clip.exe #xclip -selection clipboard -in
+    print -rn -- $CUTBUFFER | pbcopy #xclip -selection clipboard -in
   else
     # Nothing is selected, so default to the interrupt command
     zle send-break
@@ -166,7 +166,7 @@ function zle-clipboard-paste {
     zle kill-region
   fi
   #LBUFFER+="$(xclip -selection clipboard -out)"
-  LBUFFER+="$(cat clip.exe)"
+  LBUFFER+="$(pbpaste | cat)"
 }
 zle -N zle-clipboard-paste
 function zle-pre-cmd {

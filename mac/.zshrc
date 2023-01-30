@@ -60,7 +60,7 @@ bindkey -M menuselect '^M' .accept-line
 # common
 alias l='ls --color'
 alias ls='ls --color'
-alias ll='ls -la --color' # ls -lAHSr
+alias ll='gls -lah --color --group-directories-first'
 alias c='clear'
 alias rm='rm -rf'
 alias cp='cp -r'
@@ -80,10 +80,10 @@ alias gp='git push'
 alias gd='git diff'
 alias gcl='git checkout . && git clean -fd'
 # apps
-alias fd='fdfind'
-alias exp='explorer.exe'
-alias pwsh='powershell.exe'
-alias chrome='/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
+#alias fd='fdfind'
+# alias exp='explorer.exe'
+# alias pwsh='powershell.exe'
+# alias chrome='/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
 alias ni='npm install'
 alias y='yarn'
 alias p='pnpm'
@@ -91,15 +91,15 @@ alias j='fasd_cd -d'
 #alias cd='fasd_cd -d'
 alias grep='rg --ignore-case'
 alias rg='rg --ignore-case'
-alias bat='batcat'
-alias cat='batcat'
+# alias bat='batcat'
+# alias cat='batcat'
 #alias vi='nvim'
-alias fman='fman.exe .'
+# alias fman='fman.exe .'
 alias sb='subl'
 
 # fasd
 ###############################################################################
-eval "$(fasd --init posix-alias zsh-hook)" # minimal zsh setup
+# causing slow zsh #eval "$(fasd --init posix-alias zsh-hook)" # minimal zsh setup
 #eval "$(fasd --init auto)"
 #bindkey '^k^i' fasd-complete # test autocomplete
 # Cache fasd list on shell startup in background
@@ -131,12 +131,12 @@ source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
 ##############################################################################
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
+[[ ! -f ~/.dotfiles/mac/.p10k.zsh ]] || source ~/.dotfiles/mac/.p10k.zsh
 
 
-# Load widgets.zsh and 
+# Load widgets.zsh
 ##############################################################################
-source $HOME/.dotfiles/zsh/widgets.zsh
+source $HOME/.dotfiles/mac/widgets.zsh
 
 
 # broot
