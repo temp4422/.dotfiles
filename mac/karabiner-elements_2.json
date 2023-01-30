@@ -208,6 +208,56 @@
             }
           ]
         },
+        // {
+        //   "description": "Chrome switch tabs",
+        //   "conditions": [
+        //     {
+        //       "type": "frontmost_application_if",
+        //       "bundle_identifiers": [
+        //         "com.google.Chrome"
+        //       ]
+        //     }
+        //   ],
+        //   "from": {
+        //     "key_code": "comma",
+        //     "modifiers": {
+        //       "mandatory": [
+        //         "right_command",
+        //         "left_command"
+        //       ]
+        //     }
+        //   },
+        //   "to": [
+        //     {
+        //       "key_code": "tab",
+        //       "modifiers": [
+        //         "left_control",
+        //         "left_shift"
+        //       ]
+        //     }
+        //   ],
+        //   "type": "basic"
+        // },
+        // {
+        //   "from": {
+        //     "key_code": "period",
+        //     "modifiers": {
+        //       "mandatory": [
+        //         "right_command",
+        //         "left_command"
+        //       ]
+        //     }
+        //   },
+        //   "to": [
+        //     {
+        //       "key_code": "tab",
+        //       "modifiers": [
+        //         "left_control"
+        //       ]
+        //     }
+        //   ],
+        //   "type": "basic"
+        // },
         {
           "type": "basic",
           "from": {
