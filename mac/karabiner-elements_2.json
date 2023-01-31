@@ -100,6 +100,75 @@
           ]
         },
         {
+          "description": "Find and set onedit",
+          "type": "basic",
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "mandatory": [
+                "left_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f",
+              "modifiers": [
+                "left_command"
+              ]
+            },
+            {
+              "set_variable": {
+                "name": "onedit",
+                "value": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com.apple.finder"
+              ]
+            }
+          ]
+        },
+        {
+          "description": "Go to... and set onedit",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "left_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "g",
+              "modifiers": [
+                "left_command",
+                "left_shift"
+              ]
+            },
+            {
+              "set_variable": {
+                "name": "onedit",
+                "value": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "^com.apple.finder"
+              ]
+            }
+          ]
+        },
+        {
           "description": "Use Esc to finish renaming when onedit=1",
           "conditions": [
             {
@@ -689,35 +758,35 @@
           ],
           "type": "basic"
         },
-        {
-          "description": "Finder go to folder cmd+l",
-          "from": {
-            "key_code": "l",
-            "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "g",
-              "modifiers": [
-                "left_command",
-                "left_shift"
-              ]
-            }
-          ],
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com\\.apple\\.finder$"
-              ]
-            }
-          ],
-          "type": "basic"
-        },
+        // {
+        //   "description": "Finder go to folder cmd+l",
+        //   "from": {
+        //     "key_code": "l",
+        //     "modifiers": {
+        //       "mandatory": [
+        //         "left_command"
+        //       ]
+        //     }
+        //   },
+        //   "to": [
+        //     {
+        //       "key_code": "g",
+        //       "modifiers": [
+        //         "left_command",
+        //         "left_shift"
+        //       ]
+        //     }
+        //   ],
+        //   "conditions": [
+        //     {
+        //       "type": "frontmost_application_if",
+        //       "bundle_identifiers": [
+        //         "^com\\.apple\\.finder$"
+        //       ]
+        //     }
+        //   ],
+        //   "type": "basic"
+        // },
         {
           "description": "Quit app cmd+q",
           "from": {
