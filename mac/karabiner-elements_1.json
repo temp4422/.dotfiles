@@ -519,6 +519,34 @@
         //   ]
         // },
         {
+          "description": "Home in Chrome",
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "com.google.Chrome"
+              ],
+              "type": "frontmost_application_if"
+            }
+          ],
+          "type": "basic",
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "home"
+            }
+          ]
+        },
+        {
           "type": "basic",
           "from": {
             "key_code": "m",
@@ -599,6 +627,34 @@
         //     }
         //   ]
         // },
+        {
+          "description": "End in Chrome",
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "com.google.Chrome"
+              ],
+              "type": "frontmost_application_if"
+            }
+          ],
+          "type": "basic",
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "end"
+            }
+          ]
+        },
         {
           "type": "basic",
           "from": {
