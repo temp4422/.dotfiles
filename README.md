@@ -69,25 +69,25 @@ sudo apt install vim git curl zip zsh fzf fasd ripgrep fd-find tmux
 ```bash
 chsh -s $(which zsh);
 rm -rf ~/.zshrc ~/.vimrc ~/.tmux.conf ~/.config/lf/lfrc ~/.config/broot/verbs.hjson;
-ln -s ~/.dotfiles/zsh/.zshrc ~/.zshrc && ln -s ~/.dotfiles/zsh/.vimrc ~/.vimrc;
+ln -s ~/.dotfiles/win/.zshrc ~/.zshrc && ln -s ~/.dotfiles/win/.vimrc ~/.vimrc;
 ```
 
 ### Powerlevel10k
 
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/powerlevel10k;
-#echo '[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh' >>~/.zshrc
+#echo '[[ ! -f ~/.dotfiles/win/.p10k.zsh ]] || source ~/.dotfiles/win/.p10k.zsh' >>~/.zshrc
 #echo 'source ~/.config/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 ```
 
 ### zsh-autosuggestions
 
 ```bash
-echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-autosuggestions/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/shells:zsh-users:zsh-autosuggestions.list
-curl -fsSL https://download.opensuse.org/repositories/shells:zsh-users:zsh-autosuggestions/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_zsh-users_zsh-autosuggestions.gpg > /dev/null;
-sudo apt update && sudo apt install zsh-autosuggestions;
-#git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh-autosuggestions;
-#echo 'source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
+#echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-autosuggestions/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/shells:zsh-users:zsh-autosuggestions.list
+#curl -fsSL https://download.opensuse.org/repositories/shells:zsh-users:zsh-autosuggestions/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_zsh-users_zsh-autosuggestions.gpg > /dev/null;
+#sudo apt update && sudo apt install zsh-autosuggestions;
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh-autosuggestions;
+echo 'source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
 ```
 
 ### broot
@@ -96,7 +96,7 @@ sudo apt update && sudo apt install zsh-autosuggestions;
 echo "deb [signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ stable main" | sudo tee /etc/apt/sources.list.d/azlux.list;
 sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg;
 sudo apt update && sudo apt install broot && br;
-ln -s ~/.dotfiles/zsh/verbs.hjson ~/.config/broot/verbs.hjson
+ln -s ~/.dotfiles/win/verbs.hjson ~/.config/broot/verbs.hjson
 ```
 
 
