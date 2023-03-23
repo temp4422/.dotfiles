@@ -131,17 +131,18 @@ source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
 ##############################################################################
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh
+[[ ! -f ~/.dotfiles/win/.p10k.zsh ]] || source ~/.dotfiles/win/.p10k.zsh
 
 
 # Load widgets.zsh and 
 ##############################################################################
-source $HOME/.dotfiles/zsh/widgets.zsh
+source $HOME/.dotfiles/win/widgets.zsh
 
 
 # broot
 #source /home/user/.config/broot/launcher/bash/br
-source /Users/user/.config/broot/launcher/bash/br
+#source /Users/user/.config/broot/launcher/bash/br
+source /home/user/.local/share/broot/launcher/bash/
 bindkey -s "^s" 'br --hidden --sort-by-type^M'
 
 
