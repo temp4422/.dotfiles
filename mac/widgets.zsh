@@ -146,7 +146,7 @@ export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
 function zle-clipboard-cut {
   if ((REGION_ACTIVE)); then
     zle copy-region-as-kill
-    print -rn -- $CUTBUFFER | clip.exe #xclip -selection clipboard -in
+    print -rn -- $CUTBUFFER | pbcopy #xclip -selection clipboard -in
     zle kill-region
   fi
 }
@@ -154,7 +154,7 @@ zle -N zle-clipboard-cut
 function zle-clipboard-copy {
   if ((REGION_ACTIVE)); then
     zle copy-region-as-kill
-    print -rn -- $CUTBUFFER | clip.exe #xclip -selection clipboard -in
+    print -rn -- $CUTBUFFER | pbcopy #xclip -selection clipboard -in
   else
     # Nothing is selected, so default to the interrupt command
     zle send-break
@@ -166,7 +166,7 @@ function zle-clipboard-paste {
     zle kill-region
   fi
   #LBUFFER+="$(xclip -selection clipboard -out)"
-  LBUFFER+="$(cat clip.exe)"
+  LBUFFER+="$(pbpaste | cat)"
 }
 zle -N zle-clipboard-paste
 function zle-pre-cmd {
@@ -217,6 +217,12 @@ bindkey '^a' widget::select-all
 
 # FZF
 ###############################################################################
+# Default command to work with other
+__fzfcmd() {
+  [ -n "${TMUX_PANE-}" ] && { [ "${FZF_TMUX:-0}    " != 0 ] || [ -n "${FZF_TMUX_OPTS-}" ]; } &&
+    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMU    X_HEIGHT:-40%}} -- " || echo "fzf"
+}
+
 # ctrl+e cd/vi recent folders/files
 fzf-fasd-cd-vi() {
 # item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)" # fasdter when reading cache

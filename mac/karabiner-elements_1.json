@@ -499,7 +499,35 @@
     {
       "description": "🔵 1.4 Set m,./+shift/cmd/opt to page_keys+shift/cmd/opt (optional:any)",
       "manipulators": [
+        // {
+        //   "type": "basic",
+        //   "from": {
+        //     "key_code": "m",
+        //     "modifiers": {
+        //       "mandatory": [
+        //         "right_command"
+        //       ],
+        //       "optional": [
+        //         "any"
+        //       ]
+        //     }
+        //   },
+        //   "to": [
+        //     {
+        //       "key_code": "home"
+        //     }
+        //   ]
+        // },
         {
+          "description": "Home in Chrome",
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "com.google.Chrome"
+              ],
+              "type": "frontmost_application_if"
+            }
+          ],
           "type": "basic",
           "from": {
             "key_code": "m",
@@ -515,6 +543,28 @@
           "to": [
             {
               "key_code": "home"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_command"
+              ]
             }
           ]
         },
@@ -556,7 +606,37 @@
             }
           ]
         },
+        //     {
+        //       "type": "basic",
+        //       "from": {
+        //         "key_code": "slash",
+        //         "modifiers": {
+        //           "mandatory": [
+        //             "right_command"
+        //           ],
+        //           "optional": [
+        //             "any"
+        //           ]
+        //         }
+        //       },
+        //       "to": [
+        //         {
+        //           "key_code": "end"
+        //         }
+        //       ]
+        //     }
+        //   ]
+        // },
         {
+          "description": "End in Chrome",
+          "conditions": [
+            {
+              "bundle_identifiers": [
+                "com.google.Chrome"
+              ],
+              "type": "frontmost_application_if"
+            }
+          ],
           "type": "basic",
           "from": {
             "key_code": "slash",
@@ -572,6 +652,28 @@
           "to": [
             {
               "key_code": "end"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_command"
+              ]
             }
           ]
         }
