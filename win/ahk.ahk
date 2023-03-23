@@ -103,26 +103,31 @@ SC163 & f8::reload
 SC163 & Enter::AppsKey
 
 ; Taskbar
+F19::
 SC163 & 1::
   Send {LWin Down}{1}
   Sleep 200
   Send {LWin Up}
 return
+F20::
 SC163 & 2::
   Send {LWin Down}{2}
   Sleep 200
   Send {LWin Up}
 return
+F21::
 SC163 & 3::
   Send {LWin Down}{3}
   Sleep 200
   Send {LWin Up}
 return
+F23::
 SC163 & 4::
   Send {LWin Down}{4}
   Sleep 200
   Send {LWin Up}
 return
+F24::
 SC163 & 5::
   Send {LWin Down}{5}
   Sleep 200
@@ -133,26 +138,31 @@ SC163 & 6::
   Sleep 200
   Send {LWin Up}
 return
+F17::
 SC163 & q::
   Send {LWin Down}{6} ; Quick Notes
   Sleep 200
   Send {LWin Up}
 return
+F13::
 SC163 & a::
   Send {LWin Down}{7} ; Terminal
   Sleep 200
   Send {LWin Up}
 return
+F14::
 SC163 & s::
   Send {LWin Down}{8} ; Browser Search
   Sleep 200
   Send {LWin Up}
 return
+F15::
 SC163 & d::
   Send {LWin Down}{9} ; CoDe Editor
   Sleep 200
   Send {LWin Up}
 return
+F18::
 SC163 & e::
   Send {LWin Down}{0} ; File Explorer
   Sleep 200
@@ -160,6 +170,7 @@ SC163 & e::
 return
 
 ; Listary (Windows Search/Run)
+F16::
 SC163 & f::Send {LCtrl Down}{f12}{LCtrl Up}
 ; Alias backward/forward
 SC163 & h::Send {Alt Down}{Left}{Alt Up}
@@ -167,6 +178,7 @@ SC163 & '::Send {Alt Down}{Right}{Alt Up}
 ; VSCode console.log()
 SC163 & i::Send {Ctrl Down}{Shift Down}{Alt Down}{i}{Alt Up}{Shift Up}{Ctrl Up}
 SC163 & o::Send {Ctrl Down}{Shift Down}{Alt Down}{o}{Alt Up}{Shift Up}{Ctrl Up}
+SC163 & `::Send {Ctrl Down}{Shift Down}{Alt Down}{``}{Alt Up}{Shift Up}{Ctrl Up}
 
 ; Google Translate
 SC163 & u up::
@@ -240,26 +252,26 @@ return
 ;******************************************************************************
 
 
-#if WinActive("ahk_exe Listary.exe")
-  ^Enter::
-    Send +{Home}
-    Send ^{x}
-    Send g
-    Send {Space}
-    Send ^{v}
-    Sleep 300
-    Send {Enter}
-  return
-  +^Enter::
-    Send +{Home}
-    Send ^{x}
-    Send y
-    Send {Space}
-    Send ^{v}
-    Sleep 400
-    Send {Enter}
-  return
-#if
+; #if WinActive("ahk_exe Listary.exe")
+;   ^Enter::
+;     Send +{Home}
+;     Send ^{x}
+;     Send g
+;     Send {Space}
+;     Send ^{v}
+;     Sleep 300
+;     Send {Enter}
+;   return
+;   +^Enter::
+;     Send +{Home}
+;     Send ^{x}
+;     Send y
+;     Send {Space}
+;     Send ^{v}
+;     Sleep 400
+;     Send {Enter}
+;   return
+; #if
 
 ; Sublime open recent files
 #if WinActive("ahk_exe sublime_text.exe")
@@ -294,6 +306,27 @@ variable2 = 0 ; Set variable
 #if
 
 SC163 & t::Send {LCtrl Down}{f12}{LCtrl Up}
+
+
+; Select world
+;^d::Send {Ctrl Down}{Right}{Ctrl Up}{Ctrl Down}{Shift Down}{Left}{Shift UP}{Ctrl Up}
+;#if WinActive("ahk_exe Code.exe")
+;  ^d::Send {Ctrl Down}{D}{Ctrl Up}
+;#if
+
+
+; spacefn-win mappings
+; *a::dual.comboKey({F22: "F13"})
+; *s::dual.comboKey({F22: "F14"})
+; *d::dual.comboKey({F22: "F15"})
+; *f::dual.comboKey({F22: "F16"})
+; *q::dual.comboKey({F22: "F17"})
+; *e::dual.comboKey({F22: "F18"})
+; *1::dual.comboKey({F22: "F19"})
+; *2::dual.comboKey({F22: "F20"})
+; *3::dual.comboKey({F22: "F21"})
+; *4::dual.comboKey({F22: "F23"})
+; *5::dual.comboKey({F22: "F24"})
 
 ; Info
 ;******************************************************************************
@@ -342,4 +375,4 @@ SC163 & t::Send {LCtrl Down}{f12}{LCtrl Up}
 ;  ;`::Send {LWin Down}{0}{LWin Up} ; Terminal
 ; return
 
-; Appropriate way to implement "sapce + key" functionality is through SpaceFN keyboard layout https://github.com/lydell/spacefn-win
+; Appropriate way to implement "sapce + key" functionality is through SpaceFN keyboard layout https://github.com/lydell/spacefn-win,
