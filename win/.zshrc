@@ -94,8 +94,7 @@ alias rg='rg --ignore-case'
 alias bat='batcat'
 alias cat='batcat'
 #alias vi='nvim'
-alias fman='fman.exe .'
-alias sb='subl'
+alias sb='subl.exe'
 
 # fasd
 ###############################################################################
@@ -138,12 +137,12 @@ source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 ##############################################################################
 source $HOME/.dotfiles/win/widgets.zsh
 
-
-# broot
-#source /home/user/.config/broot/launcher/bash/br
-#source /Users/user/.config/broot/launcher/bash/br
-source /home/user/.local/share/broot/launcher/bash/
-bindkey -s "^s" 'br --hidden --sort-by-type^M'
+# tere
+tere() {
+    local result=$(/home/user/dev/tere/target/debug/tere "$@")
+    [ -n "$result" ] && cd -- "$result"
+}
+bindkey -s "^s" 'tere -m ctrl-s:Exit,ctrl-q:Exit^M' # info tere --help
 
 
 # nvm
@@ -151,7 +150,7 @@ bindkey -s "^s" 'br --hidden --sort-by-type^M'
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${kXDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm. Comment this line and uncomment one below to make shell load faster.
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Alais to load nvm manually. To use node, run "nvm". Uncomment this line and comment one above to make shell load faster.
+# alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Alais to load nvm manually. To use node, run "nvm". Uncomment this line and comment one above to make shell load faster.
 
 # Show startup time. Profiling: 'zmodload zsh/zprof' 'zprof'
 #time zsh -c exit #{ time zsh -c exit ; } 2> time.txt
@@ -163,14 +162,13 @@ export PATH="$PNPM_HOME:$PATH"
 # LunarVim configs
 export PATH=/home/user/.local/bin:$PATH
 
-# Sublime Text
-export EDITOR=/usr/bin/subl
+# Default editor
+#export EDITOR=/usr/bin/subl
+#export EDITOR=/usr/bin/nvim
 
-# tere
-tere() {
-    local result=$(/home/user/dev/tere/target/debug/tere "$@")
-    [ -n "$result" ] && cd -- "$result"
-}
+# broot
+source /home/user/.config/broot/launcher/bash/br
+#bindkey -s "^s" 'br --hidden --sort-by-type^M'
 
 # lama
 lama() {

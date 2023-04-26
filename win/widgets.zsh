@@ -230,7 +230,7 @@ fzf-fasd-cd-vi() {
   if [[ -d ${item} ]]; then
     cd "${item}" || return 1
   elif [[ -f ${item} ]]; then
-    (sb "${item}" < /dev/tty) || return 1
+    (vi "${item}" < /dev/tty) || return 1
   else
     return 1
   fi
@@ -285,7 +285,7 @@ fzf-find-local() {
   if [[ -d ${item} ]]; then
     cd "${item}" || return 1
   elif [[ -f ${item} ]]; then
-    (sb "${item}" < /dev/tty) || return 1
+    (vi "${item}" < /dev/tty) || return 1
   else
     return 1
   fi

@@ -3,6 +3,7 @@ set number
 set showcmd
 set showmatch
 set tabstop=2
+set ignorecase
 set incsearch
 set hlsearch
 set laststatus=2 "always display status line
@@ -10,6 +11,7 @@ set statusline=%#PmenuSel#%F\ %=\ %p%%\ %l:%c
 set mouse=a
 set timeoutlen=10
 set ttimeoutlen=10 "wait up to 10ms after Esc for special key
+set shortmess-=S "show count of matches
 
 "keep last edit place
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
