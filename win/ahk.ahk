@@ -127,7 +127,7 @@ SC163 & 4::
   Sleep 200
   Send {LWin Up}
 return
-F24::
+;F24::
 SC163 & 5::
   Send {LWin Down}{5}
   Sleep 200
@@ -139,30 +139,35 @@ SC163 & 6::
   Send {LWin Up}
 return
 F17::
+!q::
 SC163 & q::
   Send {LWin Down}{6} ; Quick Notes
   Sleep 200
   Send {LWin Up}
 return
 F13::
+!a::
 SC163 & a::
   Send {LWin Down}{7} ; Terminal
   Sleep 200
   Send {LWin Up}
 return
 F14::
+!s::
 SC163 & s::
   Send {LWin Down}{8} ; Browser Search
   Sleep 200
   Send {LWin Up}
 return
 F15::
+; !d::
 SC163 & d::
   Send {LWin Down}{9} ; CoDe Editor
   Sleep 200
   Send {LWin Up}
 return
 F18::
+!e::
 SC163 & e::
   Send {LWin Down}{0} ; File Explorer
   Sleep 200
@@ -171,6 +176,7 @@ return
 
 ; Listary (Windows Search/Run)
 F16::
+!f::
 SC163 & f::Send {LCtrl Down}{f12}{LCtrl Up}
 ; Alias backward/forward
 SC163 & h::Send {Alt Down}{Left}{Alt Up}
@@ -220,15 +226,16 @@ Run, ms-screensketch:
 return
 ; Maximize active window
 ; +!f::
-WinGet MX, MinMax, A
-if MX
-  WinRestore A
-else WinMaximize A
-return
+; WinGet MX, MinMax, A
+; if MX
+;   WinRestore A
+; else WinMaximize A
+; return
 
 ; Fold/Unfold, Send different keys with single key RemNote, Obsidian, VSCode
 variable1 = 0 ; Set variable
-SC163 & Space::
+; SC163 & Space::
+SC163 & \::
   ; Fold/Collapse
   if (variable1 == 1){
     Send {Ctrl Down}{Shift Down}{[}{Shift Up}{Ctrl Up}
@@ -305,28 +312,12 @@ variable2 = 0 ; Set variable
   +^Enter::Send {Ctrl Down}{Shift Down}{:}{Shift Up}{Ctrl Up}
 #if
 
-SC163 & t::Send {LCtrl Down}{f12}{LCtrl Up}
-
 
 ; Select world
 ;^d::Send {Ctrl Down}{Right}{Ctrl Up}{Ctrl Down}{Shift Down}{Left}{Shift UP}{Ctrl Up}
 ;#if WinActive("ahk_exe Code.exe")
 ;  ^d::Send {Ctrl Down}{D}{Ctrl Up}
 ;#if
-
-
-; spacefn-win mappings
-; *a::dual.comboKey({F22: "F13"})
-; *s::dual.comboKey({F22: "F14"})
-; *d::dual.comboKey({F22: "F15"})
-; *f::dual.comboKey({F22: "F16"})
-; *q::dual.comboKey({F22: "F17"})
-; *e::dual.comboKey({F22: "F18"})
-; *1::dual.comboKey({F22: "F19"})
-; *2::dual.comboKey({F22: "F20"})
-; *3::dual.comboKey({F22: "F21"})
-; *4::dual.comboKey({F22: "F23"})
-; *5::dual.comboKey({F22: "F24"})
 
 ; Info
 ;******************************************************************************
@@ -358,7 +349,28 @@ SC163 & t::Send {LCtrl Down}{f12}{LCtrl Up}
 ; space + key up::send ...
 ; #if GetKeyState("space", "P") key::send ...
 ; Space up::Send {Space}
+; Space::return
+; Appropriate way to implement "sapce + key" functionality is through SpaceFN keyboard layout https://github.com/lydell/spacefn-win,
+; TODO: CHECK $, ~, * functionality
 
+
+; *** VARIANT ***
+;Space & 1::#1
+;Space & 2::#2
+;Space & 3::#3
+;Space & 4::#4
+;Space & 5::#5
+;Space & 6::#6
+;Space & q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
+;Space & a::Send {LWin Down}{7}{LWin Up} ; Terminal
+;Space & s::Send {LWin Down}{8}{LWin Up} ; Browser Search
+;Space & d::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
+;Space & e::Send {LWin Down}{0}{LWin Up} ; File Explorer
+;Space & f::Send {LCtrl Down}{f12}{LCtrl Up} ; File Explorer
+;Space up::Send {Space}
+
+; *** VARIANT ***
+; Space up::Send {Space}
 ; #if GetKeyState("Space", "P")
 ;   1::#1
 ;   2::#2
@@ -372,7 +384,117 @@ SC163 & t::Send {LCtrl Down}{f12}{LCtrl Up}
 ;   d up::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
 ;   e up::Send {LWin Down}{0}{LWin Up} ; File Explorer
 ;   f up::Send {LCtrl Down}{f12}{LCtrl Up} ; File Explorer
-;  ;`::Send {LWin Down}{0}{LWin Up} ; Terminal
+; return
+; #if
+
+; *** VARIANT ***
+; variable3 = 0
+; Space::
+;   if (variable3 == 1){
+;     Send {space}
+;     variable3 = 2
+;   } else if (variable3 == 2){
+;     Send {Alt Down}{Shift Down}{t}{Shift Up}{Alt Up}
+;     variable3 = 1
+;   } else {
+;     variable3 = 1
+;   }
 ; return
 
-; Appropriate way to implement "sapce + key" functionality is through SpaceFN keyboard layout https://github.com/lydell/spacefn-win,
+; *** VARIANT ***
+; Space up::Send {Space}
+; ~a::
+;   If (A_PriorKey = "Space")
+;     Send {LWin Down}{7}{LWin Up} ; Terminal
+; Return
+
+; *** VARIANT ***
+; Space::XB1:=True
+; Space Up::XB1:=False
+; #If XB1
+; #if GetKeyState("Space", "")
+;   ; Space up::Send {Space}
+;   if (variable3 == 1){
+;     Send {space}
+;     variable3 = 2
+;   } else if (variable3 == 2){
+;     Send {Alt Down}{Shift Down}{t}{Shift Up}{Alt Up}
+;     variable3 = 1
+;   } else {
+;     variable3 = 1
+;   }
+; return
+; #if
+
+; *** VARIANT ***
+; Space up::Send {Space}
+; $a::
+; GetKeyState, state, Space
+; if (state = "P")
+;     Send {LWin Down}{7}{LWin Up} ; Terminal
+; else
+;     Send {a}
+; return
+
+; *** VARIANT ***
+; $a::Send {a}
+; Space::
+; if GetKeyState("a", "P")
+;   a::Send {LWin Down}{7}{LWin Up} ; Terminal
+; return
+
+; *** VARIANT ***
+;SpaceFn https://github.com/OhYee/SpaceFn
+;  #inputlevel,2
+; $Space::
+;     SetMouseDelay -1
+;     Send {Blind}{F24 DownR}
+;     KeyWait, Space
+;     Send {Blind}{F24 up}
+;     ; MsgBox, %A_ThisHotkey%-%A_TimeSinceThisHotkey%
+;     ; if(A_ThisHotkey="$Space" and A_TimeSinceThisHotkey<300)
+;     if(A_ThisHotkey="$Space")
+;         Send {Blind}{Space DownR}
+;     return
+; #inputlevel,1
+; F24 & i::Up
+; F24 & k::Down
+; F24 & j::Left
+; F24 & l::Right
+; F24 & u::Home
+; F24 & o::End
+; F24 & n::PgUp
+; F24 & m::PgDn
+; #inputlevel,2
+; $Space::
+;     SetMouseDelay -1
+;     Send {Blind}{F24 DownR}
+;     KeyWait, Space
+;     Send {Blind}{F24 up}
+;     ; MsgBox, %A_ThisHotkey%-%A_TimeSinceThisHotkey%
+;     ; if(A_ThisHotkey="$Space" and A_TimeSinceThisHotkey<300)
+;     if(A_ThisHotkey="$Space")
+;         Send {Blind}{Space DownR}
+;     return
+; #inputlevel,1
+; F24 & q::Send {LWin Down}{6}{LWin Up} ; Quick Notes
+; F24 & a::Send {LWin Down}{7}{LWin Up} ; Terminal
+; F24 & s::Send {LWin Down}{8}{LWin Up} ; Browser Search
+; F24 & d::Send {LWin Down}{9}{LWin Up} ; CoDe Editor
+; F24 & e::Send {LWin Down}{0}{LWin Up} ; File Explorer
+; F24 & f::Send {LCtrl Down}{f12}{LCtrl Up} ; File Explorer
+; return
+
+; *** VARIANT ***
+; spacefn-win mappings https://github.com/lydell/spacefn-win
+; *a::dual.comboKey({F22: "F13"})
+; *s::dual.comboKey({F22: "F14"})
+; *d::dual.comboKey({F22: "F15"})
+; *f::dual.comboKey({F22: "F16"})
+; *q::dual.comboKey({F22: "F17"})
+; *e::dual.comboKey({F22: "F18"})
+; *1::dual.comboKey({F22: "F19"})
+; *2::dual.comboKey({F22: "F20"})
+; *3::dual.comboKey({F22: "F21"})
+; *4::dual.comboKey({F22: "F23"})
+; *5::dual.comboKey({F22: "F24"})
