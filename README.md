@@ -36,7 +36,6 @@ winget uninstall  "Microsoft People"
 | Special: Right Alt (E0_38)    | Special: Wake (or Fn) (E0_63) |
 | Special: Wake (or Fn) (E0_63) | Special: Right Alt (E0_38)    |
 
-
 ## PowerShell symbolic links
 
 ```PowerShell
@@ -54,9 +53,7 @@ C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "Start-Sleep 
 
 Keyboard Properties -> Character repeat -> Repeat delay / Repeat rate -> Short
 
-
 ## WSL
-
 
 ### Install apps
 
@@ -83,11 +80,18 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/power
 ### zsh-autosuggestions
 
 ```bash
-#echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-autosuggestions/xUbuntu_22.04/ /' | sudo tee /etc/apt/sources.list.d/shells:zsh-users:zsh-autosuggestions.list
-#curl -fsSL https://download.opensuse.org/repositories/shells:zsh-users:zsh-autosuggestions/xUbuntu_22.04/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_zsh-users_zsh-autosuggestions.gpg > /dev/null;
 #sudo apt update && sudo apt install zsh-autosuggestions;
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh-autosuggestions;
 echo 'source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
+```
+
+### tere
+
+```bash
+wget https://github.com/mgunyho/tere/releases/download/v1.4.0/tere-1.4.0-x86_64-unknown-linux-gnu.zip
+unzip tere-1.4.0-x86_64-unknown-linux-gnu.zip
+sudo mv tere /usr/local/bin
+rm tere-1.4.0-x86_64-unknown-linux-gnu.zip
 ```
 
 ### broot
@@ -99,7 +103,6 @@ sudo apt update && sudo apt install broot && br;
 ln -s ~/.dotfiles/win/verbs.hjson ~/.config/broot/verbs.hjson
 ```
 
-
 # MacOS
 
 ### Install apps
@@ -110,6 +113,7 @@ ln -s ~/.dotfiles/win/verbs.hjson ~/.config/broot/verbs.hjson
 # All apps
 brew install coreutils fzf fasd ripgrep fd tmux
 ```
+
 #### Karabiner-Elements
 
 ### zsh environment
@@ -214,6 +218,7 @@ map <c-/> enterFindMode
 ```
 
 # Archive
+
 ```bash
 # tmux
 ln -s ~/.dotfiles/zsh/.tmux.conf ~/.config/.tmux.conf
