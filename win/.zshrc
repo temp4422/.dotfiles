@@ -142,7 +142,7 @@ tere() {
     local result=$(/home/user/dev/tere/target/debug/tere "$@")
     [ -n "$result" ] && cd -- "$result"
 }
-bindkey -s "^s" 'tere -m ctrl-s:Exit,ctrl-q:Exit^M' # info tere --help
+bindkey -s "^s" 'tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere^M' # info tere --help
 
 
 # nvm
