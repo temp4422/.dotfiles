@@ -98,14 +98,6 @@ alias cat='batcat'
 #alias vi='nvim'
 alias sb='subl.exe'
 
-# fasd
-###############################################################################
-eval "$(fasd --init posix-alias zsh-hook)" # minimal zsh setup
-#eval "$(fasd --init auto)"
-#bindkey '^k^i' fasd-complete # test autocomplete
-# Cache fasd list on shell startup in background
-($(fasd -Rl > ~/.config/.fasd_cache) &) # Use subshell to get rid of the job control messages. A command enclosed in $(...) is replaced with its output.
-
 
 # fzf
 ##############################################################################
@@ -118,6 +110,14 @@ eval "$(fasd --init posix-alias zsh-hook)" # minimal zsh setup
 # $FZF_TMUX_OPTS $FZF_CTRL_T_COMMAND $FZF_CTRL_T_OPTS $FZF_CTRL_R_OPTS $FZF_ALT_C_COMMAND $FZF_ALT_C_OPTS
 export FZF_DEFAULT_OPTS='--ansi --height 50% --history-size=1000 --layout=reverse --border --bind "ctrl-c:execute-silent(echo {} | clip.exe)+abort"'
 
+# fasd
+###############################################################################
+eval "$(fasd --init posix-alias zsh-hook)" # minimal zsh setup
+#eval "$(fasd --init auto)"
+#bindkey '^k^i' fasd-complete # test autocomplete
+# Cache fasd list on shell startup in background after 5 seconds
+($(sleep 5; fasd -Rl > ~/.config/.fasd_cache) &) # Use subshell to get rid of the job control messages. A command enclosed in $(...) is replaced with its output.
+
 # zsh-autosuggestions
 ##############################################################################
 source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -127,25 +127,23 @@ source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Attach to an existing session if it exists, or create a new one if it does not.
 #tmux new-session -As0
 
-
 # Powerlevel10k
 ##############################################################################
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 #[[ ! -f ~/.dotfiles/win/.p10k.zsh ]] || source ~/.dotfiles/win/.p10k.zsh
 
-
 # Load widgets.zsh and 
 ##############################################################################
 source $HOME/.dotfiles/win/widgets.zsh
 
 # tere
+##############################################################################
 tere() {
     local result=$(/home/user/dev/tere/target/debug/tere "$@")
     [ -n "$result" ] && cd -- "$result"
 }
 bindkey -s "^s" 'tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere^M' # info tere --help
-
 
 # nvm
 ##############################################################################
