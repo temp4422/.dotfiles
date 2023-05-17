@@ -1,0 +1,9 @@
+[
+  { "keys": ["ctrl+right"], "command": "move", "args": {"by": "subword_ends", "forward": true} },
+  { "keys": ["ctrl+left"], "command": "move", "args": {"by": "subwords", "forward": false} },
+  { "keys": ["alt+shift+right"], "command": "expand_selection", "args": {"to": "smart"} },
+  { "keys": ["alt+up"], "command": "swap_line_up" },
+  { "keys": ["alt+down"], "command": "swap_line_down" },
+  { "keys": ["alt+shift+down"], "command": "duplicate_line" },
+
+]

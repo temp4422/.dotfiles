@@ -45,6 +45,10 @@ New-Item -Path "C:\Users\user\AppData\Roaming\Microsoft\Windows\Start Menu\Progr
 # Windows Terminal
 New-Item -Path "C:\Users\user\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -ItemType SymbolicLink -Value "\\wsl.localhost\Ubuntu\home\user\.dotfiles\win\settings.json"
 
+# Sublime Text
+New-Item -Path "C:\Users\user\AppData\Roaming\Sublime Text\Packages\User\Default (Windows).sublime-keymap" -ItemType SymbolicLink -Value "\\wsl.localhost\Ubuntu\home\user\.dotfiles\win\Default (Windows).sublime-keymap"
+New-Item -Path "C:\Users\user\AppData\Roaming\Sublime Text\Packages\User\Preferences.sublime-settings" -ItemType SymbolicLink -Value "\\wsl.localhost\Ubuntu\home\user\.dotfiles\win\Preferences.sublime-settings"
+
 # CopyQ
 C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "Start-Sleep -Seconds 10; Start-Process 'C:\Program Files (x86)\CopyQ\copyq.exe'"
 ```
