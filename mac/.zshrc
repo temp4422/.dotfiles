@@ -138,11 +138,17 @@ source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 ##############################################################################
 source $HOME/.dotfiles/mac/widgets.zsh
 
+# tere
+tere() {
+    local result=$(command tere "$@")
+    [ -n "$result" ] && cd -- "$result"
+}
+bindkey -s "^s" 'tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere^M' # info tere --help
 
 # broot
 #source /home/user/.config/broot/launcher/bash/br
 source /Users/user/.config/broot/launcher/bash/br
-bindkey -s "^s" 'br --hidden --sort-by-type^M'
+#bindkey -s "^s" 'br --hidden --sort-by-type^M'
 
 
 # nvm
@@ -164,12 +170,6 @@ export PATH=/home/user/.local/bin:$PATH
 
 # Sublime Text
 export EDITOR=/usr/bin/subl
-
-# tere
-tere() {
-    local result=$(/home/user/dev/tere/target/debug/tere "$@")
-    [ -n "$result" ] && cd -- "$result"
-}
 
 # lama
 lama() {
