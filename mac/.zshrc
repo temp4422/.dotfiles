@@ -2,11 +2,13 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 # Still need to wait for keybinds
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
-#PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f ' # My custom prompt, interfere with "refined" oh-my-zsh theme!!!
+# My custom prompt, interfere with "refined" oh-my-zsh theme!!! # Custom color codes curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash
+#PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f '
+PROMPT=$'\n%F{cyan}%~%f\n%F{46}❯%f '
 
 # Keyboard shortcuts
 ###############################################################################
@@ -126,19 +128,18 @@ source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Attach to an existing session if it exists, or create a new one if it does not.
 #tmux new-session -As0
 
-
 # Powerlevel10k
 ##############################################################################
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.dotfiles/mac/.p10k.zsh ]] || source ~/.dotfiles/mac/.p10k.zsh
-
+#source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
+#[[ ! -f ~/.dotfiles/mac/.p10k.zsh ]] || source ~/.dotfiles/mac/.p10k.zsh
 
 # Load widgets.zsh
 ##############################################################################
 source $HOME/.dotfiles/mac/widgets.zsh
 
 # tere
+##############################################################################
 tere() {
     local result=$(command tere "$@")
     [ -n "$result" ] && cd -- "$result"
