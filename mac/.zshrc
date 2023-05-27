@@ -172,22 +172,22 @@ nvm() {
 #time zsh -c exit #{ time zsh -c exit ; } 2> time.txt
 
 # pnpm
-export PNPM_HOME="/home/user/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+# export PNPM_HOME="/home/user/.local/share/pnpm"
+# export PATH="$PNPM_HOME:$PATH"
 
 # LunarVim configs
-export PATH=/home/user/.local/bin:$PATH
+# export PATH=/home/user/.local/bin:$PATH
 
 # Sublime Text
-export EDITOR=/usr/bin/subl
+# export EDITOR=subl
 
 # lama
-lama() {
-    ~/dev/llama_linux_amd64
-}
+# lama() {
+#     ~/dev/llama_linux_amd64
+# }
 
 # cdir installed with pip install cdir
-alias cdir='source cdir.sh'
+# alias cdir='source cdir.sh'
 
 # my path
-export PATH=/home/user/dev:$PATH
+# export PATH=/home/user/dev:$PATH
