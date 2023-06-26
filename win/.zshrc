@@ -189,3 +189,4 @@ alias cdir='source cdir.sh'
 
 # my path
 export PATH=/home/user/dev:$PATH
+alias p='pnpm'

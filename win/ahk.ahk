@@ -93,8 +93,11 @@ LCtrl & Tab::AltTab
 LCtrl & Esc::Send {Ctrl Down}{Tab}{Ctrl Up}
 ; Close active window (Alt+F4)
 +^w::Send {Alt down}{F4}{Alt up}
-; Show Desktop Alt+D
-!d::Send {LWin Down}{d}{LWin Up}
+; Show Desktop Shift+Alt+D (default Win+D)
+$+!d::
+  Sleep 200
+  Send {LWin Down}{d}{LWin Up}
+return
 ; Change language Alt+Space
 !Space::Send {LWin Down}{Space}{LWin Up}
 ; Reload ahk
@@ -160,7 +163,7 @@ SC163 & s::
   Send {LWin Up}
 return
 F15::
-; !d::
+!d::
 SC163 & d::
   Send {LWin Down}{9} ; CoDe Editor
   Sleep 200
