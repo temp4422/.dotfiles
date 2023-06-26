@@ -599,7 +599,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b com.google.Chrome"
+              "shell_command": "open -b com.brave.Browser"
             }
           ],
           "type": "basic"
@@ -615,7 +615,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b com.sublimetext.4"
+              "shell_command": "open -b com.microsoft.VSCode"
             }
           ],
           "type": "basic"

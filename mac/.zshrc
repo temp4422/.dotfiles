@@ -2,11 +2,13 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 # Still need to wait for keybinds
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
-#PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f ' # My custom prompt, interfere with "refined" oh-my-zsh theme!!!
+# My custom prompt, interfere with "refined" oh-my-zsh theme!!! # Custom color codes curl -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ | bash
+#PROMPT=$'\n⚡ %F{blue}%~%f\n%F{magenta}❯%f '
+PROMPT=$'\n%F{cyan}%~%f\n%F{46}❯%f '
 
 # Keyboard shortcuts
 ###############################################################################
@@ -126,58 +128,66 @@ source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Attach to an existing session if it exists, or create a new one if it does not.
 #tmux new-session -As0
 
-
 # Powerlevel10k
 ##############################################################################
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.dotfiles/mac/.p10k.zsh ]] || source ~/.dotfiles/mac/.p10k.zsh
-
+#source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
+#[[ ! -f ~/.dotfiles/mac/.p10k.zsh ]] || source ~/.dotfiles/mac/.p10k.zsh
 
 # Load widgets.zsh
 ##############################################################################
 source $HOME/.dotfiles/mac/widgets.zsh
 
+# tere
+##############################################################################
+tere() {
+    local result=$(command tere "$@")
+    [ -n "$result" ] && cd -- "$result"
+}
+bindkey -s "^s" 'tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere^M' # info tere --help
 
 # broot
 #source /home/user/.config/broot/launcher/bash/br
 source /Users/user/.config/broot/launcher/bash/br
-bindkey -s "^s" 'br --hidden --sort-by-type^M'
+#bindkey -s "^s" 'br --hidden --sort-by-type^M'
 
 
 # nvm
 ##############################################################################
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${kXDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm. Comment this line and uncomment one below to make shell load faster.
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Alais to load nvm manually. To use node, run "nvm". Uncomment this line and comment one above to make shell load faster.
+# Lazy load nvm for fast startup
+export PATH=~/.nvm/versions/node/v20.2.0/bin:$PATH # Add default node to path
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # Skip checking node version
+# Manually load nvm for fast startup
+# alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Alais to load nvm manually. To use node, run "nvm".
+# Load nvm. Comment this 2 lines and uncomment lazy load for faster startup
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${kXDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Run nvm on call
+nvm() {
+    source ~/.nvm/nvm.sh && nvm
+}
 
 # Show startup time. Profiling: 'zmodload zsh/zprof' 'zprof'
 #time zsh -c exit #{ time zsh -c exit ; } 2> time.txt
 
 # pnpm
-export PNPM_HOME="/home/user/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+# export PNPM_HOME="/home/user/.local/share/pnpm"
+# export PATH="$PNPM_HOME:$PATH"
 
 # LunarVim configs
-export PATH=/home/user/.local/bin:$PATH
+# export PATH=/home/user/.local/bin:$PATH
 
 # Sublime Text
-export EDITOR=/usr/bin/subl
-
-# tere
-tere() {
-    local result=$(/home/user/dev/tere/target/debug/tere "$@")
-    [ -n "$result" ] && cd -- "$result"
-}
+# export EDITOR=subl
 
 # lama
-lama() {
-    ~/dev/llama_linux_amd64
-}
+# lama() {
+#     ~/dev/llama_linux_amd64
+# }
 
 # cdir installed with pip install cdir
-alias cdir='source cdir.sh'
+# alias cdir='source cdir.sh'
 
 # my path
-export PATH=/home/user/dev:$PATH
+# export PATH=/home/user/dev:$PATH
