@@ -297,6 +297,7 @@ return
 ; RemNote shortcuts (browser like)
 variable2 = 0 ; Set variable
 #if WinActive("ahk_exe RemNote.exe")
+  ^d::Send {Ctrl Down}{Right}{Ctrl Up}{Ctrl Down}{Shift Down}{Left}{Shift Up}{Ctrl Up}
   ; Switch panes with ctrl+esc
   LCtrl & Esc::
   if (variable2 == 1){
