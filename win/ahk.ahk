@@ -107,35 +107,41 @@ SC163 & Enter::AppsKey
 
 ; Taskbar
 F19::
+!1::
 SC163 & 1::
   Send {LWin Down}{1}
   Sleep 200
   Send {LWin Up}
 return
 F20::
+!2::
 SC163 & 2::
   Send {LWin Down}{2}
   Sleep 200
   Send {LWin Up}
 return
 F21::
+!3::
 SC163 & 3::
   Send {LWin Down}{3}
   Sleep 200
   Send {LWin Up}
 return
 F23::
+!4::
 SC163 & 4::
   Send {LWin Down}{4}
   Sleep 200
   Send {LWin Up}
 return
 ;F24::
+!5::
 SC163 & 5::
   Send {LWin Down}{5}
   Sleep 200
   Send {LWin Up}
 return
+!6::
 SC163 & 6::
   Send {LWin Down}{6}
   Sleep 200
