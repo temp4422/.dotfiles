@@ -143,7 +143,7 @@ tere() {
     local result=$(/usr/local/bin/tere "$@")
     [ -n "$result" ] && cd -- "$result"
 }
-bindkey -s "^s" 'tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere^M' # info tere --help
+bindkey -s "^s" 'tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere && ls^M' # info tere --help
 
 # broot
 source /home/user/.config/broot/launcher/bash/br
