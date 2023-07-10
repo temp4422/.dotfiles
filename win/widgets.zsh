@@ -262,22 +262,22 @@ fzf-history() {
 zle -N fzf-history
 bindkey '^R' fzf-history
 
-# ctrl+shif+f search global modified
-fzf-find-global() {
-   item="$(find '/' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
-  if [[ -d ${item} ]]; then
-    cd "${item}" || return 1
-  elif [[ -f ${item} ]]; then
-    (vi "${item}" < /dev/tty) || return 1
-  else
-    return 1
-  fi
-   zle accept-line
-}
-#zle -N fzf-find-global; bindkey '^]' fzf-find-global
-run-fzf-find-global(){fzf-find-global; local ret=$?; zle reset-prompt; return $ret}
-zle -N run-fzf-find-global
-bindkey '^]' run-fzf-find-global
+# # ctrl+shif+f search global modified
+# fzf-find-global() {
+#    item="$(find '/' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
+#   if [[ -d ${item} ]]; then
+#     cd "${item}" || return 1
+#   elif [[ -f ${item} ]]; then
+#     (vi "${item}" < /dev/tty) || return 1
+#   else
+#     return 1
+#   fi
+#    zle accept-line
+# }
+# #zle -N fzf-find-global; bindkey '^]' fzf-find-global
+# run-fzf-find-global(){fzf-find-global; local ret=$?; zle reset-prompt; return $ret}
+# zle -N run-fzf-find-global
+# bindkey '^]' run-fzf-find-global
 
 # ctrl+f search local and cd/vi
 fzf-find-local() {
