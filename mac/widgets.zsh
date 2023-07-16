@@ -137,9 +137,9 @@ for key     kcap   seq        mode   widget (
 # to have [zsh] autosuggest [plugin feature] complete visible suggestions, you can assign
 # an array of shell functions to the `ZSH_AUTOSUGGEST_ACCEPT_WIDGETS` variable. When these functions
 # are triggered, they will also complete any visible suggestion. https://stackoverflow.com/a/30899296
-export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
-  key-right
-)
+# export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
+#   key-right
+# )
 
 # ctrl+x,c,v
 # https://unix.stackexchange.com/a/634916/424080
