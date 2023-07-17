@@ -298,6 +298,7 @@ return
 #if (WinActive("ahk_exe msedge.exe") or WinActive("ahk_exe chrome.exe"))
   +^f::Send {Ctrl Down}{Shift Down}{a}{Shift Up}{Ctrl Up}
   SC163 & i::Send {f7}
+  ^s::
 #if
 
 ; RemNote shortcuts (browser like)
