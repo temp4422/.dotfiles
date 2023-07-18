@@ -118,7 +118,11 @@ ln -s ~/.dotfiles/win/verbs.hjson ~/.config/broot/verbs.hjson
 brew install coreutils fzf fasd ripgrep fd tmux
 ```
 
-#### Karabiner-Elements
+### Karabiner-Elements
+```bash
+ln -s ~/.dotfiles/mac/karabiner-elements_1.json ~/.config/karabiner/assets/complex_modifications/karabiner-elements_1.json
+ln -s ~/.dotfiles/mac/karabiner-elements_2.json ~/.config/karabiner/assets/complex_modifications/karabiner-elements_2.json
+```
 
 ### zsh environment
 

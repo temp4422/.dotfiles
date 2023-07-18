@@ -8,9 +8,7 @@
           "description": "Use Return as Open if not renaming file",
           "conditions": [
             {
-              "bundle_identifiers": [
-                "^com.apple.finder"
-              ],
+              "bundle_identifiers": ["^com.apple.finder"],
               "type": "frontmost_application_if"
             },
             {
@@ -22,17 +20,13 @@
           "from": {
             "key_code": "return_or_enter",
             "modifiers": {
-              "optional": [
-                "any"
-              ]
+              "optional": ["any"]
             }
           },
           "to": [
             {
               "key_code": "o",
-              "modifiers": [
-                "right_command"
-              ]
+              "modifiers": ["right_command"]
             }
           ],
           "type": "basic"
@@ -41,9 +35,7 @@
           "description": "Use Return to finish renaming when onedit=1",
           "conditions": [
             {
-              "bundle_identifiers": [
-                "^com.apple.finder"
-              ],
+              "bundle_identifiers": ["^com.apple.finder"],
               "type": "frontmost_application_if"
             },
             {
@@ -55,9 +47,7 @@
           "from": {
             "key_code": "return_or_enter",
             "modifiers": {
-              "optional": [
-                "any"
-              ]
+              "optional": ["any"]
             }
           },
           "to": [
@@ -93,9 +83,7 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com.apple.finder"
-              ]
+              "bundle_identifiers": ["^com.apple.finder"]
             }
           ]
         },
@@ -105,17 +93,13 @@
           "from": {
             "key_code": "f",
             "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
             {
               "key_code": "f",
-              "modifiers": [
-                "left_command"
-              ]
+              "modifiers": ["left_command"]
             },
             {
               "set_variable": {
@@ -127,9 +111,7 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com.apple.finder"
-              ]
+              "bundle_identifiers": ["^com.apple.finder"]
             }
           ]
         },
@@ -139,18 +121,13 @@
           "from": {
             "key_code": "l",
             "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
             {
               "key_code": "g",
-              "modifiers": [
-                "left_command",
-                "left_shift"
-              ]
+              "modifiers": ["left_command", "left_shift"]
             },
             {
               "set_variable": {
@@ -162,9 +139,7 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "^com.apple.finder"
-              ]
+              "bundle_identifiers": ["^com.apple.finder"]
             }
           ]
         },
@@ -172,9 +147,7 @@
           "description": "Use Esc to finish renaming when onedit=1",
           "conditions": [
             {
-              "bundle_identifiers": [
-                "^com.apple.finder"
-              ],
+              "bundle_identifiers": ["^com.apple.finder"],
               "type": "frontmost_application_if"
             },
             {
@@ -186,9 +159,7 @@
           "from": {
             "key_code": "escape",
             "modifiers": {
-              "optional": [
-                "any"
-              ]
+              "optional": ["any"]
             }
           },
           "to": [
@@ -208,9 +179,7 @@
           "description": "Use Backspace as Go to Enclosing Folder if not onedit",
           "conditions": [
             {
-              "bundle_identifiers": [
-                "^com.apple.finder"
-              ],
+              "bundle_identifiers": ["^com.apple.finder"],
               "type": "frontmost_application_if"
             },
             {
@@ -225,9 +194,7 @@
           "to": [
             {
               "key_code": "up_arrow",
-              "modifiers": [
-                "left_command"
-              ]
+              "modifiers": ["left_command"]
             }
           ],
           "type": "basic"
@@ -242,19 +209,13 @@
           "from": {
             "key_code": "caps_lock",
             "modifiers": {
-              "mandatory": [
-                "left_command",
-                "left_shift"
-              ]
+              "mandatory": ["left_command", "left_shift"]
             }
           },
           "to": [
             {
               "key_code": "tab",
-              "modifiers": [
-                "left_control",
-                "left_shift"
-              ]
+              "modifiers": ["left_control", "left_shift"]
             }
           ]
         },
@@ -263,17 +224,13 @@
           "from": {
             "key_code": "caps_lock",
             "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
             {
               "key_code": "tab",
-              "modifiers": [
-                "left_control"
-              ]
+              "modifiers": ["left_control"]
             }
           ]
         },
@@ -332,9 +289,7 @@
           "from": {
             "key_code": "caps_lock",
             "modifiers": {
-              "optional": [
-                "any"
-              ]
+              "optional": ["any"]
             }
           },
           "to": [
@@ -347,26 +302,19 @@
           "from": {
             "key_code": "delete_or_backspace",
             "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
             {
               "key_code": "delete_or_backspace",
-              "modifiers": [
-                "left_option"
-              ]
+              "modifiers": ["left_option"]
             }
           ],
           "conditions": [
             {
               "type": "frontmost_application_unless",
-              "bundle_identifiers": [
-                "^com\\.apple\\.finder$",
-                "^com\\.cocoatech\\.PathFinder$"
-              ]
+              "bundle_identifiers": ["^com\\.apple\\.finder$", "^com\\.cocoatech\\.PathFinder$"]
             }
           ],
           "type": "basic"
@@ -375,9 +323,7 @@
           "from": {
             "key_code": "delete_or_backspace",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -391,18 +337,13 @@
           "from": {
             "key_code": "delete_or_backspace",
             "modifiers": {
-              "mandatory": [
-                "right_command",
-                "left_command"
-              ]
+              "mandatory": ["right_command", "left_command"]
             }
           },
           "to": [
             {
               "key_code": "delete_forward",
-              "modifiers": [
-                "left_option"
-              ]
+              "modifiers": ["left_option"]
             }
           ],
           "type": "basic"
@@ -411,9 +352,7 @@
           "from": {
             "key_code": "f1",
             "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
@@ -427,9 +366,7 @@
           "from": {
             "key_code": "f2",
             "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
@@ -443,9 +380,7 @@
           "from": {
             "key_code": "f1",
             "modifiers": {
-              "mandatory": [
-                "left_option"
-              ]
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -459,9 +394,7 @@
           "from": {
             "key_code": "f2",
             "modifiers": {
-              "mandatory": [
-                "left_option"
-              ]
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -480,9 +413,7 @@
           "from": {
             "key_code": "1",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -496,9 +427,7 @@
           "from": {
             "key_code": "2",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -512,9 +441,7 @@
           "from": {
             "key_code": "3",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -528,9 +455,7 @@
           "from": {
             "key_code": "4",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -544,9 +469,7 @@
           "from": {
             "key_code": "5",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -560,9 +483,7 @@
           "from": {
             "key_code": "6",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -576,9 +497,7 @@
           "from": {
             "key_code": "a",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -592,9 +511,7 @@
           "from": {
             "key_code": "s",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -608,9 +525,7 @@
           "from": {
             "key_code": "d",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -624,17 +539,13 @@
           "from": {
             "key_code": "f",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
             {
               "key_code": "spacebar",
-              "modifiers": [
-                "left_command"
-              ]
+              "modifiers": ["left_command"]
             }
           ],
           "type": "basic"
@@ -643,9 +554,7 @@
           "from": {
             "key_code": "e",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -659,9 +568,7 @@
           "from": {
             "key_code": "q",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -675,19 +582,13 @@
           "from": {
             "key_code": "grave_accent_and_tilde",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
             {
               "key_code": "grave_accent_and_tilde",
-              "modifiers": [
-                "left_command",
-                "left_option",
-                "left_shift"
-              ]
+              "modifiers": ["left_command", "left_option", "left_shift"]
             }
           ],
           "type": "basic"
@@ -696,9 +597,7 @@
           "from": {
             "key_code": "n",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -712,9 +611,7 @@
           "from": {
             "key_code": "u",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -729,14 +626,31 @@
     {
       "description": "🔵 Other keyboard shortcuts",
       "manipulators": [
+        // {
+        //   "type": "basic",
+        //   "from": {
+        //     "key_code": "comma",
+        //     "modifiers": {
+        //       "mandatory": [
+        //         "left_command"
+        //       ]
+        //     }
+        //   },
+        //   "to": [
+        //     {
+        //       "key_code": "tab",
+        //       "modifiers": [
+        //         "left_control"
+        //       ]
+        //     }
+        //   ]
+        // },
         {
           "description": "Switch tab",
           "from": {
             "key_code": "caps_lock",
             "modifiers": {
-              "mandatory": [
-                "left_command"
-              ]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
@@ -792,18 +706,13 @@
           "from": {
             "key_code": "w",
             "modifiers": {
-              "mandatory": [
-                "left_command",
-                "left_shift"
-              ]
+              "mandatory": ["left_command", "left_shift"]
             }
           },
           "to": [
             {
               "key_code": "q",
-              "modifiers": [
-                "left_command"
-              ]
+              "modifiers": ["left_command"]
             }
           ],
           "type": "basic"
@@ -813,17 +722,13 @@
           "from": {
             "key_code": "h",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
             {
               "key_code": "open_bracket",
-              "modifiers": [
-                "left_command"
-              ]
+              "modifiers": ["left_command"]
             }
           ],
           "type": "basic"
@@ -833,17 +738,13 @@
           "from": {
             "key_code": "quote",
             "modifiers": {
-              "mandatory": [
-                "right_command"
-              ]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
             {
               "key_code": "close_bracket",
-              "modifiers": [
-                "left_command"
-              ]
+              "modifiers": ["left_command"]
             }
           ],
           "type": "basic"
@@ -854,9 +755,7 @@
           "from": {
             "key_code": "h",
             "modifiers": {
-              "mandatory": [
-                "command"
-              ]
+              "mandatory": ["command"]
             }
           }
         }
