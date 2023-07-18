@@ -296,35 +296,35 @@ run-fzf-find-local(){fzf-find-local; local ret=$?; zle reset-prompt; return $ret
 zle -N run-fzf-find-local
 bindkey '^f' run-fzf-find-local
 
-# ctrl+k+o cd folder global
-fzf-cd() {
-  local cmd="${FZF_ALT_C_COMMAND:-"command find '/' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -type d -iname '*' 2>/dev/null"}"
-  setopt localoptions pipefail no_aliases 2> /dev/null
-  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
- if [[ -z "$dir" ]]; then
-    zle redisplay
-    return 0
-  fi
-  zle push-line # Clear buffer. Auto-restored on next prompt.
-  BUFFER="cd ${(q)dir}"
-  zle accept-line
-  local ret=$?
-  unset dir # ensure this doesn't end up appearing in prompt expansion
-  zle reset-prompt
-  return $ret
-}
-zle -N fzf-cd
-bindkey '^k^o' fzf-cd
+# # ctrl+k+o cd folder global
+# fzf-cd() {
+#   local cmd="${FZF_ALT_C_COMMAND:-"command find '/' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -type d -iname '*' 2>/dev/null"}"
+#   setopt localoptions pipefail no_aliases 2> /dev/null
+#   local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_C_OPTS" $(__fzfcmd) +m)"
+#  if [[ -z "$dir" ]]; then
+#     zle redisplay
+#     return 0
+#   fi
+#   zle push-line # Clear buffer. Auto-restored on next prompt.
+#   BUFFER="cd ${(q)dir}"
+#   zle accept-line
+#   local ret=$?
+#   unset dir # ensure this doesn't end up appearing in prompt expansion
+#   zle reset-prompt
+#   return $ret
+# }
+# zle -N fzf-cd
+# bindkey '^k^o' fzf-cd
 
-# ctrl+o vi file global
-fzf-vi() {
-   file="$( find '/' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -type f -iname '*' 2>/dev/null | fzf -1 -0 --no-sort +m)" && (vi "${file}" < /dev/tty) || return 1
-   zle acceptl-line
-}
-#zle -N fzf-vi; bindkey '^o' fzf-vi
-run-fzf-vi(){fzf-vi; local ret=$?; zle reset-prompt; return $ret}
-zle -N run-fzf-vi
-bindkey '^o' run-fzf-vi
+# # ctrl+o vi file global
+# fzf-vi() {
+#    file="$( find '/' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -type f -iname '*' 2>/dev/null | fzf -1 -0 --no-sort +m)" && (vi "${file}" < /dev/tty) || return 1
+#    zle acceptl-line
+# }
+# #zle -N fzf-vi; bindkey '^o' fzf-vi
+# run-fzf-vi(){fzf-vi; local ret=$?; zle reset-prompt; return $ret}
+# zle -N run-fzf-vi
+# bindkey '^o' run-fzf-vi
 
 # LF
 ###############################################################################
