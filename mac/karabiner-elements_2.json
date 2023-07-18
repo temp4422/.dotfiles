@@ -225,6 +225,36 @@
         // },
         {
           "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": ["right_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "grave_accent_and_tilde",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["right_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
             "key_code": "grave_accent_and_tilde",
             "modifiers": {
               "mandatory": ["right_command"]
