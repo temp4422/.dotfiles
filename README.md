@@ -124,6 +124,29 @@ ln -s ~/.dotfiles/mac/karabiner-elements_1.json ~/.config/karabiner/assets/compl
 ln -s ~/.dotfiles/mac/karabiner-elements_2.json ~/.config/karabiner/assets/complex_modifications/karabiner-elements_2.json
 ```
 
+### iTerm2
+```bash
+# Map iTerm2 keybinds 'cmd+p' to escape sequence '^[p' mapped to functions in widgets.zsh. Example: bindkey '^[p' run-fzf-fasd-cd-vi
+# Import iTerm2-key-mappings.itermkeymap by Settings -> Profiles -> Keys -> Key Mappings -> Presets -> Import
+# Added keybinds on top on 'Natural Text Editing', nothing removed:
+
+# Movement
+Home 0x1
+End 0x5
+cmd+[ # backward
+cmd+] # forward
+
+# Clipboard
+cmd+x ^[x
+cmd+c ^[c
+cmd+v ^[v
+cmd+a ^[a
+
+# Widgets/functions
+cmd+f ^[ff ('ff' because it interfere with default movement)
+cmd+p ^[p
+cmd+r ^[r
+```
 ### zsh environment
 
 ```bash

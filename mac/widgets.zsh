@@ -54,26 +54,6 @@
 # ###############################################################################
 
 
-# Shell movement
-###############################################################################
-up-dir() {
-  builtin cd ..
-  zle accept-line
-  zle reset-prompt
-}
-zle -N up-dir
-bindkey "^[[1;3D" up-dir #alt-left
-
-prev-dir(){
-  builtin cd -
-  zle accept-line
-  zle reset-prompt
-}
-zle -N prev-dir
-bindkey "^[[1;3C" prev-dir #alt-right
-# zsh commands https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
-
-
 # SHIFT-SELECT
 ##############################################################################
 # zsh-shift-select
@@ -179,14 +159,14 @@ function zle-pre-cmd {
 precmd_functions=("zle-pre-cmd" ${precmd_functions[@]})
 function zle-pre-exec {
   # We are now out of buffer editing mode. Restore the interrupt combo `Ctrl + C`.
-  stty intr "^C"
+  stty intr "^[c"
 }
 preexec_functions=("zle-pre-exec" ${preexec_functions[@]})
 # The `key` column is only used to build a named reference for `zle`
 for key kcap seq   widget              arg (
-    cx  _    $'^X' zle-clipboard-cut   _  # `Ctrl + X`
-    cc  _    $'^C' zle-clipboard-copy  _  # `Ctrl + C`
-    cv  _    $'^V' zle-clipboard-paste _  # `Ctrl + V`
+    cx  _    $'^[x' zle-clipboard-cut   _  # `Ctrl + X`
+    cc  _    $'^[c' zle-clipboard-copy  _  # `Ctrl + C`
+    cv  _    $'^[v' zle-clipboard-paste _  # `Ctrl + V`
 ) {
   if [ "${arg}" = "_" ]; then
     eval "key-$key() {
@@ -212,7 +192,27 @@ function widget::select-all() {
   done
 }
 zle -N widget::select-all
-bindkey '^a' widget::select-all
+bindkey '^[a' widget::select-all
+
+
+# Shell movement
+###############################################################################
+up-dir() {
+  builtin cd ..
+  zle accept-line
+  zle reset-prompt
+}
+zle -N up-dir
+bindkey "^[[" up-dir
+
+prev-dir(){
+  builtin cd -
+  zle accept-line
+  zle reset-prompt
+}
+zle -N prev-dir
+bindkey "^[]" prev-dir
+# zsh commands https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
 
 
 # FZF
@@ -223,7 +223,7 @@ __fzfcmd() {
     echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMU    X_HEIGHT:-40%}} -- " || echo "fzf"
 }
 
-# ctrl+e cd/vi recent folders/files
+# ctrl+p cd/vi recent folders/files
 fzf-fasd-cd-vi() {
 # item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)" # fasdter when reading cache
    item="$(cat ~/.config/.fasd_cache | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
@@ -236,11 +236,10 @@ fzf-fasd-cd-vi() {
   fi
   zle accept-line
 }
-#zle -N fzf-fasd-cd-vi; bindkey '^e' fzf-fasd-cd-vi
 # Run widget from another function to work properly
 run-fzf-fasd-cd-vi(){fzf-fasd-cd-vi; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-fasd-cd-vi
-bindkey '^e' run-fzf-fasd-cd-vi
+bindkey '^[p' run-fzf-fasd-cd-vi
 
 # ctrl+r search history
 fzf-history() {
@@ -260,7 +259,24 @@ fzf-history() {
   return $ret
 }
 zle -N fzf-history
-bindkey '^R' fzf-history
+bindkey '^[r' fzf-history
+
+# ctrl+f search local and cd/vi
+fzf-find-local() {
+   item="$(find . -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
+  if [[ -d ${item} ]]; then
+    cd "${item}" || return 1
+  elif [[ -f ${item} ]]; then
+    (sb "${item}" < /dev/tty) || return 1
+  else
+    return 1
+  fi
+   zle accept-line
+}
+#zle -N fzf-find-local; bindkey '^f' fzf-find-local
+run-fzf-find-local(){fzf-find-local; local ret=$?; zle reset-prompt; return $ret}
+zle -N run-fzf-find-local
+bindkey '^[ff' run-fzf-find-local
 
 # # ctrl+shif+f search global modified
 # fzf-find-global() {
@@ -278,23 +294,6 @@ bindkey '^R' fzf-history
 # run-fzf-find-global(){fzf-find-global; local ret=$?; zle reset-prompt; return $ret}
 # zle -N run-fzf-find-global
 # bindkey '^]' run-fzf-find-global
-
-# ctrl+f search local and cd/vi
-fzf-find-local() {
-   item="$(find . -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
-  if [[ -d ${item} ]]; then
-    cd "${item}" || return 1
-  elif [[ -f ${item} ]]; then
-    (sb "${item}" < /dev/tty) || return 1
-  else
-    return 1
-  fi
-   zle accept-line
-}
-#zle -N fzf-find-local; bindkey '^f' fzf-find-local
-run-fzf-find-local(){fzf-find-local; local ret=$?; zle reset-prompt; return $ret}
-zle -N run-fzf-find-local
-bindkey '^f' run-fzf-find-local
 
 # # ctrl+k+o cd folder global
 # fzf-cd() {
