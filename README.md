@@ -147,6 +147,11 @@ cmd+f ^[ff ('ff' because it interfere with default movement)
 cmd+p ^[p
 cmd+r ^[r
 ```
+
+#### iTerm2 Vim scroll up/down
+Settings -> Advanced  -> Scroll wheel sends arrow keys when in alternate screen mode -> Yes.
+https://apple.stackexchange.com/questions/440527/scrolling-issue-in-vim-after-switch-to-iterm2
+
 ### zsh environment
 
 ```bash
