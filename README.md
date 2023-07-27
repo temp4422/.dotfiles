@@ -126,7 +126,7 @@ ln -s ~/.dotfiles/mac/karabiner-elements_2.json ~/.config/karabiner/assets/compl
 
 ### iTerm2
 ```bash
-# Map iTerm2 keybinds 'cmd+p' to escape sequence '^[p' mapped to functions in widgets.zsh. Example: bindkey '^[p' run-fzf-fasd-cd-vi
+# Map iTerm2 keybinds 'cmd+p' to "Send Text with "vim" Special Chars" - "\<C-p>" mapped to functions in widgets.zsh "^p". Example: bindkey '^p' run-fzf-fasd-cd-vi Basically this maps cmd+key to ctrl+key.
 # Import iTerm2-key-mappings.itermkeymap by Settings -> Profiles -> Keys -> Key Mappings -> Presets -> Import
 # Added keybinds on top on 'Natural Text Editing', nothing removed:
 
@@ -137,15 +137,15 @@ cmd+[ # backward
 cmd+] # forward
 
 # Clipboard
-cmd+x ^[x
-cmd+c ^[c
-cmd+v ^[v
-cmd+a ^[a
+cmd+x \<C-x>
+cmd+c \<C-c>
+cmd+v \<C-v>
+cmd+a \<C-a>
 
 # Widgets/functions
-cmd+f ^[ff ('ff' because it interfere with default movement)
-cmd+p ^[p
-cmd+r ^[r
+cmd+f \<C-f>
+cmd+p \<C-p>
+cmd+r \<C-r>
 ```
 
 #### iTerm2 Vim scroll up/down

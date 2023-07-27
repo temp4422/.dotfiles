@@ -110,7 +110,7 @@ alias sb='subl'
 
 # Set fzf env vars
 # $FZF_TMUX_OPTS $FZF_CTRL_T_COMMAND $FZF_CTRL_T_OPTS $FZF_CTRL_R_OPTS $FZF_ALT_C_COMMAND $FZF_ALT_C_OPTS
-export FZF_DEFAULT_OPTS='--ansi --height 50% --history-size=1000 --layout=reverse --border --bind "ctrl-c:execute-silent(echo {} | clip.exe)+abort"'
+export FZF_DEFAULT_OPTS='--ansi --height 50% --history-size=1000 --layout=reverse --border --bind "ctrl-c:execute-silent(echo {} | pbcopy)+abort"'
 
 # fasd
 ###############################################################################

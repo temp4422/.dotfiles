@@ -164,9 +164,9 @@ function zle-pre-exec {
 preexec_functions=("zle-pre-exec" ${preexec_functions[@]})
 # The `key` column is only used to build a named reference for `zle`
 for key kcap seq   widget              arg (
-    cx  _    $'^[x' zle-clipboard-cut   _  # `Ctrl + X`
-    cc  _    $'^[c' zle-clipboard-copy  _  # `Ctrl + C`
-    cv  _    $'^[v' zle-clipboard-paste _  # `Ctrl + V`
+    cx  _    $'^X' zle-clipboard-cut   _  # `Ctrl + X`
+    cc  _    $'^C' zle-clipboard-copy  _  # `Ctrl + C`
+    cv  _    $'^V' zle-clipboard-paste _  # `Ctrl + V`
 ) {
   if [ "${arg}" = "_" ]; then
     eval "key-$key() {
@@ -192,7 +192,7 @@ function widget::select-all() {
   done
 }
 zle -N widget::select-all
-bindkey '^[a' widget::select-all
+bindkey '^a' widget::select-all
 
 
 # Shell movement
@@ -239,7 +239,7 @@ fzf-fasd-cd-vi() {
 # Run widget from another function to work properly
 run-fzf-fasd-cd-vi(){fzf-fasd-cd-vi; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-fasd-cd-vi
-bindkey '^[p' run-fzf-fasd-cd-vi
+bindkey '^p' run-fzf-fasd-cd-vi
 
 # ctrl+r search history
 fzf-history() {
@@ -259,7 +259,7 @@ fzf-history() {
   return $ret
 }
 zle -N fzf-history
-bindkey '^[r' fzf-history
+bindkey '^r' fzf-history
 
 # ctrl+f search local and cd/vi
 fzf-find-local() {
@@ -276,7 +276,7 @@ fzf-find-local() {
 #zle -N fzf-find-local; bindkey '^f' fzf-find-local
 run-fzf-find-local(){fzf-find-local; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-find-local
-bindkey '^[ff' run-fzf-find-local
+bindkey '^f' run-fzf-find-local
 
 # # ctrl+shif+f search global modified
 # fzf-find-global() {
