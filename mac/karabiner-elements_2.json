@@ -347,6 +347,28 @@
           "type": "basic"
         },
         {
+          "description": "RemNote cmd+shift+f duplicate cmd+p",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["io.remnote"]
+            }
+          ],
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "p",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Lock screen",
           "from": {
             "key_code": "l",
