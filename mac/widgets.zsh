@@ -159,7 +159,7 @@ function zle-pre-cmd {
 precmd_functions=("zle-pre-cmd" ${precmd_functions[@]})
 function zle-pre-exec {
   # We are now out of buffer editing mode. Restore the interrupt combo `Ctrl + C`.
-  stty intr "^[c"
+  stty intr "^C"
 }
 preexec_functions=("zle-pre-exec" ${preexec_functions[@]})
 # The `key` column is only used to build a named reference for `zle`
@@ -192,7 +192,7 @@ function widget::select-all() {
   done
 }
 zle -N widget::select-all
-bindkey '^a' widget::select-all
+bindkey '^[a' widget::select-all # Send escape sequence esc+a, bacause this interfere with 'home' button
 
 
 # Shell movement

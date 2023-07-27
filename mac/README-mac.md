@@ -10,12 +10,19 @@ brew install coreutils fzf fasd ripgrep fd tmux
 ```
 
 ### Karabiner-Elements
+
 ```bash
 ln -s ~/.dotfiles/mac/karabiner-elements_1.json ~/.config/karabiner/assets/complex_modifications/karabiner-elements_1.json
 ln -s ~/.dotfiles/mac/karabiner-elements_2.json ~/.config/karabiner/assets/complex_modifications/karabiner-elements_2.json
 ```
 
 ### iTerm2
+
+Set iTerm2 Vim scroll up/down behavior to use pgup/pgdown in vim
+
+Settings -> Advanced -> Scroll wheel sends arrow keys when in alternate screen mode -> Yes.
+https://apple.stackexchange.com/questions/440527/scrolling-issue-in-vim-after-switch-to-iterm2
+
 ```bash
 # Map iTerm2 keybinds 'cmd+p' to "Send Text with "vim" Special Chars" - "\<C-p>" mapped to functions in widgets.zsh "^p". Example: bindkey '^p' run-fzf-fasd-cd-vi Basically this maps cmd+key to ctrl+key.
 # Import iTerm2-key-mappings.itermkeymap by Settings -> Profiles -> Keys -> Key Mappings -> Presets -> Import
@@ -38,10 +45,6 @@ cmd+f \<C-f>
 cmd+p \<C-p>
 cmd+r \<C-r>
 ```
-
-#### iTerm2 Vim scroll up/down
-Settings -> Advanced  -> Scroll wheel sends arrow keys when in alternate screen mode -> Yes.
-https://apple.stackexchange.com/questions/440527/scrolling-issue-in-vim-after-switch-to-iterm2
 
 ### zsh environment
 
