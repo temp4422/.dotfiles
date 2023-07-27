@@ -100,14 +100,6 @@ alias cat='bat'
 # alias fman='fman.exe .'
 alias sb='subl'
 
-# fasd
-###############################################################################
-# causing slow zsh #eval "$(fasd --init posix-alias zsh-hook)" # minimal zsh setup
-#eval "$(fasd --init auto)"
-#bindkey '^k^i' fasd-complete # test autocomplete
-# Cache fasd list on shell startup in background
-($(fasd -Rl > ~/.config/.fasd_cache) &) # Use subshell to get rid of the job control messages. A command enclosed in $(...) is replaced with its output.
-
 
 # fzf
 ##############################################################################
@@ -119,6 +111,14 @@ alias sb='subl'
 # Set fzf env vars
 # $FZF_TMUX_OPTS $FZF_CTRL_T_COMMAND $FZF_CTRL_T_OPTS $FZF_CTRL_R_OPTS $FZF_ALT_C_COMMAND $FZF_ALT_C_OPTS
 export FZF_DEFAULT_OPTS='--ansi --height 50% --history-size=1000 --layout=reverse --border --bind "ctrl-c:execute-silent(echo {} | clip.exe)+abort"'
+
+# fasd
+###############################################################################
+eval "$(fasd --init posix-alias zsh-hook)" # minimal zsh setup
+#eval "$(fasd --init auto)"
+#bindkey '^k^i' fasd-complete # test autocomplete
+# Cache fasd list on shell startup in background after 5 seconds
+($(sleep 5; fasd -Rl > ~/.config/.fasd_cache) &) # Use subshell to get rid of the job control messages. A command enclosed in $(...) is replaced with its output.
 
 # zsh-autosuggestions
 ##############################################################################
