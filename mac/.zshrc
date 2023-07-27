@@ -192,3 +192,4 @@ nvm() {
 
 # my path
 # export PATH=/home/user/dev:$PATH
+alias python=/usr/bin/python3
