@@ -4,12 +4,6 @@
     {
       "description": "🔵 Diffrent shortcuts",
       "manipulators": [
-        // TODO cmd + pgdown to cycle through tabs in browser
-        // Possible solutions:
-        // 1. other combination DO work -> remap other combination to call ctrl+tab
-        // 2. send command+comma in front_most_app - browser
-        // 3. send cmd + tab
-        // 4. other
         {
           "description": "Move back in history opt+left",
           "from": {
