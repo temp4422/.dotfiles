@@ -1,8 +1,9 @@
 {
-  "tite": "1 jkl; m,./ 👉 arrow_keys page_keys KEEP ORDER !!!",
+  "tite": "1 MAIN SHORTCUTS",
   "rules": [
     {
-      "description": "🔵 1.1 SWITCH LEFT|RIGHT ONLY j; + cmd + shift /  👉 arrow_keys + opt + shift / opt. Issue: need to set arrow + cmd/cmd+shft... to work as opt/opt+shift to jump on words, because MacOS by defualt jump on rows, what's different from Windows.",
+      "description": "🔵 1.1 Switch j|; + cmd + shift 👉 arrow_keys + opt + shift",
+      "description2": "Switch left|right (j|;) + cmd + shift / cmd to -> arrow_keys + opt + shift / opt and backward. Issue: need to set arrow + cmd/cmd+shft... to work as opt/opt+shift to jump on words, because MacOS by defualt jump on rows is different from Windows. This must be before 'Set jkl; to arrows', because it will trigger first.",
       "manipulators": [
         {
           "from": {
@@ -127,7 +128,7 @@
       ]
     },
     {
-      "description": "🔵 1.2 ALTERNATIVE Set jkl;  👉 arrow_keys OPTIONAL = ANY",
+      "description": "🔵 1.2 Set jkl;  👉 arrow_keys (optional = any)",
       "manipulators": [
         {
           "from": {
@@ -192,7 +193,8 @@
       ]
     },
     {
-      "description": "🔵 2 Set m,./  👉 page_keys OPTIONAL = ANY",
+      "description": "🔵 1.3 Set m,./  👉 page_keys (optional = any)",
+      "description2": "Instead of simply mapping m,./ to page_keys, we must declare home/end functionality alone, to make it function properly. I.e. 'm' -> 'left + cmd' to go to start of a row etc. This due macOS functioning different then Windows. Also lcmd+rcmd+comma - not work because of hardware limitation, see N-key rollover https://karabiner-elements.pqrs.org/docs/help/troubleshooting/cannot-use-some-key-combination",
       "manipulators": [
         {
           "from": {
@@ -894,6 +896,236 @@
           ],
           "type": "basic"
         }
+      ]
+    },
+    {
+      "description": "🔵 5 Finder modification to work as Windows File Explorer",
+      "description2": "TODO Issue with spotlight -> trigger inconsistent behavior",
+      "manipulators": [
+        {
+          "description": "Use Return as Open if not renaming file",
+          "conditions": [
+            {
+              "bundle_identifiers": ["^com.apple.finder"],
+              "type": "frontmost_application_if"
+            },
+            {
+              "type": "variable_unless",
+              "name": "onedit",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "o",
+              "modifiers": ["right_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Use Return to finish renaming when onedit=1",
+          "conditions": [
+            {
+              "bundle_identifiers": ["^com.apple.finder"],
+              "type": "frontmost_application_if"
+            },
+            {
+              "name": "onedit",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            },
+            {
+              "set_variable": {
+                "name": "onedit",
+                "value": 0
+              }
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Use F2 as Rename and set onedit",
+          "type": "basic",
+          "from": {
+            "key_code": "f2"
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            },
+            {
+              "set_variable": {
+                "name": "onedit",
+                "value": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            }
+          ]
+        },
+        {
+          "description": "Find and set onedit",
+          "type": "basic",
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f",
+              "modifiers": ["left_command"]
+            },
+            {
+              "set_variable": {
+                "name": "onedit",
+                "value": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            }
+          ]
+        },
+        {
+          "description": "Go to... and set onedit",
+          "type": "basic",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "g",
+              "modifiers": ["left_command", "left_shift"]
+            },
+            {
+              "set_variable": {
+                "name": "onedit",
+                "value": 1
+              }
+            }
+          ],
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            }
+          ]
+        },
+        {
+          "description": "Use Esc to finish renaming when onedit=1",
+          "conditions": [
+            {
+              "bundle_identifiers": ["^com.apple.finder"],
+              "type": "frontmost_application_if"
+            },
+            {
+              "name": "onedit",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "escape",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "escape"
+            },
+            {
+              "set_variable": {
+                "name": "onedit",
+                "value": 0
+              }
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Use Backspace as Go to Enclosing Folder if not onedit",
+          "conditions": [
+            {
+              "bundle_identifiers": ["^com.apple.finder"],
+              "type": "frontmost_application_if"
+            },
+            {
+              "name": "onedit",
+              "type": "variable_if",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "delete_or_backspace"
+          },
+          "to": [
+            {
+              "key_code": "up_arrow",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        }
+        // {
+        //   "description": "Finder go to folder cmd+l",
+        //   "from": {
+        //     "key_code": "l",
+        //     "modifiers": {
+        //       "mandatory": [
+        //         "left_command"
+        //       ]
+        //     }
+        //   },
+        //   "to": [
+        //     {
+        //       "key_code": "g",
+        //       "modifiers": [
+        //         "left_command",
+        //         "left_shift"
+        //       ]
+        //     }
+        //   ],
+        //   "conditions": [
+        //     {
+        //       "type": "frontmost_application_if",
+        //       "bundle_identifiers": [
+        //         "^com\\.apple\\.finder$"
+        //       ]
+        //     }
+        //   ],
+        //   "type": "basic"
+        // },
       ]
     }
     // {
