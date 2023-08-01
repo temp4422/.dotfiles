@@ -2,8 +2,69 @@
   "title": "2 DIFFERENT SHORTCUTS",
   "rules": [
     {
-      "description": "🔵 Diffrent shortcuts",
+      "description": "Diffrent shortcuts",
       "manipulators": [
+        { "description": "🔵 Terminal, iTerm2" },
+        {
+          "description": "iTerm2 cmd+shit+c set variable copyMode = 1",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            }
+          ],
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": ["left_command", "left_shift"]
+            },
+            {
+              "set_variable": {
+                "name": "copyMode",
+                "value": 1
+              }
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "iTerm2 if copyMode = 1; cmd+c -> y",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "y"
+            },
+            {
+              "set_variable": {
+                "name": "copyMode",
+                "value": 0
+              }
+            }
+          ],
+          "type": "basic"
+        },
         {
           "description": "Move back in history opt+left",
           "from": {
