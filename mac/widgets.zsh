@@ -149,6 +149,13 @@ function zle-clipboard-paste {
   LBUFFER+="$(pbpaste | cat)"
 }
 zle -N zle-clipboard-paste
+# Exit ZLE mode; also this is workaround to make ^c (interrupt) work properly
+function my-zle-exit  {
+  zle end-of-line
+  zle magic-space
+  zle backward-delete-char
+}
+zle -N my-zle-exit
 function zle-pre-cmd {
   # We are now in buffer editing mode. Clear the interrupt combo `Ctrl + C` by setting it to the null character, so it
   # can be used as the copy-to-clipboard key instead
@@ -167,6 +174,7 @@ for key kcap seq   widget              arg (
     cx  _    $'^X' zle-clipboard-cut   _  # `Ctrl + X`
     cc  _    $'^C' zle-clipboard-copy  _  # `Ctrl + C`
     cv  _    $'^V' zle-clipboard-paste _  # `Ctrl + V`
+    esc -    $'^[' my-zle-exit         _  # `Esc`
 ) {
   if [ "${arg}" = "_" ]; then
     eval "key-$key() {
