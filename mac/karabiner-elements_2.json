@@ -66,6 +66,22 @@
           "type": "basic"
         },
         {
+          "description": "VSCode cmd+shift+/ -> cmd+alt+shif+/ -> macros.logSelection",
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "slash",
+              "modifiers": ["left_command", "left_shift", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Move back in history opt+left",
           "from": {
             "key_code": "h",
