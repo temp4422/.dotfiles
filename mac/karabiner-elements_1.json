@@ -590,7 +590,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b com.googlecode.iterm2"
+              "shell_command": "open -b dev.warp.Warp-Stable"
             }
           ],
           "type": "basic"
@@ -792,7 +792,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b com.googlecode.iterm2"
+              "shell_command": "open -b dev.warp.Warp-Stable"
             }
           ],
           "type": "basic"
@@ -911,7 +911,7 @@
             },
             {
               "type": "variable_unless",
-              "name": "onedit",
+              "name": "onEdit",
               "value": 1
             }
           ],
@@ -930,14 +930,14 @@
           "type": "basic"
         },
         {
-          "description": "Use Return to finish renaming when onedit=1",
+          "description": "Use Return to finish renaming when onEdit=1",
           "conditions": [
             {
               "bundle_identifiers": ["^com.apple.finder"],
               "type": "frontmost_application_if"
             },
             {
-              "name": "onedit",
+              "name": "onEdit",
               "type": "variable_if",
               "value": 1
             }
@@ -954,7 +954,7 @@
             },
             {
               "set_variable": {
-                "name": "onedit",
+                "name": "onEdit",
                 "value": 0
               }
             }
@@ -962,7 +962,7 @@
           "type": "basic"
         },
         {
-          "description": "Use F2 as Rename and set onedit",
+          "description": "Use F2 as Rename and set onEdit",
           "type": "basic",
           "from": {
             "key_code": "f2"
@@ -973,7 +973,7 @@
             },
             {
               "set_variable": {
-                "name": "onedit",
+                "name": "onEdit",
                 "value": 1
               }
             }
@@ -986,7 +986,7 @@
           ]
         },
         {
-          "description": "Find and set onedit",
+          "description": "Find and set onEdit",
           "type": "basic",
           "from": {
             "key_code": "f",
@@ -1001,7 +1001,7 @@
             },
             {
               "set_variable": {
-                "name": "onedit",
+                "name": "onEdit",
                 "value": 1
               }
             }
@@ -1014,7 +1014,7 @@
           ]
         },
         {
-          "description": "Go to... and set onedit",
+          "description": "Go to... and set onEdit",
           "type": "basic",
           "from": {
             "key_code": "l",
@@ -1029,7 +1029,7 @@
             },
             {
               "set_variable": {
-                "name": "onedit",
+                "name": "onEdit",
                 "value": 1
               }
             }
@@ -1042,14 +1042,14 @@
           ]
         },
         {
-          "description": "Use Esc to finish renaming when onedit=1",
+          "description": "Use Esc to finish renaming when onEdit=1",
           "conditions": [
             {
               "bundle_identifiers": ["^com.apple.finder"],
               "type": "frontmost_application_if"
             },
             {
-              "name": "onedit",
+              "name": "onEdit",
               "type": "variable_if",
               "value": 1
             }
@@ -1066,7 +1066,7 @@
             },
             {
               "set_variable": {
-                "name": "onedit",
+                "name": "onEdit",
                 "value": 0
               }
             }
@@ -1074,14 +1074,14 @@
           "type": "basic"
         },
         {
-          "description": "Use Backspace as Go to Enclosing Folder if not onedit",
+          "description": "Use Backspace as Go to Enclosing Folder if not onEdit",
           "conditions": [
             {
               "bundle_identifiers": ["^com.apple.finder"],
               "type": "frontmost_application_if"
             },
             {
-              "name": "onedit",
+              "name": "onEdit",
               "type": "variable_if",
               "value": 0
             }
@@ -1093,6 +1093,105 @@
             {
               "key_code": "up_arrow",
               "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Set cmd+x -> cutMode = 1",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            },
+            {
+              "name": "cutMode",
+              "type": "variable_if",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "x",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": ["left_command"]
+            },
+            {
+              "set_variable": {
+                "name": "cutMode",
+                "value": 1
+              }
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Paste cmd+v when cutMode = 1",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            },
+            {
+              "name": "cutMode",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "v",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "v",
+              "modifiers": ["left_command", "left_option"]
+            },
+            {
+              "set_variable": {
+                "name": "cutMode",
+                "value": 0
+              }
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Reset with cmd+c -> cutMode = 0",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            },
+            {
+              "name": "cutMode",
+              "type": "variable_if",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": ["left_command"]
+            },
+            {
+              "set_variable": {
+                "name": "cutMode",
+                "value": 0
+              }
             }
           ],
           "type": "basic"
