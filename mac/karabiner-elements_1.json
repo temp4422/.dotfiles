@@ -1195,6 +1195,33 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Delete files cmd+delete",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            },
+            {
+              "name": "onEdit",
+              "type": "variable_if",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
         }
         // {
         //   "description": "Finder go to folder cmd+l",
