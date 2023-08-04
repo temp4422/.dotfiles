@@ -453,34 +453,6 @@
           "type": "basic"
         },
         {
-          "description": "Delete files cmd+delete, when onEdit=0",
-          "description2": "This interfere with cmd+delete -> delete, what is set below and in section 4 of this file. Thus it have to be above those modification, as file is readed from top to bottom, and top items will trigger first https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-evaluation-priority",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
-            },
-            {
-              "name": "onEdit",
-              "type": "variable_if",
-              "value": 0
-            }
-          ],
-          "from": {
-            "key_code": "delete_or_backspace",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "Use Backspace as Go to Enclosing Folder if onEdit=0",
           "conditions": [
             {
@@ -665,6 +637,13 @@
           "type": "basic"
         },
         {
+          "description": "cmd+delete -> delete_forward, except finder, see section 3",
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["^com.apple.finder"]
+            }
+          ],
           "from": {
             "key_code": "delete_or_backspace",
             "modifiers": {
