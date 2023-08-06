@@ -66,6 +66,23 @@
           "type": "basic"
         },
         {
+          "description": "iTerm2 disable cmd+shift+p",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            }
+          ],
+          "from": {
+            "key_code": "p",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [{ "key_code": "vk_none" }],
+          "type": "basic"
+        },
+        {
           "description": "VSCode cmd+shift+/ -> cmd+alt+shif+/ -> macros.logSelection",
           "from": {
             "key_code": "slash",
