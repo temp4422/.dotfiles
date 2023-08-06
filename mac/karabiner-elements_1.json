@@ -818,6 +818,7 @@
           "type": "basic"
         },
         {
+          "description": "Ascii terminal",
           "from": {
             "key_code": "a",
             "modifiers": {
@@ -826,12 +827,13 @@
           },
           "to": [
             {
-              "shell_command": "open -b dev.warp.Warp-Stable"
+              "shell_command": "open -b com.googlecode.iterm2"
             }
           ],
           "type": "basic"
         },
         {
+          "description": "BrowSer, Search",
           "from": {
             "key_code": "s",
             "modifiers": {
@@ -846,6 +848,7 @@
           "type": "basic"
         },
         {
+          "description": "CoDe",
           "from": {
             "key_code": "d",
             "modifiers": {
@@ -860,6 +863,7 @@
           "type": "basic"
         },
         {
+          "description": "Find",
           "from": {
             "key_code": "f",
             "modifiers": {
@@ -875,6 +879,7 @@
           "type": "basic"
         },
         {
+          "description": "File Explorer",
           "from": {
             "key_code": "e",
             "modifiers": {
@@ -889,6 +894,7 @@
           "type": "basic"
         },
         {
+          "description": "Quick notes",
           "from": {
             "key_code": "q",
             "modifiers": {
@@ -897,12 +903,13 @@
           },
           "to": [
             {
-              "shell_command": "open -b io.remnote"
+              "shell_command": "open -b md.obsidian"
             }
           ],
           "type": "basic"
         },
         {
+          "description": "Calculator Numbers",
           "from": {
             "key_code": "n",
             "modifiers": {
@@ -917,6 +924,7 @@
           "type": "basic"
         },
         {
+          "description": "Translate look Up",
           "from": {
             "key_code": "u",
             "modifiers": {
@@ -1020,6 +1028,7 @@
           "type": "basic"
         },
         {
+          "description": "Ascii terminal",
           "from": {
             "key_code": "a",
             "modifiers": {
@@ -1028,12 +1037,13 @@
           },
           "to": [
             {
-              "shell_command": "open -b dev.warp.Warp-Stable"
+              "shell_command": "open -b com.googlecode.iterm2"
             }
           ],
           "type": "basic"
         },
         {
+          "description": "BrowSer, Search",
           "from": {
             "key_code": "s",
             "modifiers": {
@@ -1048,6 +1058,7 @@
           "type": "basic"
         },
         {
+          "description": "CoDe",
           "from": {
             "key_code": "d",
             "modifiers": {
@@ -1062,6 +1073,7 @@
           "type": "basic"
         },
         {
+          "description": "Find",
           "from": {
             "key_code": "f",
             "modifiers": {
@@ -1077,6 +1089,7 @@
           "type": "basic"
         },
         {
+          "description": "File Explorer",
           "from": {
             "key_code": "e",
             "modifiers": {
@@ -1091,6 +1104,7 @@
           "type": "basic"
         },
         {
+          "description": "Quick notes",
           "from": {
             "key_code": "q",
             "modifiers": {
@@ -1099,12 +1113,13 @@
           },
           "to": [
             {
-              "shell_command": "open -b io.remnote"
+              "shell_command": "open -b md.obsidian"
             }
           ],
           "type": "basic"
         },
         {
+          "description": "Calculator Numbers",
           "from": {
             "key_code": "n",
             "modifiers": {
@@ -1119,6 +1134,7 @@
           "type": "basic"
         },
         {
+          "description": "Translate look Up",
           "from": {
             "key_code": "u",
             "modifiers": {

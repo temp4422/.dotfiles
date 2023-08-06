@@ -151,7 +151,6 @@ function zle-clipboard-paste {
 zle -N zle-clipboard-paste
 # Exit ZLE mode; also this is workaround to make ^c (interrupt) work properly
 function my-zle-exit  {
-  zle end-of-line
   zle magic-space
   zle backward-delete-char
 }
