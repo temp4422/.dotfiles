@@ -4,7 +4,7 @@
 echo -e "RemNote to Obsidian shell scritp starts\n"
 
 # 1. Rename Daily Documents to daily
-mv "/Users/user/Downloads/RemNoteExport/Daily Documents" "/Users/user/Downloads/RemNoteExport/daily"
+mv "/Users/user/Downloads/RemNoteExport/Daily Document" "/Users/user/Downloads/RemNoteExport/daily"
 
 # 2. Move all .html files to ~ folder
 mkdir "/Users/user/Downloads/RemNoteExport/~"

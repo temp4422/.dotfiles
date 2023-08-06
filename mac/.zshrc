@@ -145,7 +145,7 @@ tere() {
     local result=$(command tere "$@")
     [ -n "$result" ] && cd -- "$result"
 }
-bindkey -s "^s" 'tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere^M' # info tere --help
+bindkey -s "^s" 'tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere^M' # info tere --help # Set keybind in karabiner cmd+shift+e
 
 # broot
 #source /home/user/.config/broot/launcher/bash/br
