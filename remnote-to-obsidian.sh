@@ -15,7 +15,7 @@ find /Users/user/Downloads/RemNoteExport/*  -type d  \( -path /Users/user/Downlo
 rm -r "/Users/user/Downloads/RemNoteExport/~/~.md" "/Users/user/Downloads/RemNoteExport/~/Website.md" "/Users/user/Downloads/RemNoteExport/~/Automatically Sort.md" "/Users/user/Downloads/RemNoteExport/~/Automatically Add Template.md" "/Users/user/Downloads/RemNoteExport/~/Document.md" "/Users/user/Downloads/RemNoteExport/~/Extra Card Detail.md"
 
 # 4. Convert html to md
-find /Users/user/Downloads/RemNoteExport -iname "*.html" -type f -exec sh -c 'pandoc "${0}" -o "${0%.html}.md" --wrap=none' {} \;
+find /Users/user/Downloads/RemNoteExport -iname "*.html" -type f -exec sh -c 'pandoc "${0}" -o "${0%.html}.md" --wrap=preserve' {} \;
 find /Users/user/Downloads/RemNoteExport -iname "*.html" -type f -exec sh -c 'rm "${0}"' {} \;
 
 # 5. Remove \, # heading 1, {isremreference="true"}, {isinlinelink="true"}, blank lines; Using gnu-sed
