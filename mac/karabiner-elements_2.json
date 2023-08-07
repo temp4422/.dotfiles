@@ -259,6 +259,17 @@
           },
           "to": [{ "key_code": "vk_none" }],
           "type": "basic"
+        },
+        {
+          "description": "Remap left_cmd+h send ctrl+h",
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [{ "key_code": "h", "modifiers": ["left_control"] }],
+          "type": "basic"
         }
       ]
     }
