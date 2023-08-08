@@ -317,7 +317,11 @@
               "mandatory": ["left_command"]
             }
           },
-          "to": [{ "key_code": "vk_none" }],
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
           "type": "basic"
         },
         {
@@ -328,7 +332,38 @@
               "mandatory": ["left_command"]
             }
           },
-          "to": [{ "key_code": "h", "modifiers": ["left_control"] }],
+          "to": [
+            {
+              "key_code": "h",
+              "modifiers": ["left_control"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Select word with cmd+d except VSCode and Sublime Text",
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["com.microsoft.VSCode", "com.sublimetext.4"]
+            }
+          ],
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_option"]
+            },
+            {
+              "key_code": "left_arrow",
+              "modifiers": ["left_option", "left_shift"]
+            }
+          ],
           "type": "basic"
         }
       ]
