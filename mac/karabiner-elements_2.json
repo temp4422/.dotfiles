@@ -2,9 +2,8 @@
   "title": "2 DIFFERENT SHORTCUTS",
   "rules": [
     {
-      "description": "Diffrent shortcuts",
+      "description": "iTerm2",
       "manipulators": [
-        { "description": "🔵 Terminal, iTerm2" },
         {
           "description": "iTerm2 cmd+shit+c set variable copyMode = 1",
           "conditions": [
@@ -81,9 +80,65 @@
           },
           "to": [{ "key_code": "vk_none" }],
           "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "VSCode",
+      "description2": "Shitty macOS force me to put this manipulators about '1 MAIN SHORTCUTS' to work properly, because it interfere with home/end and opt+right/left modifications",
+      "manipulators": [
+        {
+          "description": "Fix VSCode smart selection opt+right/left",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.microsoft.VSCode"]
+            }
+          ],
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["right_command"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "home"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Fix VSCode smart selection opt+right/left",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.microsoft.VSCode"]
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["right_command"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "end"
+            }
+          ],
+          "type": "basic"
         },
         {
           "description": "VSCode cmd+shift+/ -> cmd+alt+shif+/ -> macros.logSelection",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.microsoft.VSCode"]
+            }
+          ],
           "from": {
             "key_code": "slash",
             "modifiers": {
@@ -97,7 +152,12 @@
             }
           ],
           "type": "basic"
-        },
+        }
+      ]
+    },
+    {
+      "description": "Miscellaneous",
+      "manipulators": [
         {
           "description": "Move back in history opt+left",
           "from": {
