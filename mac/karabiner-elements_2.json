@@ -365,6 +365,22 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Disable cmd+q -> ctrl+q",
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "q",
+              "modifiers": ["left_control"]
+            }
+          ],
+          "type": "basic"
         }
       ]
     }
