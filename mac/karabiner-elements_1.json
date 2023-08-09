@@ -903,7 +903,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b md.obsidian"
+              "shell_command": "open -b io.remnote"
             }
           ],
           "type": "basic"
@@ -1113,7 +1113,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b md.obsidian"
+              "shell_command": "open -b io.remnote"
             }
           ],
           "type": "basic"
