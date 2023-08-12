@@ -234,16 +234,6 @@
           "type": "basic"
         },
         {
-          "description": "prevent cmd+h",
-          "from": {
-            "key_code": "h",
-            "modifiers": {
-              "mandatory": ["command"]
-            },
-            "type": "basic"
-          }
-        },
-        {
           "description": "RemNote cmd+enter zoom into rem",
           "conditions": [
             {
@@ -325,27 +315,15 @@
           "type": "basic"
         },
         {
-          "description": "Remap left_cmd+h send ctrl+h",
-          "from": {
-            "key_code": "h",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "h",
-              "modifiers": ["left_control"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Select word with cmd+d except VSCode and Sublime Text",
+          "description": "Select word with cmd+d except: VSCode, Sublime Text, iTerm2",
           "conditions": [
             {
               "type": "frontmost_application_unless",
-              "bundle_identifiers": ["com.microsoft.VSCode", "com.sublimetext.4"]
+              "bundle_identifiers": [
+                "com.microsoft.VSCode",
+                "com.sublimetext.4",
+                "com.googlecode.iterm2"
+              ]
             }
           ],
           "from": {
