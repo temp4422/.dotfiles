@@ -83,26 +83,30 @@ r-select() {
   zle $widget_name -- $@
 }
 for key     kcap   seq        mode   widget (
-    sleft   kLFT   $'\e[1;2D' select   backward-char
     sright  kRIT   $'\e[1;2C' select   forward-char
+    sleft   kLFT   $'\e[1;2D' select   backward-char
     sup     kri    $'\e[1;2A' select   up-line-or-history
     sdown   kind   $'\e[1;2B' select   down-line-or-history
-    send    kEND   $'\E[1;2F' select   end-of-line
-    send2   x      $'\E[4;2~' select   end-of-line
     shome   kHOM   $'\E[1;2H' select   beginning-of-line
     shome2  x      $'\E[1;2~' select   beginning-of-line
-    left    kcub1  $'\EOD'    deselect backward-char
+    send    kEND   $'\E[1;2F' select   end-of-line
+    send2   x      $'\E[4;2~' select   end-of-line
     right   kcuf1  $'\EOC'    deselect forward-char
-    end     kend   $'\EOF'    deselect end-of-line
-    end2    x      $'\E4~'    deselect end-of-line
+    left    kcub1  $'\EOD'    deselect backward-char
     home    khome  $'\EOH'    deselect beginning-of-line
     home2   x      $'\E1~'    deselect beginning-of-line
-    csleft  x      $'\E[1;6D' select   backward-word
-    csright x      $'\E[1;6C' select   forward-word
-    csend   x      $'\E[1;6F' select   end-of-line
-    cshome  x      $'\E[1;6H' select   beginning-of-line
-    cleft   x      $'\E[1;5D' deselect backward-word
+    end     kend   $'\EOF'    deselect end-of-line
+    end2    x      $'\E4~'    deselect end-of-line
+    # csright x      $'\E[1;6C' select   forward-word
+    # csleft  x      $'\E[1;6D' select   backward-word
+    # cshome  x      $'\E[1;6H' select   beginning-of-line
+    # csend   x      $'\E[1;6F' select   end-of-line
+    csright x      $'\E[1;10C' select   forward-word # macOS
+    csleft  x      $'\E[1;10D' select   backward-word # macOS
+    cshome  x      $'\E[1;6H' select   beginning-of-line # macOS REMAPPED in iTerm shift+home (shift+right_cmd+m)
+    csend   x      $'\E[1;6F' select   end-of-line # macOS REMAPPED in iTerm shift+end (shift+right_cmd+/)
     cright  x      $'\E[1;5C' deselect forward-word
+    cleft   x      $'\E[1;5D' deselect backward-word
     del     kdch1   $'\E[3~'  delregion delete-char
     bs      x       $'^?'     delregion backward-delete-char
   ) {
