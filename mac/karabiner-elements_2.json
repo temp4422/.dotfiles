@@ -359,6 +359,50 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Chnage ґ to ʼ in unkraine keyborad",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "grave_accent_and_tilde"
+          },
+          "to": [
+            {
+              "key_code": "backslash"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Chnage ʼ to ґ in unkraine keyborad",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "backslash"
+          },
+          "to": [
+            {
+              "key_code": "grave_accent_and_tilde"
+            }
+          ],
+          "type": "basic"
         }
       ]
     }
