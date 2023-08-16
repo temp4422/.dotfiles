@@ -46,27 +46,27 @@ find /Users/user/Downloads/RemNoteExport -iname "*.md" -type f -exec gsed -i 's/
 find /Users/user/Downloads/RemNoteExport -iname "*.md" -type f -exec gsed -i 's/local:.*files/\/assets/g' {} \;
 
 # 8. Spaced repetition replace →|↔|↓ with >>
-# Disable Dictionary.md cards
-gsed -i 's/→\|↔\|↓/ -> /g' /Users/user/Downloads/RemNoteExport/~/Dictionary.md
+# Disable cards in Dictionary.md
+# gsed -i 's/→\|↔\|↓/ -> /g' /Users/user/Downloads/RemNoteExport/~/Dictionary.md
 # Set flashcards global
 find /Users/user/Downloads/RemNoteExport -iname "*.md" -type f -exec gsed -i 's/→\|↔\|↓/ >> /g' {} \;
 # Set custom review. On review day results corresponds to: hard 1.1m, good 11.1m, easy 2.2y;
-find /Users/user/Downloads/RemNoteExport -iname "*.md" -type f -exec gsed -i 's/\(>>.*\)/\1 <!--SR:!2024-03-01,30,310-->/g' {} \;
+# find /Users/user/Downloads/RemNoteExport -iname "*.md" -type f -exec gsed -i 's/\(>>.*\)/\1 <!--SR:!2024-03-01,30,310-->/g' {} \;
 
 # 9. Copy assets and configs
 cp -r /Users/user/remnote/remnote-60d0a8d64cff290034528346/files /Users/user/Downloads/RemNoteExport/ && mv /Users/user/Downloads/RemNoteExport/files/ /Users/user/Downloads/RemNoteExport/assets
 
-cp -r "/Users/user/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian-vault-iCloud/logseq" /Users/user/Downloads/RemNoteExport/logseq
+cp -r "/Users/user/Library/Mobile Documents/iCloud~com~logseq~logseq/Documents/Logseq-graph-iCloud/logseq" /Users/user/Downloads/RemNoteExport/logseq
 rm -r /Users/user/Downloads/RemNoteExport/logseq/bak
 
-cp -r "/Users/user/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian-vault-iCloud/.obsidian" /Users/user/Downloads/RemNoteExport/.obsidian
+cp -r "/Users/user/Library/Mobile Documents/iCloud~com~logseq~logseq/Documents/Logseq-graph-iCloud/.obsidian" /Users/user/Downloads/RemNoteExport/.obsidian
 
-cp -r "/Users/user/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian-vault-iCloud/whiteboards" /Users/user/Downloads/RemNoteExport/whiteboards
+cp -r "/Users/user/Library/Mobile Documents/iCloud~com~logseq~logseq/Documents/Logseq-graph-iCloud/whiteboards" /Users/user/Downloads/RemNoteExport/whiteboards
 
 # 10. Misc
-mv "/Users/user/Downloads/RemNoteExport/~/⚡ Aims.md" "/Users/user/Downloads/RemNoteExport/⚡ Aims.md"
-mv "/Users/user/Downloads/RemNoteExport/~/✅ TODO.md" "/Users/user/Downloads/RemNoteExport/✅ TODO.md"
-mv "/Users/user/Downloads/RemNoteExport/~/🗃️ Categories.md" "/Users/user/Downloads/RemNoteExport/🗃️ Categories.md"
+# mv "/Users/user/Downloads/RemNoteExport/~/⚡ Aims.md" "/Users/user/Downloads/RemNoteExport/⚡ Aims.md"
+# mv "/Users/user/Downloads/RemNoteExport/~/✅ TODO.md" "/Users/user/Downloads/RemNoteExport/✅ TODO.md"
+# mv "/Users/user/Downloads/RemNoteExport/~/🗃️ Categories.md" "/Users/user/Downloads/RemNoteExport/🗃️ Categories.md"
 
 # FINISH
 echo -e "\nRemNote to Obsidian shell scritp finish OK"
