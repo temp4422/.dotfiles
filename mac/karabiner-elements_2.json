@@ -315,36 +315,6 @@
           "type": "basic"
         },
         {
-          "description": "Select word with cmd+d except: VSCode, Sublime Text, iTerm2",
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": [
-                "com.microsoft.VSCode",
-                "com.sublimetext.4",
-                "com.googlecode.iterm2"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "d",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_option"]
-            },
-            {
-              "key_code": "left_arrow",
-              "modifiers": ["left_option", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "Disable cmd+q -> ctrl+q",
           "from": {
             "key_code": "q",
@@ -403,7 +373,39 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Remap opt+h -> cmd+h",
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "h",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
         }
+        // {
+        //   "description": "Remap cmd+h -> ctrl+h",
+        //   "from": {
+        //     "key_code": "h",
+        //     "modifiers": {
+        //       "mandatory": ["left_command"]
+        //     }
+        //   },
+        //   "to": [
+        //     {
+        //       "key_code": "h",
+        //       "modifiers": ["left_control"]
+        //     }
+        //   ],
+        //   "type": "basic"
+        // }
       ]
     }
   ]
