@@ -2,7 +2,7 @@
   "title": "2 DIFFERENT SHORTCUTS",
   "rules": [
     {
-      "description": "VSCode",
+      "description": "🟡 VSCode",
       "description2": "Shitty macOS force me to put this manipulators about '1 MAIN SHORTCUTS' to work properly, because it interfere with home/end and opt+right/left modifications",
       "manipulators": [
         {
