@@ -143,7 +143,7 @@ source $HOME/.dotfiles/mac/widgets.zsh
 ##############################################################################
 tere() {
     local result=$(command tere "$@")
-    [ -n "$result" ] && cd -- "$result"
+    [ -n "$result" ] && cd -- "$result" && clear && printf '\e[3J' && gls -ah --color --group-directories-first
 }
 bindkey -s "^s" 'tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere^M' # info tere --help # Set keybind in karabiner cmd+shift+e
 
