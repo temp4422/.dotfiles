@@ -897,9 +897,25 @@
           "type": "basic"
         },
         {
-          "description": "Find notes",
+          "description": "Find",
           "from": {
             "key_code": "f",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Quick notes",
+          "from": {
+            "key_code": "q",
             "modifiers": {
               "mandatory": ["right_command"]
             }
@@ -927,9 +943,9 @@
           "type": "basic"
         },
         {
-          "description": "Telegrm Quick",
+          "description": "Telegrm telex",
           "from": {
-            "key_code": "q",
+            "key_code": "x",
             "modifiers": {
               "mandatory": ["right_command"]
             }
@@ -967,22 +983,6 @@
           "to": [
             {
               "shell_command": "open -b com.apple.calculator"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "SpOtlight",
-          "from": {
-            "key_code": "o",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "spacebar",
-              "modifiers": ["left_command"]
             }
           ],
           "type": "basic"
@@ -1048,94 +1048,110 @@
           ],
           "type": "basic"
         },
-        // {
-        //   "from": {
-        //     "key_code": "5",
-        //     "modifiers": {
-        //       "mandatory": ["left_option"]
-        //     }
-        //   },
-        //   "to": [
-        //     {
-        //       "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:4:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
-        //     }
-        //   ],
-        //   "type": "basic"
-        // },
-        // {
-        //   "from": {
-        //     "key_code": "6",
-        //     "modifiers": {
-        //       "mandatory": ["left_option"]
-        //     }
-        //   },
-        //   "to": [
-        //     {
-        //       "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:5:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
-        //     }
-        //   ],
-        //   "type": "basic"
-        // },
-        // {
-        //   "description": "Ascii terminal",
-        //   "from": {
-        //     "key_code": "a",
-        //     "modifiers": {
-        //       "mandatory": ["left_option"]
-        //     }
-        //   },
-        //   "to": [
-        //     {
-        //       "shell_command": "open -b com.googlecode.iterm2"
-        //     }
-        //   ],
-        //   "type": "basic"
-        // },
-        // {
-        //   "description": "BrowSer, Search",
-        //   "from": {
-        //     "key_code": "s",
-        //     "modifiers": {
-        //       "mandatory": ["left_option"]
-        //     }
-        //   },
-        //   "to": [
-        //     {
-        //       "shell_command": "open -b com.brave.Browser"
-        //     }
-        //   ],
-        //   "type": "basic"
-        // },
-        // {
-        //   "description": "CoDe",
-        //   "from": {
-        //     "key_code": "d",
-        //     "modifiers": {
-        //       "mandatory": ["left_option"]
-        //     }
-        //   },
-        //   "to": [
-        //     {
-        //       "shell_command": "open -b com.microsoft.VSCode"
-        //     }
-        //   ],
-        //   "type": "basic"
-        // },
-        // {
-        //   "description": "Find notes",
-        //   "from": {
-        //     "key_code": "f",
-        //     "modifiers": {
-        //       "mandatory": ["left_option"]
-        //     }
-        //   },
-        //   "to": [
-        //     {
-        //       "shell_command": "open -b io.remnote"
-        //     }
-        //   ],
-        //   "type": "basic"
-        // },
+        {
+          "from": {
+            "key_code": "5",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:4:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "6",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:5:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Ascii terminal",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.googlecode.iterm2"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "BrowSer, Search",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.brave.Browser"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "CoDe",
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.microsoft.VSCode"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Find",
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Quick notes",
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b io.remnote"
+            }
+          ],
+          "type": "basic"
+        },
         {
           "description": "File Explorer",
           "from": {
@@ -1152,9 +1168,9 @@
           "type": "basic"
         },
         {
-          "description": "Quick Telegrm",
+          "description": "Telegrm telex",
           "from": {
-            "key_code": "q",
+            "key_code": "x",
             "modifiers": {
               "mandatory": ["left_option"]
             }
@@ -1165,53 +1181,37 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Translate look Up",
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.google.Chrome.app.edanbjnaiofggfmimiidpfmhggkbokck"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Calculator Numbers",
+          "from": {
+            "key_code": "n",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.apple.calculator"
+            }
+          ],
+          "type": "basic"
         }
-        // {
-        //   "description": "Translate look Up",
-        //   "from": {
-        //     "key_code": "u",
-        //     "modifiers": {
-        //       "mandatory": ["left_option"]
-        //     }
-        //   },
-        //   "to": [
-        //     {
-        //       "shell_command": "open -b com.google.Chrome.app.edanbjnaiofggfmimiidpfmhggkbokck"
-        //     }
-        //   ],
-        //   "type": "basic"
-        // },
-        // {
-        //   "description": "Calculator Numbers",
-        //   "from": {
-        //     "key_code": "n",
-        //     "modifiers": {
-        //       "mandatory": ["left_option"]
-        //     }
-        //   },
-        //   "to": [
-        //     {
-        //       "shell_command": "open -b com.apple.calculator"
-        //     }
-        //   ],
-        //   "type": "basic"
-        // },
-        // {
-        //   "description": "SpOtlight",
-        //   "from": {
-        //     "key_code": "o",
-        //     "modifiers": {
-        //       "mandatory": ["left_option"]
-        //     }
-        //   },
-        //   "to": [
-        //     {
-        //       "key_code": "spacebar",
-        //       "modifiers": ["left_command"]
-        //     }
-        //   ],
-        //   "type": "basic"
-        // }
       ]
     }
   ]
