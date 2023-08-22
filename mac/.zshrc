@@ -62,7 +62,7 @@ bindkey -M menuselect '^M' .accept-line
 # common
 alias l='ls --color'
 alias ls='ls --color'
-alias ll='gls -lah --color --group-directories-first'
+alias ll='gls -lAh --color --group-directories-first'
 # alias c='clear'
 alias c="clear && printf '\e[3J'"
 alias rm='rm -rf'
@@ -143,7 +143,7 @@ source $HOME/.dotfiles/mac/widgets.zsh
 ##############################################################################
 tere() {
     local result=$(command tere "$@")
-    [ -n "$result" ] && cd -- "$result" && clear && printf '\e[3J' && gls -ah --color --group-directories-first
+    [ -n "$result" ] && cd -- "$result" && clear && printf '\e[3J' && gls -Ah --color --group-directories-first
 }
 bindkey -s "^s" 'tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere^M' # info tere --help # Set keybind in karabiner cmd+shift+e
 
