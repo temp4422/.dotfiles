@@ -278,6 +278,28 @@
           "type": "basic"
         },
         {
+          "description": "RemNote cmd+w close pane",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["io.remnote"]
+            }
+          ],
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "w",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Lock screen",
           "from": {
             "key_code": "l",
