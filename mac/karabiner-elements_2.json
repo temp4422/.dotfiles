@@ -337,6 +337,28 @@
           "type": "basic"
         },
         {
+          "description": "Set cmd+shift+i -> open dev tools in browser",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.brave.Browser", "org.mozilla.firefox"]
+            }
+          ],
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "i",
+              "modifiers": ["left_command", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Disable cmd+q -> ctrl+q",
           "from": {
             "key_code": "q",
