@@ -193,3 +193,10 @@ nvm() {
 # my path
 # export PATH=/home/user/dev:$PATH
 alias python=/usr/bin/python3
+
+# bun completions
+[ -s "/Users/user/.bun/_bun" ] && source "/Users/user/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
