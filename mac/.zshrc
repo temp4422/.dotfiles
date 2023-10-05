@@ -99,6 +99,7 @@ alias cat='bat'
 #alias vi='nvim'
 # alias fman='fman.exe .'
 alias sb='subl'
+alias bd='bun dev --port 3000'
 
 
 # fzf
