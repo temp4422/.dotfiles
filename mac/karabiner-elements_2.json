@@ -320,7 +320,12 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.brave.Browser", "com.google.Chrome"]
+              "bundle_identifiers": [
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "com.brave.Browser",
+                "org.mozilla.firefox"
+              ]
             }
           ],
           "from": {
@@ -341,7 +346,11 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.brave.Browser", "org.mozilla.firefox"]
+              "bundle_identifiers": [
+                "com.google.Chrome.beta",
+                "com.brave.Browser",
+                "org.mozilla.firefox"
+              ]
             }
           ],
           "from": {
