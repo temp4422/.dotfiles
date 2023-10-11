@@ -115,7 +115,7 @@ export FZF_DEFAULT_OPTS='--ansi --height 50% --history-size=1000 --layout=revers
 
 # fasd
 ###############################################################################
-eval "$(fasd --init posix-alias zsh-hook)" # minimal zsh setup
+eval "$(fasd --init zsh-hook)" # minimal zsh setup
 #eval "$(fasd --init auto)"
 #bindkey '^k^i' fasd-complete # test autocomplete
 # Cache fasd list on shell startup in background after 5 seconds
