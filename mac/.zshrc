@@ -100,6 +100,7 @@ alias cat='bat'
 # alias fman='fman.exe .'
 alias sb='subl'
 alias bd='bun dev --port 3000'
+alias d='docker'
 
 
 # fzf
@@ -195,9 +196,8 @@ nvm() {
 # export PATH=/home/user/dev:$PATH
 alias python=/usr/bin/python3
 
-# bun completions
-[ -s "/Users/user/.bun/_bun" ] && source "/Users/user/.bun/_bun"
-
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+# bun completions
+[ -s "/Users/user/.bun/_bun" ] && source "/Users/user/.bun/_bun"
