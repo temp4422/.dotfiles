@@ -100,6 +100,8 @@ alias cat='bat'
 # alias fman='fman.exe .'
 alias sb='subl'
 alias bd='bun dev --port 3000'
+alias bb='bun run build'
+alias bs='bun run start'
 alias d='docker'
 
 
