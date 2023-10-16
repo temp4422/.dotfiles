@@ -146,15 +146,15 @@ source $HOME/.dotfiles/mac/widgets.zsh
 # tere
 ##############################################################################
 tere() {
-    local result=$(command tere "$@")
+    # local result=$(command tere "$@")
+    local result=$(command tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere "$@")
     [ -n "$result" ] && cd -- "$result" && clear && printf '\e[3J' && gls -Ah --color --group-directories-first
 }
-bindkey -s "^s" 'tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere^M' # info tere --help # Set keybind in karabiner cmd+shift+e
+# bindkey -s '^s' tere^M # info tere --help # Set keybind in karabiner cmd+shift+e
 
 # broot
-#source /home/user/.config/broot/launcher/bash/br
 source /Users/user/.config/broot/launcher/bash/br
-#bindkey -s "^s" 'br --hidden --sort-by-type^M'
+bindkey -s '^s' 'br --hidden --sort-by-type^M'
 
 
 # nvm
@@ -203,3 +203,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 # bun completions
 [ -s "/Users/user/.bun/_bun" ] && source "/Users/user/.bun/_bun"
+
+# Selenium testing
+export PATH=$PATH:/Users/user/dev/selemium-testing
+
