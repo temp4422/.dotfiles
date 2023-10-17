@@ -1,9 +1,9 @@
 {
-  "tite": "1 MAIN SHORTCUTS",
+  "tite": "ALL SHORTCUTS (🔵 = important)",
   "rules": [
     {
-      "description": "🔵 1.1 Switch j|; + cmd + shift 👉 arrow_keys + opt + shift",
-      "description2": "Switch left|right (j|;) + cmd + shift / cmd to -> arrow_keys + opt + shift / opt and backward. Issue: need to set arrow + cmd/cmd+shft... to work as opt/opt+shift to jump on words, because MacOS by defualt jump on rows is different from Windows. This must be before 'Set jkl; to arrows', because it will trigger first.",
+      "description": "🔵 1.1 Switch j|;+cmd+shift 👉 arrow_keys+opt+shift",
+      "description2": "Switch super+cmd/opt+shift+j/; -> opt/cmd+shift+arrow_keys. Issue: need to set arrow + cmd/cmd+shft... to work as opt/opt+shift to jump on words, because MacOS by defualt jump on words is different from Windows. This must be before 'Set jkl; to arrows', because it have to be triggered first.",
       "manipulators": [
         {
           "from": {
@@ -443,6 +443,33 @@
           "type": "basic"
         },
         {
+          "description": "Use super+backspace -> cmd+backspace (del) to Move to Bin if onEdit=0",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            },
+            {
+              "name": "onEdit",
+              "type": "variable_if",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Set cmd+x -> cutMode=1",
           "conditions": [
             {
@@ -544,10 +571,10 @@
       ]
     },
     {
-      "description": "🔵 4 Cmd+CapsLock to Ctrl+Tab, Escape to CapsLock, Cmd+Delete to Opt+Delete, Adjust volume/brightness",
+      "description": "🔵 4 Cmd+CapsLock to Ctrl+Tab; Escape to CapsLock; Cmd+Delete to Opt+Delete; Adjust volume/brightness;",
       "manipulators": [
         {
-          "description": "Cycle through tabs backward",
+          "description": "Cycle through tabs backward cmd+shift+esc",
           "from": {
             "key_code": "caps_lock",
             "modifiers": {
@@ -563,7 +590,7 @@
           "type": "basic"
         },
         {
-          "description": "Cycle through tabs forward",
+          "description": "Cycle through tabs forward cmd+esc",
           "from": {
             "key_code": "caps_lock",
             "modifiers": {
@@ -579,7 +606,7 @@
           "type": "basic"
         },
         {
-          "description": "Cycle through visible panes backward",
+          "description": "Cycle through visible panes backward opt+shift+esc",
           "from": {
             "key_code": "caps_lock",
             "modifiers": {
@@ -595,7 +622,7 @@
           "type": "basic"
         },
         {
-          "description": "Cycle through visible panes forward",
+          "description": "Cycle through visible panes forward opt+esc",
           "from": {
             "key_code": "caps_lock",
             "modifiers": {
@@ -611,6 +638,7 @@
           "type": "basic"
         },
         {
+          "description": "Set capslock -> esc",
           "type": "basic",
           "from": {
             "key_code": "caps_lock"
@@ -622,6 +650,7 @@
           ]
         },
         {
+          "description": "Delete forward word super+cmd+backspace -> opt+del ",
           "from": {
             "key_code": "delete_or_backspace",
             "modifiers": {
@@ -637,13 +666,7 @@
           "type": "basic"
         },
         {
-          "description": "cmd+delete -> delete_forward, except finder, see section 3",
-          "conditions": [
-            {
-              "type": "frontmost_application_unless",
-              "bundle_identifiers": ["^com.apple.finder"]
-            }
-          ],
+          "description": "Delete forward super+backspace -> del",
           "from": {
             "key_code": "delete_or_backspace",
             "modifiers": {
@@ -658,6 +681,7 @@
           "type": "basic"
         },
         {
+          "description": "Delete word backward cmd+backspace -> opt+backspace ",
           "from": {
             "key_code": "delete_or_backspace",
             "modifiers": {
@@ -673,6 +697,7 @@
           "type": "basic"
         },
         {
+          "description": "cmd+f1 -> decrese volume",
           "from": {
             "key_code": "f1",
             "modifiers": {
@@ -687,6 +712,7 @@
           "type": "basic"
         },
         {
+          "description": "cmd+f2 -> increase volume",
           "from": {
             "key_code": "f2",
             "modifiers": {
@@ -701,6 +727,7 @@
           "type": "basic"
         },
         {
+          "description": "opt+f1 decrese brightness",
           "from": {
             "key_code": "f1",
             "modifiers": {
@@ -715,6 +742,7 @@
           "type": "basic"
         },
         {
+          "description": "opt+f2 increse brightness",
           "from": {
             "key_code": "f2",
             "modifiers": {
@@ -1174,6 +1202,425 @@
           "to": [
             {
               "shell_command": "open -b com.apple.calculator"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "iTerm2",
+      "manipulators": [
+        {
+          "description": "iTerm2 cmd+shit+c set variable copyMode = 1",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            }
+          ],
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": ["left_command", "left_shift"]
+            },
+            {
+              "set_variable": {
+                "name": "copyMode",
+                "value": 1
+              }
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "iTerm2 if copyMode = 1; cmd+c -> y",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "y"
+            },
+            {
+              "set_variable": {
+                "name": "copyMode",
+                "value": 0
+              }
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "iTerm2 disable cmd+shift+p",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            }
+          ],
+          "from": {
+            "key_code": "p",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [{ "key_code": "vk_none" }],
+          "type": "basic"
+        },
+        {
+          "description": "iTerm2 map cmd+shift+e to cmd+s",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            }
+          ],
+          "from": {
+            "key_code": "e",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "s",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "RemNote",
+      "manipulators": [
+        {
+          "description": "RemNote cmd+enter zoom into rem",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["io.remnote"]
+            }
+          ],
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "semicolon",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "RemNote cmd+shift+f duplicate cmd+p",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["io.remnote"]
+            }
+          ],
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "p",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "RemNote cmd+w close pane",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["io.remnote"]
+            }
+          ],
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "w",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "Browser",
+      "manipulators": [
+        {
+          "description": "Disable cmd+s in browser",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "com.brave.Browser",
+                "org.mozilla.firefox"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Disable cmd+d in browser",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "com.brave.Browser",
+                "org.mozilla.firefox"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Open dev tools in browser cmd+shift+i -> cmd+opt+i",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.google.Chrome.beta",
+                "com.brave.Browser",
+                "org.mozilla.firefox"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "i",
+              "modifiers": ["left_command", "left_option"]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "Miscellaneous",
+      "manipulators": [
+        {
+          "description": "Move back in history opt+left; super+h -> cmd+[",
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "open_bracket",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Move forward in history opt+right; super+' -> cmd+]",
+          "from": {
+            "key_code": "quote",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "close_bracket",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Quit app cmd+shift+w -> cmd+q",
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "q",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Disable Quit App and remap cmd+q -> ctrl+q",
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "q",
+              "modifiers": ["left_control"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Hide App opt+h -> cmd+h",
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "h",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Disable native Hide App cmd+h -> ctrl+h",
+          "from": {
+            "key_code": "h",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "h",
+              "modifiers": ["left_control"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Lock screen fn+l -> cmd+ctrl+q",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["fn"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "q",
+              "modifiers": ["left_command", "left_control"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Chnage ґ to ʼ in unkraine keyborad",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "grave_accent_and_tilde"
+          },
+          "to": [
+            {
+              "key_code": "backslash"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Chnage ʼ to ґ in unkraine keyborad",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "backslash"
+          },
+          "to": [
+            {
+              "key_code": "grave_accent_and_tilde"
             }
           ],
           "type": "basic"
