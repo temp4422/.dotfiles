@@ -56,7 +56,7 @@ RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
 ###############################################################################
 
 
-# SHIFT-SELECT
+# SHIFT-SELECT & ZSH LINE EDITOR (ZLE)
 ##############################################################################
 # zsh-shift-select
 #source ~/.local/share/zsh/plugins/zsh-shift-select/zsh-shift-select.plugin.zsh
@@ -84,33 +84,32 @@ r-select() {
   shift
   zle $widget_name -- $@
 }
-for key     kcap   seq        mode   widget (
-    sright  kRIT   $'\e[1;2C' select   forward-char
-    sleft   kLFT   $'\e[1;2D' select   backward-char
-    sup     kri    $'\e[1;2A' select   up-line-or-history
-    sdown   kind   $'\e[1;2B' select   down-line-or-history
-    shome   kHOM   $'\E[1;2H' select   beginning-of-line
-    shome2  x      $'\E[1;2~' select   beginning-of-line
-    send    kEND   $'\E[1;2F' select   end-of-line
-    send2   x      $'\E[4;2~' select   end-of-line
-    right   kcuf1  $'\EOC'    deselect forward-char
-    left    kcub1  $'\EOD'    deselect backward-char
-    home    khome  $'\EOH'    deselect beginning-of-line
-    home2   x      $'\E1~'    deselect beginning-of-line
-    end     kend   $'\EOF'    deselect end-of-line
-    end2    x      $'\E4~'    deselect end-of-line
-    # csright x      $'\E[1;6C' select   forward-word
-    # csleft  x      $'\E[1;6D' select   backward-word
-    # cshome  x      $'\E[1;6H' select   beginning-of-line
-    # csend   x      $'\E[1;6F' select   end-of-line
-    csright x      $'\E[1;10C' select   forward-word # macOS
-    csleft  x      $'\E[1;10D' select   backward-word # macOS
-    cshome  x      $'\E[1;6H' select   beginning-of-line # macOS REMAPPED in iTerm shift+home (shift+right_cmd+m)
-    csend   x      $'\E[1;6F' select   end-of-line # macOS REMAPPED in iTerm shift+end (shift+right_cmd+/)
-    cright  x      $'\E[1;5C' deselect forward-word
-    cleft   x      $'\E[1;5D' deselect backward-word
-    del     kdch1   $'\E[3~'  delregion delete-char
-    bs      x       $'^?'     delregion backward-delete-char
+# Set bindkey keybindings all together
+for key     kcap   seq         mode       widget (
+    sright  kRIT   $'\e[1;2C'  select     forward-char
+    sleft   kLFT   $'\e[1;2D'  select     backward-char
+    sup     kri    $'\e[1;2A'  select     up-line-or-history
+    sdown   kind   $'\e[1;2B'  select     down-line-or-history
+    shome   kHOM   $'\E[1;2H'  select     beginning-of-line
+    shome2  x      $'\E[1;2~'  select     beginning-of-line
+    send    kEND   $'\E[1;2F'  select     end-of-line
+    send2   x      $'\E[4;2~'  select     end-of-line
+    right   kcuf1  $'\EOC'     deselect   forward-char
+    left    kcub1  $'\EOD'     deselect   backward-char
+    home    khome  $'\EOH'     deselect   beginning-of-line
+    home2   x      $'\E1~'     deselect   beginning-of-line
+    end     kend   $'\EOF'     deselect   end-of-line
+    end2    x      $'\E4~'     deselect   end-of-line
+    #csright x     $'\E[1;6C'  select     forward-word
+    #csleft  x     $'\E[1;6D'  select     backward-word
+    csright x      $'\E[1;10C' select     forward-word # iTerm zsh
+    csleft  x      $'\E[1;10D' select     backward-word # iTerm zsh
+    cshome  x      $'\E[1;6H'  select     beginning-of-line
+    csend   x      $'\E[1;6F'  select     end-of-line
+    cright  x      $'\E[1;5C'  deselect   forward-word
+    cleft   x      $'\E[1;5D'  deselect   backward-word
+    del     kdch1  $'\E[3~'    delregion  delete-char
+    bs      x      $'^?'       delregion  backward-delete-char
   ) {
   eval "key-$key() {
     r-$mode $widget \$@
@@ -207,6 +206,10 @@ function widget::select-all() {
 zle -N widget::select-all
 bindkey '^[a' widget::select-all # Send escape sequence esc+a, bacause this interfere with 'home' button
 
+# Undo ctrl-z
+bindkey "^Z" undo
+
+
 
 # Shell movement
 ###############################################################################
@@ -243,7 +246,7 @@ fzf-fasd-cd-vi() {
   if [[ -d ${item} ]]; then
     cd "${item}" || return 1
   elif [[ -f ${item} ]]; then
-    (sb "${item}" < /dev/tty) || return 1
+    (code "${item}" < /dev/tty) || return 1
   else
     return 1
   fi
@@ -274,13 +277,13 @@ fzf-history() {
 zle -N fzf-history
 bindkey '^r' fzf-history
 
-# ctrl+f search local and cd/vi
+# ctrl+shift+f search local and cd/vi
 fzf-find-local() {
    item="$(find . -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
   if [[ -d ${item} ]]; then
     cd "${item}" || return 1
   elif [[ -f ${item} ]]; then
-    (sb "${item}" < /dev/tty) || return 1
+    (code "${item}" < /dev/tty) || return 1
   else
     return 1
   fi
