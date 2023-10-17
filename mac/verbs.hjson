@@ -122,9 +122,37 @@ verbs: [
     #     external: "mv {file} {other-panel-directory}"
     #     leave_broot: false
     # }
+
+    # Quit and cd dir
     {
-    key: "ctrl-s"
-    execution: "cd {directory}"
-    from_shell: true
+      invocation: quit_and_cd
+      key: "ctrl-s"
+      execution: "cd {directory}"
+      from_shell: true # Execute this command from outer shell
     }
+
+    # Because opt+left/right switched with cmd+left/right in karabiner-elements (jk;l+cmd/opt/shift), we must remap ctrl+left/right to alt+left/right
+
+    # TODO
+    # :panel_left
+    # :panel_left_no_open
+    # :panel_right
+    # :panel_right_no_open
+
+    # {
+    #   key: "alt-Left"
+    #   internal: ":panel_left_no_open"
+    # }
+    # {
+    #   key: "alt-Right"
+    #   internal: ":panel_right"
+    # }
+    # {
+    #   key: "alt-Right"
+    #   internal: ":panel_right_no_open"
+    # }
+
+
+    # { key: "ctrl-c", internal: ":input_selection_copy" }
+    # { key: "ctrl-x", internal: ":input_selection_cut" }
 ]

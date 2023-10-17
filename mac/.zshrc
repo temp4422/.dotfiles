@@ -156,6 +156,11 @@ tere() {
 source /Users/user/.config/broot/launcher/bash/br
 bindkey -s '^s' 'br --hidden --sort-by-type^M'
 
+# walk
+function lk {
+  cd "$(walk "$@")"
+}
+
 
 # nvm
 ##############################################################################
