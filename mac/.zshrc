@@ -133,14 +133,14 @@ source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
 ##############################################################################
 tere() {
     # local result=$(command tere "$@")
-    local result=$(command tere --map ctrl-s:Exit,ctrl-q:Exit --gap-search-anywhere "$@")
+    local result=$(command tere --map alt-s:Exit,ctrl-q:Exit --gap-search-anywhere "$@")
     [ -n "$result" ] && cd -- "$result" && clear && printf '\e[3J' && gls -Ah --color --group-directories-first
 }
-# bindkey -s '^s' tere^M # info tere --help # Set keybind in karabiner cmd+shift+e
+bindkey -s '^[s' tere^M # Set keybind in iTerm cmd+shift+s -> alt+s
 
 # broot
 source /Users/user/.config/broot/launcher/bash/br
-bindkey -s '^s' 'br --hidden --sort-by-type^M'
+bindkey -s '^s' 'br --hidden --sort-by-type^M' # Set keybind in karabiner cmd+shift+e
 
 # walk
 lk() {
