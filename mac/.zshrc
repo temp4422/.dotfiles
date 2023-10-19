@@ -91,7 +91,7 @@ alias cat='bat'
 # alias vi='nvim'
 alias bd='bun dev --port 3000'
 alias bb='bun run build'
-alias bs='bun run start'
+alias bs='bun run start --port 3000'
 alias d='docker'
 
 
@@ -151,7 +151,7 @@ lk() {
 # nvm
 ##############################################################################
 # Lazy load nvm for fast startup
-export PATH=~/.nvm/versions/node/v20.2.0/bin:$PATH # Add default node to path
+export PATH=~/.nvm/versions/node/v21.0.0/bin:$PATH # Add default node to path
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # Skip checking node version
 # Manually load nvm for fast startup
 # alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Alais to load nvm manually. To use node, run "nvm".

@@ -125,11 +125,18 @@ verbs: [
 
     # Quit and cd dir
     {
-      invocation: quit_and_cd
-      key: "ctrl-s"
-      execution: "cd {directory}"
+      invocation: quit_and_cd # :quit_and_cd
+      key: "ctrl-s" # https://dystroy.org/broot/conf_verbs#verbs-shortcuts-and-keys
+      external: "cd {directory}" # Use selection argument https://dystroy.org/broot/verbs/#verbs-using-the-selection
       from_shell: true # Execute this command from outer shell
     }
+
+    # Open file/folder in VSCode
+    {
+      invocation: code
+      external: "code {file}"
+    }
+
 
     # Because opt+left/right switched with cmd+left/right in karabiner-elements (jk;l+cmd/opt/shift), we must remap ctrl+left/right to alt+left/right
 
@@ -153,6 +160,12 @@ verbs: [
     # }
 
 
-    # { key: "ctrl-c", internal: ":input_selection_copy" }
-    # { key: "ctrl-x", internal: ":input_selection_cut" }
+    # {
+    #   key: "ctrl-c"
+    #   internal: ":input_selection_copy"
+    # }
+    # {
+    #   key: "ctrl-x"
+    #   internal: ":input_selection_cut"
+    # }
 ]
