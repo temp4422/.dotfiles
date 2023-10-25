@@ -94,6 +94,8 @@ alias bb='bun run build'
 alias bs='bun run start --port 3000'
 alias d='docker'
 
+# Homebrew: Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # fzf
 ##############################################################################
@@ -142,12 +144,6 @@ bindkey -s '^[s' tere^M # Set keybind in iTerm cmd+shift+s -> alt+s
 source /Users/user/.config/broot/launcher/bash/br
 bindkey -s '^s' 'br --hidden --sort-by-type^M' # Set keybind in karabiner cmd+shift+e
 
-# walk
-lk() {
-  cd "$(walk "$@")"
-}
-
-
 # nvm
 ##############################################################################
 # Lazy load nvm for fast startup
@@ -182,6 +178,11 @@ nvm() {
 #     ~/dev/llama_linux_amd64
 # }
 
+# walk
+# lk() {
+#   cd "$(walk "$@")"
+# }
+
 # cdir installed with pip install cdir
 # alias cdir='source cdir.sh'
 
@@ -197,4 +198,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Selenium testing
 export PATH=$PATH:/Users/user/dev/selemium-testing
-
