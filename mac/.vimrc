@@ -1,3 +1,4 @@
+set viminfo+=n~/.config/.viminfo
 syntax on
 set number
 set showcmd

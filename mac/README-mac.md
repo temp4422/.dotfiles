@@ -6,20 +6,13 @@
 # Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)";
 # All apps
-brew install coreutils fzf fasd ripgrep fd tmux bat tere hammerspoon
+brew install coreutils fzf fasd ripgrep fd tmux bat broot tere
 ```
 
 ## Karabiner-Elements
 
 ```bash
 ln -s ~/.dotfiles/mac/karabiner-elements_1.json ~/.config/karabiner/assets/complex_modifications/karabiner-elements_1.json
-ln -s ~/.dotfiles/mac/karabiner-elements_2.json ~/.config/karabiner/assets/complex_modifications/karabiner-elements_2.json
-```
-
-## Hammerspoon
-
-```bash
-ln -s ~/.dotfiles/mac/init.lua ~/.hammerspoon/init.lua
 ```
 
 ## iTerm2
@@ -37,36 +30,31 @@ https://apple.stackexchange.com/questions/440527/scrolling-issue-in-vim-after-sw
 # Movement
 Home 0x1
 End 0x5
-cmd+[ # backward
-cmd+] # forward
+cmd+[ ^[[ # backward
+cmd+] ^[] # forward
 
 # Clipboard
-cmd+x \<C-x>
+cmd+a ^[a
 cmd+c \<C-c>
 cmd+v \<C-v>
-cmd+a \<C-a>
+cmd+x \<C-x>
+cmd+z \<C-z>
 
 # Widgets/functions
-cmd+f \<C-f>
-cmd+p \<C-p>
+cmd+d "Split Vertically with 'My profile'"
+cmd+e \<C-e>
+cmd+p \<C-p> # fzf-fasd
 cmd+r \<C-r>
+cmd+s \<C-s> # broot
+cmd+shift+s ^[s # tere
+cmd+shift+f \<C-f> # fzf search
 ```
 
 ## zsh environment
 
 ```bash
 rm -rf ~/.zshrc ~/.vimrc ~/.tmux.conf ~/.config/lf/lfrc ~/.config/broot/verbs.hjson;
-ln -s ~/.dotfiles/mac/.zshrc ~/.zshrc && ln -s ~/.dotfiles/mac/.vimrc ~/.vimrc;
-```
-
-## Powerlevel10k
-
-```bash
-#brew install romkatv/powerlevel10k/powerlevel10k
-#echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/powerlevel10k;
-#echo '[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh' >>~/.zshrc
-#echo 'source ~/.config/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+ln -s ~/.dotfiles/mac/.zshrc ~/.zshrc && ln -s ~/.dotfiles/mac/.vimrc ~/.config/.vimrc;
 ```
 
 ## zsh-autosuggestions
@@ -86,4 +74,22 @@ sudo apt update && sudo apt install broot && br;
 ln -s ~/.dotfiles/mac/verbs.hjson ~/.config/broot/verbs.hjson
 ```
 
+## Powerlevel10k
+
+```bash
+#brew install romkatv/powerlevel10k/powerlevel10k
+#echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/powerlevel10k;
+#echo '[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh' >>~/.zshrc
+#echo 'source ~/.config/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+```
+
+## Hammerspoon
+
+```bash
+ln -s ~/.dotfiles/mac/init.lua ~/.hammerspoon/init.lua
+```
+
 ## Sublime Text
+
+https://gist.github.com/skoqaq/3f3e8f28e23c881143cef9cf49d821ff?permalink_comment_id=4424828#gistcomment-4424828

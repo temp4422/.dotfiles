@@ -97,6 +97,9 @@ alias d='docker'
 # Homebrew: Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# vim 
+export VIMINIT="source ~/.config/.vimrc"
+
 # fzf
 ##############################################################################
 # Init fzf
