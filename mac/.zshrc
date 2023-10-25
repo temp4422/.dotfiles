@@ -40,8 +40,8 @@ setopt noflowcontrol
 
 # Set history options
 setopt histignorealldups sharehistory
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=2000
+SAVEHIST=2000
 HISTFILE=~/.config/.zsh_history
 
 # Use modern completion system, otherwise by default will be used old one
@@ -97,7 +97,7 @@ alias d='docker'
 # Homebrew: Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# vim 
+# vim
 export VIMINIT="source ~/.config/.vimrc"
 
 # fzf
@@ -113,6 +113,8 @@ export FZF_DEFAULT_OPTS='--ansi --height 50% --history-size=1000 --layout=revers
 
 # fasd
 ###############################################################################
+#Path to the fasd data file, default "$HOME/.fasd". #$_FASD_DATA
+export _FASD_DATA=$HOME/.config/.fasd
 eval "$(fasd --init zsh-hook)" # minimal zsh setup
 # eval "$(fasd --init auto)"
 #bindkey '^k^i' fasd-complete # test autocomplete
