@@ -89,9 +89,10 @@ alias j='fasd_cd -d'
 alias grep='rg --ignore-case'
 alias cat='bat'
 # alias vi='nvim'
-alias bd='bun dev --port 3000'
+alias bd='bun run dev'
 alias bb='bun run build'
 alias bs='bun run start --port 3000'
+alias bi='bun install && bun run build'
 alias d='docker'
 
 # Homebrew: Set PATH, MANPATH, etc., for Homebrew.
@@ -152,7 +153,7 @@ bindkey -s '^s' 'br --hidden --sort-by-type^M' # Set keybind in karabiner cmd+sh
 # nvm
 ##############################################################################
 # Lazy load nvm for fast startup
-export PATH=~/.nvm/versions/node/v21.0.0/bin:$PATH # Add default node to path
+export PATH=~/.nvm/versions/node/v21.1.0/bin:$PATH # Add default node to path
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # Skip checking node version
 # Manually load nvm for fast startup
 # alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Alais to load nvm manually. To use node, run "nvm".
