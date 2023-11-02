@@ -110,6 +110,8 @@ for key     kcap   seq         mode       widget (
     cleft   x      $'\E[1;5D'  deselect   backward-word
     del     kdch1  $'\E[3~'    delregion  delete-char
     bs      x      $'^?'       delregion  backward-delete-char
+    #pgup    x      $'\E[5~'    deselect     up-line # Move up a line in the buffer. #NOT WORK!
+    #pgdown  x      $'\E[6~'  deselect   down-line # Move down a line in the buffer. #NOT WORK!
   ) {
   eval "key-$key() {
     r-$mode $widget \$@
@@ -213,21 +215,21 @@ bindkey "^Z" undo
 
 # Shell movement
 ###############################################################################
-up-dir() {
-  builtin cd ..
-  zle accept-line
-  zle reset-prompt
-}
-zle -N up-dir
-bindkey "^[[" up-dir
+# up-dir() {
+#   builtin cd ..
+#   zle accept-line
+#   zle reset-prompt
+# }
+# zle -N up-dir
+# bindkey "^[[" up-dir
 
-prev-dir(){
-  builtin cd -
-  zle accept-line
-  zle reset-prompt
-}
-zle -N prev-dir
-bindkey "^[]" prev-dir
+# prev-dir(){
+#   builtin cd -
+#   zle accept-line
+#   zle reset-prompt
+# }
+# zle -N prev-dir
+# bindkey "^[]" prev-dir
 # zsh commands https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
 
 
