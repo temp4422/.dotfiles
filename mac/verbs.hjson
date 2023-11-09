@@ -137,39 +137,6 @@ verbs: [
       external: "code {file}"
     }
 
-
-    # Because opt+left/right switched with cmd+left/right in karabiner-elements (jk;l+cmd/opt/shift), we must remap ctrl+left/right to alt+left/right
-
-    # TODO
-    # :panel_left
-    # :panel_left_no_open
-    # :panel_right
-    # :panel_right_no_open
-
-    # {
-    #   key: "alt-Left"
-    #   internal: ":panel_left_no_open"
-    # }
-    # {
-    #   key: "alt-Right"
-    #   internal: ":panel_right"
-    # }
-    # {
-    #   key: "alt-Right"
-    #   internal: ":panel_right_no_open"
-    # }
-
-
-    # {
-    #   key: "ctrl-c"
-    #   internal: ":input_selection_copy"
-    # }
-    # {
-    #   key: "ctrl-x"
-    #   internal: ":input_selection_cut"
-    # }
-
-
     {
       key: "ctrl-h"
       internal: ":toggle_hidden"
@@ -180,9 +147,15 @@ verbs: [
       internal: ":toggle_git_ignore"
     }
 
-    {
-      key: "alt-g"
-      internal: ":toggle_git_ignore"
-    }
+    # {
+    #   key: "ctrl-c"
+    #   internal: ":input_selection_copy"
+    # }
 
+    # {
+    #   key: "ctrl-x"
+    #   internal: ":input_selection_cut"
+    # }
+
+    # Fix open panel_left/panel_right in iTerm key mappings https://github.com/Canop/broot/issues/86#issuecomment-1803637068
 ]
