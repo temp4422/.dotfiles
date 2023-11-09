@@ -133,16 +133,22 @@
       "Text" : "8",
       "Label" : ""
     },
-    "0x3-0x200000-0x0" : {
-      "Version" : 0,
-      "Action" : 11,
-      "Text" : "0xd",
+    "0x6b-0x100000-0x28" : {
+      "Version" : 1,
+      "Action" : 38,
+      "Text" : "\\<C-k>",
       "Label" : ""
     },
     "0xf728-0x80000-0x0" : {
       "Version" : 0,
       "Action" : 10,
       "Text" : "d",
+      "Label" : ""
+    },
+    "0x3-0x200000-0x0" : {
+      "Version" : 0,
+      "Action" : 11,
+      "Text" : "0xd",
       "Label" : ""
     },
     "0xf70e-0x20000-0x0" : {
@@ -179,6 +185,12 @@
       "Version" : 0,
       "Action" : 10,
       "Text" : "[19;2~",
+      "Label" : ""
+    },
+    "0x6a-0x100000-0x26" : {
+      "Version" : 1,
+      "Action" : 38,
+      "Text" : "\\<C-j>",
       "Label" : ""
     },
     "0x7a-0x100000-0x6" : {
@@ -265,6 +277,12 @@
       "Text" : "0x1b 0x7f",
       "Label" : ""
     },
+    "0x6c-0x100000-0x25" : {
+      "Version" : 1,
+      "Action" : 38,
+      "Text" : "\\<C-l>",
+      "Label" : ""
+    },
     "0x70-0x100000-0x23" : {
       "Version" : 1,
       "Action" : 38,
@@ -319,16 +337,16 @@
       "Text" : "",
       "Label" : ""
     },
-    "0x34-0x200000-0x0" : {
-      "Version" : 0,
-      "Action" : 12,
-      "Text" : "4",
-      "Label" : ""
-    },
     "0xf70d-0x20000-0x0" : {
       "Version" : 0,
       "Action" : 10,
       "Text" : "[21;2~",
+      "Label" : ""
+    },
+    "0x34-0x200000-0x0" : {
+      "Version" : 0,
+      "Action" : 12,
+      "Text" : "4",
       "Label" : ""
     },
     "0xf72b-0x20000-0x0" : {
