@@ -135,7 +135,7 @@ for key       kcap     seq          mode       widget (
 
 # ctrl+x,c,v
 # https://unix.stackexchange.com/a/634916/424080
-function zle-clipboard-cut {
+zle-clipboard-cut() {
   if ((REGION_ACTIVE)); then
     zle copy-region-as-kill
     print -rn -- $CUTBUFFER | pbcopy #xclip -selection clipboard -in
@@ -143,7 +143,7 @@ function zle-clipboard-cut {
   fi
 }
 zle -N zle-clipboard-cut
-function zle-clipboard-copy {
+zle-clipboard-copy() {
   if ((REGION_ACTIVE)); then
     zle copy-region-as-kill
     print -rn -- $CUTBUFFER | pbcopy #xclip -selection clipboard -in
@@ -153,7 +153,7 @@ function zle-clipboard-copy {
   fi
 }
 zle -N zle-clipboard-copy
-function zle-clipboard-paste {
+zle-clipboard-paste() {
   if ((REGION_ACTIVE)); then
     zle kill-region
   fi
@@ -162,12 +162,12 @@ function zle-clipboard-paste {
 }
 zle -N zle-clipboard-paste
 # Exit ZLE mode; also this is workaround to make ^c (interrupt) work properly
-function my-zle-exit  {
+my-zle-exit () {
   zle magic-space
   zle backward-delete-char
 }
 zle -N my-zle-exit
-function zle-pre-cmd {
+zle-pre-cmd() {
   # We are now in buffer editing mode. Clear the interrupt combo `Ctrl + C` by setting it to the null character, so it
   # can be used as the copy-to-clipboard key instead
   # stty intr "^@" # IMPORTANT! interfere with Powerlevel10k Instant prompt
@@ -175,7 +175,7 @@ function zle-pre-cmd {
   stty intr "^@" <$TTY >$TTY
 }
 precmd_functions=("zle-pre-cmd" ${precmd_functions[@]})
-function zle-pre-exec {
+zle-pre-exec() {
   # We are now out of buffer editing mode. Restore the interrupt combo `Ctrl + C`.
   stty intr "^C"
 }
@@ -202,7 +202,7 @@ for key kcap seq   widget              arg (
 
 # Select entire prompt
 # https://stackoverflow.com/a/68987551/13658418
-function widget::select-all() {
+widget::select-all() {
   local buflen=$(echo -n "$BUFFER" | wc -m | bc)
   CURSOR=$buflen   # if this is messing up try: CURSOR=9999999
   zle set-mark-command
@@ -212,6 +212,23 @@ function widget::select-all() {
 }
 zle -N widget::select-all
 bindkey '^[a' widget::select-all # Send escape sequence esc+a, bacause this interfere with 'home' button
+
+# Clear scrollback buffer
+clear-scrollback-buffer() {
+  # Behavior of clear:
+  # 1. clear scrollback if E3 cap is supported (terminal, platform specific)
+  # 2. then clear visible screen
+  # For some terminal 'e[3J' need to be sent explicitly to clear scrollback
+  clear && printf '\e[3J'
+  # .reset-prompt: bypass the zsh-syntax-highlighting wrapper
+  # https://github.com/sorin-ionescu/prezto/issues/1026
+  # https://github.com/zsh-users/zsh-autosuggestions/issues/107#issuecomment-183824034
+  # -R: redisplay the prompt to avoid old prompts being eaten up
+  # https://github.com/Powerlevel9k/powerlevel9k/pull/1176#discussion_r299303453
+  zle && zle .reset-prompt && zle -R
+}
+zle -N clear-scrollback-buffer
+bindkey '^k' clear-scrollback-buffer
 
 # Undo ctrl-z
 bindkey "^Z" undo

@@ -136,16 +136,43 @@ verbs: [
       invocation: code
       external: "code {file}"
     }
-
+    # Toggle hidden
     {
       key: "ctrl-h"
       internal: ":toggle_hidden"
     }
-
     {
       key: "ctrl-g"
       internal: ":toggle_git_ignore"
     }
+    # {
+    #   key: "backspace"
+    #   internal: ":back"
+    # }
+
+
+    # Input related verbs https://dystroy.org/broot/conf_verbs/#input-related-verbs
+    {
+      key: "ctrl-k",
+      internal: ":input_clear"
+    }
+    {
+      key: "alt-backspace",
+      internal: ":input_del_word_left"
+    }
+    # {
+    #   key: "alt-delete",
+    #   internal: ":input_del_word_right"
+    # }
+    # {
+    #   key: "ctrl-left",
+    #   internal: ":input_go_word_left"
+    # }
+    # {
+    #   key: "ctrl-right",
+    #   internal: ":input_go_word_right"
+    # }
+
 
     # {
     #   key: "ctrl-c"
