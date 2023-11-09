@@ -89,10 +89,10 @@ for key       kcap     seq          mode       widget (
   # Movement Ctrl -> deselect ###################################
     # right     kcuf1    $'\eOC'      deselect   forward-char
     # left      kcub1    $'\eOD'      deselect   backward-char
-    # c_right    x       $'\e[1;5C'   deselect   forward-word
-    # c_left     x       $'\e[1;5D'   deselect   backward-word
-    home       x        $'\e[H'     deselect   beginning-of-line
-    end        x        $'\e[F'     deselect   end-of-line
+    c_right    x       $'\e[1;5C'   deselect   forward-word
+    c_left     x       $'\e[1;5D'   deselect   backward-word
+    home       x       $'\e[H'      deselect   beginning-of-line
+    end        x       $'\e[F'      deselect   end-of-line
     # home      khome    $'\eOH'      deselect   beginning-of-line
     # end       kend     $'\eOF'      deselect   end-of-line
     # home2     x        $'\e1~'      deselect   beginning-of-line

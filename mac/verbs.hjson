@@ -168,4 +168,21 @@ verbs: [
     #   key: "ctrl-x"
     #   internal: ":input_selection_cut"
     # }
+
+
+    {
+      key: "ctrl-h"
+      internal: ":toggle_hidden"
+    }
+
+    {
+      key: "ctrl-g"
+      internal: ":toggle_git_ignore"
+    }
+
+    {
+      key: "alt-g"
+      internal: ":toggle_git_ignore"
+    }
+
 ]
