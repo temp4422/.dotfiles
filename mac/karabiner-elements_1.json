@@ -606,38 +606,6 @@
           "type": "basic"
         },
         {
-          "description": "Cycle through visible panes backward opt+shift+esc",
-          "from": {
-            "key_code": "caps_lock",
-            "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "left_arrow",
-              "modifiers": ["left_command", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Cycle through visible panes forward opt+esc",
-          "from": {
-            "key_code": "caps_lock",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_command", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "Set capslock -> esc",
           "type": "basic",
           "from": {
