@@ -217,27 +217,6 @@ bindkey '^[a' widget::select-all # Send escape sequence esc+a, bacause this inte
 bindkey "^Z" undo
 
 
-
-# Shell movement
-###############################################################################
-# up-dir() {
-#   builtin cd ..
-#   zle accept-line
-#   zle reset-prompt
-# }
-# zle -N up-dir
-# bindkey "^[[" up-dir
-
-# prev-dir(){
-#   builtin cd -
-#   zle accept-line
-#   zle reset-prompt
-# }
-# zle -N prev-dir
-# bindkey "^[]" prev-dir
-# zsh commands https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
-
-
 # FZF
 ###############################################################################
 # Default command to work with other
@@ -269,7 +248,7 @@ fzf-history() {
   local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
   selected=( $(fc -rl 1 | perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |
-    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort,ctrl-z:ignore $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-10%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort,ctrl-z:ignore $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
   local ret=$?
   if [ -n "$selected" ]; then
     num=$selected[1]
@@ -300,6 +279,16 @@ fzf-find-local() {
 run-fzf-find-local(){fzf-find-local; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-find-local
 bindkey '^f' run-fzf-find-local
+
+# ctrl+o open file in vscode
+fzf-vi() {
+   file="$( find '.' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -type f -iname '*' 2>/dev/null | fzf -1 -0 --no-sort +m)" && code "${file}" || return 1
+   zle acceptl-line
+}
+#zle -N fzf-vi; bindkey '^o' fzf-vi
+run-fzf-vi(){fzf-vi; local ret=$?; zle reset-prompt; return $ret}
+zle -N run-fzf-vi
+bindkey '^o' run-fzf-vi
 
 # # ctrl+shif+f search global modified
 # fzf-find-global() {
@@ -369,3 +358,22 @@ bindkey '^f' run-fzf-find-local
 # zle -N lfcd
 # bindkey '^[[18~' lfcd
 # bindkey '^s' lfcd
+
+# Shell movement
+###############################################################################
+# up-dir() {
+#   builtin cd ..
+#   zle accept-line
+#   zle reset-prompt
+# }
+# zle -N up-dir
+# bindkey "^[[" up-dir
+
+# prev-dir(){
+#   builtin cd -
+#   zle accept-line
+#   zle reset-prompt
+# }
+# zle -N prev-dir
+# bindkey "^[]" prev-dir
+# zsh commands https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
