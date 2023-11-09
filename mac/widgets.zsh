@@ -249,19 +249,20 @@ fzf-history() {
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
   selected=( $(fc -rl 1 | perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |
     FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-10%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort,ctrl-z:ignore $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
-  local ret=$?
+  # local ret=$?
   if [ -n "$selected" ]; then
     num=$selected[1]
     if [ -n "$num" ]; then
       zle vi-fetch-history -n $num
     fi
   fi
-  zle accept-line
-  zle reset-prompt
-  return $ret
+  # zle accept-line # Enable to accept on single press
+  # zle reset-prompt
+  # return $ret
 }
-zle -N fzf-history
-bindkey '^r' fzf-history
+run-fzf-history(){fzf-history; local ret=$?; zle reset-prompt; return $ret}
+zle -N run-fzf-history
+bindkey '^r' run-fzf-history
 
 # ctrl+shift+f search local and cd/vi
 fzf-find-local() {
