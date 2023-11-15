@@ -16,37 +16,37 @@ zstyle ':vcs_info:*:*' nvcsformats "%~" "" ""
 
 # Fastest possible way to check if repo is dirty
 git_dirty() {
-    # Check if we're in a git repo
-    command git rev-parse --is-inside-work-tree &>/dev/null || return
-    # Check if it's dirty
-    command git diff --quiet --ignore-submodules HEAD &>/dev/null; [ $? -eq 1 ] && echo "*"
+  # Check if we're in a git repo
+  command git rev-parse --is-inside-work-tree &>/dev/null || return
+  # Check if it's dirty
+  command git diff --quiet --ignore-submodules HEAD &>/dev/null; [ $? -eq 1 ] && echo "*"
 }
 
 # Display information about the current repository
 repo_information() {
-    # echo "%F{blue}${vcs_info_msg_0_%%/.} %F{8}$vcs_info_msg_1_`git_dirty` $vcs_info_msg_2_%f"
-    echo "%F{cyan}${vcs_info_msg_0_%%/.} %F{8}$vcs_info_msg_1_`git_dirty` $vcs_info_msg_2_%f"
+  # echo "%F{blue}${vcs_info_msg_0_%%/.} %F{8}$vcs_info_msg_1_`git_dirty` $vcs_info_msg_2_%f"
+  echo "%F{cyan}${vcs_info_msg_0_%%/.} %F{8}$vcs_info_msg_1_`git_dirty` $vcs_info_msg_2_%f"
 }
 
 # Displays the exec time of the last command if set threshold was exceeded
 cmd_exec_time() {
-    local stop=`date +%s`
-    local start=${cmd_timestamp:-$stop}
-    let local elapsed=$stop-$start
-    [ $elapsed -gt 5 ] && echo ${elapsed}s
+  local stop=`date +%s`
+  local start=${cmd_timestamp:-$stop}
+  let local elapsed=$stop-$start
+  [ $elapsed -gt 5 ] && echo ${elapsed}s
 }
 
 # Get the initial timestamp for cmd_exec_time
 preexec() {
-    cmd_timestamp=`date +%s`
+  cmd_timestamp=`date +%s`
 }
 
 # Output additional information about paths, repos and exec time
 precmd() {
-    setopt localoptions nopromptsubst
-    vcs_info # Get version control info before we start outputting stuff
-    print -P "\n$(repo_information) %F{yellow}$(cmd_exec_time)%f"
-    unset cmd_timestamp #Reset cmd exec time.
+  setopt localoptions nopromptsubst
+  vcs_info # Get version control info before we start outputting stuff
+  print -P "\n$(repo_information) %F{yellow}$(cmd_exec_time)%f"
+  unset cmd_timestamp #Reset cmd exec time.
 }
 
 # Define prompts
@@ -65,7 +65,7 @@ RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
 # https://stackoverflow.com/a/30899296
 r-delregion() {
   if ((REGION_ACTIVE)) then
-     zle kill-region
+    zle kill-region
   else
     local widget_name=$1
     shift
@@ -238,8 +238,8 @@ bindkey "^Z" undo
 ###############################################################################
 # Default command to work with other
 __fzfcmd() {
-  [ -n "${TMUX_PANE-}" ] && { [ "${FZF_TMUX:-0}    " != 0 ] || [ -n "${FZF_TMUX_OPTS-}" ]; } &&
-    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMU    X_HEIGHT:-40%}} -- " || echo "fzf"
+  [ -n "${TMUX_PANE-}" ] && { [ "${FZF_TMUX:-0}" != 0 ] || [ -n "${FZF_TMUX_OPTS-}" ]; } &&
+    echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
 }
 
 # ctrl+p cd/vi recent folders/files
@@ -264,8 +264,9 @@ bindkey '^p' run-fzf-fasd-cd-vi
 fzf-history() {
   local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
-  selected=( $(fc -rl 1 | perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |
-    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-10%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort,ctrl-z:ignore $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+  selected=( $(fc -rl 1 | awk '{ cmd=$0; sub(/^[ \t]*[0-9]+\**[ \t]+/, "", cmd); if (!seen[cmd]++) print $0 }' |
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} ${FZF_DEFAULT_OPTS-} -n2..,.. --scheme=history --bind=ctrl-r:toggle-sort,ctrl-z:ignore ${FZF_CTRL_R_OPTS-} --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+  local ret=$?
   # local ret=$?
   if [ -n "$selected" ]; then
     num=$selected[1]
@@ -283,7 +284,7 @@ bindkey '^r' run-fzf-history
 
 # ctrl+shift+f search local and cd/vi
 fzf-find-local() {
-   item="$(find . -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
+  item="$(fd | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
   if [[ -d ${item} ]]; then
     cd "${item}" || return 1
   elif [[ -f ${item} ]]; then
@@ -291,19 +292,17 @@ fzf-find-local() {
   else
     return 1
   fi
-   zle accept-line
+  zle accept-line
 }
-#zle -N fzf-find-local; bindkey '^f' fzf-find-local
 run-fzf-find-local(){fzf-find-local; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-find-local
 bindkey '^f' run-fzf-find-local
 
 # ctrl+o open file in vscode
 fzf-vi() {
-   file="$( find '.' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -type f -iname '*' 2>/dev/null | fzf -1 -0 --no-sort +m)" && code "${file}" || return 1
-   zle acceptl-line
+  file="$(fd --type f | fzf -1 -0 --no-sort +m)" && code "${file}" || return 1
+  zle acceptl-line
 }
-#zle -N fzf-vi; bindkey '^o' fzf-vi
 run-fzf-vi(){fzf-vi; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-vi
 bindkey '^o' run-fzf-vi
