@@ -948,6 +948,21 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Clock",
+          "from": {
+            "key_code": "b",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.apple.clock"
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
@@ -1170,6 +1185,21 @@
           "to": [
             {
               "shell_command": "open -b com.apple.calculator"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Clock",
+          "from": {
+            "key_code": "b",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.apple.clock"
             }
           ],
           "type": "basic"

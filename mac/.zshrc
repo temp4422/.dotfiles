@@ -92,6 +92,7 @@ alias cat='bat'
 alias bd='bun run dev'
 alias bb='bun run build'
 alias bs='bun run start'
+alias bw='bun run watch'
 alias bi='bun install && bun run build'
 alias d='docker'
 
