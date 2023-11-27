@@ -1747,6 +1747,122 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["right_command", "left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "home"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["right_command", "left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "end"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "mandatory": ["right_command", "left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "page_up"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "mandatory": ["right_command", "left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "page_down"
+            }
+          ],
+          "type": "basic"
         }
       ]
     }
