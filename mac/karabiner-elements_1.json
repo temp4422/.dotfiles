@@ -1411,32 +1411,6 @@
           "type": "basic"
         },
         {
-          "description": "Disable cmd+d in browser",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "com.brave.Browser",
-                "org.mozilla.firefox"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "d",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "vk_none"
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "Open dev tools in browser cmd+shift+i -> cmd+opt+i",
           "conditions": [
             {
@@ -1621,6 +1595,37 @@
               "key_code": "grave_accent_and_tilde"
             }
           ],
+          "type": "basic"
+        },
+        {
+          "description": "Map cmd+d to select word",
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["com.microsoft.VSCode"]
+            }
+          ],
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_option"]
+            },
+            {
+              "key_code": "left_arrow",
+              "modifiers": ["left_option"]
+            },
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_option", "left_shift"]
+            }
+          ],
+
           "type": "basic"
         }
       ]
