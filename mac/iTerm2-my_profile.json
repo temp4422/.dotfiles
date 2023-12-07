@@ -307,12 +307,6 @@
       "Text" : ".",
       "Label" : ""
     },
-    "0x6b-0x100000-0x28" : {
-      "Version" : 1,
-      "Action" : 38,
-      "Text" : "\\<C-k>",
-      "Label" : ""
-    },
     "0x67-0x100000-0x5" : {
       "Version" : 1,
       "Action" : 38,
@@ -371,6 +365,12 @@
       "Version" : 1,
       "Action" : 38,
       "Text" : "\\<C-c>",
+      "Label" : ""
+    },
+    "0x19-0xa0000-0x30" : {
+      "Version" : 1,
+      "Action" : 31,
+      "Text" : "",
       "Label" : ""
     },
     "0x35-0x200000-0x0" : {
@@ -575,6 +575,12 @@
       "Version" : 0,
       "Action" : 11,
       "Text" : "0xd",
+      "Label" : ""
+    },
+    "0x9-0x80000-0x30" : {
+      "Version" : 1,
+      "Action" : 30,
+      "Text" : "",
       "Label" : ""
     },
     "0x72-0x100000-0xf" : {
