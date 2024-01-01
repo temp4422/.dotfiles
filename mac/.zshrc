@@ -196,6 +196,7 @@ nvm() {
 # my path
 # export PATH=/home/user/dev:$PATH
 alias python=/usr/bin/python3
+alias pip=/usr/local/bin/pip3
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
