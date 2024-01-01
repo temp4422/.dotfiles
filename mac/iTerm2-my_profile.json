@@ -103,6 +103,12 @@
       "Text" : "",
       "Label" : ""
     },
+    "0x52-0x120000-0xf" : {
+      "Version" : 1,
+      "Action" : 10,
+      "Text" : "r",
+      "Label" : ""
+    },
     "0xf70b-0x20000-0x0" : {
       "Version" : 0,
       "Action" : 10,

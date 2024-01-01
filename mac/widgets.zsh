@@ -242,10 +242,10 @@ __fzfcmd() {
     echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
 }
 
-# ctrl+p cd/vi recent folders/files
+# ctrl+r cd/vi recent folders/files
 fzf-fasd-cd-vi() {
 # item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)" # fasdter when reading cache
-   item="$(cat ~/.config/.fasd_cache | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
+  item="$(cat ~/.config/.fasd_cache | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
   if [[ -d ${item} ]]; then
     cd "${item}" || return 1
   elif [[ -f ${item} ]]; then
@@ -258,9 +258,9 @@ fzf-fasd-cd-vi() {
 # Run widget from another function to work properly
 run-fzf-fasd-cd-vi(){fzf-fasd-cd-vi; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-fasd-cd-vi
-bindkey '^p' run-fzf-fasd-cd-vi
+bindkey '^r' run-fzf-fasd-cd-vi
 
-# ctrl+r search history
+# ctrl+shift+r search history
 fzf-history() {
   local selected num
   setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
@@ -280,7 +280,7 @@ fzf-history() {
 }
 run-fzf-history(){fzf-history; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-history
-bindkey '^r' run-fzf-history
+bindkey '^[r' run-fzf-history
 
 # ctrl+shift+f search local and cd/vi
 fzf-find-local() {
@@ -297,6 +297,7 @@ fzf-find-local() {
 run-fzf-find-local(){fzf-find-local; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-find-local
 bindkey '^f' run-fzf-find-local
+bindkey '^p' run-fzf-find-local
 
 # ctrl+o open file in vscode
 fzf-vi() {
