@@ -105,8 +105,8 @@
     },
     "0x52-0x120000-0xf" : {
       "Version" : 1,
-      "Action" : 10,
-      "Text" : "r",
+      "Action" : 38,
+      "Text" : "\\<C-r>",
       "Label" : ""
     },
     "0xf70b-0x20000-0x0" : {
@@ -411,8 +411,8 @@
     },
     "0x76-0x100000-0x9" : {
       "Version" : 1,
-      "Action" : 38,
-      "Text" : "\\<C-v>",
+      "Action" : 41,
+      "Text" : "{\"ConvertUnicodePunctuation\":true,\"WaitForPrompts\":false,\"Substitution\":\"\",\"EscapeForShell\":false,\"Base64\":false,\"TabStopSize\":2,\"Delay\":0.01,\"RemoveNewlines\":false,\"Regex\":\"\",\"ConvertNewlines\":true,\"TabTransform\":1,\"BracketAllowed\":true,\"UseRegexSubstitution\":false,\"ChunkSize\":1024,\"RemoveControls\":true}",
       "Label" : ""
     },
     "0xf704-0x20000-0x0" : {
@@ -591,8 +591,8 @@
     },
     "0x72-0x100000-0xf" : {
       "Version" : 1,
-      "Action" : 38,
-      "Text" : "\\<C-r>",
+      "Action" : 10,
+      "Text" : "r",
       "Label" : ""
     },
     "0x32-0x40000-0x0" : {
