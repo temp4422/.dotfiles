@@ -258,7 +258,7 @@ fzf-fasd-cd-vi() {
 # Run widget from another function to work properly
 run-fzf-fasd-cd-vi(){fzf-fasd-cd-vi; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-fasd-cd-vi
-bindkey '^r' run-fzf-fasd-cd-vi
+bindkey '^[r' run-fzf-fasd-cd-vi
 
 # ctrl+shift+r search history
 fzf-history() {
@@ -280,7 +280,7 @@ fzf-history() {
 }
 run-fzf-history(){fzf-history; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-history
-bindkey '^[r' run-fzf-history
+bindkey '^r' run-fzf-history
 
 # ctrl+shift+f search local and cd/vi
 fzf-find-local() {
