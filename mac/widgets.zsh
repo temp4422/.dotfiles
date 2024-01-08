@@ -184,7 +184,7 @@ preexec_functions=("zle-pre-exec" ${preexec_functions[@]})
 for key kcap seq   widget              arg (
     cx  _    $'^X' zle-clipboard-cut   _  # `Ctrl + X`
     cc  _    $'^C' zle-clipboard-copy  _  # `Ctrl + C`
-    cv  _    $'^V' zle-clipboard-paste _  # `Ctrl + V`
+    cv  _    $'^V' zle-clipboard-paste _  # `Ctrl + V` # Replaced by native iTerm paste functionality
     esc -    $'^[' my-zle-exit         _  # `Esc`
 ) {
   if [ "${arg}" = "_" ]; then
