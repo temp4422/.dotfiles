@@ -665,11 +665,11 @@
           "type": "basic"
         },
         {
-          "description": "cmd+f1 -> decrese volume",
+          "description": "super+f1 -> decrese volume",
           "from": {
             "key_code": "f1",
             "modifiers": {
-              "mandatory": ["left_command"]
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -680,11 +680,11 @@
           "type": "basic"
         },
         {
-          "description": "cmd+f2 -> increase volume",
+          "description": "super+f2 -> increase volume",
           "from": {
             "key_code": "f2",
             "modifiers": {
-              "mandatory": ["left_command"]
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -699,7 +699,7 @@
           "from": {
             "key_code": "f1",
             "modifiers": {
-              "mandatory": ["left_option"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -714,7 +714,7 @@
           "from": {
             "key_code": "f2",
             "modifiers": {
-              "mandatory": ["left_option"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
