@@ -3,6 +3,12 @@
 # START
 echo -e "RemNote to Obsidian shell scritp starts\n"
 
+# Check for dir
+if [ ! -d '/Users/user/Downloads/RemNoteExport' ]; then
+  echo -e "Make sure you made full RemNote export in HTML format (include files for each document of top-level Rem & include hidden children) to 'Downloads' folder, unpacked and renamed to '/Users/user/Downloads/RemNoteExport'\n🔴 Try again"
+  exit # Exit if folder doesn't exists
+fi
+
 # 1. Rename Daily Documents to daily
 mv "/Users/user/Downloads/RemNoteExport/Daily Document" "/Users/user/Downloads/RemNoteExport/daily"
 
@@ -10,7 +16,7 @@ mv "/Users/user/Downloads/RemNoteExport/Daily Document" "/Users/user/Downloads/R
 mkdir "/Users/user/Downloads/RemNoteExport/~"
 mv /Users/user/Downloads/RemNoteExport/*.html /Users/user/Downloads/RemNoteExport/~/
 
-# 3. Remove all folders excep 'daily' and '~'
+# 3. Remove all folders except 'daily' and '~'
 find /Users/user/Downloads/RemNoteExport/*  -type d  \( -path /Users/user/Downloads/RemNoteExport/daily -o -path /Users/user/Downloads/RemNoteExport/~ \) -prune -o -iname "*" -exec rm -rf {} \;
 # Remove RemNote inner files
 # rm -r "/Users/user/Downloads/RemNoteExport/~/~.md" "/Users/user/Downloads/RemNoteExport/~/Website.md" "/Users/user/Downloads/RemNoteExport/~/Automatically Sort.md" "/Users/user/Downloads/RemNoteExport/~/Automatically Add Template.md" "/Users/user/Downloads/RemNoteExport/~/Document.md" "/Users/user/Downloads/RemNoteExport/~/Extra Card Detail.md"
@@ -54,7 +60,7 @@ find /Users/user/Downloads/RemNoteExport -iname "*.md" -type f -exec gsed -i 's/
 # find /Users/user/Downloads/RemNoteExport -iname "*.md" -type f -exec gsed -i 's/\(>>.*\)/\1 <!--SR:!2024-03-01,30,310-->/g' {} \;
 
 # 9. Copy assets and configs
-cp -r /Users/user/remnote/remnote-60d0a8d64cff290034528346/files /Users/user/Downloads/RemNoteExport/ && mv /Users/user/Downloads/RemNoteExport/files/ /Users/user/Downloads/RemNoteExport/assets
+cp -r /Users/user/remnote/remnote-60d0a8d64cff290034528346/files /Users/user/Downloads/RemNoteExport/assets
 
 cp -r "/Users/user/Library/Mobile Documents/iCloud~com~logseq~logseq/Documents/Logseq-graph-iCloud/logseq" /Users/user/Downloads/RemNoteExport/logseq
 rm -r /Users/user/Downloads/RemNoteExport/logseq/bak
@@ -70,3 +76,4 @@ cp -r "/Users/user/Library/Mobile Documents/iCloud~com~logseq~logseq/Documents/L
 
 # FINISH
 echo -e "\nRemNote to Obsidian shell scritp finish OK"
+exit
