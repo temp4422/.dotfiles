@@ -1491,6 +1491,12 @@
         },
         {
           "description": "Disable Quit App and remap cmd+q -> ctrl+q",
+          "conditions": [
+            {
+              "type": "frontmost_application_unless",
+              "bundle_identifiers": ["com.parallels.desktop.console"]
+            }
+          ],
           "from": {
             "key_code": "q",
             "modifiers": {
@@ -1645,7 +1651,8 @@
                 "com.microsoft.edgemac",
                 "ru.keepcoder.Telegram",
                 "com.bitwarden.desktop",
-                "com.electron.logseq"
+                "com.electron.logseq",
+                "com.apple.TextEdit"
               ]
             }
           ],
@@ -1676,7 +1683,8 @@
                 "com.microsoft.edgemac",
                 "ru.keepcoder.Telegram",
                 "com.bitwarden.desktop",
-                "com.electron.logseq"
+                "com.electron.logseq",
+                "com.apple.TextEdit"
               ]
             }
           ],
@@ -1707,7 +1715,8 @@
                 "com.microsoft.edgemac",
                 "ru.keepcoder.Telegram",
                 "com.bitwarden.desktop",
-                "com.electron.logseq"
+                "com.electron.logseq",
+                "com.apple.TextEdit"
               ]
             }
           ],
@@ -1738,7 +1747,8 @@
                 "com.microsoft.edgemac",
                 "ru.keepcoder.Telegram",
                 "com.bitwarden.desktop",
-                "com.electron.logseq"
+                "com.electron.logseq",
+                "com.apple.TextEdit"
               ]
             }
           ],
@@ -1769,7 +1779,8 @@
                 "com.microsoft.edgemac",
                 "ru.keepcoder.Telegram",
                 "com.bitwarden.desktop",
-                "com.electron.logseq"
+                "com.electron.logseq",
+                "com.apple.TextEdit"
               ]
             }
           ],
@@ -1799,7 +1810,8 @@
                 "com.microsoft.edgemac",
                 "ru.keepcoder.Telegram",
                 "com.bitwarden.desktop",
-                "com.electron.logseq"
+                "com.electron.logseq",
+                "com.apple.TextEdit"
               ]
             }
           ],
@@ -1829,7 +1841,8 @@
                 "com.microsoft.edgemac",
                 "ru.keepcoder.Telegram",
                 "com.bitwarden.desktop",
-                "com.electron.logseq"
+                "com.electron.logseq",
+                "com.apple.TextEdit"
               ]
             }
           ],
@@ -1859,7 +1872,8 @@
                 "com.microsoft.edgemac",
                 "ru.keepcoder.Telegram",
                 "com.bitwarden.desktop",
-                "com.electron.logseq"
+                "com.electron.logseq",
+                "com.apple.TextEdit"
               ]
             }
           ],
