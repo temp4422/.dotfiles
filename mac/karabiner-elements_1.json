@@ -1,6 +1,263 @@
 {
-  "tite": "ALL SHORTCUTS (🔵 = important)",
+  "tite": "ALL SHORTCUTS (🔵 = important, 🔴 = must overwrite important to work properly, but not important)",
   "rules": [
+    {
+      "description": "🔴 Miscellaneous Overwrite",
+      "manipulators": [
+        {
+          "description": "Browser, Telegram, Bitwarden home/end -> start/end of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop",
+                "com.electron.logseq",
+                "com.apple.TextEdit"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Browser, Telegram, Bitwarden home/end -> start/end of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop",
+                "com.electron.logseq",
+                "com.apple.TextEdit"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop",
+                "com.electron.logseq",
+                "com.apple.TextEdit"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["right_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": ["left_command", "left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop",
+                "com.electron.logseq",
+                "com.apple.TextEdit"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["right_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_command", "left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop",
+                "com.electron.logseq",
+                "com.apple.TextEdit"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["right_command", "left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "home"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop",
+                "com.electron.logseq",
+                "com.apple.TextEdit"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["right_command", "left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "end"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop",
+                "com.electron.logseq",
+                "com.apple.TextEdit"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "mandatory": ["right_command", "left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "page_up"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.brave.Browser",
+                "com.google.Chrome",
+                "com.google.Chrome.beta",
+                "org.mozilla.firefox",
+                "com.microsoft.edgemac",
+                "ru.keepcoder.Telegram",
+                "com.bitwarden.desktop",
+                "com.electron.logseq",
+                "com.apple.TextEdit"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "mandatory": ["right_command", "left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "page_down"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
     {
       "description": "🔵 1.1 Switch j|;+cmd+shift 👉 arrow_keys+opt+shift",
       "description2": "Switch super+cmd/opt+shift+j/; -> opt/cmd+shift+arrow_keys. Issue: need to set arrow + cmd/cmd+shft... to work as opt/opt+shift to jump on words, because MacOS by defualt jump on words is different from Windows. This must be before 'Set jkl; to arrows', because it have to be triggered first.",
@@ -1659,263 +1916,6 @@
             {
               "key_code": "right_arrow",
               "modifiers": ["left_option", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        }
-      ]
-    },
-    {
-      "description": "🟡 Miscellaneous Overwrite",
-      "manipulators": [
-        {
-          "description": "Browser, Telegram, Bitwarden home/end -> start/end of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "left_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end -> start/end of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["right_command", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "left_arrow",
-              "modifiers": ["left_command", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_command", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["right_command", "left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "home"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command", "left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "end"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "period",
-            "modifiers": {
-              "mandatory": ["right_command", "left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "page_up"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "comma",
-            "modifiers": {
-              "mandatory": ["right_command", "left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "page_down"
             }
           ],
           "type": "basic"
