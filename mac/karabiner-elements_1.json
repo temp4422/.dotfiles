@@ -1601,6 +1601,36 @@
       "description": "RemNote",
       "manipulators": [
         {
+          "description": "RemNote opt+enter open to side",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["io.remnote"]
+            }
+          ],
+          "from": {
+            "key_code": "return_or_enter",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            },
+            {
+              "key_code": "down_arrow"
+            },
+            {
+              "key_code": "down_arrow"
+            },
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "RemNote cmd+enter zoom into rem",
           "conditions": [
             {
