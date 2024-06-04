@@ -177,6 +177,32 @@
           "type": "basic"
         },
         {
+          "description": "iTerm2 if copyMode = 1; Esc -> Esc+Esc (Exit and Reset)",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "caps_lock"
+          },
+          "to": [
+            {
+              "key_code": "escape"
+            },
+            {
+              "key_code": "escape"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "iTerm2 disable cmd+shift+p",
           "conditions": [
             {
