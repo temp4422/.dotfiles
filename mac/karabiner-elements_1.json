@@ -118,6 +118,65 @@
           "type": "basic"
         },
         {
+          "description": "iTerm2 if copyMode = 1; Home+Shift -> 0 (Select and Move to start of line)",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["right_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar"
+            },
+            {
+              "key_code": "0"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "iTerm2 if copyMode = 1; End+Shift -> $ (Select and Move to end of line)",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["right_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar"
+            },
+            {
+              "key_code": "4",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "iTerm2 disable cmd+shift+p",
           "conditions": [
             {
