@@ -1226,13 +1226,27 @@
       ]
     },
     {
-      "description": "🔵 5.1 Dock items",
+      "description": "🔵 5 Dock items with right_command and duplicate with left_option",
       "manipulators": [
         {
           "from": {
             "key_code": "1",
             "modifiers": {
               "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:0:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "1",
+            "modifiers": {
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -1258,9 +1272,37 @@
         },
         {
           "from": {
+            "key_code": "2",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:1:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
             "key_code": "3",
             "modifiers": {
               "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:2:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "3",
+            "modifiers": {
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -1286,6 +1328,20 @@
         },
         {
           "from": {
+            "key_code": "4",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:3:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
             "key_code": "5",
             "modifiers": {
               "mandatory": ["right_command"]
@@ -1300,9 +1356,37 @@
         },
         {
           "from": {
+            "key_code": "5",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:4:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
             "key_code": "6",
             "modifiers": {
               "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:5:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "6",
+            "modifiers": {
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -1328,6 +1412,21 @@
           "type": "basic"
         },
         {
+          "description": "Ascii terminal",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.googlecode.iterm2"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "BrowSer, Search",
           "from": {
             "key_code": "s",
@@ -1343,11 +1442,41 @@
           "type": "basic"
         },
         {
+          "description": "BrowSer, Search",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.brave.Browser"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "CoDe",
           "from": {
             "key_code": "d",
             "modifiers": {
               "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.microsoft.VSCode"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "CoDe",
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -1374,11 +1503,42 @@
           "type": "basic"
         },
         {
+          "description": "Find",
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Quick notes",
           "from": {
             "key_code": "q",
             "modifiers": {
               "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b io.remnote"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Quick notes",
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -1404,11 +1564,41 @@
           "type": "basic"
         },
         {
+          "description": "File Explorer",
+          "from": {
+            "key_code": "e",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.apple.finder"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Telegrm telex",
           "from": {
             "key_code": "x",
             "modifiers": {
               "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b ru.keepcoder.Telegram"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Telegrm telex",
+          "from": {
+            "key_code": "x",
+            "modifiers": {
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -1434,11 +1624,41 @@
           "type": "basic"
         },
         {
+          "description": "Translate look Up",
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.google.Chrome.app.edanbjnaiofggfmimiidpfmhggkbokck"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Calculator Numbers",
           "from": {
             "key_code": "n",
             "modifiers": {
               "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.apple.calculator"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Calculator Numbers",
+          "from": {
+            "key_code": "n",
+            "modifiers": {
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -1464,11 +1684,41 @@
           "type": "basic"
         },
         {
+          "description": "Clock",
+          "from": {
+            "key_code": "b",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.apple.clock"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Calendar Year",
           "from": {
             "key_code": "y",
             "modifiers": {
               "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.google.Chrome.app.kjbdgfilnfhdoflbpgamdcdgpehopbep"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Calendar Year",
+          "from": {
+            "key_code": "y",
+            "modifiers": {
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -1489,261 +1739,6 @@
           "to": [
             {
               "shell_command": "open -b com.google.Chrome.app.eilembjdkfgodjkcjnpgpaenohkicgjd"
-            }
-          ],
-          "type": "basic"
-        }
-      ]
-    },
-    {
-      "description": "🔵 5.2 Dock items DUPLICATE with option key",
-      "manipulators": [
-        {
-          "from": {
-            "key_code": "1",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:0:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "2",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:1:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "3",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:2:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "4",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:3:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "5",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:4:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "6",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b $(/usr/libexec/PlistBuddy -c 'print :persistent-apps:5:tile-data:bundle-identifier' ~/Library/Preferences/com.apple.dock.plist)"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Ascii terminal",
-          "from": {
-            "key_code": "a",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.googlecode.iterm2"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "BrowSer, Search",
-          "from": {
-            "key_code": "s",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.brave.Browser"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "CoDe",
-          "from": {
-            "key_code": "d",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.microsoft.VSCode"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Find",
-          "from": {
-            "key_code": "f",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "spacebar",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Quick notes",
-          "from": {
-            "key_code": "q",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b io.remnote"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "File Explorer",
-          "from": {
-            "key_code": "e",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.apple.finder"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Telegrm telex",
-          "from": {
-            "key_code": "x",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b ru.keepcoder.Telegram"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Translate look Up",
-          "from": {
-            "key_code": "u",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.google.Chrome.app.edanbjnaiofggfmimiidpfmhggkbokck"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Calculator Numbers",
-          "from": {
-            "key_code": "n",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.apple.calculator"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Clock",
-          "from": {
-            "key_code": "b",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.apple.clock"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Calendar Year",
-          "from": {
-            "key_code": "y",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.google.Chrome.app.kjbdgfilnfhdoflbpgamdcdgpehopbep"
             }
           ],
           "type": "basic"
