@@ -1477,6 +1477,21 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Google Keep",
+          "from": {
+            "key_code": "grave_accent_and_tilde",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.google.Chrome.app.eilembjdkfgodjkcjnpgpaenohkicgjd"
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
@@ -1729,6 +1744,21 @@
           "to": [
             {
               "shell_command": "open -b com.google.Chrome.app.kjbdgfilnfhdoflbpgamdcdgpehopbep"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Google Keep",
+          "from": {
+            "key_code": "grave_accent_and_tilde",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.google.Chrome.app.eilembjdkfgodjkcjnpgpaenohkicgjd"
             }
           ],
           "type": "basic"
