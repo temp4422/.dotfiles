@@ -154,7 +154,7 @@ bindkey -s '^s' 'br --hidden --sort-by-type^M' # Set keybind in karabiner cmd+sh
 # nvm
 ##############################################################################
 # Lazy load nvm for fast startup
-export PATH=~/.nvm/versions/node/v21.1.0/bin:$PATH # Add default node to path
+export PATH=~/.nvm/versions/node/v22.2.0/bin:$PATH # Add default node to path
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use # Skip checking node version
 # Manually load nvm for fast startup
 # alias nvm="unalias nvm; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm $@" # Alais to load nvm manually. To use node, run "nvm".
