@@ -1858,6 +1858,35 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "RemNote cmd+q Quick Add",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["io.remnote"]
+            }
+          ],
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "p",
+              "modifiers": ["left_command", "left_shift"],
+              "hold_down_milliseconds": 100
+            },
+            {
+              "key_code": "q"
+            },
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
