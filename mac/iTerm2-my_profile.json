@@ -57,6 +57,7 @@
   "Scrollback Lines" : 1000,
   "Scrollback in Alternate Screen" : false,
   "Draw Powerline Glyphs" : true,
+  "Cursor Shadow" : true,
   "Flashing Bell" : false,
   "Cursor Guide Color" : {
     "Red Component" : 0.70213186740875244,
@@ -94,7 +95,7 @@
   "Use Cursor Guide" : false,
   "Unlimited Scrollback" : false,
   "Allow modifyOtherKeys" : false,
-  "AWDS Tab Option" : "Yes",
+  "AWDS Tab Option" : "No",
   "Custom Command" : "No",
   "Keyboard Map" : {
     "0xf72d-0x80000-0x79" : {
@@ -727,6 +728,7 @@
   },
   "Smart Cursor Color" : false,
   "Ambiguous Double Width" : false,
+  "Cursor Type" : 1,
   "Ansi 0 Color" : {
     "Red Component" : 0.078431375324726105,
     "Color Space" : "sRGB",
