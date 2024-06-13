@@ -1757,6 +1757,36 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Disable",
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Disable",
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "vk_none"
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
