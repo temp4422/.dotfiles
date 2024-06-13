@@ -40,8 +40,8 @@ setopt noflowcontrol
 
 # Set history options
 setopt histignorealldups sharehistory
-HISTSIZE=2000
-SAVEHIST=2000
+HISTSIZE=100000
+SAVEHIST=100000
 HISTFILE=~/.config/.zsh_history
 
 # Use modern completion system, otherwise by default will be used old one
