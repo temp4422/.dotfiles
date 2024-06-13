@@ -240,6 +240,44 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "iTerm2 map cmd+d to select word in copy mode",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "d",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_option"]
+            },
+            {
+              "key_code": "left_arrow",
+              "modifiers": ["left_option"]
+            },
+            {
+              "key_code": "spacebar"
+            },
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
