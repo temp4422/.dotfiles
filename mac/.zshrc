@@ -95,6 +95,9 @@ alias bs='bun run start'
 alias bw='bun run watch'
 alias bi='bun install && bun run build'
 alias d='docker'
+alias ds='docker container ls --all' # docker ps
+alias di='docker image ls' #  docker images
+alias drm='docker stop $(docker ps --all --quiet) && docker rm $(docker ps --all --quiet)'
 
 # Homebrew: Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
