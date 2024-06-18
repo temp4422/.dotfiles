@@ -62,11 +62,11 @@ bindkey -M menuselect '^M' .accept-line
 
 # Load Oh My Zsh "refined" theme, shift-select & ZLE keybinds and fzf widgets from widgets.zsh
 ##############################################################################
-source $HOME/.dotfiles/mac/widgets.zsh
+source $HOME/.dotfiles/src/widgets.zsh
 
 # Aliases
 ###############################################################################
-source $HOME/.dotfiles/.zsh_aliases
+source $HOME/.dotfiles/src/.zsh_aliases
 
 # Homebrew: Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -108,7 +108,7 @@ source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh
 ##############################################################################
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 #source ~/.config/powerlevel10k/powerlevel10k.zsh-theme
-#[[ ! -f ~/.dotfiles/mac/.p10k.zsh ]] || source ~/.dotfiles/mac/.p10k.zsh
+#[[ ! -f ~/.dotfiles/src/.p10k.zsh ]] || source ~/.dotfiles/src/.p10k.zsh
 
 # tere
 ##############################################################################
