@@ -1,14 +1,14 @@
 My Windows, WSL, Mac files and configs for productivity.
 
-# MacOS
-
 ## Install apps
 
 ```bash
 # Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)";
-# All apps
-brew install coreutils fzf fasd ripgrep tmux bat broot tere
+# macOS
+brew install coreutils vim git curl zip zsh fzf fasd ripgrep bat broot tere
+# Linux
+#sudo apt update && sudo apt install ...
 ```
 
 ## Karabiner-Elements
@@ -50,7 +50,10 @@ cmd+shift+f \<C-f> # fzf search
 ## zsh environment
 
 ```bash
-rm -rf ~/.zshrc ~/.vimrc ~/.tmux.conf ~/.config/lf/lfrc ~/.config/broot/verbs.hjson;
+chsh -s $(which zsh);
+# reset before linking
+rm -rf ~/.zshrc ~/.vimrc ~/.config/.vimrc ~/.tmux.conf ~/.config/lf/lfrc ~/.config/broot/verbs.hjson;
+# zsh & vim
 ln -s ~/.dotfiles/src/.zshrc ~/.zshrc && ln -s ~/.dotfiles/src/.vimrc ~/.config/.vimrc;
 ```
 
@@ -58,6 +61,7 @@ ln -s ~/.dotfiles/src/.zshrc ~/.zshrc && ln -s ~/.dotfiles/src/.vimrc ~/.config/
 
 ```bash
 #brew install zsh-autosuggestions
+#sudo apt update && sudo apt install zsh-autosuggestions;
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh-autosuggestions;
 #echo 'source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
 ```
@@ -66,7 +70,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh-autosug
 
 ```bash
 echo "deb [signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ stable main" | sudo tee /etc/apt/sources.list.d/azlux.list;
-sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg;
+sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg https://azlux.fr/repo.gpg;
 sudo apt update && sudo apt install broot && br;
 ln -s ~/.dotfiles/src/verbs.hjson ~/.config/broot/verbs.hjson
 ```
@@ -80,22 +84,6 @@ sudo mv tere /usr/local/bin
 rm tere-1.4.0-x86_64-unknown-linux-gnu.zip
 ```
 
-## Powerlevel10k
-
-```bash
-#brew install romkatv/powerlevel10k/powerlevel10k
-#echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/powerlevel10k;
-#echo '[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh' >>~/.zshrc
-#echo 'source ~/.config/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-```
-
-## Hammerspoon
-
-```bash
-ln -s ~/.dotfiles/src/init.lua ~/.hammerspoon/init.lua
-```
-
 ## Sublime Text
 
 https://gist.github.com/skoqaq/3f3e8f28e23c881143cef9cf49d821ff?permalink_comment_id=4424828#gistcomment-4424828
@@ -106,7 +94,7 @@ https://gist.github.com/skoqaq/3f3e8f28e23c881143cef9cf49d821ff?permalink_commen
 
 Keyboard Properties -> Character repeat -> Repeat delay / Repeat rate -> Short
 
-## Install apps
+## WinGet Windows Package Manager - Install apps
 
 ```
 winget install RandyRants.SharpKeys;
@@ -155,55 +143,11 @@ New-Item -Path "C:\Users\user\AppData\Roaming\Sublime Text\Packages\User\Prefere
 C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "Start-Sleep -Seconds 10; Start-Process 'C:\Program Files (x86)\CopyQ\copyq.exe'"
 ```
 
-## WSL
-
-### Install apps
-
-```bash
-sudo apt install vim git curl zip zsh fzf fasd ripgrep tmux
-```
-
-### Set zsh
-
-```bash
-chsh -s $(which zsh);
-rm -rf ~/.zshrc ~/.vimrc ~/.tmux.conf ~/.config/lf/lfrc ~/.config/broot/verbs.hjson;
-ln -s ~/.dotfiles/win/.zshrc ~/.zshrc && ln -s ~/.dotfiles/win/.vimrc ~/.vimrc;
-```
-
-### Powerlevel10k
-
-```bash
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/powerlevel10k;
-#echo '[[ ! -f ~/.dotfiles/win/.p10k.zsh ]] || source ~/.dotfiles/win/.p10k.zsh' >>~/.zshrc
-#echo 'source ~/.config/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-```
-
-### zsh-autosuggestions
-
-```bash
-#sudo apt update && sudo apt install zsh-autosuggestions;
-git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh-autosuggestions;
-echo 'source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
-```
-
-### tere
-
-```bash
-wget https://github.com/mgunyho/tere/releases/download/v1.4.0/tere-1.4.0-x86_64-unknown-linux-gnu.zip
-unzip tere-1.4.0-x86_64-unknown-linux-gnu.zip
-sudo mv tere /usr/local/bin
-rm tere-1.4.0-x86_64-unknown-linux-gnu.zip
-```
-
 ## Archive
 
 ```bash
-# broot
-echo "deb [signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ stable main" | sudo tee /etc/apt/sources.list.d/azlux.list;
-sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg  https://azlux.fr/repo.gpg;
-sudo apt update && sudo apt install broot && br;
-ln -s ~/.dotfiles/win/verbs.hjson ~/.config/broot/verbs.hjson
+# tmux - drop for priority of terminal functionality
+ln -s ~/.dotfiles/zsh/.tmux.conf ~/.config/.tmux.conf
 
 # lf
 wget https://github.com/gokcehan/lf/releases/download/r28/lf-linux-amd64.tar.gz -O lf-linux-amd64.tar.gz;
@@ -211,8 +155,15 @@ tar xvf lf-linux-amd64.tar.gz && rm lf-linux-amd64.tar.gz && chmod +x lf && sudo
 wget https://raw.githubusercontent.com/gokcehan/lf/master/lf.1 && sudo mv lf.1 /usr/share/man/man1/;
 ln -s ~/.dotfiles/zsh/lfrc ~/.config/lf/lfrc;
 
-# tmux - drop for priority of terminal functionality
-ln -s ~/.dotfiles/zsh/.tmux.conf ~/.config/.tmux.conf
+# Powerlevel10k
+#brew install romkatv/powerlevel10k/powerlevel10k
+#echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/powerlevel10k;
+#echo '[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh' >>~/.zshrc
+#echo 'source ~/.config/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+
+# Hammerspoon
+ln -s ~/.dotfiles/src/init.lua ~/.hammerspoon/init.lua
 ```
 
 # Browser
