@@ -135,7 +135,7 @@ alias p='pnpm'
 
 
 
-# cd d,des 
+# cd d,des
 cd() {
 	if [[ $@ == "d" ]]; then
 		command cd '/mnt/d/'
@@ -156,12 +156,12 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[35m\]\u@WSL\[\033[00m\] \[\033[01;
 
 cd ~
 
-# tmux The -A flag makes new-session behave like attach-session if session-name already exists; 
-tmux new -As0 
+# tmux The -A flag makes new-session behave like attach-session if session-name already exists;
+tmux new -As0
 
 
 #stopwatch
-function sw(){ 
+function sw(){
 	now=$(date +%s)sec
 	while true; do
 		printf "%s\r" $(TZ=UTC date --date now-$now +%H:%M:%S.%3N)
@@ -169,8 +169,8 @@ function sw(){
 	done
 }
 function countdown(){
-   date1=$((`date +%s` + $1)); 
-   while [ "$date1" -ge `date +%s` ]; do 
+   date1=$((`date +%s` + $1));
+   while [ "$date1" -ge `date +%s` ]; do
      echo -ne "$(date -u --date @$(($date1 - `date +%s`)) +%H:%M:%S)\r";
      sleep 0.1
    done
@@ -181,7 +181,6 @@ function countdown(){
 #alias j='fasd_cd -d'
 # Initialize fuck
 eval $(thefuck --alias)
-alias fd='fdfind'
 
 
 
@@ -189,7 +188,7 @@ alias fd='fdfind'
 #/usr/share/doc/fzf/README.Debian enable fzf keybindings for Bash
 source /usr/share/doc/fzf/examples/key-bindings.bash
 #bind '"\C-g": "__fzf_cd__\n"' # bind inside Windows Terminal settings.json ctrl+g -> alt+c
-export FZF_ALT_C_COMMAND='fd --type d .'
+#export FZF_ALT_C_COMMAND='find --type d .'
 export FZF_ALT_C_OPTS="--height 40% --layout=reverse --border"
 
 

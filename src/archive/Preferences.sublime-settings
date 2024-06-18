@@ -1,8 +1,16 @@
 // Settings in here override those in "Default/Preferences.sublime-settings",
 // and are overridden in turn by syntax-specific settings.
-{
-		"word_wrap": "true",
-		"tab_size": 2,
-		"save_on_focus_lost": true,
-
+{ "update_check": false,
+	"tab_size": 2,
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": "all",
+  "save_on_focus_lost": true,
+  "detect_indentation": false,
+  "word_wrap": true,
+  //"end_of_line": "lf",
+   "font_size": 11,
+   "ignored_packages":
+   [
+		"Vintage",
+     ],
 }

@@ -147,6 +147,7 @@ zle-clipboard-copy() {
   if ((REGION_ACTIVE)); then
     zle copy-region-as-kill
     print -rn -- $CUTBUFFER | pbcopy #xclip -selection clipboard -in
+    #print -rn -- $CUTBUFFER | clip.exe #xclip -selection clipboard -in # for Windows
   else
     # Nothing is selected, so default to the interrupt command
     zle send-break
@@ -158,6 +159,7 @@ zle-clipboard-paste() {
     zle kill-region
   fi
   #LBUFFER+="$(xclip -selection clipboard -out)"
+  #LBUFFER+="$(cat clip.exe)" # for Windows
   LBUFFER+="$(pbpaste | cat)"
 }
 zle -N zle-clipboard-paste
@@ -284,7 +286,6 @@ bindkey '^r' run-fzf-history
 
 # ctrl+shift+f search local and cd/vi
 fzf-find-local() {
-  # item="$(fd | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
   item="$(find '.' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
   if [[ -d ${item} ]]; then
     cd "${item}" || return 1
@@ -302,7 +303,7 @@ bindkey '^p' run-fzf-find-local
 
 # ctrl+o open file in vscode
 fzf-vi() {
-  file="$(fd --type f | fzf -1 -0 --no-sort +m)" && code "${file}" || return 1
+  file="$(find '.' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/dev*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -type f -iname '*' 2>/dev/null | fzf -1 -0 --no-sort +m)" && code "${file}" || return 1
   zle acceptl-line
 }
 run-fzf-vi(){fzf-vi; local ret=$?; zle reset-prompt; return $ret}
