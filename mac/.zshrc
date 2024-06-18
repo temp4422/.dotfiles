@@ -1,3 +1,5 @@
+# Prompt
+###############################################################################
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -24,7 +26,7 @@ bindkey -e # Use emacs keybindings even if our EDITOR is set to vi
 #bindkey -s "^W" "^D" set in terminal!
 #bindkey -s "^D" "^W" set in terminal!
 
-# Set options
+# Set shell options
 ###############################################################################
 # Disable ctrl+s and ctrl+q flow control
 setopt noflowcontrol
@@ -64,41 +66,7 @@ source $HOME/.dotfiles/mac/widgets.zsh
 
 # Aliases
 ###############################################################################
-# common
-alias ls='ls --color'
-alias ll='gls -lAh --color --group-directories-first'
-alias c="clear && printf '\e[3J'"
-alias rm='rm -rf'
-alias cp='cp -r'
-alias cd..='cd ..'
-alias ..='cd ..'
-alias cd-='cd -'
-alias du='du -sh'
-# git
-alias gs='git status'
-alias gl='git log --oneline -15 --graph --all'
-alias gm='git add . && git commit -am'
-alias gc='git checkout'
-alias gb='git branch'
-alias gp='git push'
-alias gd='git diff'
-alias gcl='git checkout . && git clean -fd'
-# apps
-alias j='fasd_cd -d'
-# alias cd='fasd_cd -d'
-alias grep='rg --ignore-case'
-alias cat='bat'
-# alias vi='nvim'
-alias bd='bun run dev'
-alias bb='bun run build'
-alias bs='bun run start'
-alias bw='bun run watch'
-alias bi='bun install && bun run build'
-alias d='docker'
-alias ds='docker container ls --all' # docker ps
-alias di='docker image ls' # docker images
-alias dv='docker volume ls'
-alias drm='docker stop $(docker ps --all --quiet) && docker rm $(docker ps --all --quiet)'
+source $HOME/.dotfiles/.zsh_aliases
 
 # Homebrew: Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/opt/homebrew/bin/brew shellenv)"
@@ -197,10 +165,6 @@ nvm() {
 # cdir installed with pip install cdir
 # alias cdir='source cdir.sh'
 
-# my path
-# export PATH=/home/user/dev:$PATH
-alias python=/usr/bin/python3
-alias pip=/usr/local/bin/pip3
 
 # bun
 export BUN_INSTALL="$HOME/.bun"

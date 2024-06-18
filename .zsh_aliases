@@ -1,0 +1,44 @@
+# common
+alias ls='ls --color'
+alias ll='gls -lAh --color --group-directories-first'
+# alias ll='ls -lAh | \grep "^d" && ls -lAh | \grep "^-" && ls -lAh | \grep "^l"'
+alias c="clear && printf '\e[3J'"
+alias rm='rm -rf'
+alias cp='cp -r'
+alias cd..='cd ..'
+alias cd-='cd -'
+alias du='du -sh'
+
+# git
+alias gs='git status'
+alias gl='git log --oneline -15 --graph --all'
+alias gm='git add . && git commit -am'
+alias gc='git checkout'
+alias gb='git branch'
+alias gp='git push'
+alias gd='git diff'
+alias gcl='git checkout . && git clean -fd'
+
+# alias j='fasd_cd -d'
+# alias cd='fasd_cd -d'
+alias grep='rg --ignore-case'
+alias cat='bat'
+# alias vi='nvim'
+
+# python
+alias python=/usr/bin/python3
+alias pip=/usr/local/bin/pip3
+
+# bun
+alias bd='bun run dev'
+alias bb='bun run build'
+alias bs='bun run start'
+alias bw='bun run watch'
+alias bi='bun install && bun run build'
+
+# docker
+alias d='docker'
+alias ds='docker container ls --all' # docker ps
+alias di='docker image ls' # docker images
+alias dv='docker volume ls'
+alias drm='docker stop $(docker ps --all --quiet) && docker rm $(docker ps --all --quiet)'
