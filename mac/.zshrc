@@ -209,4 +209,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 [ -s "/Users/user/.bun/_bun" ] && source "/Users/user/.bun/_bun"
 
 # Selenium testing
-export PATH=$PATH:/Users/user/dev/selenium-testing
+#export PATH=$PATH:/Users/user/dev/selenium-testing
