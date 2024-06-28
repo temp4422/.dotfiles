@@ -174,3 +174,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Selenium testing
 #export PATH=$PATH:/Users/user/dev/selenium-testing
+
+# python
+export PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:$PATH"

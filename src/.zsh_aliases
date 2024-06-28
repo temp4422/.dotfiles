@@ -26,7 +26,7 @@ alias cat='bat'
 # alias vi='nvim'
 
 # python
-alias python=/usr/bin/python3
+alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3
 
 # bun
