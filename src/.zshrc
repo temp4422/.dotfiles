@@ -121,7 +121,7 @@ bindkey -s '^[s' tere^M # Set keybind in iTerm cmd+shift+s -> alt+s
 
 # broot
 source /Users/user/.config/broot/launcher/bash/br
-bindkey -s '^s' 'br --hidden --sort-by-type^M' # Set keybind in karabiner cmd+shift+e
+bindkey -s '^s' 'br --hidden --git-ignored --sort-by-type^M' # Set keybind in karabiner cmd+shift+e
 
 # nvm
 ##############################################################################
