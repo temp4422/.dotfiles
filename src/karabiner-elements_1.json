@@ -1206,7 +1206,7 @@
           "from": {
             "key_code": "f1",
             "modifiers": {
-              "mandatory": ["left_option"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -1221,7 +1221,7 @@
           "from": {
             "key_code": "f2",
             "modifiers": {
-              "mandatory": ["left_option"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -1232,9 +1232,9 @@
           "type": "basic"
         },
         {
-          "description": "opt+f1 decrese brightness",
+          "description": "super+f3 decrese brightness",
           "from": {
-            "key_code": "f1",
+            "key_code": "f3",
             "modifiers": {
               "mandatory": ["right_command"]
             }
@@ -1247,11 +1247,71 @@
           "type": "basic"
         },
         {
-          "description": "opt+f2 increse brightness",
+          "description": "super+f4 increse brightness",
+          "from": {
+            "key_code": "f4",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "apple_display_brightness_increment"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "option+f1 -> decrese volume",
+          "from": {
+            "key_code": "f1",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "volume_decrement"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "option+f2 -> increase volume",
           "from": {
             "key_code": "f2",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "volume_increment"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "option+f3 decrese brightness",
+          "from": {
+            "key_code": "f3",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "apple_display_brightness_decrement"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "option+f4 increse brightness",
+          "from": {
+            "key_code": "f4",
+            "modifiers": {
+              "mandatory": ["left_option"]
             }
           },
           "to": [
