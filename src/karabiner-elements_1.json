@@ -838,9 +838,9 @@
               "bundle_identifiers": ["^com.apple.finder"]
             },
             {
-              "type": "variable_unless",
+              "type": "variable_if",
               "name": "onEdit",
-              "value": 1
+              "value": 0
             }
           ],
           "from": {
@@ -862,8 +862,8 @@
               "bundle_identifiers": ["^com.apple.finder"]
             },
             {
-              "name": "onEdit",
               "type": "variable_if",
+              "name": "onEdit",
               "value": 1
             }
           ],
@@ -971,8 +971,8 @@
               "bundle_identifiers": ["^com.apple.finder"]
             },
             {
-              "name": "onEdit",
               "type": "variable_if",
+              "name": "onEdit",
               "value": 0
             }
           ],
@@ -995,8 +995,8 @@
               "bundle_identifiers": ["^com.apple.finder"]
             },
             {
-              "name": "onEdit",
               "type": "variable_if",
+              "name": "onEdit",
               "value": 0
             }
           ],
