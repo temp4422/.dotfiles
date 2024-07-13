@@ -808,12 +808,6 @@
       "manipulators": [
         {
           "description": "Use Esc to finish renaming when onEdit=1 and set onEdit=0 p.s. escape is caps_lock",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
-            }
-          ],
           "from": {
             "key_code": "caps_lock"
           },
@@ -1593,7 +1587,7 @@
           "type": "basic"
         },
         {
-          "description": "Find",
+          "description": "Find in Spotlight",
           "from": {
             "key_code": "f",
             "modifiers": {
@@ -1604,12 +1598,18 @@
             {
               "key_code": "spacebar",
               "modifiers": ["left_command"]
+            },
+            {
+              "set_variable": {
+                "name": "onEdit",
+                "value": 1
+              }
             }
           ],
           "type": "basic"
         },
         {
-          "description": "Find",
+          "description": "Find in Spotlight",
           "from": {
             "key_code": "f",
             "modifiers": {
@@ -1620,6 +1620,12 @@
             {
               "key_code": "spacebar",
               "modifiers": ["left_command"]
+            },
+            {
+              "set_variable": {
+                "name": "onEdit",
+                "value": 1
+              }
             }
           ],
           "type": "basic"
@@ -1665,6 +1671,12 @@
           "to": [
             {
               "shell_command": "open -b com.apple.finder"
+            },
+            {
+              "set_variable": {
+                "name": "onEdit",
+                "value": 0
+              }
             }
           ],
           "type": "basic"
@@ -1680,6 +1692,12 @@
           "to": [
             {
               "shell_command": "open -b com.apple.finder"
+            },
+            {
+              "set_variable": {
+                "name": "onEdit",
+                "value": 0
+              }
             }
           ],
           "type": "basic"
