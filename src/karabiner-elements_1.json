@@ -2295,6 +2295,33 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Insta search super+cmd+f",
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "mandatory": ["right_command", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": ["left_command"]
+            },
+            {
+              "key_code": "spacebar",
+              "modifiers": ["right_command"]
+            },
+            {
+              "key_code": "v",
+              "modifiers": ["left_command"]
+            },
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "type": "basic"
         }
       ]
     }
