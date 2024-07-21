@@ -2219,7 +2219,7 @@
           "type": "basic"
         },
         {
-          "description": "Spacebar to left_shift (+ when you type spacebar only, send spacebar)",
+          "description": "Super+spacebar to enter",
           "from": {
             "key_code": "spacebar",
             "modifiers": {
@@ -2228,7 +2228,7 @@
           },
           "to": [
             {
-              "key_code": "left_shift"
+              "key_code": "return_or_enter"
             }
           ],
           "type": "basic"
