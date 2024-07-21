@@ -1750,7 +1750,7 @@
         {
           "description": "Google Keep",
           "from": {
-            "key_code": "grave_accent_and_tilde",
+            "key_code": "c",
             "modifiers": {
               "mandatory": ["right_command"]
             }
@@ -1765,7 +1765,7 @@
         {
           "description": "Google Keep",
           "from": {
-            "key_code": "grave_accent_and_tilde",
+            "key_code": "c",
             "modifiers": {
               "mandatory": ["left_option"]
             }
