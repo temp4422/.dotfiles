@@ -2247,7 +2247,8 @@
           },
           "to": [
             {
-              "key_code": "1"
+              "key_code": "1",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
@@ -2261,7 +2262,8 @@
           },
           "to": [
             {
-              "key_code": "2"
+              "key_code": "2",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
@@ -2275,7 +2277,8 @@
           },
           "to": [
             {
-              "key_code": "3"
+              "key_code": "3",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
@@ -2289,7 +2292,8 @@
           },
           "to": [
             {
-              "key_code": "4"
+              "key_code": "4",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
@@ -2303,7 +2307,8 @@
           },
           "to": [
             {
-              "key_code": "5"
+              "key_code": "5",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
@@ -2317,7 +2322,8 @@
           },
           "to": [
             {
-              "key_code": "6"
+              "key_code": "6",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
@@ -2331,7 +2337,8 @@
           },
           "to": [
             {
-              "key_code": "7"
+              "key_code": "7",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
@@ -2345,7 +2352,8 @@
           },
           "to": [
             {
-              "key_code": "8"
+              "key_code": "8",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
@@ -2359,7 +2367,8 @@
           },
           "to": [
             {
-              "key_code": "9"
+              "key_code": "9",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
@@ -2373,7 +2382,8 @@
           },
           "to": [
             {
-              "key_code": "0"
+              "key_code": "0",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
