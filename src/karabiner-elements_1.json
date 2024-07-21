@@ -1204,11 +1204,11 @@
           "type": "basic"
         },
         {
-          "description": "super+f1 -> decrese volume",
+          "description": "Decrese volume hyper+m",
           "from": {
-            "key_code": "f1",
+            "key_code": "u",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["rigth_command"]
             }
           },
           "to": [
@@ -1219,11 +1219,11 @@
           "type": "basic"
         },
         {
-          "description": "super+f2 -> increase volume",
+          "description": "Increase volume hper+,",
           "from": {
-            "key_code": "f2",
+            "key_code": "i",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["rigth_command"]
             }
           },
           "to": [
@@ -1234,11 +1234,11 @@
           "type": "basic"
         },
         {
-          "description": "super+f3 decrese brightness",
+          "description": "Decrese brightness hyper+.",
           "from": {
-            "key_code": "f3",
+            "key_code": "o",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["rigth_command"]
             }
           },
           "to": [
@@ -1249,71 +1249,11 @@
           "type": "basic"
         },
         {
-          "description": "super+f4 increse brightness",
+          "description": "Increse brightness hyper+/",
           "from": {
-            "key_code": "f4",
+            "key_code": "p",
             "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "apple_display_brightness_increment"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "option+f1 -> decrese volume",
-          "from": {
-            "key_code": "f1",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "volume_decrement"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "option+f2 -> increase volume",
-          "from": {
-            "key_code": "f2",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "volume_increment"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "option+f3 decrese brightness",
-          "from": {
-            "key_code": "f3",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "apple_display_brightness_decrement"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "option+f4 increse brightness",
-          "from": {
-            "key_code": "f4",
-            "modifiers": {
-              "mandatory": ["left_option"]
+              "mandatory": ["rigth_command"]
             }
           },
           "to": [
@@ -1733,26 +1673,11 @@
           "type": "basic"
         },
         {
-          "description": "Translate look Up",
+          "description": "Google Translate look Up",
           "from": {
-            "key_code": "u",
+            "key_code": "n",
             "modifiers": {
               "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.google.Chrome.app.edanbjnaiofggfmimiidpfmhggkbokck"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Translate look Up",
-          "from": {
-            "key_code": "u",
-            "modifiers": {
-              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -2319,6 +2244,21 @@
             },
             {
               "key_code": "return_or_enter"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Spacebar to left_shift (+ when you type spacebar only, send spacebar)",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_shift"
             }
           ],
           "type": "basic"
