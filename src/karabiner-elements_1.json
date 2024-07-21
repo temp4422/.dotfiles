@@ -1208,7 +1208,7 @@
           "from": {
             "key_code": "u",
             "modifiers": {
-              "mandatory": ["rigth_command"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -1223,7 +1223,7 @@
           "from": {
             "key_code": "i",
             "modifiers": {
-              "mandatory": ["rigth_command"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -1238,7 +1238,7 @@
           "from": {
             "key_code": "o",
             "modifiers": {
-              "mandatory": ["rigth_command"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -1253,7 +1253,7 @@
           "from": {
             "key_code": "p",
             "modifiers": {
-              "mandatory": ["rigth_command"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -1683,36 +1683,6 @@
           "to": [
             {
               "shell_command": "open -b com.google.Chrome.app.edanbjnaiofggfmimiidpfmhggkbokck"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Calculator Numbers",
-          "from": {
-            "key_code": "n",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.apple.calculator"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Calculator Numbers",
-          "from": {
-            "key_code": "n",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "open -b com.apple.calculator"
             }
           ],
           "type": "basic"
