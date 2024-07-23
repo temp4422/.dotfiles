@@ -2247,8 +2247,7 @@
           },
           "to": [
             {
-              "key_code": "2",
-              "modifiers": ["left_shift"]
+              "key_code": "hyphen"
             }
           ],
           "type": "basic"
@@ -2262,7 +2261,7 @@
           },
           "to": [
             {
-              "key_code": "3",
+              "key_code": "equal_sign",
               "modifiers": ["left_shift"]
             }
           ],
@@ -2277,8 +2276,7 @@
           },
           "to": [
             {
-              "key_code": "4",
-              "modifiers": ["left_shift"]
+              "key_code": "equal_sign"
             }
           ],
           "type": "basic"
@@ -2292,7 +2290,7 @@
           },
           "to": [
             {
-              "key_code": "5",
+              "key_code": "3",
               "modifiers": ["left_shift"]
             }
           ],
@@ -2307,7 +2305,7 @@
           },
           "to": [
             {
-              "key_code": "6",
+              "key_code": "backslash",
               "modifiers": ["left_shift"]
             }
           ],
@@ -2322,8 +2320,7 @@
           },
           "to": [
             {
-              "key_code": "7",
-              "modifiers": ["left_shift"]
+              "key_code": "period"
             }
           ],
           "type": "basic"
@@ -2331,21 +2328,6 @@
         {
           "from": {
             "key_code": "k",
-            "modifiers": {
-              "mandatory": ["right_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "8",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "l",
             "modifiers": {
               "mandatory": ["right_option"]
             }
@@ -2360,7 +2342,7 @@
         },
         {
           "from": {
-            "key_code": "semicolon",
+            "key_code": "l",
             "modifiers": {
               "mandatory": ["right_option"]
             }
@@ -2368,6 +2350,21 @@
           "to": [
             {
               "key_code": "0",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": ["right_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "slash",
               "modifiers": ["left_shift"]
             }
           ],

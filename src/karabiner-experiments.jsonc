@@ -1,4 +1,232 @@
 [
+  {
+    "description": "SpaceFN: Space+ALLKEYS to Symbols",
+    "manipulators": [
+      {
+        "type": "basic",
+        "from": {
+          "key_code": "a",
+          "modifiers": {
+            "optional": ["any"]
+          }
+        },
+        "to": [
+          {
+            "key_code": "1",
+            "modifiers": ["left_shift"]
+          }
+        ],
+        "conditions": [
+          {
+            "type": "variable_if",
+            "name": "spacefn_mode",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "type": "basic",
+        "from": {
+          "key_code": "s",
+          "modifiers": {
+            "optional": ["any"]
+          }
+        },
+        "to": [
+          {
+            "key_code": "hyphen"
+          }
+        ],
+        "conditions": [
+          {
+            "type": "variable_if",
+            "name": "spacefn_mode",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "type": "basic",
+        "from": {
+          "key_code": "d",
+          "modifiers": {
+            "optional": ["any"]
+          }
+        },
+        "to": [
+          {
+            "key_code": "equal_sign",
+            "modifiers": ["left_shift"]
+          }
+        ],
+        "conditions": [
+          {
+            "type": "variable_if",
+            "name": "spacefn_mode",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "type": "basic",
+        "from": {
+          "key_code": "f",
+          "modifiers": {
+            "optional": ["any"]
+          }
+        },
+        "to": [
+          {
+            "key_code": "equal_sign"
+          }
+        ],
+        "conditions": [
+          {
+            "type": "variable_if",
+            "name": "spacefn_mode",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "type": "basic",
+        "from": {
+          "key_code": "g",
+          "modifiers": {
+            "optional": ["any"]
+          }
+        },
+        "to": [
+          {
+            "key_code": "3",
+            "modifiers": ["left_shift"]
+          }
+        ],
+        "conditions": [
+          {
+            "type": "variable_if",
+            "name": "spacefn_mode",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "type": "basic",
+        "from": {
+          "key_code": "h",
+          "modifiers": {
+            "optional": ["any"]
+          }
+        },
+        "to": [
+          {
+            "key_code": "backslash",
+            "modifiers": ["left_shift"]
+          }
+        ],
+        "conditions": [
+          {
+            "type": "variable_if",
+            "name": "spacefn_mode",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "type": "basic",
+        "from": {
+          "key_code": "j",
+          "modifiers": {
+            "optional": ["any"]
+          }
+        },
+        "to": [
+          {
+            "key_code": "period"
+          }
+        ],
+        "conditions": [
+          {
+            "type": "variable_if",
+            "name": "spacefn_mode",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "type": "basic",
+        "from": {
+          "key_code": "k",
+          "modifiers": {
+            "optional": ["any"]
+          }
+        },
+        "to": [
+          {
+            "key_code": "9",
+            "modifiers": ["left_shift"]
+          }
+        ],
+        "conditions": [
+          {
+            "type": "variable_if",
+            "name": "spacefn_mode",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "type": "basic",
+        "from": {
+          "key_code": "l",
+          "modifiers": {
+            "optional": ["any"]
+          }
+        },
+        "to": [
+          {
+            "key_code": "0",
+            "modifiers": ["left_shift"]
+          }
+        ],
+        "conditions": [
+          {
+            "type": "variable_if",
+            "name": "spacefn_mode",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "type": "basic",
+        "from": {
+          "key_code": "semicolon",
+          "modifiers": {
+            "optional": ["any"]
+          }
+        },
+        "to": [
+          {
+            "select_input_source": {
+              "language": "en"
+            }
+          },
+          {
+            "key_code": "slash",
+            "modifiers": ["left_shift"]
+          }
+        ],
+        "conditions": [
+          {
+            "type": "variable_if",
+            "name": "spacefn_mode",
+            "value": 1
+          }
+        ]
+      }
+    ]
+  },
+
   /*
 Karabiner-Elements complex_modifications rules
 
