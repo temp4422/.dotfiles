@@ -2217,21 +2217,6 @@
             }
           ],
           "type": "basic"
-        },
-        {
-          "description": "Super+spacebar to enter",
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter"
-            }
-          ],
-          "type": "basic"
         }
       ]
     },
