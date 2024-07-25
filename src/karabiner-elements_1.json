@@ -1675,7 +1675,7 @@
         {
           "description": "Google Translate look Up",
           "from": {
-            "key_code": "n",
+            "key_code": "u",
             "modifiers": {
               "mandatory": ["right_command"]
             }
