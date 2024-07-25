@@ -1688,6 +1688,21 @@
           "type": "basic"
         },
         {
+          "description": "Calculator Numbers",
+          "from": {
+            "key_code": "n",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.apple.calculator"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Clock",
           "from": {
             "key_code": "b",
