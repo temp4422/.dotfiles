@@ -1204,11 +1204,11 @@
           "type": "basic"
         },
         {
-          "description": "Decrese volume hyper+m",
+          "description": "Decrease volume hyper+j",
           "from": {
-            "key_code": "u",
+            "key_code": "j",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["right_option"]
             }
           },
           "to": [
@@ -1219,11 +1219,11 @@
           "type": "basic"
         },
         {
-          "description": "Increase volume hper+,",
+          "description": "Increase volume hyper+k",
           "from": {
-            "key_code": "i",
+            "key_code": "k",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["right_option"]
             }
           },
           "to": [
@@ -1234,11 +1234,11 @@
           "type": "basic"
         },
         {
-          "description": "Decrese brightness hyper+.",
+          "description": "Decrease brightness hyper+l",
           "from": {
-            "key_code": "o",
+            "key_code": "l",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["right_option"]
             }
           },
           "to": [
@@ -1249,11 +1249,11 @@
           "type": "basic"
         },
         {
-          "description": "Increse brightness hyper+/",
+          "description": "Increase brightness hyper+;",
           "from": {
-            "key_code": "p",
+            "key_code": "semicolon",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["right_option"]
             }
           },
           "to": [
