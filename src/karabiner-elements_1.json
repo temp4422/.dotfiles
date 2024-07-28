@@ -1172,7 +1172,7 @@
           "type": "basic"
         },
         {
-          "description": "Set shift+space -> enter",
+          "description": "Set shift+space -> shift+enter",
           "from": {
             "key_code": "spacebar",
             "modifiers": {
@@ -1181,7 +1181,8 @@
           },
           "to": [
             {
-              "key_code": "return_or_enter"
+              "key_code": "return_or_enter",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
