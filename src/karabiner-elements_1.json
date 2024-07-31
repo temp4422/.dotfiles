@@ -1161,7 +1161,7 @@
           "from": {
             "key_code": "spacebar",
             "modifiers": {
-              "mandatory": ["left_command"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
