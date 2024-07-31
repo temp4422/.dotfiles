@@ -2336,7 +2336,7 @@
           "type": "basic"
         },
         {
-          "description": "quote ' 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴",
+          "description": "quote ' ",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2355,7 +2355,8 @@
           },
           "to": [
             {
-              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"'\"' "
+              "key_code": "9",
+              "modifiers": ["left_option", "left_shift"]
             }
           ],
           "type": "basic"
