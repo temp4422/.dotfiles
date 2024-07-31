@@ -2211,7 +2211,7 @@
       "description": "Symbols",
       "manipulators": [
         {
-          "description": ":",
+          "description": "colon :",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2237,7 +2237,7 @@
           "type": "basic"
         },
         {
-          "description": ":",
+          "description": "colon :",
           "from": {
             "key_code": "semicolon",
             "modifiers": {
@@ -2253,7 +2253,7 @@
           "type": "basic"
         },
         {
-          "description": ";",
+          "description": "semicolon ;",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2279,7 +2279,7 @@
           "type": "basic"
         },
         {
-          "description": ";",
+          "description": "semicolon ;",
           "from": {
             "key_code": "semicolon",
             "modifiers": {
@@ -2289,6 +2289,88 @@
           "to": [
             {
               "key_code": "semicolon"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "double quote \" ",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "quote",
+            "modifiers": {
+              "mandatory": ["left_option", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "2",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "double quote \" ",
+          "from": {
+            "key_code": "quote",
+            "modifiers": {
+              "mandatory": ["left_option", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "quote",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "quote ' ",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "quote",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"'\"' "
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "quote ' ",
+          "from": {
+            "key_code": "quote",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "quote"
             }
           ],
           "type": "basic"
