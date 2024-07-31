@@ -849,6 +849,33 @@
           "type": "basic"
         },
         {
+          "description": "Use SECOND Return as Open by defalut (if not renaming file), when onEdit=0",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            },
+            {
+              "type": "variable_if",
+              "name": "onEdit",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "o",
+              "modifiers": ["right_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Use Return to finish renaming when onEdit=1",
           "conditions": [
             {
