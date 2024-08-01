@@ -2439,7 +2439,8 @@
           },
           "to": [
             {
-              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"<\"' "
+              "key_code": "comma",
+              "modifiers": ["left_option", "left_shift"]
             }
           ],
           "type": "basic"
@@ -2521,7 +2522,8 @@
           },
           "to": [
             {
-              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \">\"' "
+              "key_code": "period",
+              "modifiers": ["left_option", "left_shift"]
             }
           ],
           "type": "basic"
@@ -2602,7 +2604,8 @@
           },
           "to": [
             {
-              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"?\"' "
+              "key_code": "7",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
