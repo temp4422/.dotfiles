@@ -1924,11 +1924,11 @@
           "type": "basic"
         },
         {
-          "description": "Hide App opt+h -> cmd+h",
+          "description": "Hide App l_cmd+r_cmd -> cmd+h",
           "from": {
             "key_code": "h",
             "modifiers": {
-              "mandatory": ["left_option"]
+              "mandatory": ["left_command", "right_command"]
             }
           },
           "to": [
