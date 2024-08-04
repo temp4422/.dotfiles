@@ -2254,7 +2254,7 @@
       "description": "Symbols",
       "manipulators": [
         {
-          "description": "colon :",
+          "description": "uk colon :",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2296,7 +2296,7 @@
           "type": "basic"
         },
         {
-          "description": "semicolon ;",
+          "description": "uk semicolon ;",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2337,7 +2337,7 @@
           "type": "basic"
         },
         {
-          "description": "double quote \" ",
+          "description": "uk double quote \" ",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2379,7 +2379,7 @@
           "type": "basic"
         },
         {
-          "description": "quote ' ",
+          "description": "uk quote ' ",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2420,7 +2420,7 @@
           "type": "basic"
         },
         {
-          "description": "less-than <",
+          "description": "uk less-than <",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2462,7 +2462,7 @@
           "type": "basic"
         },
         {
-          "description": "comma ,",
+          "description": "uk comma ,",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2503,7 +2503,7 @@
           "type": "basic"
         },
         {
-          "description": "greater-than >",
+          "description": "uk greater-than >",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2545,7 +2545,7 @@
           "type": "basic"
         },
         {
-          "description": "period .",
+          "description": "uk period .",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2585,7 +2585,7 @@
           "type": "basic"
         },
         {
-          "description": "question mark ?",
+          "description": "uk question mark ?",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2627,7 +2627,7 @@
           "type": "basic"
         },
         {
-          "description": "slash /",
+          "description": "uk slash /",
           "conditions": [
             {
               "type": "input_source_if",
