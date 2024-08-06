@@ -2922,7 +2922,7 @@
           },
           "to": [
             {
-              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"\\\"' "
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"\\\\\"' "
             }
           ],
           "type": "basic"
