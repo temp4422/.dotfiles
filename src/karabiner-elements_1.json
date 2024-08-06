@@ -3647,6 +3647,214 @@
           "type": "basic"
         }
       ]
+    },
+    {
+      "description": "DISABLE Other Symbols",
+      "manipulators": [
+        {
+          "description": "uk DISABLE period .",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "slash"
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk DISABLE comma ,",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "DISABLE open bracket [",
+          "from": {
+            "key_code": "open_bracket"
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "DISABLE open curly bracket {",
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "DISABLE close bracket ]",
+          "from": {
+            "key_code": "close_bracket"
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "DISABLE close curly bracket }",
+          "from": {
+            "key_code": "close_bracket",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "DISABLE backslash \\ ",
+          "from": {
+            "key_code": "backslash"
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "DISABLE vertical line | ",
+          "from": {
+            "key_code": "backslash",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "DISABLE colon :",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "DISABLE double quote \" ",
+          "from": {
+            "key_code": "quote",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "DISABLE less-than sign <",
+          "from": {
+            "key_code": "comma",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "DISABLE greater-than sign >",
+          "from": {
+            "key_code": "period",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "DISABLE question mark ?",
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
     }
   ]
 }
