@@ -2360,7 +2360,7 @@
           "type": "basic"
         },
         {
-          "description": "uk less-than <",
+          "description": "uk exclamation mark !",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2379,30 +2379,30 @@
           },
           "to": [
             {
-              "key_code": "comma",
-              "modifiers": ["left_option", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "less-than <",
-          "from": {
-            "key_code": "w",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "comma",
+              "key_code": "1",
               "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "uk greater-than >",
+          "description": "exclamation mark !",
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "1",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk question mark ?",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2421,14 +2421,14 @@
           },
           "to": [
             {
-              "key_code": "period",
-              "modifiers": ["left_option", "left_shift"]
+              "key_code": "7",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "greater-than >",
+          "description": "question mark ?",
           "from": {
             "key_code": "e",
             "modifiers": {
@@ -2437,7 +2437,49 @@
           },
           "to": [
             {
-              "key_code": "period",
+              "key_code": "slash",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk dollar sign $",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "r",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "4",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "dollar sign $",
+          "from": {
+            "key_code": "r",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "4",
               "modifiers": ["left_shift"]
             }
           ],
@@ -2456,7 +2498,7 @@
             }
           ],
           "from": {
-            "key_code": "r",
+            "key_code": "t",
             "modifiers": {
               "mandatory": ["left_option"]
             }
@@ -2472,7 +2514,7 @@
         {
           "description": "percent sign %",
           "from": {
-            "key_code": "r",
+            "key_code": "t",
             "modifiers": {
               "mandatory": ["left_option"]
             }
@@ -2692,7 +2734,7 @@
           "type": "basic"
         },
         {
-          "description": "uk exclamation mark !",
+          "description": "uk less-than <",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2711,14 +2753,14 @@
           },
           "to": [
             {
-              "key_code": "1",
-              "modifiers": ["left_shift"]
+              "key_code": "comma",
+              "modifiers": ["left_option", "left_shift"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "exclamation mark !",
+          "description": "less-than <",
           "from": {
             "key_code": "z",
             "modifiers": {
@@ -2727,14 +2769,14 @@
           },
           "to": [
             {
-              "key_code": "1",
+              "key_code": "comma",
               "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "uk question mark ?",
+          "description": "uk greater-than >",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2753,14 +2795,14 @@
           },
           "to": [
             {
-              "key_code": "7",
-              "modifiers": ["left_shift"]
+              "key_code": "period",
+              "modifiers": ["left_option", "left_shift"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "question mark ?",
+          "description": "greater-than >",
           "from": {
             "key_code": "x",
             "modifiers": {
@@ -2769,7 +2811,7 @@
           },
           "to": [
             {
-              "key_code": "slash",
+              "key_code": "period",
               "modifiers": ["left_shift"]
             }
           ],
@@ -2859,8 +2901,9 @@
           ],
           "type": "basic"
         },
+
         {
-          "description": "uk numero sign №",
+          "description": "uk reverse solidus \\ ",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2879,14 +2922,13 @@
           },
           "to": [
             {
-              "key_code": "3",
-              "modifiers": ["left_shift"]
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"\\\"' "
             }
           ],
           "type": "basic"
         },
         {
-          "description": "TODO 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴 numero sign №",
+          "description": "reverse solidus \\ ",
           "from": {
             "key_code": "b",
             "modifiers": {
@@ -2895,13 +2937,14 @@
           },
           "to": [
             {
-              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"№\"' "
+              "key_code": "backslash"
             }
           ],
           "type": "basic"
         },
+
         {
-          "description": "uk colon :",
+          "description": "TODO 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴 uk colon :",
           "conditions": [
             {
               "type": "input_source_if",
