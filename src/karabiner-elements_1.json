@@ -2944,7 +2944,7 @@
         },
 
         {
-          "description": "TODO 🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴🔴 uk colon :",
+          "description": "uk circumflex accent ^",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2956,9 +2956,25 @@
             }
           ],
           "from": {
-            "key_code": "semicolon",
+            "key_code": "y",
             "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "6",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "circumflex accent ^",
+          "from": {
+            "key_code": "y",
+            "modifiers": {
+              "mandatory": ["left_option"]
             }
           },
           "to": [
@@ -2970,21 +2986,213 @@
           "type": "basic"
         },
         {
-          "description": "colon :",
+          "description": "uk left curly bracket {",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
           "from": {
-            "key_code": "semicolon",
+            "key_code": "u",
             "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
+              "mandatory": ["left_option"]
             }
           },
           "to": [
             {
-              "key_code": "semicolon",
+              "key_code": "h",
+              "modifiers": ["left_option", "left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "left curly bracket {",
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "open_bracket",
               "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
         },
+        {
+          "description": "uk right curly bracket }",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "h",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "right curly bracket }",
+          "from": {
+            "key_code": "i",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "close_bracket",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk left square bracket [",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "grave_accent_and_tilde",
+              "modifiers": ["left_option", "left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "left square bracket [",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "open_bracket"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk right square bracket ]",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "p",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "grave_accent_and_tilde",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "right square bracket ]",
+          "from": {
+            "key_code": "p",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "close_bracket"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk vertical line |",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"|\"' "
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "vertical line |",
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "backslash",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+
         {
           "description": "uk semicolon ;",
           "conditions": [
@@ -3026,6 +3234,7 @@
           ],
           "type": "basic"
         },
+
         {
           "description": "uk double quote \" ",
           "conditions": [
@@ -3068,6 +3277,7 @@
           ],
           "type": "basic"
         },
+
         {
           "description": "uk quote ' ",
           "conditions": [
@@ -3109,48 +3319,7 @@
           ],
           "type": "basic"
         },
-        {
-          "description": "uk less-than <",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "comma",
-            "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "comma",
-              "modifiers": ["left_option", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "less-than <",
-          "from": {
-            "key_code": "comma",
-            "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "comma",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
+
         {
           "description": "uk comma ,",
           "conditions": [
@@ -3193,48 +3362,6 @@
           "type": "basic"
         },
         {
-          "description": "uk greater-than >",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "period",
-            "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "period",
-              "modifiers": ["left_option", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "greater-than >",
-          "from": {
-            "key_code": "period",
-            "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "period",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "uk period .",
           "conditions": [
             {
@@ -3270,48 +3397,6 @@
           "to": [
             {
               "key_code": "period"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk question mark ?",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "7",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "question mark ?",
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "slash",
-              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
