@@ -543,6 +543,70 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "move window left",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["right_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f1",
+              "modifiers": ["left_command", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "zoom",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": ["right_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f2",
+              "modifiers": ["left_command", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "minimize",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["right_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f3",
+              "modifiers": ["left_command", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "move window right",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": ["right_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f4",
+              "modifiers": ["left_command", "left_option"]
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
