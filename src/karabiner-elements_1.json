@@ -3462,8 +3462,8 @@
           },
           "to": [
             {
-              "key_code": "backslash",
-              "modifiers": ["left_shift"]
+              "key_code": "0",
+              "modifiers": ["left_option", "left_shift"]
             }
           ],
           "type": "basic"
