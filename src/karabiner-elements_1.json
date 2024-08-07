@@ -543,6 +543,130 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "caps_lock to dual role: escape and hyper",
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "mandatory": [],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "hyper",
+                "value": 1
+              }
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "hyper",
+                "value": 0
+              }
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "move window left, if hyper = 1 (caps_lock pressed)",
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "hyper",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f1",
+              "modifiers": ["left_control", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "zoom, if hyper = 1 (caps_lock pressed)",
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "hyper",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f2",
+              "modifiers": ["left_control", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "minimize, if hyper = 1 (caps_lock pressed)",
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "hyper",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f3",
+              "modifiers": ["left_control", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "move window right, if hyper = 1 (caps_lock pressed)",
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "hyper",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f4",
+              "modifiers": ["left_control", "left_option"]
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
@@ -2178,102 +2302,6 @@
             {
               "key_code": "v",
               "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "caps_lock to dual role: escape and hyper",
-          "from": {
-            "key_code": "caps_lock",
-            "modifiers": {
-              "mandatory": [],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "set_variable": {
-                "name": "hyper",
-                "value": 1
-              }
-            }
-          ],
-          "to_after_key_up": [
-            {
-              "set_variable": {
-                "name": "hyper",
-                "value": 0
-              }
-            }
-          ],
-          "to_if_alone": [
-            {
-              "key_code": "escape"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "move window left",
-          "from": {
-            "key_code": "j",
-            "modifiers": {
-              "mandatory": ["right_command", "caps_lock"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f1",
-              "modifiers": ["left_control", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "zoom",
-          "from": {
-            "key_code": "k",
-            "modifiers": {
-              "mandatory": ["right_command", "caps_lock"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f2",
-              "modifiers": ["left_control", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "minimize",
-          "from": {
-            "key_code": "l",
-            "modifiers": {
-              "mandatory": ["right_command", "caps_lock"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f3",
-              "modifiers": ["left_control", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "move window right",
-          "from": {
-            "key_code": "semicolon",
-            "modifiers": {
-              "mandatory": ["right_command", "caps_lock"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f4",
-              "modifiers": ["left_control", "left_option"]
             }
           ],
           "type": "basic"
