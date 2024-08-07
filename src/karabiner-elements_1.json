@@ -884,6 +884,13 @@
                 "name": "onEdit",
                 "value": 0
               }
+            },
+            {
+              "description": "Also reset cutMode cmd+x etc.",
+              "set_variable": {
+                "name": "cutMode",
+                "value": 0
+              }
             }
           ],
           "type": "basic"
@@ -954,6 +961,38 @@
           ],
           "from": {
             "key_code": "return_or_enter"
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            },
+            {
+              "set_variable": {
+                "name": "onEdit",
+                "value": 0
+              }
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Use SECOND Return to finish renaming when onEdit=1",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            },
+            {
+              "type": "variable_if",
+              "name": "onEdit",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
           },
           "to": [
             {
