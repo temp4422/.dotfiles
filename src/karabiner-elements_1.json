@@ -3700,6 +3700,16 @@
         },
         {
           "description": "DISABLE open bracket [",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "open_bracket"
           },
@@ -3712,6 +3722,16 @@
         },
         {
           "description": "DISABLE open curly bracket {",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "open_bracket",
             "modifiers": {
@@ -3727,6 +3747,16 @@
         },
         {
           "description": "DISABLE close bracket ]",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "close_bracket"
           },
@@ -3739,6 +3769,16 @@
         },
         {
           "description": "DISABLE close curly bracket }",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "close_bracket",
             "modifiers": {
@@ -3754,6 +3794,16 @@
         },
         {
           "description": "DISABLE backslash \\ ",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "backslash"
           },
@@ -3766,6 +3816,16 @@
         },
         {
           "description": "DISABLE vertical line | ",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "backslash",
             "modifiers": {
@@ -3781,6 +3841,16 @@
         },
         {
           "description": "DISABLE colon :",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "semicolon",
             "modifiers": {
@@ -3796,6 +3866,16 @@
         },
         {
           "description": "DISABLE double quote \" ",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "quote",
             "modifiers": {
@@ -3811,6 +3891,16 @@
         },
         {
           "description": "DISABLE less-than sign <",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "comma",
             "modifiers": {
@@ -3826,6 +3916,16 @@
         },
         {
           "description": "DISABLE greater-than sign >",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "period",
             "modifiers": {
@@ -3841,6 +3941,16 @@
         },
         {
           "description": "DISABLE question mark ?",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "slash",
             "modifiers": {
