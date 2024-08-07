@@ -1211,18 +1211,6 @@
           "type": "basic"
         },
         {
-          "description": "Set capslock -> esc",
-          "type": "basic",
-          "from": {
-            "key_code": "caps_lock"
-          },
-          "to": [
-            {
-              "key_code": "escape"
-            }
-          ]
-        },
-        {
           "description": "Set cmd+space -> enter",
           "from": {
             "key_code": "spacebar",
@@ -2190,6 +2178,38 @@
             {
               "key_code": "v",
               "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "caps_lock to dual role: escape and hyper",
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "mandatory": [],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "hyper",
+                "value": 1
+              }
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "hyper",
+                "value": 0
+              }
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
             }
           ],
           "type": "basic"
