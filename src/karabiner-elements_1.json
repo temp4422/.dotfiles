@@ -545,6 +545,52 @@
           "type": "basic"
         },
         {
+          "description": "Spotlight search home/end",
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "onEdit",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Spotlight search home/end",
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "onEdit",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "caps_lock to dual role: escape and hyper",
           "from": {
             "key_code": "caps_lock",
@@ -558,6 +604,20 @@
               "set_variable": {
                 "name": "hyper",
                 "value": 1
+              }
+            },
+            {
+              "description": "Finder: Use Esc to finish renaming when onEdit=1",
+              "set_variable": {
+                "name": "onEdit",
+                "value": 0
+              }
+            },
+            {
+              "description": "Finder: Reset cutMode cmd+x",
+              "set_variable": {
+                "name": "cutMode",
+                "value": 0
               }
             }
           ],
@@ -930,31 +990,6 @@
     {
       "description": "🔵 3 Finder modification to work as Windows File Explorer",
       "manipulators": [
-        {
-          "description": "Use Esc to finish renaming when onEdit=1 and set onEdit=0 p.s. escape is caps_lock",
-          "from": {
-            "key_code": "caps_lock"
-          },
-          "to": [
-            {
-              "key_code": "escape"
-            },
-            {
-              "set_variable": {
-                "name": "onEdit",
-                "value": 0
-              }
-            },
-            {
-              "description": "Also reset cutMode cmd+x etc.",
-              "set_variable": {
-                "name": "cutMode",
-                "value": 0
-              }
-            }
-          ],
-          "type": "basic"
-        },
         {
           "description": "Use Return as Open by defalut (if not renaming file), when onEdit=0",
           "conditions": [
