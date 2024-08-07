@@ -3221,8 +3221,7 @@
           },
           "to": [
             {
-              "key_code": "grave_accent_and_tilde",
-              "modifiers": ["left_option"]
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"]\"' "
             }
           ],
           "type": "basic"
@@ -3740,7 +3739,7 @@
       ]
     },
     {
-      "description": "DISABLE Other Symbols",
+      "description": "Disable Other Symbols",
       "manipulators": [
         {
           "description": "uk DISABLE period .",
