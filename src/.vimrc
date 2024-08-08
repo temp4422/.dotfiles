@@ -25,6 +25,7 @@ endif
 
 
 "Remap keys, meaning: n(normal-mode) nore(non-recursive) map(mapping)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "search in 3 modes
 nnoremap <c-f> /
 inoremap <c-f> <Esc>/
@@ -34,11 +35,6 @@ vnoremap <c-f> <Esc>/
 nnoremap <c-s> :w<CR> "normal mode: save
 inoremap <c-s> <Esc>:w<CR> "insert mode: escape to normal and save
 vnoremap <c-s> <Esc>:w<CR> "visual mode: escape to normal and save
-
-"quit
-nnoremap q :q<CR>
-nnoremap Q :q<CR>
-nnoremap <c-q> :q<CR>
 
 "next search
 map <CR> n "Enter
