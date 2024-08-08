@@ -1849,7 +1849,7 @@
           "from": {
             "key_code": "return_or_enter",
             "modifiers": {
-              "mandatory": ["left_option"]
+              "mandatory": ["left_command"]
             }
           },
           "to": [
@@ -1869,7 +1869,7 @@
           "type": "basic"
         },
         {
-          "description": "RemNote cmd+enter zoom into rem",
+          "description": "RemNote fix enter",
           "conditions": [
             {
               "type": "frontmost_application_if",
@@ -1877,15 +1877,12 @@
             }
           ],
           "from": {
-            "key_code": "return_or_enter",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
+            "key_code": "return_or_enter"
           },
           "to": [
             {
-              "key_code": "semicolon",
-              "modifiers": ["left_command"]
+              "key_code": "return_or_enter",
+              "modifiers": ["left_option"]
             }
           ],
           "type": "basic"
