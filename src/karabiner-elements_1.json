@@ -285,6 +285,24 @@
       "description": "🔴 Miscellaneous Overwrite",
       "manipulators": [
         {
+          "description": "Disable r_cmd if pressed alone. Prevent random cmd triggering and better cmd+space behavior",
+          "from": {
+            "key_code": "right_command"
+          },
+          "to": [
+            {
+              "key_code": "right_command",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Browser, Telegram, Bitwarden home/end -> start/end of row",
           "conditions": [
             {
