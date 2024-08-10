@@ -2379,7 +2379,7 @@
       "description": "Symbols",
       "manipulators": [
         {
-          "description": "uk commercial at @",
+          "description": "uk asterisk *",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2392,6 +2392,132 @@
           ],
           "from": {
             "key_code": "q",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "8",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "asterisk *",
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "8",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk less-than <",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "comma",
+              "modifiers": ["left_option", "left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "less-than <",
+          "from": {
+            "key_code": "w",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "comma",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk greater-than >",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "e",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "period",
+              "modifiers": ["left_option", "left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "greater-than >",
+          "from": {
+            "key_code": "e",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "period",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk commercial at @",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "r",
             "modifiers": {
               "mandatory": ["left_option"]
             }
@@ -2407,7 +2533,7 @@
         {
           "description": "commercial at @",
           "from": {
-            "key_code": "q",
+            "key_code": "r",
             "modifiers": {
               "mandatory": ["left_option"]
             }
@@ -2415,132 +2541,6 @@
           "to": [
             {
               "key_code": "2",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk exclamation mark !",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "w",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "1",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "exclamation mark !",
-          "from": {
-            "key_code": "w",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "1",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk question mark ?",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "e",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "7",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "question mark ?",
-          "from": {
-            "key_code": "e",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "slash",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk dollar sign $",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "r",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "4",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "dollar sign $",
-          "from": {
-            "key_code": "r",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "4",
               "modifiers": ["left_shift"]
             }
           ],
@@ -2795,7 +2795,7 @@
           "type": "basic"
         },
         {
-          "description": "uk less-than <",
+          "description": "uk exclamation mark !",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2814,14 +2814,14 @@
           },
           "to": [
             {
-              "key_code": "comma",
-              "modifiers": ["left_option", "left_shift"]
+              "key_code": "1",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "less-than <",
+          "description": "exclamation mark !",
           "from": {
             "key_code": "z",
             "modifiers": {
@@ -2830,14 +2830,14 @@
           },
           "to": [
             {
-              "key_code": "comma",
+              "key_code": "1",
               "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "uk greater-than >",
+          "description": "uk question mark ?",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2856,14 +2856,14 @@
           },
           "to": [
             {
-              "key_code": "period",
-              "modifiers": ["left_option", "left_shift"]
+              "key_code": "7",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "greater-than >",
+          "description": "question mark ?",
           "from": {
             "key_code": "x",
             "modifiers": {
@@ -2872,14 +2872,14 @@
           },
           "to": [
             {
-              "key_code": "period",
+              "key_code": "slash",
               "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "uk asterisk *",
+          "description": "uk dollar sign $",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2898,14 +2898,14 @@
           },
           "to": [
             {
-              "key_code": "8",
-              "modifiers": ["left_shift"]
+              "key_code": "4",
+              "modifiers": ["left_option"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "asterisk *",
+          "description": "dollar sign $",
           "from": {
             "key_code": "c",
             "modifiers": {
@@ -2914,7 +2914,7 @@
           },
           "to": [
             {
-              "key_code": "8",
+              "key_code": "4",
               "modifiers": ["left_shift"]
             }
           ],
