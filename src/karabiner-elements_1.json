@@ -285,6 +285,28 @@
       "description": "🔴 Miscellaneous Overwrite",
       "manipulators": [
         {
+          "description": "RemNote fix enter",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["io.remnote"]
+            }
+          ],
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Disable r_cmd if pressed alone. Prevent random cmd triggering and better cmd+space behavior",
           "from": {
             "key_code": "right_command"
@@ -1882,25 +1904,6 @@
             },
             {
               "key_code": "return_or_enter"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "RemNote fix enter",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["io.remnote"]
-            }
-          ],
-          "from": {
-            "key_code": "return_or_enter"
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter",
-              "modifiers": ["left_option"]
             }
           ],
           "type": "basic"
