@@ -2379,7 +2379,7 @@
       "description": "Symbols",
       "manipulators": [
         {
-          "description": "uk circumflex accent ^",
+          "description": "uk commercial at @",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2398,14 +2398,14 @@
           },
           "to": [
             {
-              "key_code": "6",
+              "key_code": "2",
               "modifiers": ["left_option"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "circumflex accent ^",
+          "description": "commercial at @",
           "from": {
             "key_code": "q",
             "modifiers": {
@@ -2414,7 +2414,7 @@
           },
           "to": [
             {
-              "key_code": "6",
+              "key_code": "2",
               "modifiers": ["left_shift"]
             }
           ],
@@ -2921,49 +2921,6 @@
           "type": "basic"
         },
         {
-          "description": "uk commercial at @",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "v",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "2",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "commercial at @",
-          "from": {
-            "key_code": "v",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "2",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-
-        {
           "description": "uk reverse solidus \\ ",
           "conditions": [
             {
@@ -2976,7 +2933,7 @@
             }
           ],
           "from": {
-            "key_code": "b",
+            "key_code": "v",
             "modifiers": {
               "mandatory": ["left_option"]
             }
@@ -2991,7 +2948,7 @@
         {
           "description": "reverse solidus \\ ",
           "from": {
-            "key_code": "b",
+            "key_code": "v",
             "modifiers": {
               "mandatory": ["left_option"]
             }
@@ -2999,6 +2956,48 @@
           "to": [
             {
               "key_code": "backslash"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk circumflex accent ^",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "b",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "6",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "circumflex accent ^",
+          "from": {
+            "key_code": "b",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "6",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
