@@ -3016,87 +3016,6 @@
           "type": "basic"
         },
         {
-          "description": "uk left square bracket [",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "u",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "grave_accent_and_tilde",
-              "modifiers": ["left_option", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "left square bracket [",
-          "from": {
-            "key_code": "u",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "open_bracket"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk right square bracket ]",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "i",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"]\"' "
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "right square bracket ]",
-          "from": {
-            "key_code": "i",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "close_bracket"
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "uk left curly bracket {",
           "conditions": [
             {
@@ -3109,7 +3028,7 @@
             }
           ],
           "from": {
-            "key_code": "o",
+            "key_code": "u",
             "modifiers": {
               "mandatory": ["left_option"]
             }
@@ -3125,7 +3044,7 @@
         {
           "description": "left curly bracket {",
           "from": {
-            "key_code": "o",
+            "key_code": "u",
             "modifiers": {
               "mandatory": ["left_option"]
             }
@@ -3151,7 +3070,7 @@
             }
           ],
           "from": {
-            "key_code": "p",
+            "key_code": "i",
             "modifiers": {
               "mandatory": ["left_option"]
             }
@@ -3167,7 +3086,7 @@
         {
           "description": "right curly bracket }",
           "from": {
-            "key_code": "p",
+            "key_code": "i",
             "modifiers": {
               "mandatory": ["left_option"]
             }
@@ -3176,6 +3095,87 @@
             {
               "key_code": "close_bracket",
               "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk left square bracket [",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "grave_accent_and_tilde",
+              "modifiers": ["left_option", "left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "left square bracket [",
+          "from": {
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "open_bracket"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk right square bracket ]",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "p",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"]\"' "
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "right square bracket ]",
+          "from": {
+            "key_code": "p",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "close_bracket"
             }
           ],
           "type": "basic"
