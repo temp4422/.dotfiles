@@ -303,6 +303,24 @@
           "type": "basic"
         },
         {
+          "description": "Disable l_opt if pressed alone",
+          "from": {
+            "key_code": "left_option"
+          },
+          "to": [
+            {
+              "key_code": "left_option",
+              "lazy": true
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Browser, Telegram, Bitwarden home/end -> start/end of row",
           "conditions": [
             {
