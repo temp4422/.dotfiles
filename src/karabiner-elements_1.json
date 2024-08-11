@@ -2372,6 +2372,22 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Fix screenshot shift+opt+s",
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": ["left_option", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "s",
+              "modifiers": ["left_option", "left_shift"]
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
