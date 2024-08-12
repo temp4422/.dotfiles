@@ -1438,6 +1438,22 @@
           "type": "basic"
         },
         {
+          "description": "Set super+shift+space -> shift+space",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["right_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Disable enter",
           "from": {
             "key_code": "return_or_enter"
@@ -4389,6 +4405,16 @@
       "manipulators": [
         {
           "description": "DISABLE colon :",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "semicolon",
             "modifiers": {
@@ -4404,6 +4430,16 @@
         },
         {
           "description": "DISABLE double quote \"",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
           "from": {
             "key_code": "quote",
             "modifiers": {
