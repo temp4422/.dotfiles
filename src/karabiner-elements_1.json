@@ -3704,6 +3704,7 @@
         },
         {
           "description": "uk Fix comma and period fast typing in sequence ",
+          "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
           "conditions": [
             {
               "type": "input_source_if",
