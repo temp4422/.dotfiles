@@ -3674,6 +3674,43 @@
           "type": "basic"
         },
         {
+          "description": "uk Fix comma and period fast typing in sequence ",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "comma"
+              },
+              {
+                "key_code": "period"
+              }
+            ],
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "slash",
+              "modifiers": ["left_shift"]
+            },
+            {
+              "key_code": "slash"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "uk comma ,",
           "conditions": [
             {
