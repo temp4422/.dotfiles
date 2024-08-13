@@ -1,5 +1,5 @@
 {
-  "tite": "ALL SHORTCUTS (🔵 = is important, 🔴 = must overwrite important to work properly, but is not important)",
+  "title": "ALL SHORTCUTS (🔵 = is important, 🔴 = must overwrite important to work properly, but is not important)",
   "rules": [
     {
       "description": "🔴 iTerm2 Overwrite",
