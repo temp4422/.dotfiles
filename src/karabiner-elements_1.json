@@ -1497,7 +1497,7 @@
           "type": "basic"
         },
         {
-          "description": "Delete word backward cmd+backspace -> opt+backspace ",
+          "description": "Delete word backward cmd+backspace -> opt+backspace",
           "from": {
             "key_code": "delete_or_backspace",
             "modifiers": {
@@ -1513,7 +1513,7 @@
           "type": "basic"
         },
         {
-          "description": "Delete word backward cmd+spacebar -> opt+backspace ",
+          "description": "SECOND Delete word backward cmd+spacebar -> opt+backspace",
           "from": {
             "key_code": "spacebar",
             "modifiers": {
@@ -1524,6 +1524,22 @@
             {
               "key_code": "delete_or_backspace",
               "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Switch input source",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar",
+              "modifiers": ["left_control"]
             }
           ],
           "type": "basic"
