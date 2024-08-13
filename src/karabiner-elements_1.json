@@ -1529,6 +1529,35 @@
           "type": "basic"
         },
         {
+          "description": "Fix Switch input source when holding opt and rapid typed comma + spacebar",
+          "parameters": {
+            "description": "https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
+            "basic.simultaneous_threshold_milliseconds": 500
+          },
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "comma"
+              },
+              {
+                "key_code": "spacebar"
+              }
+            ],
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "comma"
+            },
+            {
+              "key_code": "spacebar"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Switch input source",
           "from": {
             "key_code": "spacebar",
