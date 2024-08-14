@@ -2876,50 +2876,6 @@
           "type": "basic"
         },
         {
-          "description": "uk dollar sign $",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "z",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "4",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "dollar sign $",
-          "from": {
-            "key_code": "z",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "4",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "uk commercial at @",
           "conditions": [
             {
@@ -2932,7 +2888,7 @@
             }
           ],
           "from": {
-            "key_code": "x",
+            "key_code": "z",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2949,7 +2905,7 @@
         {
           "description": "commercial at @",
           "from": {
-            "key_code": "x",
+            "key_code": "z",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2958,6 +2914,50 @@
           "to": [
             {
               "key_code": "2",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk dollar sign $",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "x",
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "4",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "dollar sign $",
+          "from": {
+            "key_code": "x",
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "4",
               "modifiers": ["left_shift"]
             }
           ],
