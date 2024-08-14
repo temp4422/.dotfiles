@@ -3718,10 +3718,10 @@
           "from": {
             "simultaneous": [
               {
-                "key_code": "comma"
+                "key_code": "period"
               },
               {
-                "key_code": "period"
+                "key_code": "comma"
               }
             ],
             "modifiers": {
@@ -3731,11 +3731,11 @@
           },
           "to": [
             {
-              "key_code": "slash",
-              "modifiers": ["left_shift"]
+              "key_code": "slash"
             },
             {
-              "key_code": "slash"
+              "key_code": "slash",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
