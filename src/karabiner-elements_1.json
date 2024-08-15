@@ -2440,6 +2440,31 @@
       "description": "Symbols",
       "manipulators": [
         {
+          "description": "uk solidus /",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"/\"' "
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "uk exclamation mark !",
           "conditions": [
             {
