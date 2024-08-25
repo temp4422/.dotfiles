@@ -2222,7 +2222,7 @@
           "type": "basic"
         },
         {
-          "description": "Chnage ґ to ʼ in unkraine keyborad",
+          "description": "Chnage и to і in UK layout",
           "conditions": [
             {
               "input_sources": [
@@ -2234,17 +2234,17 @@
             }
           ],
           "from": {
-            "key_code": "grave_accent_and_tilde"
+            "key_code": "s"
           },
           "to": [
             {
-              "key_code": "backslash"
+              "key_code": "b"
             }
           ],
           "type": "basic"
         },
         {
-          "description": "Chnage Ґ to ~ in unkraine keyborad",
+          "description": "Chnage И to І  in UK layout",
           "conditions": [
             {
               "input_sources": [
@@ -2256,21 +2256,21 @@
             }
           ],
           "from": {
-            "key_code": "grave_accent_and_tilde",
+            "key_code": "s",
             "modifiers": {
               "mandatory": ["left_shift"]
             }
           },
           "to": [
             {
-              "key_code": "backslash",
+              "key_code": "b",
               "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "Chnage ʼ to ґ in unkraine keyborad",
+          "description": "Chnage і to и in UK layout",
           "conditions": [
             {
               "input_sources": [
@@ -2282,17 +2282,17 @@
             }
           ],
           "from": {
-            "key_code": "backslash"
+            "key_code": "b"
           },
           "to": [
             {
-              "key_code": "grave_accent_and_tilde"
+              "key_code": "s"
             }
           ],
           "type": "basic"
         },
         {
-          "description": "Chnage ~ to Ґ  in unkraine keyborad",
+          "description": "Chnage І to И  in UK layout",
           "conditions": [
             {
               "input_sources": [
@@ -2304,14 +2304,14 @@
             }
           ],
           "from": {
-            "key_code": "backslash",
+            "key_code": "b",
             "modifiers": {
               "mandatory": ["left_shift"]
             }
           },
           "to": [
             {
-              "key_code": "grave_accent_and_tilde",
+              "key_code": "s",
               "modifiers": ["left_shift"]
             }
           ],
