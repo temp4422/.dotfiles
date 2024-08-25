@@ -2440,6 +2440,49 @@
       "description": "Symbols",
       "manipulators": [
         {
+          "description": "uk grave accent ` ",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "grave_accent_and_tilde",
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "0",
+              "modifiers": ["left_option", "left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "grave accent ` ",
+          "from": {
+            "key_code": "grave_accent_and_tilde",
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "grave_accent_and_tilde"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "uk exclamation mark !",
           "conditions": [
             {
@@ -2484,50 +2527,6 @@
           "type": "basic"
         },
         {
-          "description": "uk question mark ?",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "w",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "slash",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "question mark ?",
-          "from": {
-            "key_code": "w",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "slash",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "uk less-than <",
           "conditions": [
             {
@@ -2540,7 +2539,7 @@
             }
           ],
           "from": {
-            "key_code": "e",
+            "key_code": "w",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2557,7 +2556,7 @@
         {
           "description": "less-than <",
           "from": {
-            "key_code": "e",
+            "key_code": "w",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2584,7 +2583,7 @@
             }
           ],
           "from": {
-            "key_code": "r",
+            "key_code": "e",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2601,7 +2600,7 @@
         {
           "description": "greater-than >",
           "from": {
-            "key_code": "r",
+            "key_code": "e",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2628,7 +2627,7 @@
             }
           ],
           "from": {
-            "key_code": "t",
+            "key_code": "r",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2645,7 +2644,7 @@
         {
           "description": "circumflex accent ^",
           "from": {
-            "key_code": "t",
+            "key_code": "r",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2655,6 +2654,47 @@
             {
               "key_code": "6",
               "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk numero sign №",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "t",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "3",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "numero sign № NOT WORK 🔴",
+          "from": {
+            "key_code": "t",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"№\"' "
             }
           ],
           "type": "basic"
@@ -2827,47 +2867,6 @@
           "to": [
             {
               "key_code": "equal_sign"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk numero sign № MUST BE BEFORE number sign #",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "g",
-            "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "3",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "numero sign № NOT WORK 🔴",
-          "from": {
-            "key_code": "g",
-            "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"№\"' "
             }
           ],
           "type": "basic"
@@ -3135,7 +3134,7 @@
           "type": "basic"
         },
         {
-          "description": "uk tilde ~",
+          "description": "uk ampersand &",
           "conditions": [
             {
               "type": "input_source_if",
@@ -3155,14 +3154,14 @@
           },
           "to": [
             {
-              "key_code": "m",
+              "key_code": "7",
               "modifiers": ["left_option"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "tilde ~",
+          "description": "ampersand &",
           "from": {
             "key_code": "y",
             "modifiers": {
@@ -3172,7 +3171,7 @@
           },
           "to": [
             {
-              "key_code": "grave_accent_and_tilde",
+              "key_code": "7",
               "modifiers": ["left_shift"]
             }
           ],
@@ -3364,7 +3363,7 @@
             }
           ],
           "from": {
-            "key_code": "open_bracket",
+            "key_code": "h",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -3381,7 +3380,7 @@
         {
           "description": "vertical line |",
           "from": {
-            "key_code": "open_bracket",
+            "key_code": "h",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -3395,50 +3394,7 @@
           ],
           "type": "basic"
         },
-        {
-          "description": "uk ampersand &",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "h",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "7",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "ampersand &",
-          "from": {
-            "key_code": "h",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "7",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
+
         {
           "description": "uk colon :",
           "conditions": [
@@ -3658,7 +3614,7 @@
           "type": "basic"
         },
         {
-          "description": "uk grave accent ` ",
+          "description": "uk tilde ~",
           "conditions": [
             {
               "type": "input_source_if",
@@ -3678,14 +3634,14 @@
           },
           "to": [
             {
-              "key_code": "0",
-              "modifiers": ["left_option", "left_shift"]
+              "key_code": "m",
+              "modifiers": ["left_option"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "grave accent ` ",
+          "description": "tilde ~",
           "from": {
             "key_code": "n",
             "modifiers": {
@@ -3695,7 +3651,8 @@
           },
           "to": [
             {
-              "key_code": "grave_accent_and_tilde"
+              "key_code": "grave_accent_and_tilde",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
@@ -3910,14 +3867,9 @@
             }
           ],
           "type": "basic"
-        }
-      ]
-    },
-    {
-      "description": "Disable Symbols",
-      "manipulators": [
+        },
         {
-          "description": "uk DISABLE comma , OR question mark on UK LEGACY layout",
+          "description": "uk question mark ?",
           "conditions": [
             {
               "type": "input_source_if",
@@ -3931,16 +3883,40 @@
           "from": {
             "key_code": "slash",
             "modifiers": {
-              "mandatory": ["left_shift"]
+              "mandatory": ["left_option"],
+              "optional": ["any"]
             }
           },
           "to": [
             {
-              "key_code": "vk_none"
+              "key_code": "slash",
+              "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
         },
+        {
+          "description": "question mark ?",
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "slash",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+    {
+      "description": "Disable Symbols",
+      "manipulators": [
         {
           "description": "DISABLE open bracket [",
           "conditions": [
@@ -4121,6 +4097,31 @@
           ],
           "from": {
             "key_code": "period",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk DISABLE question mark ?",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "slash",
             "modifiers": {
               "mandatory": ["left_shift"]
             }
