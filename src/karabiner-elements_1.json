@@ -3827,48 +3827,6 @@
           "type": "basic"
         },
         {
-          "description": "uk slash /",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "slash"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "slash /",
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "slash"
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "uk question mark ?",
           "conditions": [
             {
