@@ -33,6 +33,9 @@ setopt noflowcontrol
 #stty start undef
 #stty stop undef
 
+# Set language locale
+export LANG=en_US.UTF-8
+
 # Set environment variables
 #export PATH=/home/user:/bin:/usr/bin:/usr/local/bin:${PATH}
 #export SHELL=/usr/bin/zsh
@@ -122,6 +125,9 @@ bindkey -s '^[s' tere^M # Set keybind in iTerm cmd+shift+s -> alt+s
 # broot
 source /Users/user/.config/broot/launcher/bash/br
 bindkey -s '^s' 'br --hidden --git-ignored --sort-by-type^M' # Set keybind in karabiner cmd+shift+e
+
+# midnight commander
+alias mc="mc --nosubshell"
 
 # nvm
 ##############################################################################
