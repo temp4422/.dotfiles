@@ -1404,223 +1404,7 @@
       ]
     },
     {
-      "description": "🔵 4 Cycle windows; Enter; Adjust volume/brightness;",
-      "manipulators": [
-        {
-          "description": "Set super+space -> enter",
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Set super+shift+space -> shift+enter",
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["right_command", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Disable enter",
-          "from": {
-            "key_code": "return_or_enter"
-          },
-          "to": [
-            {
-              "key_code": "vk_none"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Delete forward word super+cmd+backspace -> opt+del ",
-          "from": {
-            "key_code": "delete_or_backspace",
-            "modifiers": {
-              "mandatory": ["right_command", "left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_forward",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Delete forward super+backspace -> del",
-          "from": {
-            "key_code": "delete_or_backspace",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_forward"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Delete word backward cmd+backspace -> opt+backspace",
-          "from": {
-            "key_code": "delete_or_backspace",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "SECOND Delete word backward cmd+spacebar -> opt+backspace",
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Fix Switch input source when holding opt and rapid typed comma + spacebar",
-          "parameters": {
-            "description": "https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
-            "basic.simultaneous_threshold_milliseconds": 500
-          },
-          "from": {
-            "simultaneous": [
-              {
-                "key_code": "comma"
-              },
-              {
-                "key_code": "spacebar"
-              }
-            ],
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "comma"
-            },
-            {
-              "key_code": "spacebar"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Switch input source",
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "spacebar",
-              "modifiers": ["left_control"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Decrease volume",
-          "from": {
-            "key_code": "j",
-            "modifiers": {
-              "mandatory": ["right_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "volume_decrement"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Increase volume",
-          "from": {
-            "key_code": "k",
-            "modifiers": {
-              "mandatory": ["right_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "volume_increment"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Decrease brightness",
-          "from": {
-            "key_code": "l",
-            "modifiers": {
-              "mandatory": ["right_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "apple_display_brightness_decrement"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Increase brightness",
-          "from": {
-            "key_code": "semicolon",
-            "modifiers": {
-              "mandatory": ["right_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "apple_display_brightness_increment"
-            }
-          ],
-          "type": "basic"
-        }
-      ]
-    },
-    {
-      "description": "🔵 5 Dock items with right_command",
+      "description": "🔵 4 Dock items with right_command",
       "manipulators": [
         {
           "from": {
@@ -1917,8 +1701,191 @@
       ]
     },
     {
-      "description": "Miscellaneous",
+      "description": "🔵 5 Miscellaneous",
       "manipulators": [
+        {
+          "description": "Set super+space -> enter",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Set super+shift+space -> shift+enter",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["right_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Delete forward word super+cmd+backspace -> opt+del",
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": ["right_command", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_forward",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Delete forward super+backspace -> del",
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_forward"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Delete word backward cmd+backspace -> opt+backspace",
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Fix Switch input source when holding opt and rapid typed comma + spacebar",
+          "parameters": {
+            "description": "https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
+            "basic.simultaneous_threshold_milliseconds": 500
+          },
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "comma"
+              },
+              {
+                "key_code": "spacebar"
+              }
+            ],
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "comma"
+            },
+            {
+              "key_code": "spacebar"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Switch input source",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar",
+              "modifiers": ["left_control"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Decrease volume",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["right_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "volume_decrement"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Increase volume",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": ["right_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "volume_increment"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Decrease brightness",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["right_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "apple_display_brightness_decrement"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Increase brightness",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": ["right_option"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "apple_display_brightness_increment"
+            }
+          ],
+          "type": "basic"
+        },
         {
           "description": "Move back in history opt+left; super+h -> cmd+[",
           "from": {
@@ -4222,6 +4189,18 @@
     {
       "description": "Disable Other Keys & Symbols",
       "manipulators": [
+        {
+          "description": "Disable enter",
+          "from": {
+            "key_code": "return_or_enter"
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
         {
           "description": "DISABLE double quote \"",
           "conditions": [
