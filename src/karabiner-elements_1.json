@@ -4086,17 +4086,7 @@
           "type": "basic"
         },
         {
-          "description": "en disable close bracket ]",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "en"
-                }
-              ]
-            }
-          ],
+          "description": "en+uk disable close bracket ]",
           "from": {
             "key_code": "close_bracket"
           },
@@ -4108,17 +4098,7 @@
           "type": "basic"
         },
         {
-          "description": "en disable close curly bracket }",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "en"
-                }
-              ]
-            }
-          ],
+          "description": "en+uk disable close curly bracket }",
           "from": {
             "key_code": "close_bracket",
             "modifiers": {
@@ -4133,17 +4113,7 @@
           "type": "basic"
         },
         {
-          "description": "en disable backslash \\ ",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "en"
-                }
-              ]
-            }
-          ],
+          "description": "en+uk disable backslash \\ ",
           "from": {
             "key_code": "backslash"
           },
@@ -4155,17 +4125,7 @@
           "type": "basic"
         },
         {
-          "description": "en disable vertical line | ",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "en"
-                }
-              ]
-            }
-          ],
+          "description": "en+uk disable vertical line | ",
           "from": {
             "key_code": "backslash",
             "modifiers": {
