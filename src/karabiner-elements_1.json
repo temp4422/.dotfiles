@@ -2108,6 +2108,28 @@
           "type": "basic"
         },
         {
+          "description": "Chnage і to и in UK layout",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "b"
+          },
+          "to": [
+            {
+              "key_code": "s"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Chnage І to И  in UK layout",
           "conditions": [
             {
@@ -2128,6 +2150,54 @@
           "to": [
             {
               "key_code": "s",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Chnage slash / to ї in UK layout",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "slash"
+          },
+          "to": [
+            {
+              "key_code": "close_bracket"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Chnage question mark ? to Ї in UK layout",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "close_bracket",
               "modifiers": ["left_shift"]
             }
           ],
@@ -3969,7 +4039,7 @@
       "description": "Disable Symbols",
       "manipulators": [
         {
-          "description": "DISABLE open bracket [",
+          "description": "en disable open bracket [",
           "conditions": [
             {
               "type": "input_source_if",
@@ -3991,29 +4061,7 @@
           "type": "basic"
         },
         {
-          "description": "DISABLE close bracket ]",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "en"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "close_bracket"
-          },
-          "to": [
-            {
-              "key_code": "vk_none"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "DISABLE open curly bracket {",
+          "description": "en disalbe open curly bracket {",
           "conditions": [
             {
               "type": "input_source_if",
@@ -4038,7 +4086,29 @@
           "type": "basic"
         },
         {
-          "description": "DISABLE close curly bracket }",
+          "description": "en disable close bracket ]",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "close_bracket"
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "en disable close curly bracket }",
           "conditions": [
             {
               "type": "input_source_if",
@@ -4063,7 +4133,7 @@
           "type": "basic"
         },
         {
-          "description": "DISABLE backslash \\ ",
+          "description": "en disable backslash \\ ",
           "conditions": [
             {
               "type": "input_source_if",
@@ -4085,7 +4155,7 @@
           "type": "basic"
         },
         {
-          "description": "DISABLE vertical line | ",
+          "description": "en disable vertical line | ",
           "conditions": [
             {
               "type": "input_source_if",
@@ -4110,7 +4180,7 @@
           "type": "basic"
         },
         {
-          "description": "DISABLE less-than sign <",
+          "description": "en disable less-than sign <",
           "conditions": [
             {
               "type": "input_source_if",
@@ -4135,7 +4205,7 @@
           "type": "basic"
         },
         {
-          "description": "DISABLE greater-than sign >",
+          "description": "en disable greater-than sign >",
           "conditions": [
             {
               "type": "input_source_if",
@@ -4160,32 +4230,7 @@
           "type": "basic"
         },
         {
-          "description": "uk DISABLE question mark ?",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "vk_none"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "DISABLE question mark ?",
+          "description": "en disable question mark ?",
           "conditions": [
             {
               "type": "input_source_if",
