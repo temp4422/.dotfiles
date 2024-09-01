@@ -2038,7 +2038,7 @@
           "type": "basic"
         },
         {
-          "description": "Chnage и to і in UK layout",
+          "description": "uk и to і",
           "conditions": [
             {
               "input_sources": [
@@ -2060,7 +2060,7 @@
           "type": "basic"
         },
         {
-          "description": "Chnage И to І  in UK layout",
+          "description": "uk И to І",
           "conditions": [
             {
               "input_sources": [
@@ -2086,7 +2086,7 @@
           "type": "basic"
         },
         {
-          "description": "Chnage і to и in UK layout",
+          "description": "uk і to и",
           "conditions": [
             {
               "input_sources": [
@@ -2108,29 +2108,7 @@
           "type": "basic"
         },
         {
-          "description": "Chnage і to и in UK layout",
-          "conditions": [
-            {
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ],
-              "type": "input_source_if"
-            }
-          ],
-          "from": {
-            "key_code": "b"
-          },
-          "to": [
-            {
-              "key_code": "s"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Chnage І to И  in UK layout",
+          "description": "uk І to И",
           "conditions": [
             {
               "input_sources": [
@@ -2156,7 +2134,7 @@
           "type": "basic"
         },
         {
-          "description": "Chnage slash / to ї in UK layout",
+          "description": "uk slash / to ї",
           "conditions": [
             {
               "input_sources": [
@@ -2178,7 +2156,7 @@
           "type": "basic"
         },
         {
-          "description": "Chnage question mark ? to Ї in UK layout",
+          "description": "uk question mark ? to Ї",
           "conditions": [
             {
               "input_sources": [
@@ -2199,6 +2177,31 @@
             {
               "key_code": "close_bracket",
               "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk opt+shift+г to ґ",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": ["left_option", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "backslash"
             }
           ],
           "type": "basic"
