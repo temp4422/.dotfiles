@@ -2786,7 +2786,7 @@
           "type": "basic"
         },
         {
-          "description": "uk percent sign %",
+          "description": "uk question mark ?",
           "conditions": [
             {
               "type": "input_source_if",
@@ -2806,6 +2806,50 @@
           },
           "to": [
             {
+              "key_code": "slash",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "question mark ?",
+          "from": {
+            "key_code": "z",
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "slash",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk percent sign %",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "x",
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
               "key_code": "4",
               "modifiers": ["left_shift"]
             }
@@ -2815,7 +2859,7 @@
         {
           "description": "percent sign %",
           "from": {
-            "key_code": "z",
+            "key_code": "x",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2842,7 +2886,7 @@
             }
           ],
           "from": {
-            "key_code": "x",
+            "key_code": "c",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2859,7 +2903,7 @@
         {
           "description": "dollar sign $",
           "from": {
-            "key_code": "x",
+            "key_code": "c",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2886,7 +2930,7 @@
             }
           ],
           "from": {
-            "key_code": "c",
+            "key_code": "v",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2903,7 +2947,7 @@
         {
           "description": "asterisk *",
           "from": {
-            "key_code": "c",
+            "key_code": "v",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -2913,48 +2957,6 @@
             {
               "key_code": "8",
               "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk reverse solidus \\ ",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "v",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"\\\\\"' "
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "reverse solidus \\ ",
-          "from": {
-            "key_code": "v",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "backslash"
             }
           ],
           "type": "basic"
@@ -3004,7 +3006,7 @@
           "type": "basic"
         },
         {
-          "description": "uk ampersand &",
+          "description": "uk vertical line |",
           "conditions": [
             {
               "type": "input_source_if",
@@ -3024,14 +3026,14 @@
           },
           "to": [
             {
-              "key_code": "7",
-              "modifiers": ["left_option"]
+              "key_code": "1",
+              "modifiers": ["left_option", "left_shift"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "ampersand &",
+          "description": "vertical line |",
           "from": {
             "key_code": "y",
             "modifiers": {
@@ -3041,7 +3043,7 @@
           },
           "to": [
             {
-              "key_code": "7",
+              "key_code": "backslash",
               "modifiers": ["left_shift"]
             }
           ],
@@ -3199,7 +3201,8 @@
           },
           "to": [
             {
-              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"]\"' "
+              "key_code": "grave_accent_and_tilde",
+              "modifiers": ["left_option"]
             }
           ],
           "type": "basic"
@@ -3221,7 +3224,49 @@
           "type": "basic"
         },
         {
-          "description": "uk vertical line |",
+          "description": "uk reverse solidus \\ ",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "osascript -e 'tell application \"System Events\" to keystroke \"\\\\\"' "
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "reverse solidus \\ ",
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "backslash"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk ampersand &",
           "conditions": [
             {
               "type": "input_source_if",
@@ -3241,14 +3286,14 @@
           },
           "to": [
             {
-              "key_code": "1",
-              "modifiers": ["left_option", "left_shift"]
+              "key_code": "7",
+              "modifiers": ["left_option"]
             }
           ],
           "type": "basic"
         },
         {
-          "description": "vertical line |",
+          "description": "ampersand &",
           "from": {
             "key_code": "h",
             "modifiers": {
@@ -3258,13 +3303,12 @@
           },
           "to": [
             {
-              "key_code": "backslash",
+              "key_code": "7",
               "modifiers": ["left_shift"]
             }
           ],
           "type": "basic"
         },
-
         {
           "description": "uk colon :",
           "conditions": [
@@ -3697,7 +3741,7 @@
           "type": "basic"
         },
         {
-          "description": "uk question mark ?",
+          "description": "uk solidus (slash) /",
           "conditions": [
             {
               "type": "input_source_if",
@@ -3717,14 +3761,13 @@
           },
           "to": [
             {
-              "key_code": "slash",
-              "modifiers": ["left_shift"]
+              "key_code": "slash"
             }
           ],
           "type": "basic"
         },
         {
-          "description": "question mark ?",
+          "description": "solidus (slash)  /",
           "from": {
             "key_code": "slash",
             "modifiers": {
@@ -3734,8 +3777,7 @@
           },
           "to": [
             {
-              "key_code": "slash",
-              "modifiers": ["left_shift"]
+              "key_code": "slash"
             }
           ],
           "type": "basic"
