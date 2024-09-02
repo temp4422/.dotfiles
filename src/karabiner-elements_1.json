@@ -4043,7 +4043,7 @@
       "description": "Disable Symbols",
       "manipulators": [
         {
-          "description": "en disable open bracket [",
+          "description": "en disable open bracket [ AND REMAP to backslash",
           "conditions": [
             {
               "type": "input_source_if",
@@ -4059,7 +4059,7 @@
           },
           "to": [
             {
-              "key_code": "vk_none"
+              "key_code": "backslash"
             }
           ],
           "type": "basic"
