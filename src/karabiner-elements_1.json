@@ -1782,11 +1782,45 @@
           "type": "basic"
         },
         {
-          "description": "Fix Switch input source when holding opt and rapid typed comma + spacebar",
-          "parameters": {
-            "description": "https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
-            "basic.simultaneous_threshold_milliseconds": 500
+          "description": "uk Fix Switch input source when holding opt and rapid typed comma + spacebar https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
+          "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "comma"
+              },
+              {
+                "key_code": "spacebar"
+              }
+            ],
+            "modifiers": {
+              "mandatory": ["left_option"]
+            }
           },
+          "to": [
+            {
+              "key_code": "6",
+              "modifiers": ["left_shift"]
+            },
+            {
+              "key_code": "spacebar"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Fix Switch input source when holding opt and rapid typed comma + spacebar https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
+          "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
           "from": {
             "simultaneous": [
               {
@@ -3656,7 +3690,7 @@
           "type": "basic"
         },
         {
-          "description": "uk Fix comma and period fast typing in sequence ",
+          "description": "uk Fix comma and period fast typing in sequence",
           "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
           "conditions": [
             {
