@@ -1779,9 +1779,9 @@
         {
           "description": "Decrease volume",
           "from": {
-            "key_code": "j",
+            "key_code": "u",
             "modifiers": {
-              "mandatory": ["right_option"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -1794,9 +1794,9 @@
         {
           "description": "Increase volume",
           "from": {
-            "key_code": "k",
+            "key_code": "i",
             "modifiers": {
-              "mandatory": ["right_option"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -1809,9 +1809,9 @@
         {
           "description": "Decrease brightness",
           "from": {
-            "key_code": "l",
+            "key_code": "o",
             "modifiers": {
-              "mandatory": ["right_option"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -1824,9 +1824,9 @@
         {
           "description": "Increase brightness",
           "from": {
-            "key_code": "semicolon",
+            "key_code": "p",
             "modifiers": {
-              "mandatory": ["right_option"]
+              "mandatory": ["right_command"]
             }
           },
           "to": [
@@ -2297,9 +2297,9 @@
         {
           "description": "Windows management: move window left, if hyper = 1 (caps_lock pressed)",
           "from": {
-            "key_code": "u",
+            "key_code": "j",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["right_option"]
             }
           },
           "to": [
@@ -2313,9 +2313,9 @@
         {
           "description": "Windows management: zoom, if hyper = 1 (caps_lock pressed)",
           "from": {
-            "key_code": "i",
+            "key_code": "k",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["right_option"]
             }
           },
           "to": [
@@ -2329,9 +2329,9 @@
         {
           "description": "Windows management: minimize, if hyper = 1 (caps_lock pressed)",
           "from": {
-            "key_code": "o",
+            "key_code": "l",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["right_option"]
             }
           },
           "to": [
@@ -2345,9 +2345,9 @@
         {
           "description": "Windows management: move window right, if hyper = 1 (caps_lock pressed)",
           "from": {
-            "key_code": "p",
+            "key_code": "semicolon",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["right_option"]
             }
           },
           "to": [
