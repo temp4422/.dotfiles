@@ -2374,7 +2374,7 @@
       ]
     },
     {
-      "description": "Symbols & F1..F12",
+      "description": "Symbols & F1..F15",
       "manipulators": [
         {
           "description": "uk grave accent ` ",
@@ -4003,9 +4003,9 @@
         {
           "description": "f11",
           "from": {
-            "key_code": "hyphen",
+            "key_code": "1",
             "modifiers": {
-              "mandatory": ["left_option"]
+              "mandatory": ["left_option", "right_command"]
             }
           },
           "to": [
@@ -4018,14 +4018,59 @@
         {
           "description": "f12",
           "from": {
-            "key_code": "equal_sign",
+            "key_code": "2",
             "modifiers": {
-              "mandatory": ["left_option"]
+              "mandatory": ["left_option", "right_command"]
             }
           },
           "to": [
             {
               "key_code": "f12"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "f13",
+          "from": {
+            "key_code": "3",
+            "modifiers": {
+              "mandatory": ["left_option", "right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f13"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "f14",
+          "from": {
+            "key_code": "4",
+            "modifiers": {
+              "mandatory": ["left_option", "right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f14"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "f15",
+          "from": {
+            "key_code": "5",
+            "modifiers": {
+              "mandatory": ["left_option", "right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f15"
             }
           ],
           "type": "basic"
