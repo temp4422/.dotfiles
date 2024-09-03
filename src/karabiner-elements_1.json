@@ -659,7 +659,7 @@
           "type": "basic"
         },
         {
-          "description": "caps_lock to dual role: escape and hyper",
+          "description": "caps_lock to multiple roles: escape and trigger conditions",
           "from": {
             "key_code": "caps_lock",
             "modifiers": {
@@ -668,13 +668,6 @@
             }
           },
           "to": [
-            {
-              "description": "Control Window Management: check if caps_lock is pressed",
-              "set_variable": {
-                "name": "hyper",
-                "value": 1
-              }
-            },
             {
               "description": "Finder: Use Esc to finish renaming when onEdit=1",
               "set_variable": {
@@ -701,98 +694,6 @@
           "to_if_alone": [
             {
               "key_code": "escape"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "move window left, if hyper = 1 (caps_lock pressed)",
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "hyper",
-              "value": 1
-            }
-          ],
-          "from": {
-            "key_code": "j",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f1",
-              "modifiers": ["left_control", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "zoom, if hyper = 1 (caps_lock pressed)",
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "hyper",
-              "value": 1
-            }
-          ],
-          "from": {
-            "key_code": "k",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f2",
-              "modifiers": ["left_control", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "minimize, if hyper = 1 (caps_lock pressed)",
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "hyper",
-              "value": 1
-            }
-          ],
-          "from": {
-            "key_code": "l",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f3",
-              "modifiers": ["left_control", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "move window right, if hyper = 1 (caps_lock pressed)",
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "hyper",
-              "value": 1
-            }
-          ],
-          "from": {
-            "key_code": "semicolon",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f4",
-              "modifiers": ["left_control", "left_option"]
             }
           ],
           "type": "basic"
@@ -2374,6 +2275,70 @@
           "to": [
             {
               "key_code": "f12"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Windows management: move window left, if hyper = 1 (caps_lock pressed)",
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": ["right_option", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f1",
+              "modifiers": ["left_control", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Windows management: zoom, if hyper = 1 (caps_lock pressed)",
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": ["right_option", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f2",
+              "modifiers": ["left_control", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Windows management: minimize, if hyper = 1 (caps_lock pressed)",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["right_option", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f3",
+              "modifiers": ["left_control", "left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Windows management: move window right, if hyper = 1 (caps_lock pressed)",
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": ["right_option", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f4",
+              "modifiers": ["left_control", "left_option"]
             }
           ],
           "type": "basic"
