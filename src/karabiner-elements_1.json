@@ -335,7 +335,8 @@
                 "com.bitwarden.desktop",
                 "com.electron.logseq",
                 "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop"
+                "org.whispersystems.signal-desktop",
+                "org.wireshark.Wireshark"
               ]
             }
           ],
@@ -368,7 +369,8 @@
                 "com.bitwarden.desktop",
                 "com.electron.logseq",
                 "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop"
+                "org.whispersystems.signal-desktop",
+                "org.wireshark.Wireshark"
               ]
             }
           ],
@@ -401,7 +403,8 @@
                 "com.bitwarden.desktop",
                 "com.electron.logseq",
                 "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop"
+                "org.whispersystems.signal-desktop",
+                "org.wireshark.Wireshark"
               ]
             }
           ],
@@ -434,7 +437,8 @@
                 "com.bitwarden.desktop",
                 "com.electron.logseq",
                 "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop"
+                "org.whispersystems.signal-desktop",
+                "org.wireshark.Wireshark"
               ]
             }
           ],
@@ -467,7 +471,8 @@
                 "com.bitwarden.desktop",
                 "com.electron.logseq",
                 "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop"
+                "org.whispersystems.signal-desktop",
+                "org.wireshark.Wireshark"
               ]
             }
           ],
@@ -499,7 +504,8 @@
                 "com.bitwarden.desktop",
                 "com.electron.logseq",
                 "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop"
+                "org.whispersystems.signal-desktop",
+                "org.wireshark.Wireshark"
               ]
             }
           ],
@@ -531,7 +537,8 @@
                 "com.bitwarden.desktop",
                 "com.electron.logseq",
                 "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop"
+                "org.whispersystems.signal-desktop",
+                "org.wireshark.Wireshark"
               ]
             }
           ],
@@ -563,7 +570,8 @@
                 "com.bitwarden.desktop",
                 "com.electron.logseq",
                 "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop"
+                "org.whispersystems.signal-desktop",
+                "org.wireshark.Wireshark"
               ]
             }
           ],
