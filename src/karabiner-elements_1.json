@@ -2360,9 +2360,9 @@
           "type": "basic"
         },
         {
-          "description": "Windows management: move window left, if hyper = 1 (caps_lock pressed)",
+          "description": "Windows management: zoom in",
           "from": {
-            "key_code": "j",
+            "key_code": "l",
             "modifiers": {
               "mandatory": ["right_option"]
             }
@@ -2376,7 +2376,7 @@
           "type": "basic"
         },
         {
-          "description": "Windows management: zoom, if hyper = 1 (caps_lock pressed)",
+          "description": "Windows management: minimize",
           "from": {
             "key_code": "k",
             "modifiers": {
@@ -2392,9 +2392,9 @@
           "type": "basic"
         },
         {
-          "description": "Windows management: minimize, if hyper = 1 (caps_lock pressed)",
+          "description": "Windows management: move window left",
           "from": {
-            "key_code": "l",
+            "key_code": "j",
             "modifiers": {
               "mandatory": ["right_option"]
             }
@@ -2408,7 +2408,7 @@
           "type": "basic"
         },
         {
-          "description": "Windows management: move window right, if hyper = 1 (caps_lock pressed)",
+          "description": "Windows management: move window right",
           "from": {
             "key_code": "semicolon",
             "modifiers": {
