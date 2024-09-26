@@ -4340,18 +4340,6 @@
       "description": "Disable Other Keys & Symbols",
       "manipulators": [
         {
-          "description": "Disable enter",
-          "from": {
-            "key_code": "return_or_enter"
-          },
-          "to": [
-            {
-              "key_code": "vk_none"
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "DISABLE double quote \"",
           "conditions": [
             {
