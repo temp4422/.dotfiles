@@ -4171,7 +4171,11 @@
             }
           ],
           "from": {
-            "key_code": "open_bracket"
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": [],
+              "optional": ["any"]
+            }
           },
           "to": [
             {
