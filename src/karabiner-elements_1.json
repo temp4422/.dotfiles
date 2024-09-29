@@ -4601,6 +4601,18 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "DISABLE backspace",
+          "from": {
+            "key_code": "delete_or_backspace"
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
