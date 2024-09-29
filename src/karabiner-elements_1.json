@@ -1912,7 +1912,7 @@
           "to": [
             {
               "key_code": "open_bracket",
-              "modifiers": ["left_command"]
+              "modifiers": ["right_command"]
             }
           ],
           "type": "basic"
@@ -1928,7 +1928,7 @@
           "to": [
             {
               "key_code": "close_bracket",
-              "modifiers": ["left_command"]
+              "modifiers": ["right_command"]
             }
           ],
           "type": "basic"
