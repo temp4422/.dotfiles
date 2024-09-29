@@ -2463,6 +2463,98 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Click mouse left button x20 times",
+          "from": {
+            "key_code": "y",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            },
+            {
+              "pointing_button": "button1",
+              "hold_down_milliseconds": 50
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
