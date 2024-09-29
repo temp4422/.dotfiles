@@ -1357,7 +1357,7 @@
       ]
     },
     {
-      "description": "🔵 4 Dock items & Shortcuts",
+      "description": "🔵 4 Dock items shortcuts",
       "manipulators": [
         {
           "from": {
@@ -2445,6 +2445,21 @@
             {
               "key_code": "r",
               "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Set cmd+space -> backspace",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace"
             }
           ],
           "type": "basic"
