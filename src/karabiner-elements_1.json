@@ -2248,25 +2248,12 @@
         {
           "description": "Insta translate super+cmd+u",
           "from": {
-            "key_code": "u",
+            "key_code": "w",
             "modifiers": {
               "mandatory": ["right_command", "left_command"]
             }
           },
           "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_option"]
-            },
-            {
-              "key_code": "left_arrow",
-              "modifiers": ["left_option"]
-            },
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_option", "left_shift"],
-              "hold_down_milliseconds": 100
-            },
             {
               "key_code": "c",
               "modifiers": ["left_command"]
