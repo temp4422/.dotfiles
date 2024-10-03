@@ -30,11 +30,11 @@ alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3
 
 # bun
-alias bd='bun run dev'
-alias bb='bun run build'
-alias bs='bun run start'
-alias bw='bun run watch'
-alias bi='bun install && bun run build'
+alias nd='bun run dev'
+alias nb='bun run build'
+alias ns='bun run start'
+alias nw='bun run watch'
+alias ni='bun install && bun run build'
 
 # docker
 alias d='docker'
