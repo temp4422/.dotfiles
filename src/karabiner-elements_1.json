@@ -1622,7 +1622,7 @@
           "type": "basic"
         },
         {
-          "description": "Clock timer",
+          "description": "Calculator Numbers",
           "from": {
             "key_code": "v",
             "modifiers": {
@@ -1631,13 +1631,13 @@
           },
           "to": [
             {
-              "shell_command": "open -b com.apple.clock"
+              "shell_command": "open -b com.apple.calculator"
             }
           ],
           "type": "basic"
         },
         {
-          "description": "Calculator Numbers",
+          "description": "Clock, timer, stopwatch",
           "from": {
             "key_code": "b",
             "modifiers": {
@@ -1646,7 +1646,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b com.apple.calculator"
+              "shell_command": "open -b com.apple.clock"
             }
           ],
           "type": "basic"
