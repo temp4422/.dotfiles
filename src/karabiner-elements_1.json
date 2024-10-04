@@ -1751,18 +1751,6 @@
           "type": "basic"
         },
         {
-          "description": "Second backspace ",
-          "from": {
-            "key_code": "hyphen"
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace"
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "uk Fix Switch input source when holding opt and rapid typed comma + spacebar https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
           "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
           "conditions": [
