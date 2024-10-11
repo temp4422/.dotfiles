@@ -33,6 +33,9 @@ setopt noflowcontrol
 #stty start undef
 #stty stop undef
 
+# Enable comments with '#'
+setopt interactivecomments
+
 # Set language locale
 export LANG=en_US.UTF-8
 
