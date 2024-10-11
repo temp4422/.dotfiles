@@ -2440,6 +2440,32 @@
           "type": "basic"
         },
         {
+          "description": "en disable open bracket [ AND REMAP to backslash",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": [],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "backslash"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Click mouse left button x20 times",
           "from": {
             "key_code": "y",
@@ -4240,32 +4266,6 @@
     {
       "description": "Disable Symbols",
       "manipulators": [
-        {
-          "description": "en disable open bracket [ AND REMAP to backslash",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "en"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "open_bracket",
-            "modifiers": {
-              "mandatory": [],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "backslash"
-            }
-          ],
-          "type": "basic"
-        },
         {
           "description": "en disalbe open curly bracket {",
           "conditions": [
