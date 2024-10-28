@@ -186,3 +186,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # python
 export PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:$PATH"
+
+# deno
+export PATH="/Users/user/.deno/bin:$PATH"
