@@ -1,28 +1,37 @@
-My Windows, WSL, Mac files and configs for productivity.
+# .dotfiles
 
-## Install apps
+My Mac, Windows, WSL, iTerm2, ZSH, Vim, Browser, keybinds etc., files and configs for productivity.
+
+### Contents
+
+- [MacOS](#macOS)
+- [Windows](#windows)
+- [Browser](#browser)
+- [Archive](#archive)
+
+## MacOS
+
+### Install Homebrew and apps
 
 ```bash
 # Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)";
-# macOS
+brew update && brew upgrade
 brew install coreutils vim git curl zip zsh fzf fasd ripgrep bat broot tere
-# Linux
-#sudo apt update && sudo apt install ...
 ```
 
-## Karabiner-Elements
+### Karabiner-Elements
 
 ```bash
 rm -rf ~/.config/karabiner/assets/complex_modifications/karabiner-elements_1.json
 ln -s ~/.dotfiles/src/karabiner-elements_1.json ~/.config/karabiner/assets/complex_modifications/karabiner-elements_1.json
 ```
 
-## iTerm2
+### iTerm2
 
 As for 10.11.2023, make many remmapings for basic shortcuts like cmd+e,r,s... etc. Still iTerm not functioning as expected in some cases, e.g. copy mode. Many remmapings done due to widgets.zsh "Set bindkey keybindings all together" function (you may explore this further). Below are example of some changes made to iTerm settings. All settings, as for today, backup in "My profile" file, iTerm2-my_profile.json, in this repo. How keybinds work: map iTerm2 keybinds 'cmd+p' to "Send Text with "vim" Special Chars" - "\<C-p>" mapped to functions in widgets.zsh "^p". Example: bindkey '^p' run-fzf-fasd-cd-vi. Basically this maps cmd+key to ctrl+key. Alternative: map 'cmd+a' to '^[a' (esc+a) to prevent same key codes collisions. Import iTerm2-key-mappings.itermkeymap by Settings -> Profiles -> Keys -> Key Mappings -> Presets -> Import
 
-### iTerm2 example settings changes
+#### iTerm2 example settings changes
 
 Set iTerm2 Vim scroll up/down behavior to use pgup/pgdown in vim. Settings -> Advanced -> Scroll wheel sends arrow keys when in alternate screen mode -> Yes.
 https://apple.stackexchange.com/questions/440527/scrolling-issue-in-vim-after-switch-to-iterm2
@@ -47,9 +56,10 @@ cmd+shift+s ^[s # tere
 cmd+shift+f \<C-f> # fzf search
 ```
 
-## zsh environment
+### zsh environment
 
 ```bash
+# Set shell to zsh
 chsh -s $(which zsh);
 # reset before linking
 rm -rf ~/.zshrc ~/.vimrc ~/.config/.vimrc ~/.tmux.conf ~/.config/lf/lfrc ~/.config/broot/verbs.hjson;
@@ -57,7 +67,7 @@ rm -rf ~/.zshrc ~/.vimrc ~/.config/.vimrc ~/.tmux.conf ~/.config/lf/lfrc ~/.conf
 ln -s ~/.dotfiles/src/.zshrc ~/.zshrc && ln -s ~/.dotfiles/src/.vimrc ~/.config/.vimrc;
 ```
 
-## zsh-autosuggestions
+### zsh-autosuggestions
 
 ```bash
 #brew install zsh-autosuggestions
@@ -66,35 +76,22 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh-autosug
 #echo 'source ~/.config/zsh-autosuggestions/zsh-autosuggestions.zsh' >>~/.zshrc
 ```
 
-## broot
+### broot
 
 ```bash
-echo "deb [signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ stable main" | sudo tee /etc/apt/sources.list.d/azlux.list;
-sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg https://azlux.fr/repo.gpg;
-sudo apt update && sudo apt install broot && br;
+#echo "deb [signed-by=/usr/share/keyrings/azlux-archive-keyring.gpg] http://packages.azlux.fr/debian/ stable main" | sudo tee /etc/apt/sources.list.d/azlux.list;
+#sudo wget -O /usr/share/keyrings/azlux-archive-keyring.gpg https://azlux.fr/repo.gpg;
+#sudo apt update && sudo apt install broot && br;
 ln -s ~/.dotfiles/src/verbs.hjson ~/.config/broot/verbs.hjson
 ```
 
-## tere
+## Windows
 
-```bash
-wget https://github.com/mgunyho/tere/releases/download/v1.4.0/tere-1.4.0-x86_64-unknown-linux-gnu.zip
-unzip tere-1.4.0-x86_64-unknown-linux-gnu.zip
-sudo mv tere /usr/local/bin
-rm tere-1.4.0-x86_64-unknown-linux-gnu.zip
-```
-
-## Sublime Text
-
-https://gist.github.com/skoqaq/3f3e8f28e23c881143cef9cf49d821ff?permalink_comment_id=4424828#gistcomment-4424828
-
-# Windows
-
-## Settings
+### Settings
 
 Keyboard Properties -> Character repeat -> Repeat delay / Repeat rate -> Short
 
-## WinGet Windows Package Manager - Install apps
+### WinGet Windows Package Manager - Install apps
 
 ```
 winget install RandyRants.SharpKeys;
@@ -107,14 +104,14 @@ winget install Brave.Brave;
 winget install Kingsoft.WPSOffice;
 ```
 
-## Uninstall apps
+### Uninstall apps
 
 ```
 winget uninstall  "Microsoft People"
 ...WIP...
 ```
 
-## SharpKeys remapping
+### SharpKeys remapping
 
 | From:                         | To:                           |
 | ----------------------------- | ----------------------------- |
@@ -126,7 +123,7 @@ winget uninstall  "Microsoft People"
 | Special: Right Alt (E0_38)    | Special: Wake (or Fn) (E0_63) |
 | Special: Wake (or Fn) (E0_63) | Special: Right Alt (E0_38)    |
 
-## PowerShell symbolic links
+### PowerShell symbolic links
 
 ```PowerShell
 # AutoHotkey
@@ -143,44 +140,21 @@ New-Item -Path "C:\Users\user\AppData\Roaming\Sublime Text\Packages\User\Prefere
 C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "Start-Sleep -Seconds 10; Start-Process 'C:\Program Files (x86)\CopyQ\copyq.exe'"
 ```
 
-## Archive
+## Browser
 
-```bash
-# tmux - drop for priority of terminal functionality
-ln -s ~/.dotfiles/zsh/.tmux.conf ~/.config/.tmux.conf
-
-# lf
-wget https://github.com/gokcehan/lf/releases/download/r28/lf-linux-amd64.tar.gz -O lf-linux-amd64.tar.gz;
-tar xvf lf-linux-amd64.tar.gz && rm lf-linux-amd64.tar.gz && chmod +x lf && sudo mv lf /usr/local/bin;
-wget https://raw.githubusercontent.com/gokcehan/lf/master/lf.1 && sudo mv lf.1 /usr/share/man/man1/;
-ln -s ~/.dotfiles/zsh/lfrc ~/.config/lf/lfrc;
-
-# Powerlevel10k
-#brew install romkatv/powerlevel10k/powerlevel10k
-#echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/powerlevel10k;
-#echo '[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh' >>~/.zshrc
-#echo 'source ~/.config/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-
-# Hammerspoon
-ln -s ~/.dotfiles/src/init.lua ~/.hammerspoon/init.lua
-```
-
-# Browser
-
-## Browser Extensions
+### Browser Extensions
 
 uBlock Origin, Vimium, Tampermonkey, Google Translate, Dark Reader, Wappalyzer, Bitwarden, I don't care about cookies
 
-## Vimium Options
+### Vimium Options
 
-### Excluded URLs and keys
+#### Excluded URLs and keys
 
 | Patterns                        | Keys  |
 | ------------------------------- | ----- |
 | https?://www.youtube.com/watch* | f < > |
 
-### Custom key mappings
+#### Custom key mappings
 
 ```
 unmap /
@@ -189,13 +163,63 @@ map / focusInput
 map <c-/> enterFindMode
 ```
 
-### Miscellaneous options
+#### Miscellaneous options
 
 \+ Ignore keyboard layout
 
-## Tampermonkey
+### Tampermonkey
 
-### Google Translate
+#### Block/Remove banners
+
+```JavaScript
+// ==UserScript==
+// @name         Remove banners
+// @namespace    http://tampermonkey.net/
+// @version      2024-08-29
+// @description  try to take over the world!
+// @author       You
+// @match        https://*.medium.com/*
+// @match        https://dev.to/*
+// @match        https://*.reddit.com/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    window.addEventListener('load', function () {
+        // medium.com
+        // Variant 1. Remove banner element
+        // Don't work, due different class names on different articles
+        //if(document.querySelector('.bx.sw.sx.bh.wm')){
+        //    document.querySelector('.bx.sw.sx.bh.wm').remove()
+        //}
+        // Variant 2. Add local storage key-value data with current date
+        if(window.location.href.match(/.*medium.com.*/)){
+            localStorage.setItem("lo-non-moc-membership-upsell|dismissed-at", `"${new Date().toISOString().toString()}"`);
+        }
+
+
+        // dev.to
+        // Variant 1.
+        if(window.location.href.match(/.*dev.to.*/)){
+            document.querySelector("#page-content-inner > div.js-billboard-container.pb-4.crayons-layout__comments-billboard").remove()
+        }
+        // Variant 2. Add code in ==UserScript==
+        // @webRequest   {"selector":"https://dev.to/assets/billboard*","action":"cancel"}
+        // Source https://stackoverflow.com/questions/77337532/how-can-i-block-specific-requests-in-a-website-with-a-userscript
+        // Variant 3. Use uBlock or Brave Shield filter list with URL to block
+        // "https://dev.to/assets/billboard*"
+
+        // reddit.com
+        if(window.location.href.match(/.*reddit.com.*/)){
+            document.querySelector("body > shreddit-app > shreddit-async-loader:nth-child(27)").shadowRoot.querySelector("xpromo-app-selector").remove()
+        }
+    })
+})();
+```
+
+#### Google Translate
 
 ```JavaScript
 // ==UserScript==
@@ -228,7 +252,7 @@ map <c-/> enterFindMode
 })();
 ```
 
-### Google Search input Home/End buttons focus
+#### Google Search input Home/End buttons focus
 
 ```JavaScript
 // ==UserScript==
@@ -263,4 +287,36 @@ map <c-/> enterFindMode
     }
 
 })();
+```
+
+## Archive
+
+```bash
+# tere
+wget https://github.com/mgunyho/tere/releases/download/v1.4.0/tere-1.4.0-x86_64-unknown-linux-gnu.zip
+unzip tere-1.4.0-x86_64-unknown-linux-gnu.zip
+sudo mv tere /usr/local/bin
+rm tere-1.4.0-x86_64-unknown-linux-gnu.zip
+
+# tmux - drop for priority of terminal functionality
+ln -s ~/.dotfiles/zsh/.tmux.conf ~/.config/.tmux.conf
+
+# lf
+wget https://github.com/gokcehan/lf/releases/download/r28/lf-linux-amd64.tar.gz -O lf-linux-amd64.tar.gz;
+tar xvf lf-linux-amd64.tar.gz && rm lf-linux-amd64.tar.gz && chmod +x lf && sudo mv lf /usr/local/bin;
+wget https://raw.githubusercontent.com/gokcehan/lf/master/lf.1 && sudo mv lf.1 /usr/share/man/man1/;
+ln -s ~/.dotfiles/zsh/lfrc ~/.config/lf/lfrc;
+
+# Powerlevel10k
+#brew install romkatv/powerlevel10k/powerlevel10k
+#echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/powerlevel10k;
+#echo '[[ ! -f ~/.dotfiles/zsh/.p10k.zsh ]] || source ~/.dotfiles/zsh/.p10k.zsh' >>~/.zshrc
+#echo 'source ~/.config/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+
+# Hammerspoon
+ln -s ~/.dotfiles/src/init.lua ~/.hammerspoon/init.lua
+
+# Sublime Text
+#https://gist.github.com/skoqaq/3f3e8f28e23c881143cef9cf49d821ff?permalink_comment_id=4424828#gistcomment-4424828
 ```
