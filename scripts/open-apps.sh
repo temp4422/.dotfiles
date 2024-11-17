@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in {0..19}  # Adjusted to start from 0, as array indices in the plist usually start from 0
+for i in {0..20}  # Adjusted to start from 0, as array indices in the plist usually start from 0
 do
   echo "Opening app $i"
 
@@ -16,3 +16,11 @@ do
 done
 
 # Source chatGPT
+
+# Save as dock icon with AppleScript (Script Editor)
+# Open Script Editor ⇒ New Document ⇒ insert script ⇒ save as File Format: Application ⇒ save
+# on run
+#     -- Run the shell script with nohup so it keeps running independently
+#     do shell script "nohup /Users/user/.dotfiles/scripts/close-apps.sh &>/dev/null &"
+#     quit
+# end run

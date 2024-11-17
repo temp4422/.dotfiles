@@ -1577,7 +1577,7 @@
           "type": "basic"
         },
         {
-          "description": "System Settings",
+          "description": "AI assistant ChatGPT",
           "from": {
             "key_code": "z",
             "modifiers": {
@@ -1586,7 +1586,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b com.apple.systempreferences"
+              "shell_command": "open -b com.openai.chat"
             }
           ],
           "type": "basic"
