@@ -45,3 +45,6 @@ alias drm='docker stop $(docker ps --all --quiet) && docker rm $(docker ps --all
 
 # apps
 alias live-server='live-server --port=3000 --no-browser'
+
+# systemctl
+alias s='systemctl'
