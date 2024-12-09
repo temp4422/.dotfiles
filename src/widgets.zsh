@@ -33,7 +33,7 @@ cmd_exec_time() {
   local stop=`date +%s`
   local start=${cmd_timestamp:-$stop}
   let local elapsed=$stop-$start
-  [ $elapsed -gt 5 ] && echo ${elapsed}s
+  [ $elapsed -gt 2 ] && echo ${elapsed}s
 }
 
 # Get the initial timestamp for cmd_exec_time
