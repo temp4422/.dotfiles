@@ -1577,6 +1577,21 @@
           "type": "basic"
         },
         {
+          "description": "System Settings/Preferences",
+          "from": {
+            "key_code": "g",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.apple.systempreferences"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "AI assistant ChatGPT",
           "from": {
             "key_code": "z",
