@@ -1766,7 +1766,7 @@
           "type": "basic"
         },
         {
-          "description": "uk Fix Switch input source when holding opt and rapid typed comma + spacebar https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
+          "description": "uk Fix Switch input source when holding opt and rapid typing comma + spacebar https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
           "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
           "conditions": [
             {
@@ -1803,7 +1803,7 @@
           "type": "basic"
         },
         {
-          "description": "Fix Switch input source when holding opt and rapid typed comma + spacebar https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
+          "description": "Fix Switch input source when holding opt and rapid typing comma + spacebar https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
           "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
           "from": {
             "simultaneous": [
@@ -1829,17 +1829,28 @@
           "type": "basic"
         },
         {
-          "description": "Switch input source",
+          "description": "Fix plus + equal_sign rapid typing",
+          "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
           "from": {
-            "key_code": "spacebar",
+            "simultaneous": [
+              {
+                "key_code": "d"
+              },
+              {
+                "key_code": "f"
+              }
+            ],
             "modifiers": {
               "mandatory": ["left_option"]
             }
           },
           "to": [
             {
-              "key_code": "spacebar",
-              "modifiers": ["left_control"]
+              "key_code": "equal_sign",
+              "modifiers": ["left_shift"]
+            },
+            {
+              "key_code": "equal_sign"
             }
           ],
           "type": "basic"
