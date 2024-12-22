@@ -189,3 +189,6 @@ export PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:$PATH"
 
 # deno
 export PATH="/Users/user/.deno/bin:$PATH"
+. "/Users/user/.deno/env"
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/Users/user/.zsh/completions:"* ]]; then export FPATH="/Users/user/.zsh/completions:$FPATH"; fi
