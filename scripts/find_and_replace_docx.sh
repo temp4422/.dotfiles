@@ -38,3 +38,6 @@ for FILE in "$DIR"/*.docx; do
 done
 
 echo "Done!"
+
+# Source https://unix.stackexchange.com/questions/316891/how-to-replace-a-word-inside-a-docx-file-using-linux-command-line
+# Source https://chatgpt.com/share/67697448-557c-8010-b8e5-43f19b2e3f55
