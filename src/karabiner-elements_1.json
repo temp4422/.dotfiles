@@ -2291,7 +2291,7 @@
           "type": "basic"
         },
         {
-          "description": "Fix screenshot shift+opt+s",
+          "description": "Set screenshot shift+opt+s",
           "from": {
             "key_code": "s",
             "modifiers": {
@@ -2300,8 +2300,7 @@
           },
           "to": [
             {
-              "key_code": "s",
-              "modifiers": ["left_option", "left_shift"]
+              "shell_command": "bash /Users/user/.dotfiles/scripts/screenshot_to_file_and_clipboard.sh"
             }
           ],
           "type": "basic"
