@@ -1,5 +1,5 @@
 {
-  "title": "ALL SHORTCUTS (🔵 = is important, 🔴 = must overwrite important to work properly, but is not important)",
+  "title": "ALL SHORTCUTS (🔵 = is important, 🔴 = must overwrite important to work properly)",
   "rules": [
     {
       "description": "🔴 iTerm2 Overwrite",
@@ -1684,87 +1684,8 @@
       ]
     },
     {
-      "description": "🔵 5 Miscellaneous",
+      "description": "🔵 5 Fixes",
       "manipulators": [
-        {
-          "description": "Set super+space -> enter",
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Set super+shift+space -> shift+enter",
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["right_command", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-
-        {
-          "description": "Delete forward word super+cmd+backspace -> opt+del",
-          "from": {
-            "key_code": "delete_or_backspace",
-            "modifiers": {
-              "mandatory": ["right_command", "left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_forward",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Delete forward super+backspace -> del",
-          "from": {
-            "key_code": "delete_or_backspace",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_forward"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Delete word backward cmd+backspace -> opt+backspace",
-          "from": {
-            "key_code": "delete_or_backspace",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
-        },
         {
           "description": "uk Fix Switch input source when holding opt and rapid typing comma + spacebar https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/simultaneous-options/",
           "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
@@ -1851,6 +1772,300 @@
             },
             {
               "key_code": "equal_sign"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk и to і",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "s"
+          },
+          "to": [
+            {
+              "key_code": "b"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk И to І",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "s",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "b",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk і to и",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "b"
+          },
+          "to": [
+            {
+              "key_code": "s"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk І to И",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "b",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "s",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk slash / to ї",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "slash"
+          },
+          "to": [
+            {
+              "key_code": "close_bracket"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk question mark ? to Ї",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "close_bracket",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk opt+shift+г to ґ",
+          "conditions": [
+            {
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ],
+              "type": "input_source_if"
+            }
+          ],
+          "from": {
+            "key_code": "u",
+            "modifiers": {
+              "mandatory": ["left_option", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "backslash"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "en disable open bracket [ AND REMAP to backslash",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "en"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "open_bracket",
+            "modifiers": {
+              "mandatory": [],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "backslash"
+            }
+          ],
+          "type": "basic"
+        }
+      ]
+    },
+
+    {
+      "description": "🔵 6 Miscellaneous",
+      "manipulators": [
+        {
+          "description": "Set super+space -> enter",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Set super+shift+space -> shift+enter",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["right_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Delete cmd+space -> backspace",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Delete forward word super+cmd+backspace -> opt+del",
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": ["right_command", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_forward",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Delete forward super+backspace -> del",
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_forward"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Delete word backward cmd+backspace -> opt+backspace",
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "delete_or_backspace",
+              "modifiers": ["left_option"]
             }
           ],
           "type": "basic"
@@ -2034,175 +2249,6 @@
           "type": "basic"
         },
         {
-          "description": "uk и to і",
-          "conditions": [
-            {
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ],
-              "type": "input_source_if"
-            }
-          ],
-          "from": {
-            "key_code": "s"
-          },
-          "to": [
-            {
-              "key_code": "b"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk И to І",
-          "conditions": [
-            {
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ],
-              "type": "input_source_if"
-            }
-          ],
-          "from": {
-            "key_code": "s",
-            "modifiers": {
-              "mandatory": ["left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "b",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk і to и",
-          "conditions": [
-            {
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ],
-              "type": "input_source_if"
-            }
-          ],
-          "from": {
-            "key_code": "b"
-          },
-          "to": [
-            {
-              "key_code": "s"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk І to И",
-          "conditions": [
-            {
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ],
-              "type": "input_source_if"
-            }
-          ],
-          "from": {
-            "key_code": "b",
-            "modifiers": {
-              "mandatory": ["left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "s",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk slash / to ї",
-          "conditions": [
-            {
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ],
-              "type": "input_source_if"
-            }
-          ],
-          "from": {
-            "key_code": "slash"
-          },
-          "to": [
-            {
-              "key_code": "close_bracket"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk question mark ? to Ї",
-          "conditions": [
-            {
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ],
-              "type": "input_source_if"
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "close_bracket",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "uk opt+shift+г to ґ",
-          "conditions": [
-            {
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ],
-              "type": "input_source_if"
-            }
-          ],
-          "from": {
-            "key_code": "u",
-            "modifiers": {
-              "mandatory": ["left_option", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "backslash"
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "Map cmd+d to select word",
           "conditions": [
             {
@@ -2291,7 +2337,7 @@
           "type": "basic"
         },
         {
-          "description": "Set screenshot shift+opt+s",
+          "description": "Make screenshot shift+opt+s",
           "from": {
             "key_code": "s",
             "modifiers": {
@@ -2419,73 +2465,6 @@
             {
               "key_code": "f4",
               "modifiers": ["left_control", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Fix Edge reload page",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.microsoft.edgemac"]
-            }
-          ],
-          "from": {
-            "key_code": "r",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f2",
-              "modifiers": ["left_control"]
-            },
-            {
-              "key_code": "r",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Set cmd+space -> backspace",
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "en disable open bracket [ AND REMAP to backslash",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "en"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "open_bracket",
-            "modifiers": {
-              "mandatory": [],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "backslash"
             }
           ],
           "type": "basic"
