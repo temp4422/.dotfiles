@@ -220,28 +220,6 @@
           "type": "basic"
         },
         {
-          "description": "iTerm2 map cmd+shift+e to cmd+s",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
-            }
-          ],
-          "from": {
-            "key_code": "e",
-            "modifiers": {
-              "mandatory": ["left_command", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "s",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "iTerm2 map cmd+d to select word in copy mode",
           "conditions": [
             {
