@@ -87,8 +87,8 @@ r-select() {
 # Set bindkey keybindings all together
 for key       kcap     seq          mode       widget (
   # Movement Ctrl -> deselect ###################################
-    # right     kcuf1    $'\eOC'      deselect   forward-char
-    # left      kcub1    $'\eOD'      deselect   backward-char
+    right      x       $'\e[C'      deselect   forward-char
+    left       x       $'\e[D'      deselect   backward-char
     c_right    x       $'\e[1;3C'   deselect   forward-word
     c_left     x       $'\e[1;3D'   deselect   backward-word
     home       x       $'\e[H'      deselect   beginning-of-line
@@ -131,9 +131,9 @@ for key       kcap     seq          mode       widget (
 # to have [zsh] autosuggest [plugin feature] complete visible suggestions, you can assign
 # an array of shell functions to the `ZSH_AUTOSUGGEST_ACCEPT_WIDGETS` variable. When these functions
 # are triggered, they will also complete any visible suggestion. https://stackoverflow.com/a/30899296
-# export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
-#   key-right
-# )
+export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
+  key-right
+)
 
 # ctrl+x,c,v
 # https://unix.stackexchange.com/a/634916/424080
