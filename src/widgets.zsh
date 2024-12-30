@@ -89,36 +89,28 @@ for key       kcap     seq          mode       widget (
   # Movement Ctrl -> deselect ###################################
     right      x       $'\e[C'      deselect   forward-char
     left       x       $'\e[D'      deselect   backward-char
-    c_right    x       $'\e[1;3C'   deselect   forward-word
-    c_left     x       $'\e[1;3D'   deselect   backward-word
     home       x       $'\e[H'      deselect   beginning-of-line
     end        x       $'\e[F'      deselect   end-of-line
-    # home      khome    $'\eOH'      deselect   beginning-of-line
-    # end       kend     $'\eOF'      deselect   end-of-line
-    # home2     x        $'\e1~'      deselect   beginning-of-line
-    # end2      x        $'\e4~'      deselect   end-of-line
-    # pgup      x        $'\e[5~'     deselect   up-line # Move up a line in the buffer.
-    # pgdown    x        $'\e[6~'     deselect   down-line # Move down a line in the buffer.
+    pgup       x       $'\e[5~'     deselect   up-line
+    pgdown     x       $'\e[6~'     deselect   down-line
+    c_right    x       $'\e[1;3C'   deselect   forward-word
+    c_left     x       $'\e[1;3D'   deselect   backward-word
 
   # Select Shift+Ctrl -> select #################################
-    s_right    kRIT     $'\e[1;2C'   select     forward-char
-    s_left     kLFT     $'\e[1;2D'   select     backward-char
-    s_up       kri      $'\e[1;2A'   select     up-line-or-history
-    s_down     kind     $'\e[1;2B'   select     down-line-or-history
-    cs_right   x        $'\e[1;4C'  select     forward-word
-    cs_left    x        $'\e[1;4D'  select     backward-word
-    s_home     kHOM     $'\e[1;2H'   select     beginning-of-line
-    s_end      kEND     $'\e[1;2F'   select     end-of-line
-    # cs_right   x        $'\e[1;6C'   select     forward-word
-    # cs_left    x        $'\e[1;6D'   select     backward-word
-    # s_home2    x        $'\e[1;2~'   select     beginning-of-line
-    # s_end2     x        $'\e[4;2~'   select     end-of-line
-    # cs_home    x        $'\e[1;6H'   select     beginning-of-line
-    # cs_end     x        $'\e[1;6F'   select     end-of-line
+    s_right    x      $'\e[1;2C'    select     forward-char
+    s_left     x      $'\e[1;2D'    select     backward-char
+    s_up       x      $'\e[1;2A'    select     up-line-or-history
+    s_down     x      $'\e[1;2B'    select     down-line-or-history
+    s_home     x      $'\e[1;2H'    select     beginning-of-line
+    s_end      x      $'\e[1;2F'    select     end-of-line
+    cs_right   x      $'\e[1;4C'    select     forward-word
+    cs_left    x      $'\e[1;4D'    select     backward-word
+    # cs_home    x      $'\e[1;6H'    select     beginning-of-line
+    # cs_end     x      $'\e[1;6F'    select     end-of-line
 
   # Delete -> delregion #########################################
-    del         kdch1    $'\e[3~'   delregion  delete-char
-    bs          x        $'^?'      delregion  backward-delete-char
+    del        x      $'\e[3~'      delregion  delete-char
+    bs         x      $'^?'         delregion  backward-delete-char
   ) {
   eval "key-$key() {
     r-$mode $widget \$@
