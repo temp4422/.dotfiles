@@ -399,14 +399,6 @@
               }
             }
           ],
-          "to_after_key_up": [
-            {
-              "set_variable": {
-                "name": "hyper",
-                "value": 0
-              }
-            }
-          ],
           "to_if_alone": [
             {
               "key_code": "escape"
