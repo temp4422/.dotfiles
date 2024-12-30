@@ -1369,6 +1369,21 @@
           "type": "basic"
         },
         {
+          "description": "YouTube Music",
+          "from": {
+            "key_code": "y",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.google.Chrome.app.cinhimbnkkaeohfgghhklpknlkffjgod"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Disable",
           "from": {
             "key_code": "n",
@@ -2174,7 +2189,7 @@
         {
           "description": "Click mouse left button x20 times",
           "from": {
-            "key_code": "y",
+            "key_code": "t",
             "modifiers": {
               "mandatory": ["right_command"]
             }
