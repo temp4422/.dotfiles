@@ -136,10 +136,11 @@
       "Label" : ""
     },
     "0x63-0x100000-0x8" : {
-      "Version" : 1,
+      "Version" : 2,
+      "Apply Mode" : 0,
       "Action" : 38,
       "Text" : "\\<C-c>",
-      "Label" : ""
+      "Escaping" : 2
     },
     "0x6f-0x100000-0x1f" : {
       "Version" : 1,
