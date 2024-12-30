@@ -263,6 +263,50 @@
       "description": "🔴 Miscellaneous Overwrite",
       "manipulators": [
         {
+          "description": "VSCode, iTerm fix home/end because of global mappings",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.microsoft.VSCode", "com.googlecode.iterm2"]
+            }
+          ],
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["right_command"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "home"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "VSCode, iTerm fix home/end because of global mappings",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.microsoft.VSCode", "com.googlecode.iterm2"]
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["right_command"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "end"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Disable r_cmd if pressed alone. Prevent random cmd triggering and better cmd+space behavior",
           "from": {
             "key_code": "right_command"
@@ -294,320 +338,6 @@
           "to_if_alone": [
             {
               "key_code": "vk_none"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end -> start/end of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop",
-                "org.wireshark.Wireshark"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "left_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end -> start/end of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop",
-                "org.wireshark.Wireshark"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop",
-                "org.wireshark.Wireshark"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["right_command", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "left_arrow",
-              "modifiers": ["left_command", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop",
-                "org.wireshark.Wireshark"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_command", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop",
-                "org.wireshark.Wireshark"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["right_command", "left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "home"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop",
-                "org.wireshark.Wireshark"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command", "left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "end"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop",
-                "org.wireshark.Wireshark"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "period",
-            "modifiers": {
-              "mandatory": ["right_command", "left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "page_up"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Browser, Telegram, Bitwarden home/end+shift -> start/end select of row",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta",
-                "org.mozilla.firefox",
-                "com.microsoft.edgemac",
-                "ru.keepcoder.Telegram",
-                "com.bitwarden.desktop",
-                "com.electron.logseq",
-                "com.apple.TextEdit",
-                "org.whispersystems.signal-desktop",
-                "org.wireshark.Wireshark"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "comma",
-            "modifiers": {
-              "mandatory": ["right_command", "left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "page_down"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Spotlight search home/end",
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "onEdit",
-              "value": 1
-            }
-          ],
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "left_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Spotlight search home/end",
-          "conditions": [
-            {
-              "type": "variable_if",
-              "name": "onEdit",
-              "value": 1
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_command"]
             }
           ],
           "type": "basic"
@@ -935,7 +665,24 @@
           },
           "to": [
             {
-              "key_code": "home"
+              "key_code": "left_arrow",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["right_command"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_command"]
             }
           ],
           "type": "basic"
@@ -966,21 +713,6 @@
           "to": [
             {
               "key_code": "page_up"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "end"
             }
           ],
           "type": "basic"
