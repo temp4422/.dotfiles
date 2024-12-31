@@ -111,6 +111,12 @@
       "Text" : "\\<C-z>",
       "Label" : ""
     },
+    "0x6f-0x100000-0x1f" : {
+      "Version" : 1,
+      "Action" : 38,
+      "Text" : "\\<C-o>",
+      "Label" : ""
+    },
     "0xf72d-0x80000-0x79" : {
       "Version" : 1,
       "Action" : 8,
@@ -141,12 +147,6 @@
       "Action" : 38,
       "Text" : "\\<C-c>",
       "Escaping" : 2
-    },
-    "0x6f-0x100000-0x1f" : {
-      "Version" : 1,
-      "Action" : 38,
-      "Text" : "\\<C-o>",
-      "Label" : ""
     },
     "0xd-0x100000-0x24" : {
       "Version" : 2,
