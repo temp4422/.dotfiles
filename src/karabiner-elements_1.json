@@ -3284,50 +3284,6 @@
           "type": "basic"
         },
         {
-          "description": "uk colon :",
-          "conditions": [
-            {
-              "type": "input_source_if",
-              "input_sources": [
-                {
-                  "language": "uk"
-                }
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "j",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "5",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "colon :",
-          "from": {
-            "key_code": "j",
-            "modifiers": {
-              "mandatory": ["left_option"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "semicolon",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "uk left parenthesis (",
           "conditions": [
             {
@@ -3340,7 +3296,7 @@
             }
           ],
           "from": {
-            "key_code": "k",
+            "key_code": "j",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -3357,7 +3313,7 @@
         {
           "description": "left parenthesis (",
           "from": {
-            "key_code": "k",
+            "key_code": "j",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -3384,7 +3340,7 @@
             }
           ],
           "from": {
-            "key_code": "l",
+            "key_code": "k",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -3401,7 +3357,7 @@
         {
           "description": "right parenthesis )",
           "from": {
-            "key_code": "l",
+            "key_code": "k",
             "modifiers": {
               "mandatory": ["left_option"],
               "optional": ["any"]
@@ -3410,6 +3366,50 @@
           "to": [
             {
               "key_code": "0",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "uk colon :",
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "uk"
+                }
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "5",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "colon :",
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": ["left_option"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "semicolon",
               "modifiers": ["left_shift"]
             }
           ],
