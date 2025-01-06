@@ -204,6 +204,13 @@
       "Text" : "\\<C-g>",
       "Label" : ""
     },
+    "0x7f-0x80000-0x33" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 38,
+      "Text" : "\\<C-w>",
+      "Escaping" : 2
+    },
     "0x60-0x100000-0x32" : {
       "Version" : 1,
       "Action" : 30,
