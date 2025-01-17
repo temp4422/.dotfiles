@@ -367,7 +367,8 @@
           "from": {
             "key_code": "m",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["right_command"],
+              "optional": ["any"]
             }
           },
           "to": [
@@ -394,7 +395,8 @@
           "from": {
             "key_code": "slash",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": ["right_command"],
+              "optional": ["any"]
             }
           },
           "to": [
