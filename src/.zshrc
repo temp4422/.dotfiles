@@ -194,8 +194,8 @@ export PATH="/Users/user/.deno/bin:$PATH"
 if [[ ":$FPATH:" != *":/Users/user/.zsh/completions:"* ]]; then export FPATH="/Users/user/.zsh/completions:$FPATH"; fi
 
 # Docker
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/user/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
+# # The following lines have been added by Docker Desktop to enable Docker CLI completions.
+# fpath=(/Users/user/.docker/completions $fpath)
+# autoload -Uz compinit
+# compinit
+# # End of Docker CLI completions
