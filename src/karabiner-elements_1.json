@@ -1312,6 +1312,21 @@
           "type": "basic"
         },
         {
+          "description": "Password manager Bitwarden",
+          "from": {
+            "key_code": "t",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -b com.bitwarden.desktop"
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Ascii terminal iTerm2",
           "from": {
             "key_code": "a",
@@ -1982,7 +1997,7 @@
         {
           "description": "Click mouse left button x20 times",
           "from": {
-            "key_code": "t",
+            "key_code": "f12",
             "modifiers": {
               "mandatory": ["right_command"]
             }
