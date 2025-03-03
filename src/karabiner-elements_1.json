@@ -1804,9 +1804,9 @@
           "type": "basic"
         },
         {
-          "description": "Insta search super+cmd+f",
+          "description": "Insta search",
           "from": {
-            "key_code": "f",
+            "key_code": "s",
             "modifiers": {
               "mandatory": ["right_command", "left_command"]
             }
@@ -1831,7 +1831,7 @@
           "type": "basic"
         },
         {
-          "description": "Insta translate super+cmd+u",
+          "description": "Insta translate",
           "from": {
             "key_code": "w",
             "modifiers": {
