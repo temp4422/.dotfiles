@@ -1366,7 +1366,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b com.microsoft.VSCode"
+              "shell_command": "open -b com.todesktop.230313mzl4w4u92"
             }
           ],
           "type": "basic"
@@ -2085,60 +2085,6 @@
             }
           ],
           "type": "basic"
-        }
-      ]
-    },
-    {
-      "description": "RemNote",
-      "manipulators": [
-        {
-          "description": "RemNote opt+enter open to side",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["io.remnote"]
-            }
-          ],
-          "from": {
-            "key_code": "return_or_enter",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter"
-            },
-            {
-              "key_code": "down_arrow"
-            },
-            {
-              "key_code": "down_arrow"
-            },
-            {
-              "key_code": "return_or_enter"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "RemNote fix enter",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["io.remnote"]
-            }
-          ],
-          "from": {
-            "key_code": "return_or_enter"
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
         },
         {
           "description": "RemNote cmd+shift+f duplicate cmd+p",
@@ -2179,36 +2125,7 @@
           "to": [
             {
               "key_code": "w",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "RemNote cmd+q Quick Add",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["io.remnote"]
-            }
-          ],
-          "from": {
-            "key_code": "q",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "p",
-              "modifiers": ["left_command", "left_shift"],
-              "hold_down_milliseconds": 100
-            },
-            {
-              "key_code": "q"
-            },
-            {
-              "key_code": "return_or_enter"
+              "modifiers": ["left_shift", "left_option"]
             }
           ],
           "type": "basic"
