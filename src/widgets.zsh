@@ -249,7 +249,9 @@ fzf-fasd-cd-vi() {
   else
     return 1
   fi
-  zle accept-line
+  zle accept-line # Enable to accept on single press
+  # zle reset-prompt # Not need, because function is called through the wrapper, which already handles the prompt reset with its own
+  # return $ret
 }
 # Run widget from another function to work properly
 run-fzf-fasd-cd-vi(){fzf-fasd-cd-vi; local ret=$?; zle reset-prompt; return $ret}
@@ -270,9 +272,7 @@ fzf-history() {
       zle vi-fetch-history -n $num
     fi
   fi
-  # zle accept-line # Enable to accept on single press
-  # zle reset-prompt
-  # return $ret
+  zle accept-line
 }
 run-fzf-history(){fzf-history; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-history
