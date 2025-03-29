@@ -405,6 +405,78 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Fix home/end because of global mappings. Default apple apps and some other, not work with home/end. Google/Windows apps DO work.",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.apple.finder",
+                "com.apple.Preview",
+                "com.apple.TextEdit",
+                "com.apple.Notes",
+                "com.apple.ActivityMonitor",
+                "com.apple.systempreferences",
+                "com.apple.AppStore",
+                "com.apple.Safari",
+                "com.runningwithcrayons.Alfred",
+                "net.whatsapp.WhatsApp",
+                "ru.keepcoder.Telegram",
+                "org.mozilla.firefox"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "m",
+            "modifiers": {
+              "mandatory": ["right_command"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "description": "Fix home/end because of global mappings. Default apple apps and some other, not work with home/end. Google/Windows apps DO work.",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.apple.finder",
+                "com.apple.Preview",
+                "com.apple.TextEdit",
+                "com.apple.Notes",
+                "com.apple.ActivityMonitor",
+                "com.apple.systempreferences",
+                "com.apple.AppStore",
+                "com.apple.Safari",
+                "com.runningwithcrayons.Alfred",
+                "net.whatsapp.WhatsApp",
+                "ru.keepcoder.Telegram",
+                "org.mozilla.firefox"
+              ]
+            }
+          ],
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["right_command"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
         }
       ]
     },
