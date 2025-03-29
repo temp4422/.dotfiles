@@ -357,6 +357,7 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
                 "com.microsoft.VSCode",
+                "com.todesktop.230313mzl4w4u92",
                 "com.googlecode.iterm2",
                 "com.brave.Browser",
                 "com.google.Chrome",
@@ -385,6 +386,7 @@
               "type": "frontmost_application_if",
               "bundle_identifiers": [
                 "com.microsoft.VSCode",
+                "com.todesktop.230313mzl4w4u92",
                 "com.googlecode.iterm2",
                 "com.brave.Browser",
                 "com.google.Chrome",
@@ -1778,7 +1780,7 @@
           "conditions": [
             {
               "type": "frontmost_application_unless",
-              "bundle_identifiers": ["com.microsoft.VSCode"]
+              "bundle_identifiers": ["com.microsoft.VSCode", "com.todesktop.230313mzl4w4u92"]
             }
           ],
           "from": {
