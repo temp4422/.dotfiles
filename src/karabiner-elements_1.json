@@ -263,152 +263,6 @@
       "description": "🔴 Miscellaneous Overwrite",
       "manipulators": [
         {
-          "description": "Fix 1.1 home/end because of global mappings",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.apple.Preview"]
-            }
-          ],
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "up_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Fix 1.1 home/end because of global mappings",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.apple.Preview"]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "down_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Fix 1.2 home/end because of global mappings",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.apple.Preview"]
-            }
-          ],
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["right_command", "left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "up_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Fix 1.2 home/end because of global mappings",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.apple.Preview"]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command", "left_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "down_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Fix 2 home/end because of global mappings",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.microsoft.VSCode",
-                "com.todesktop.230313mzl4w4u92",
-                "com.googlecode.iterm2",
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["right_command"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "home"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Fix 2 home/end because of global mappings",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.microsoft.VSCode",
-                "com.todesktop.230313mzl4w4u92",
-                "com.googlecode.iterm2",
-                "com.brave.Browser",
-                "com.google.Chrome",
-                "com.google.Chrome.beta"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "end"
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "Disable r_cmd if pressed alone. Prevent random cmd triggering and better cmd+space behavior",
           "from": {
             "key_code": "right_command"
@@ -555,8 +409,8 @@
       ]
     },
     {
-      "description": "🔵 1.1 Switch j|;+cmd+shift 👉 arrow_keys+opt+shift",
-      "description2": "Switch super+cmd/opt+shift+j/; -> opt/cmd+shift+arrow_keys. Issue: need to set arrow + cmd/cmd+shft... to work as opt/opt+shift to jump on words, because MacOS by defualt jump on words is different from Windows. This must be before 'Set jkl; to arrows', because it have to be triggered first.",
+      "description": "🔵 1.1 Remap 'j+cmd+shift' and ';+cmd+shift' 👉 'left_arrow+opt+shift' and 'right_arrow+opt+shift'",
+      "description2": "Switch super+cmd/opt+shift+j/; -> opt/cmd+shift+left_arrow/right_arrow. Issue: need to set arrow + cmd/cmd+shft... to work as opt/opt+shift... to jump on words, because MacOS by defualt jump on words is different from Windows. This must be before 'Set jkl; to arrows', because it have to be triggered first.",
       "manipulators": [
         {
           "from": {
@@ -759,24 +613,7 @@
           },
           "to": [
             {
-              "key_code": "left_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_command"]
+              "key_code": "home"
             }
           ],
           "type": "basic"
@@ -807,6 +644,21 @@
           "to": [
             {
               "key_code": "page_up"
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "slash",
+            "modifiers": {
+              "mandatory": ["right_command"],
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "end"
             }
           ],
           "type": "basic"
@@ -1744,7 +1596,7 @@
           "type": "basic"
         },
         {
-          "description": "Hide App l_cmd+r_cmd -> cmd+h",
+          "description": "Hide App l_cmd+r_cmd+h -> cmd+h",
           "from": {
             "key_code": "h",
             "modifiers": {
