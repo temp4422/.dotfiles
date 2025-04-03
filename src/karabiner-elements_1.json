@@ -1,5 +1,6 @@
 {
-  "title": "ALL SHORTCUTS (🔵 = is important, 🔴 = must overwrite important to work properly)",
+  "title": "ALL SHORTCUTS",
+  "description": "Abbreviations: 🔵 = is important; 🔴 = must overwrite important to work properly; super = right_command",
   "rules": [
     {
       "description": "🔴 iTerm2 Overwrite",
@@ -481,7 +482,7 @@
       ]
     },
     {
-      "description": "🔵 1.1 Remap 'j+cmd+shift' and ';+cmd+shift' 👉 'left_arrow+opt+shift' and 'right_arrow+opt+shift'",
+      "description": "🔵 1.1 Remap j/;+cmd+shift 👉 left/right+opt+shift",
       "description2": "Switch super+cmd/opt+shift+j/; -> opt/cmd+shift+left_arrow/right_arrow. Issue: need to set arrow + cmd/cmd+shft... to work as opt/opt+shift... to jump on words, because MacOS by defualt jump on words is different from Windows. This must be before 'Set jkl; to arrows', because it have to be triggered first.",
       "manipulators": [
         {
@@ -1803,7 +1804,7 @@
           "type": "basic"
         },
         {
-          "description": "Disable cmd+s in browser",
+          "description": "Disable cmd+s in browser and remap to ctrl+s",
           "conditions": [
             {
               "type": "frontmost_application_if",
@@ -1824,7 +1825,8 @@
           },
           "to": [
             {
-              "key_code": "vk_none"
+              "key_code": "s",
+              "modifiers": ["left_control"]
             }
           ],
           "type": "basic"
@@ -1852,70 +1854,6 @@
           "to": [
             {
               "key_code": "f12"
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Windows management: zoom in",
-          "from": {
-            "key_code": "l",
-            "modifiers": {
-              "mandatory": ["right_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f1",
-              "modifiers": ["left_control", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Windows management: minimize",
-          "from": {
-            "key_code": "k",
-            "modifiers": {
-              "mandatory": ["right_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f2",
-              "modifiers": ["left_control", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Windows management: move window left",
-          "from": {
-            "key_code": "j",
-            "modifiers": {
-              "mandatory": ["right_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f3",
-              "modifiers": ["left_control", "left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Windows management: move window right",
-          "from": {
-            "key_code": "semicolon",
-            "modifiers": {
-              "mandatory": ["right_option"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f4",
-              "modifiers": ["left_control", "left_option"]
             }
           ],
           "type": "basic"
