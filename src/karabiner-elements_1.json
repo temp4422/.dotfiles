@@ -1293,7 +1293,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b com.todesktop.230313mzl4w4u92"
+              "shell_command": "open -b com.microsoft.VSCode"
             }
           ],
           "type": "basic"
@@ -1426,7 +1426,7 @@
           "type": "basic"
         },
         {
-            "description": "Activity Monitor",
+          "description": "Activity Monitor",
           "from": {
             "key_code": "open_bracket",
             "modifiers": {
