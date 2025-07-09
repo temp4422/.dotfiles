@@ -1492,21 +1492,6 @@
           "type": "basic"
         },
         {
-          "description": "Delete cmd+space -> backspace",
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace"
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "Delete forward word super+cmd+backspace -> opt+del",
           "from": {
             "key_code": "delete_or_backspace",
