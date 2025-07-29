@@ -1476,22 +1476,6 @@
           "type": "basic"
         },
         {
-          "description": "Set super+shift+space -> shift+enter",
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["right_command", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter",
-              "modifiers": ["left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "Delete forward word super+cmd+backspace -> opt+del",
           "from": {
             "key_code": "delete_or_backspace",
