@@ -282,24 +282,6 @@
           "type": "basic"
         },
         {
-          "description": "Disable left_option if pressed alone",
-          "from": {
-            "key_code": "left_option"
-          },
-          "to": [
-            {
-              "key_code": "left_option",
-              "lazy": true
-            }
-          ],
-          "to_if_alone": [
-            {
-              "key_code": "vk_none"
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "Cycle through tabs backward cmd+shift+esc",
           "from": {
             "key_code": "caps_lock",
@@ -1464,6 +1446,22 @@
     {
       "description": "🔵 6 Miscellaneous",
       "manipulators": [
+        {
+          "description": "Set super+shift+space -> shift+enter",
+          "from": {
+            "key_code": "spacebar",
+            "modifiers": {
+              "mandatory": ["right_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "return_or_enter",
+              "modifiers": ["left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
         {
           "description": "Set super+space -> enter",
           "from": {
