@@ -29,12 +29,12 @@ alias cat='bat'
 alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3
 
-# bun
-alias nd='bun run dev'
-alias nb='bun run build'
-alias ns='bun run start'
-alias nw='bun run watch'
-alias ni='bun install && bun run build'
+# npm
+alias nd='npm run dev'
+alias nb='npm run build'
+alias ns='npm run start'
+alias nw='npm run watch'
+alias ni='npm install && npm run build'
 
 # docker
 alias d='docker'
