@@ -1714,15 +1714,7 @@
               "modifiers": ["left_command"]
             },
             {
-              "key_code": "f12",
-              "modifiers": ["left_control", "left_option"]
-            },
-            {
-              "key_code": "v",
-              "modifiers": ["left_command"]
-            },
-            {
-              "key_code": "return_or_enter"
+              "shell_command": "open -a \"Brave Browser\" \"https://www.google.com/search?q=$(pbpaste)\""
             }
           ],
           "type": "basic"
