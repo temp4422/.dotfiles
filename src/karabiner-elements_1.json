@@ -1714,7 +1714,7 @@
               "modifiers": ["left_command"]
             },
             {
-              "shell_command": "open -a \"Brave Browser\" \"https://www.google.com/search?q=$(pbpaste)\""
+              "shell_command": "export LC_ALL=en_US.UTF-8; open -a \"Brave Browser\" \"https://www.google.com/search?q=$(pbpaste)\""
             }
           ],
           "type": "basic"
