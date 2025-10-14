@@ -388,87 +388,11 @@
             }
           ],
           "type": "basic"
-        },
-        {
-          "description": "Fix home/end because of global mappings. Default apple apps and some other, not work with home/end.",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.apple.finder",
-                "com.apple.Preview",
-                "com.apple.TextEdit",
-                "com.apple.Notes",
-                "com.apple.ActivityMonitor",
-                "com.apple.systempreferences",
-                "com.apple.AppStore",
-                "com.apple.Safari",
-                "com.runningwithcrayons.Alfred",
-                "net.whatsapp.WhatsApp",
-                "ru.keepcoder.Telegram",
-                "org.mozilla.firefox",
-                "io.remnote",
-                "com.google.Chrome.app.eilembjdkfgodjkcjnpgpaenohkicgjd"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "m",
-            "modifiers": {
-              "mandatory": ["right_command"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "left_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Fix home/end because of global mappings. Default apple apps and some other, not work with home/end.",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": [
-                "com.apple.finder",
-                "com.apple.Preview",
-                "com.apple.TextEdit",
-                "com.apple.Notes",
-                "com.apple.ActivityMonitor",
-                "com.apple.systempreferences",
-                "com.apple.AppStore",
-                "com.apple.Safari",
-                "com.runningwithcrayons.Alfred",
-                "net.whatsapp.WhatsApp",
-                "ru.keepcoder.Telegram",
-                "org.mozilla.firefox",
-                "io.remnote",
-                "com.google.Chrome.app.eilembjdkfgodjkcjnpgpaenohkicgjd"
-              ]
-            }
-          ],
-          "from": {
-            "key_code": "slash",
-            "modifiers": {
-              "mandatory": ["right_command"],
-              "optional": ["any"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
         }
       ]
     },
     {
-      "description": "🔵 1.1 Remap j/;+cmd+shift 👉 left/right+opt+shift",
+      "description": "🔵 1.1 Set j/;+cmd+shift 👉 left/right+opt+shift",
       "description2": "Switch super+cmd/opt+shift+j/; -> opt/cmd+shift+left_arrow/right_arrow. Issue: need to set arrow + cmd/cmd+shft... to work as opt/opt+shift... to jump on words, because MacOS by defualt jump on words is different from Windows. This must be before 'Set jkl; to arrows', because it have to be triggered first.",
       "manipulators": [
         {
@@ -488,21 +412,6 @@
         },
         {
           "from": {
-            "key_code": "semicolon",
-            "modifiers": {
-              "mandatory": ["right_command", "left_command", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_option", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
             "key_code": "j",
             "modifiers": {
               "mandatory": ["right_command", "left_command"]
@@ -518,21 +427,6 @@
         },
         {
           "from": {
-            "key_code": "semicolon",
-            "modifiers": {
-              "mandatory": ["right_command", "left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
-              "modifiers": ["left_option"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
             "key_code": "j",
             "modifiers": {
               "mandatory": ["right_command", "left_option", "left_shift"]
@@ -541,21 +435,6 @@
           "to": [
             {
               "key_code": "left_arrow",
-              "modifiers": ["left_command", "left_shift"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "from": {
-            "key_code": "semicolon",
-            "modifiers": {
-              "mandatory": ["right_command", "left_option", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "right_arrow",
               "modifiers": ["left_command", "left_shift"]
             }
           ],
@@ -572,6 +451,51 @@
             {
               "key_code": "left_arrow",
               "modifiers": ["left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": ["right_command", "left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_option", "left_shift"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": ["right_command", "left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_option"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": ["right_command", "left_option", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow",
+              "modifiers": ["left_command", "left_shift"]
             }
           ],
           "type": "basic"
@@ -594,7 +518,7 @@
       ]
     },
     {
-      "description": "🔵 1.2 Set jkl;  👉 arrow_keys (optional = any)",
+      "description": "🔵 1.2 Set jkl; 👉 arrow_keys (optional=any)",
       "manipulators": [
         {
           "from": {
@@ -659,7 +583,7 @@
       ]
     },
     {
-      "description": "🔵 1.3 Set m,./  👉 page_keys (optional = any)",
+      "description": "🔵 1.3 Set m,./ 👉 page_keys (optional=any)",
       "description2": "HISTORY INFO ONLY ! Instead of simply mapping m,./ to page_keys, we must declare home/end functionality alone, to make it function properly. I.e. 'm' -> 'left + cmd' to go to start of a row etc. This due macOS functioning different then Windows. Also lcmd+rcmd+comma (also 'nm,./[]' ) -> not work because of hardware limitation, see N-key rollover https://karabiner-elements.pqrs.org/docs/help/troubleshooting/cannot-use-some-key-combination",
       "manipulators": [
         {
@@ -725,7 +649,7 @@
       ]
     },
     {
-      "description": "🔵 3 Finder modification to work as Windows File Explorer",
+      "description": "🔵 2 Finder modification to work as Windows File Explorer",
       "manipulators": [
         {
           "description": "Use Return as Open by defalut (if not renaming file), when onEdit=0",
@@ -1072,7 +996,7 @@
       ]
     },
     {
-      "description": "🔵 4 Dock items shortcuts",
+      "description": "🔵 3 Dock items shortcuts",
       "manipulators": [
         {
           "from": {
@@ -1444,7 +1368,7 @@
       ]
     },
     {
-      "description": "🔵 6 Miscellaneous",
+      "description": "🔵 4 Miscellaneous",
       "manipulators": [
         {
           "description": "Set super+shift+space -> shift+enter",
@@ -1655,7 +1579,7 @@
           "type": "basic"
         },
         {
-          "description": "Disable native Hide App cmd+h -> ctrl+h",
+          "description": "Disable native Hide App and remap cmd+h -> ctrl+h",
           "from": {
             "key_code": "h",
             "modifiers": {
@@ -1837,7 +1761,7 @@
           "type": "basic"
         },
         {
-          "description": "Click mouse left button x20 times",
+          "description": "Click mouse left button x10 times",
           "from": {
             "key_code": "f12",
             "modifiers": {
@@ -1847,83 +1771,43 @@
           "to": [
             {
               "pointing_button": "button1",
-              "hold_down_milliseconds": 50
+              "hold_down_milliseconds": 100
             },
             {
               "pointing_button": "button1",
-              "hold_down_milliseconds": 50
+              "hold_down_milliseconds": 100
             },
             {
               "pointing_button": "button1",
-              "hold_down_milliseconds": 50
+              "hold_down_milliseconds": 100
             },
             {
               "pointing_button": "button1",
-              "hold_down_milliseconds": 50
+              "hold_down_milliseconds": 100
             },
             {
               "pointing_button": "button1",
-              "hold_down_milliseconds": 50
+              "hold_down_milliseconds": 100
             },
             {
               "pointing_button": "button1",
-              "hold_down_milliseconds": 50
+              "hold_down_milliseconds": 100
             },
             {
               "pointing_button": "button1",
-              "hold_down_milliseconds": 50
+              "hold_down_milliseconds": 100
             },
             {
               "pointing_button": "button1",
-              "hold_down_milliseconds": 50
+              "hold_down_milliseconds": 100
             },
             {
               "pointing_button": "button1",
-              "hold_down_milliseconds": 50
+              "hold_down_milliseconds": 100
             },
             {
               "pointing_button": "button1",
-              "hold_down_milliseconds": 50
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 50
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 50
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 50
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 50
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 50
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 50
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 50
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 50
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 50
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 50
+              "hold_down_milliseconds": 100
             }
           ],
           "type": "basic"
@@ -1946,28 +1830,6 @@
             {
               "key_code": "p",
               "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "RemNote cmd+w close pane",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["io.remnote"]
-            }
-          ],
-          "from": {
-            "key_code": "w",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "w",
-              "modifiers": ["left_shift", "left_option"]
             }
           ],
           "type": "basic"
