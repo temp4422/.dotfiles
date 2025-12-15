@@ -1795,19 +1795,8 @@
               "hold_down_milliseconds": 200
             },
             {
-              "key_code": "f",
-              "modifiers": ["left_command"],
+              "key_code": "slash",
               "hold_down_milliseconds": 50
-            },
-            {
-              "key_code": "escape"
-            },
-            {
-              "key_code": "slash"
-            },
-            {
-              "key_code": "a",
-              "modifiers": ["left_command"]
             },
             {
               "key_code": "v",
