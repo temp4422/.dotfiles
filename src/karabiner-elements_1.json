@@ -1796,7 +1796,8 @@
             },
             {
               "key_code": "slash",
-              "hold_down_milliseconds": 50
+              "modifiers": ["left_option"],
+              "hold_down_milliseconds": 100
             },
             {
               "key_code": "v",
