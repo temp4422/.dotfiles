@@ -1022,6 +1022,34 @@
           "type": "basic"
         },
         {
+          "description": "Create new folder and set onEdit",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            }
+          ],
+          "from": {
+            "key_code": "n",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "n",
+              "modifiers": ["left_command", "left_shift"]
+            },
+            {
+              "set_variable": {
+                "name": "onEdit",
+                "value": 1
+              }
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Use Backspace as Go to Enclosing Folder if onEdit=0",
           "conditions": [
             {
