@@ -1557,7 +1557,7 @@
           "type": "basic"
         },
         {
-          "description": "Disable",
+          "description": "Windows",
           "from": {
             "key_code": "n",
             "modifiers": {
@@ -1566,7 +1566,7 @@
           },
           "to": [
             {
-              "shell_command": "vk_none"
+              "shell_command": "open -b com.parallels.winapp.8c4731f1a5288444bb2510ff8d967cc3.8ff3df57d4d3410caeb5ed1beb52e261.fs"
             }
           ],
           "type": "basic"
