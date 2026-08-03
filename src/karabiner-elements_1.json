@@ -872,6 +872,28 @@
           "type": "basic"
         },
         {
+          "description": "Finder super+backspace -> Move to Bin; Set in Keyboard -> Shortcuts -> Finder -> Move to Bin to ^+⌥+⌘+f1",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            }
+          ],
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f1",
+              "modifiers": ["left_control", "left_option", "left_command"]
+            }
+          ],
+          "type": "basic"
+        },
+        {
           "description": "Set cmd+x -> cutMode=1",
           "conditions": [
             {
