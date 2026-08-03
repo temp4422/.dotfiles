@@ -830,16 +830,17 @@
       "description": "🔵 2 Finder modification to work as Windows File Explorer",
       "manipulators": [
         {
-          "description": "Use Return as Open by defalut (if not renaming file), when onEdit=0",
+          "description": "Finder Rename: Set in Keyboard -> Shortcuts -> Finder -> Rename to F2"
+        },
+        {
+          "description": "Finder Go to Folder...: Set in Keyboard -> Shortcuts -> Finder -> Go to Folder... to cmd+l"
+        },
+        {
+          "description": "Finder Return -> Open: Set in ~/.hammerspoon/init.lua",
           "conditions": [
             {
               "type": "frontmost_application_if",
               "bundle_identifiers": ["^com.apple.finder"]
-            },
-            {
-              "type": "variable_if",
-              "name": "onEdit",
-              "value": 0
             }
           ],
           "from": {
@@ -847,219 +848,17 @@
           },
           "to": [
             {
-              "key_code": "o",
-              "modifiers": ["right_command"]
+              "key_code": "f19"
             }
           ],
           "type": "basic"
         },
         {
-          "description": "Use SECOND Return as Open by defalut (if not renaming file), when onEdit=0",
+          "description": "Finder Backspace -> Enclosing Folder: Set in ~/.hammerspoon/init.lua",
           "conditions": [
             {
               "type": "frontmost_application_if",
               "bundle_identifiers": ["^com.apple.finder"]
-            },
-            {
-              "type": "variable_if",
-              "name": "onEdit",
-              "value": 0
-            }
-          ],
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "o",
-              "modifiers": ["right_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Use Return to finish renaming when onEdit=1",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
-            },
-            {
-              "type": "variable_if",
-              "name": "onEdit",
-              "value": 1
-            }
-          ],
-          "from": {
-            "key_code": "return_or_enter"
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter"
-            },
-            {
-              "set_variable": {
-                "name": "onEdit",
-                "value": 0
-              }
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Use SECOND Return to finish renaming when onEdit=1",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
-            },
-            {
-              "type": "variable_if",
-              "name": "onEdit",
-              "value": 1
-            }
-          ],
-          "from": {
-            "key_code": "spacebar",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter"
-            },
-            {
-              "set_variable": {
-                "name": "onEdit",
-                "value": 0
-              }
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Use F2 as Rename and set onEdit=1",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
-            }
-          ],
-          "from": {
-            "key_code": "f2"
-          },
-          "to": [
-            {
-              "key_code": "return_or_enter"
-            },
-            {
-              "set_variable": {
-                "name": "onEdit",
-                "value": 1
-              }
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Find cmd+f and set onEdit",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
-            }
-          ],
-          "from": {
-            "key_code": "f",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "f",
-              "modifiers": ["left_command"]
-            },
-            {
-              "set_variable": {
-                "name": "onEdit",
-                "value": 1
-              }
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Go to... cmd+l -> cmd+g and set onEdit=1",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
-            }
-          ],
-          "from": {
-            "key_code": "l",
-            "modifiers": {
-              "mandatory": ["left_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "g",
-              "modifiers": ["left_command", "left_shift"]
-            },
-            {
-              "set_variable": {
-                "name": "onEdit",
-                "value": 1
-              }
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Create new folder and set onEdit",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
-            }
-          ],
-          "from": {
-            "key_code": "n",
-            "modifiers": {
-              "mandatory": ["left_command", "left_shift"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "n",
-              "modifiers": ["left_command", "left_shift"]
-            },
-            {
-              "set_variable": {
-                "name": "onEdit",
-                "value": 1
-              }
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Use Backspace as Go to Enclosing Folder if onEdit=0",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
-            },
-            {
-              "type": "variable_if",
-              "name": "onEdit",
-              "value": 0
             }
           ],
           "from": {
@@ -1067,35 +866,7 @@
           },
           "to": [
             {
-              "key_code": "up_arrow",
-              "modifiers": ["left_command"]
-            }
-          ],
-          "type": "basic"
-        },
-        {
-          "description": "Use super+backspace -> cmd+backspace (del) to Move to Bin if onEdit=0",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
-            },
-            {
-              "type": "variable_if",
-              "name": "onEdit",
-              "value": 0
-            }
-          ],
-          "from": {
-            "key_code": "delete_or_backspace",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "delete_or_backspace",
-              "modifiers": ["left_command"]
+              "key_code": "f20"
             }
           ],
           "type": "basic"
