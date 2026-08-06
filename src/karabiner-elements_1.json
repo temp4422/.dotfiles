@@ -1860,6 +1860,44 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Fix Firefox Find in page cmd+shift+f",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["org.mozilla.firefox"]
+            }
+          ],
+          "from": {
+            "key_code": "f",
+            "modifiers": {
+              "mandatory": ["left_command", "left_shift"]
+            }
+          },
+          "to": [
+            {
+              "select_input_source": { "language": "^en$" },
+              "hold_down_milliseconds": 100
+            },
+            {
+              "key_code": "f2",
+              "modifiers": ["left_control"]
+            },
+            {
+              "key_code": "e"
+            },
+            {
+              "key_code": "return_or_enter"
+            },
+            {
+              "key_code": "f"
+            },
+            {
+              "key_code": "return_or_enter"
+            }
+          ],
+          "type": "basic"
         }
       ]
     }
