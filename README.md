@@ -23,8 +23,8 @@ brew install coreutils vim git curl zip zsh fzf fasd ripgrep bat broot tere
 ### Karabiner-Elements
 
 ```bash
-rm -rf ~/.config/karabiner/assets/complex_modifications/karabiner-elements_1.json
-ln -s ~/.dotfiles/src/karabiner-elements_1.json ~/.config/karabiner/assets/complex_modifications/karabiner-elements_1.json
+rm -rf ~/.config/karabiner/assets/complex_modifications/karabiner-rules-1.json
+ln -s ~/.dotfiles/src/karabiner-elements/karabiner-rules-1.json ~/.config/karabiner/assets/complex_modifications/karabiner-rules-1.json
 ```
 
 ### iTerm2

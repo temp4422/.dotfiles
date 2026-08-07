@@ -249,6 +249,6 @@ const karabinerConfig = {
   ],
 }
 
-const outputPath = path.join(__dirname, 'karabiner-elements.json')
+const outputPath = path.join(__dirname, 'karabiner-rules-2.json')
 fs.writeFileSync(outputPath, JSON.stringify(karabinerConfig, null, 2), 'utf-8')
 console.log(`✅ File generated successfully at:\n${outputPath}`)
