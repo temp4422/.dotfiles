@@ -3,26 +3,34 @@
   "description": "Generated complex modifications",
   "rules": [
     {
-      "description": "🔴 iTerm2 Overwrite",
+      "description": "🔴 iTerm2 Overwrite GENERATED",
       "manipulators": [
         {
           "type": "basic",
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
             }
           ],
           "from": {
             "key_code": "c",
             "modifiers": {
-              "mandatory": ["left_command", "left_shift"]
+              "mandatory": [
+                "left_command",
+                "left_shift"
+              ]
             }
           },
           "to": [
             {
               "key_code": "c",
-              "modifiers": ["left_command", "left_shift"]
+              "modifiers": [
+                "left_command",
+                "left_shift"
+              ]
             },
             {
               "set_variable": {
@@ -38,7 +46,9 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
             },
             {
               "type": "variable_if",
@@ -49,7 +59,9 @@
           "from": {
             "key_code": "c",
             "modifiers": {
-              "mandatory": ["left_command"]
+              "mandatory": [
+                "left_command"
+              ]
             }
           },
           "to": [
@@ -76,7 +88,9 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
             },
             {
               "type": "variable_if",
@@ -114,7 +128,9 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
             },
             {
               "type": "variable_if",
@@ -125,7 +141,9 @@
           "from": {
             "key_code": "m",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": [
+                "right_command"
+              ]
             }
           },
           "to": [
@@ -146,7 +164,9 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
             },
             {
               "type": "variable_if",
@@ -157,13 +177,17 @@
           "from": {
             "key_code": "slash",
             "modifiers": {
-              "mandatory": ["right_command"]
+              "mandatory": [
+                "right_command"
+              ]
             }
           },
           "to": [
             {
               "key_code": "4",
-              "modifiers": ["left_shift"]
+              "modifiers": [
+                "left_shift"
+              ]
             },
             {
               "set_variable": {
@@ -179,7 +203,325 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow"
+            }
+          ],
+          "description": "iTerm2: Move to left"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar"
+            },
+            {
+              "key_code": "left_arrow"
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 0
+              }
+            }
+          ],
+          "description": "iTerm2: Move to left"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow"
+            }
+          ],
+          "description": "iTerm2: Move to down"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar"
+            },
+            {
+              "key_code": "down_arrow"
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 0
+              }
+            }
+          ],
+          "description": "iTerm2: Move to down"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow"
+            }
+          ],
+          "description": "iTerm2: Move to up"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar"
+            },
+            {
+              "key_code": "up_arrow"
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 0
+              }
+            }
+          ],
+          "description": "iTerm2: Move to up"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow"
+            }
+          ],
+          "description": "iTerm2: Move to right"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": [
+                "right_command"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar"
+            },
+            {
+              "key_code": "right_arrow"
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 0
+              }
+            }
+          ],
+          "description": "iTerm2: Move to right"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
             },
             {
               "type": "variable_if",
@@ -190,7 +532,10 @@
           "from": {
             "key_code": "m",
             "modifiers": {
-              "mandatory": ["right_command", "left_shift"]
+              "mandatory": [
+                "right_command",
+                "left_shift"
+              ]
             }
           },
           "to": [
@@ -198,7 +543,10 @@
               "key_code": "spacebar"
             },
             {
-              "key_code": "0"
+              "key_code": "left_arrow",
+              "modifiers": [
+                "left_command"
+              ]
             }
           ],
           "description": "iTerm2: Select to Home"
@@ -208,7 +556,9 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
             },
             {
               "type": "variable_if",
@@ -219,7 +569,10 @@
           "from": {
             "key_code": "slash",
             "modifiers": {
-              "mandatory": ["right_command", "left_shift"]
+              "mandatory": [
+                "right_command",
+                "left_shift"
+              ]
             }
           },
           "to": [
@@ -227,8 +580,10 @@
               "key_code": "spacebar"
             },
             {
-              "key_code": "4",
-              "modifiers": ["left_shift"]
+              "key_code": "right_arrow",
+              "modifiers": [
+                "left_command"
+              ]
             }
           ],
           "description": "iTerm2: Select to End"
@@ -238,7 +593,333 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar"
+            },
+            {
+              "key_code": "left_arrow"
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 1
+              }
+            }
+          ],
+          "description": "iTerm2: Select to left"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "j",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "left_arrow"
+            }
+          ],
+          "description": "iTerm2: Select to left in copyModeSpace"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar"
+            },
+            {
+              "key_code": "down_arrow"
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 1
+              }
+            }
+          ],
+          "description": "iTerm2: Select to down"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "k",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "down_arrow"
+            }
+          ],
+          "description": "iTerm2: Select to down in copyModeSpace"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar"
+            },
+            {
+              "key_code": "up_arrow"
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 1
+              }
+            }
+          ],
+          "description": "iTerm2: Select to up"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "l",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "up_arrow"
+            }
+          ],
+          "description": "iTerm2: Select to up in copyModeSpace"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 0
+            }
+          ],
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "spacebar"
+            },
+            {
+              "key_code": "right_arrow"
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 1
+              }
+            }
+          ],
+          "description": "iTerm2: Select to right"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
+            },
+            {
+              "type": "variable_if",
+              "name": "copyMode",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "copyModeSpace",
+              "value": 1
+            }
+          ],
+          "from": {
+            "key_code": "semicolon",
+            "modifiers": {
+              "mandatory": [
+                "right_command",
+                "left_shift"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "right_arrow"
+            }
+          ],
+          "description": "iTerm2: Select to right in copyModeSpace"
+        },
+        {
+          "type": "basic",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
             },
             {
               "type": "variable_if",
@@ -249,24 +930,32 @@
           "from": {
             "key_code": "d",
             "modifiers": {
-              "mandatory": ["left_command"]
+              "mandatory": [
+                "left_command"
+              ]
             }
           },
           "to": [
             {
               "key_code": "right_arrow",
-              "modifiers": ["left_option"]
+              "modifiers": [
+                "left_option"
+              ]
             },
             {
               "key_code": "left_arrow",
-              "modifiers": ["left_option"]
+              "modifiers": [
+                "left_option"
+              ]
             },
             {
               "key_code": "spacebar"
             },
             {
               "key_code": "right_arrow",
-              "modifiers": ["left_option"]
+              "modifiers": [
+                "left_option"
+              ]
             }
           ],
           "description": "iTerm2: Select word"
@@ -276,13 +965,18 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
             }
           ],
           "from": {
             "key_code": "p",
             "modifiers": {
-              "mandatory": ["left_command", "left_shift"]
+              "mandatory": [
+                "left_command",
+                "left_shift"
+              ]
             }
           },
           "to": [
@@ -297,14 +991,20 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
             }
           ],
           "from": {
             "key_code": "m",
             "modifiers": {
-              "mandatory": ["right_command"],
-              "optional": ["any"]
+              "mandatory": [
+                "right_command"
+              ],
+              "optional": [
+                "any"
+              ]
             }
           },
           "to": [
@@ -319,14 +1019,20 @@
           "conditions": [
             {
               "type": "frontmost_application_if",
-              "bundle_identifiers": ["com.googlecode.iterm2"]
+              "bundle_identifiers": [
+                "com.googlecode.iterm2"
+              ]
             }
           ],
           "from": {
             "key_code": "slash",
             "modifiers": {
-              "mandatory": ["right_command"],
-              "optional": ["any"]
+              "mandatory": [
+                "right_command"
+              ],
+              "optional": [
+                "any"
+              ]
             }
           },
           "to": [
