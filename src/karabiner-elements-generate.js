@@ -43,8 +43,6 @@ function mapKey(fromKey, mandatoryMods, optionalMods) {
     desc: (text) => ((rule.description = `iTerm2: ${text}`), chain),
     when: (...conditions) => (rule.conditions.push(...conditions.flat()), chain),
     ifVar: (name, value = 1) => chain.when(varIf(name, value)),
-    ifCopyMode: () => chain.when(IN_COPY_MODE),
-    ifCopyModeSpace: () => chain.when(IN_COPY_MODE_SPACE),
     to: (key, mods) => (rule.to.push(buildTo(key, mods)), chain),
     setVar: (name, value) => (rule.to.push({ set_variable: { name, value } }), chain),
     build: () => rule,
@@ -62,30 +60,49 @@ const manipulators = [
     .to('c', ['left_command', 'left_shift'])
     .setVar('copyMode', 1),
 
-  mapKey('c', 'left_command').ifCopyMode().desc('Copy & exit mode').to('y').setVar('copyMode', 0),
+  mapKey('c', 'left_command')
+    .ifVar('copyMode', 1)
+    .desc('Copy & exit mode')
+    .to('y')
+    .setVar('copyMode', 0)
+    .setVar('copyModeSpace', 0),
 
-  mapKey('caps_lock').ifCopyMode().desc('Exit and reset mode').to('escape').to('escape'),
+  mapKey('caps_lock')
+    .ifVar('copyMode', 1)
+    .desc('Exit and reset mode')
+    .to('escape')
+    .to('escape')
+    .setVar('copyMode', 0)
+    .setVar('copyModeSpace', 0),
 
   // Navigation (Copy Mode)
-  mapKey('m', 'right_command').ifCopyMode().desc('Home -> 0').to('0'),
+  mapKey('m', 'right_command')
+    .ifVar('copyMode', 1)
+    .desc('Home -> 0')
+    .to('0')
+    .setVar('copyModeSpace', 0),
 
-  mapKey('slash', 'right_command').ifCopyMode().desc('End -> $').to('4', 'left_shift'),
+  mapKey('slash', 'right_command')
+    .ifVar('copyMode', 1)
+    .desc('End -> $')
+    .to('4', 'left_shift')
+    .setVar('copyModeSpace', 0),
 
   // Selection (Copy Mode)
   mapKey('m', ['right_command', 'left_shift'])
-    .ifCopyMode()
+    .ifVar('copyMode', 1)
     .desc('Select to Home')
     .to('spacebar')
     .to('0'),
 
   mapKey('slash', ['right_command', 'left_shift'])
-    .ifCopyMode()
+    .ifVar('copyMode', 1)
     .desc('Select to End')
     .to('spacebar')
     .to('4', 'left_shift'),
 
   mapKey('d', 'left_command')
-    .ifCopyMode()
+    .ifVar('copyMode', 1)
     .desc('Select word')
     .to('right_arrow', 'left_option')
     .to('left_arrow', 'left_option')

@@ -61,6 +61,12 @@
                 "name": "copyMode",
                 "value": 0
               }
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 0
+              }
             }
           ],
           "description": "iTerm2: Copy & exit mode"
@@ -87,6 +93,18 @@
             },
             {
               "key_code": "escape"
+            },
+            {
+              "set_variable": {
+                "name": "copyMode",
+                "value": 0
+              }
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 0
+              }
             }
           ],
           "description": "iTerm2: Exit and reset mode"
@@ -113,6 +131,12 @@
           "to": [
             {
               "key_code": "0"
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 0
+              }
             }
           ],
           "description": "iTerm2: Home -> 0"
@@ -140,6 +164,12 @@
             {
               "key_code": "4",
               "modifiers": ["left_shift"]
+            },
+            {
+              "set_variable": {
+                "name": "copyModeSpace",
+                "value": 0
+              }
             }
           ],
           "description": "iTerm2: End -> $"
