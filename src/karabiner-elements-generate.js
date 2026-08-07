@@ -1,60 +1,59 @@
 const fs = require('fs')
 const path = require('path')
 
-// --- 1. The Fluent Builder API ---
+// --- 1. Abstract Condition & Key Helpers ---
 
-const APP_ITERM = {
-  type: 'frontmost_application_if',
-  bundle_identifiers: ['com.googlecode.iterm2'],
-}
-const IN_COPY_MODE = { type: 'variable_if', name: 'copyMode', value: 1 }
+const appIf = (...bundles) => ({ type: 'frontmost_application_if', bundle_identifiers: bundles })
+const varIf = (name, value = 1) => ({ type: 'variable_if', name, value })
+
+const APP_ITERM = appIf('com.googlecode.iterm2')
+const IN_COPY_MODE = varIf('copyMode', 1)
+const IN_COPY_MODE_SPACE = varIf('copyModeSpace', 1)
 
 const toArray = (val) => (val ? (Array.isArray(val) ? val : [val]) : [])
+
+const buildKey = (key_code, mandatory, optional) => {
+  const mand = toArray(mandatory)
+  const opt = toArray(optional)
+  const result = { key_code }
+  if (mand.length || opt.length) {
+    result.modifiers = {}
+    if (mand.length) result.modifiers.mandatory = mand
+    if (opt.length) result.modifiers.optional = opt
+  }
+  return result
+}
+
+const buildTo = (key_code, mods) => {
+  const modifiers = toArray(mods)
+  return modifiers.length ? { key_code, modifiers } : { key_code }
+}
+
+// --- 2. Abstracted Fluent Builder API ---
 
 function mapKey(fromKey, mandatoryMods, optionalMods) {
   const rule = {
     type: 'basic',
-    conditions: [APP_ITERM], // Automatically scope all rules to iTerm2
-    from: { key_code: fromKey },
+    conditions: [APP_ITERM],
+    from: buildKey(fromKey, mandatoryMods, optionalMods),
     to: [],
   }
 
-  const mandatory = toArray(mandatoryMods)
-  const optional = toArray(optionalMods)
-
-  if (mandatory.length || optional.length) {
-    rule.from.modifiers = {}
-    if (mandatory.length) rule.from.modifiers.mandatory = mandatory
-    if (optional.length) rule.from.modifiers.optional = optional
-  }
-
-  // The "Chain" object returns itself, allowing method chaining (.to().to().setVar())
   const chain = {
-    desc: (text) => {
-      rule.description = `iTerm2: ${text}`
-      return chain
-    },
-    ifCopyMode: () => {
-      rule.conditions.push(IN_COPY_MODE)
-      return chain
-    },
-    to: (key, mods) => {
-      const modifiers = toArray(mods)
-      rule.to.push(modifiers.length ? { key_code: key, modifiers } : { key_code: key })
-      return chain
-    },
-    setVar: (name, value) => {
-      rule.to.push({ set_variable: { name, value } })
-      return chain
-    },
-    // Finally, extract the constructed rule object
+    desc: (text) => ((rule.description = `iTerm2: ${text}`), chain),
+    when: (...conditions) => (rule.conditions.push(...conditions.flat()), chain),
+    ifVar: (name, value = 1) => chain.when(varIf(name, value)),
+    ifCopyMode: () => chain.when(IN_COPY_MODE),
+    ifCopyModeSpace: () => chain.when(IN_COPY_MODE_SPACE),
+    to: (key, mods) => (rule.to.push(buildTo(key, mods)), chain),
+    setVar: (name, value) => (rule.to.push({ set_variable: { name, value } }), chain),
     build: () => rule,
   }
 
   return chain
 }
 
-// --- 2. Defining the Rules ---
+// --- 3. Defining the Rules ---
 
 const manipulators = [
   // Enter / Exit Copy Mode
@@ -99,9 +98,9 @@ const manipulators = [
   mapKey('m', 'right_command', 'any').desc('Native Home').to('home'),
 
   mapKey('slash', 'right_command', 'any').desc('Native End').to('end'),
-].map((rule) => rule.build()) // Convert all chained builders into standard objects
+].map((rule) => rule.build())
 
-// --- 3. Construct Output & Save ---
+// --- 4. Construct Output & Save ---
 
 const karabinerConfig = {
   title: 'Generated complex modifications',
@@ -114,6 +113,6 @@ const karabinerConfig = {
   ],
 }
 
-const outputPath = path.join(process.cwd(), 'karabiner-elements.json')
+const outputPath = path.join(__dirname, 'karabiner-elements.json')
 fs.writeFileSync(outputPath, JSON.stringify(karabinerConfig, null, 2), 'utf-8')
 console.log(`✅ File generated successfully at:\n${outputPath}`)
