@@ -830,13 +830,10 @@
       "description": "🔵 2 Finder modification to work as Windows File Explorer",
       "manipulators": [
         {
-          "description": "Finder Rename: Set in Keyboard -> Shortcuts -> Finder -> Rename to F2"
+          "description": "Finder f2 -> Rename: Set in Keyboard -> Shortcuts -> Finder -> Rename"
         },
         {
-          "description": "Finder Go to Folder...: Set in Keyboard -> Shortcuts -> Finder -> Go to Folder... to cmd+l"
-        },
-        {
-          "description": "Finder Return -> Open: Set in ~/.hammerspoon/init.lua",
+          "description": "Finder enter -> Open: Set in ~/.hammerspoon/init.lua",
           "conditions": [
             {
               "type": "frontmost_application_if",
@@ -854,7 +851,7 @@
           "type": "basic"
         },
         {
-          "description": "Finder Backspace -> Enclosing Folder: Set in ~/.hammerspoon/init.lua",
+          "description": "Finder backspace -> Enclosing Folder: Set in ~/.hammerspoon/init.lua",
           "conditions": [
             {
               "type": "frontmost_application_if",
@@ -872,7 +869,7 @@
           "type": "basic"
         },
         {
-          "description": "Finder super+backspace -> Move to Bin; Set in Keyboard -> Shortcuts -> Finder -> Move to Bin to ^+⌥+⌘+f1",
+          "description": "Finder super+backspace -> Move to Bin; Set in Keyboard -> Shortcuts -> Finder -> Move to Bin to ^+⌥+⌘+\\",
           "conditions": [
             {
               "type": "frontmost_application_if",
@@ -887,7 +884,7 @@
           },
           "to": [
             {
-              "key_code": "f1",
+              "key_code": "backslash",
               "modifiers": ["left_control", "left_option", "left_command"]
             }
           ],
@@ -1598,7 +1595,7 @@
           "conditions": [
             {
               "type": "frontmost_application_unless",
-              "bundle_identifiers": ["com.microsoft.VSCode", "com.todesktop.230313mzl4w4u92"]
+              "bundle_identifiers": ["com.microsoft.VSCode"]
             }
           ],
           "from": {
