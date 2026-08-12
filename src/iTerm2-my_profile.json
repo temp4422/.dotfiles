@@ -266,10 +266,11 @@
       "Label" : ""
     },
     "0x52-0x120000-0xf" : {
-      "Version" : 1,
-      "Action" : 38,
-      "Text" : "\\<C-r>",
-      "Label" : ""
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 10,
+      "Text" : "r",
+      "Escaping" : 2
     },
     "0x7e-0x120000-0x32" : {
       "Version" : 1,
@@ -278,10 +279,11 @@
       "Label" : ""
     },
     "0x72-0x100000-0xf" : {
-      "Version" : 1,
-      "Action" : 10,
-      "Text" : "r",
-      "Label" : ""
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 38,
+      "Text" : "\\<C-r>",
+      "Escaping" : 2
     }
   },
   "Ansi 14 Color" : {
