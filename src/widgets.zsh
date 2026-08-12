@@ -1,6 +1,15 @@
+#region Prompt & Basic settings
 # Oh My Zsh "refined" theme
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/themes/refined.zsh-theme
 ###############################################################################
+
+# Define prompt
+# PROMPT="%(?.%F{magenta}.%F{red})❯%f " # Display a red prompt char on failure
+PROMPT="%(?.%F{green}.%F{red})❯%f " # Display a red prompt char on failure
+RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
+
+# Enable parameter expansion, command substitution, and arithmetic expansion inside the prompt string
+# Example: $VAR, $(( expression )), % - escapes, etc.
 setopt prompt_subst
 
 # Load required modules
@@ -48,20 +57,13 @@ precmd() {
   print -P "\n$(repo_information) %F{yellow}$(cmd_exec_time)%f"
   unset cmd_timestamp #Reset cmd exec time.
 }
+#endregion
 
-# Define prompts
-# PROMPT="%(?.%F{magenta}.%F{red})❯%f " # Display a red prompt char on failure
-PROMPT="%(?.%F{green}.%F{red})❯%f " # Display a red prompt char on failure
-RPROMPT="%F{8}${SSH_TTY:+%n@%m}%f"    # Display username if connected via SSH
-###############################################################################
-
-
-# SHIFT-SELECT & ZSH LINE EDITOR (ZLE)
-##############################################################################
+#region SHIFT-SELECT & ZSH LINE EDITOR (ZLE)
 # zsh-shift-select
-#source ~/.local/share/zsh/plugins/zsh-shift-select/zsh-shift-select.plugin.zsh
+# source ~/.local/share/zsh/plugins/zsh-shift-select/zsh-shift-select.plugin.zsh
 
-# zsh-shift-select combined with ctrl+x,c,v
+# Select text with Shift and arrow/page keys.
 # https://stackoverflow.com/a/30899296
 r-delregion() {
   if ((REGION_ACTIVE)) then
@@ -84,6 +86,7 @@ r-select() {
   shift
   zle $widget_name -- $@
 }
+
 # Set bindkey keybindings all together
 for key       kcap     seq          mode       widget (
   # Movement Ctrl -> deselect ###################################
@@ -126,28 +129,36 @@ for key       kcap     seq          mode       widget (
 export ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
   key-right
 )
+#endregion
 
-# ctrl+x,c,v
+#region Cut, Copy, Paste
 # https://unix.stackexchange.com/a/634916/424080
+
+# ctrl+x
 zle-clipboard-cut() {
   if ((REGION_ACTIVE)); then
     zle copy-region-as-kill
     print -rn -- $CUTBUFFER | pbcopy #xclip -selection clipboard -in
+    #print -rn -- $CUTBUFFER | clip.exe #xclip -selection clipboard -in # for Windows
     zle kill-region
   fi
 }
 zle -N zle-clipboard-cut
+
+# ctrl+c
 zle-clipboard-copy() {
   if ((REGION_ACTIVE)); then
     zle copy-region-as-kill
-    print -rn -- $CUTBUFFER | pbcopy #xclip -selection clipboard -in
-    #print -rn -- $CUTBUFFER | clip.exe #xclip -selection clipboard -in # for Windows
+    print -rn -- $CUTBUFFER | pbcopy
+    zle my-zle-exit # Exit ZLE mode; also this is workaround to make ^c (interrupt) work properly
   else
     # Nothing is selected, so default to the interrupt command
     zle send-break
   fi
 }
 zle -N zle-clipboard-copy
+
+# ctrl+v
 zle-clipboard-paste() {
   if ((REGION_ACTIVE)); then
     zle kill-region
@@ -157,12 +168,14 @@ zle-clipboard-paste() {
   LBUFFER+="$(pbpaste | cat)"
 }
 zle -N zle-clipboard-paste
+
 # Exit ZLE mode; also this is workaround to make ^c (interrupt) work properly
 my-zle-exit () {
   zle magic-space
   zle backward-delete-char
 }
 zle -N my-zle-exit
+
 zle-pre-cmd() {
   # We are now in buffer editing mode. Clear the interrupt combo `Ctrl + C` by setting it to the null character, so it
   # can be used as the copy-to-clipboard key instead
@@ -171,17 +184,19 @@ zle-pre-cmd() {
   stty intr "^@" <$TTY >$TTY
 }
 precmd_functions=("zle-pre-cmd" ${precmd_functions[@]})
+
 zle-pre-exec() {
   # We are now out of buffer editing mode. Restore the interrupt combo `Ctrl + C`.
   stty intr "^C"
 }
 preexec_functions=("zle-pre-exec" ${preexec_functions[@]})
+
 # The `key` column is only used to build a named reference for `zle`
-for key kcap seq   widget              arg (
-    cx  _    $'^X' zle-clipboard-cut   _  # `Ctrl + X`
-    cc  _    $'^C' zle-clipboard-copy  _  # `Ctrl + C`
-    cv  _    $'^V' zle-clipboard-paste _  # `Ctrl + V` # Replaced by native iTerm paste functionality
-    esc -    $'^[' my-zle-exit         _  # `Esc`
+for key   kcap   seq     widget                arg (
+    cx    _      $'^X'   zle-clipboard-cut     _   # `Ctrl + X`
+    cc    _      $'^C'   zle-clipboard-copy    _   # `Ctrl + C`
+    cv    _      $'^V'   zle-clipboard-paste   _   # `Ctrl + V` # Replaced by native iTerm paste functionality
+    esc   -      $'^['   my-zle-exit           _   # `Esc`
 ) {
   if [ "${arg}" = "_" ]; then
     eval "key-$key() {
@@ -195,10 +210,11 @@ for key kcap seq   widget              arg (
   zle -N key-$key
   bindkey ${terminfo[$kcap]-$seq} key-$key
 }
+#endregion
 
-# Select entire prompt
-# https://stackoverflow.com/a/68987551/13658418
-widget::select-all() {
+#region Basic widgets
+# Select entire prompt https://stackoverflow.com/a/68987551/13658418
+zle-select-all() {
   local buflen=$(echo -n "$BUFFER" | wc -m | bc)
   CURSOR=$buflen   # if this is messing up try: CURSOR=9999999
   zle set-mark-command
@@ -206,11 +222,11 @@ widget::select-all() {
     zle beginning-of-line
   done
 }
-zle -N widget::select-all
-bindkey '^a' widget::select-all # Send escape sequence esc+a, bacause this interfere with 'home' button
+zle -N zle-select-all
+bindkey '^a' zle-select-all # Send escape sequence esc+a, bacause this interfere with 'home' button
 
 # Clear scrollback buffer
-clear-scrollback-buffer() {
+zle-clear-scrollback-buffer() {
   # Behavior of clear:
   # 1. clear scrollback if E3 cap is supported (terminal, platform specific)
   # 2. then clear visible screen
@@ -223,16 +239,18 @@ clear-scrollback-buffer() {
   # https://github.com/Powerlevel9k/powerlevel9k/pull/1176#discussion_r299303453
   zle && zle .reset-prompt && zle -R
 }
-zle -N clear-scrollback-buffer
-bindkey '^k' clear-scrollback-buffer
+zle -N zle-clear-scrollback-buffer
+bindkey '^k' zle-clear-scrollback-buffer
 
 # Undo cmd-z -> ctrl-z
 bindkey "^z" undo
+
 # Redo cmd-shift-z -> escape-z (set in iterm2)
 bindkey "^[z" redo
 
+#endregion
 
-# FZF
+#region FZF widgets
 ###############################################################################
 # Default command to work with other
 __fzfcmd() {
@@ -240,7 +258,7 @@ __fzfcmd() {
     echo "fzf-tmux ${FZF_TMUX_OPTS:--d${FZF_TMUX_HEIGHT:-40%}} -- " || echo "fzf"
 }
 
-# ctrl+r cd/vi recent folders/files
+# ctrl+r cd/vi show recent folders/files
 fzf-fasd-cd-vi() {
 # item="$(fasd -Rl "$1" | fzf -1 -0 --no-sort +m)" # fasdter when reading cache
   item="$(cat ~/.config/.fasd_cache | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
@@ -305,6 +323,9 @@ run-fzf-vi(){fzf-vi; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-vi
 bindkey '^o' run-fzf-vi
 
+#endregion
+
+#region Archive
 # # ctrl+shif+f search global modified
 # fzf-find-global() {
 #    item="$(find '/' -type d \( -path '**/mnt*' -o -path '**/proc*' -o -path '**/.cache*' -o -path '**/.vscode*' -o -path '**/.npm*' -o -path '**/.nvm*' -o -name 'node_modules' -o -name '*git*' -o -path '**/.trash*' -o -path '**/.local/share/pnpm*' -o -path '**/.quokka*' \) -prune -false -o -iname '*' 2>/dev/null | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@")"
@@ -392,3 +413,4 @@ bindkey '^o' run-fzf-vi
 # zle -N prev-dir
 # bindkey "^[]" prev-dir
 # zsh commands https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html
+#endregion
