@@ -138,11 +138,12 @@
       "Text" : "\\<C-m>",
       "Label" : ""
     },
-    "0xf729-0x80000-0x73" : {
-      "Version" : 1,
-      "Action" : 5,
-      "Text" : "",
-      "Label" : ""
+    "0x5a-0x120000-0x6" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 10,
+      "Text" : "z",
+      "Escaping" : 2
     },
     "0x44-0x120000-0x2" : {
       "Version" : 2,
@@ -158,18 +159,24 @@
       "Text" : "0x1b 0x0d",
       "Escaping" : 2
     },
-    "0x63-0x100000-0x8" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
-      "Action" : 38,
-      "Text" : "\\<C-c>",
-      "Escaping" : 2
+    "0xf729-0x80000-0x73" : {
+      "Version" : 1,
+      "Action" : 5,
+      "Text" : "",
+      "Label" : ""
     },
     "0xf701-0x280000-0x7d" : {
       "Version" : 1,
       "Action" : 6,
       "Text" : "",
       "Label" : ""
+    },
+    "0x63-0x100000-0x8" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 38,
+      "Text" : "\\<C-c>",
+      "Escaping" : 2
     },
     "0x46-0x120000-0x3" : {
       "Version" : 1,

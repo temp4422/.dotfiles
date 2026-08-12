@@ -226,8 +226,10 @@ clear-scrollback-buffer() {
 zle -N clear-scrollback-buffer
 bindkey '^k' clear-scrollback-buffer
 
-# Undo ctrl-z
-bindkey "^Z" undo
+# Undo cmd-z -> ctrl-z
+bindkey "^z" undo
+# Redo cmd-shift-z -> escape-z (set in iterm2)
+bindkey "^[z" redo
 
 
 # FZF
