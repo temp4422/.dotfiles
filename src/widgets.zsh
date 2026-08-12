@@ -207,7 +207,7 @@ widget::select-all() {
   done
 }
 zle -N widget::select-all
-bindkey '^[a' widget::select-all # Send escape sequence esc+a, bacause this interfere with 'home' button
+bindkey '^a' widget::select-all # Send escape sequence esc+a, bacause this interfere with 'home' button
 
 # Clear scrollback buffer
 clear-scrollback-buffer() {
@@ -293,7 +293,7 @@ fzf-find-local() {
 }
 run-fzf-find-local(){fzf-find-local; local ret=$?; zle reset-prompt; return $ret}
 zle -N run-fzf-find-local
-bindkey '^f' run-fzf-find-local
+bindkey '^[f' run-fzf-find-local
 bindkey '^p' run-fzf-find-local
 
 # ctrl+o open file in vscode

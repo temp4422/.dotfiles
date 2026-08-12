@@ -179,10 +179,11 @@
       "Escaping" : 2
     },
     "0x46-0x120000-0x3" : {
-      "Version" : 1,
-      "Action" : 38,
-      "Text" : "\\<C-f>",
-      "Label" : ""
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 10,
+      "Text" : "f",
+      "Escaping" : 2
     },
     "0xf72b-0x80000-0x77" : {
       "Version" : 1,
@@ -236,8 +237,8 @@
     "0x61-0x100000-0x0" : {
       "Version" : 2,
       "Apply Mode" : 0,
-      "Action" : 10,
-      "Text" : "a",
+      "Action" : 38,
+      "Text" : "\\<C-a>",
       "Escaping" : 2
     },
     "0x6c-0x100000-0x25" : {
