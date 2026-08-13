@@ -1,9 +1,8 @@
 local wezterm = require 'wezterm'
-
 local module = {}
 
 function module.apply_to_config(config)
-  -- Make CMD behave like CTRL by default
+  --#region Make CMD behave like CTRL by default
   config.keys = {}
   local alphabet = 'abcdefghijklmnopqrstuvwxyz'
   for i = 1, #alphabet do
@@ -19,9 +18,10 @@ function module.apply_to_config(config)
       action = wezterm.action.SendKey { key = char, mods = 'CTRL|SHIFT' },
     })
   end
+  --#endregion
 
-  -- Set my custom keybinds
-  local my_custom_keys = {
+  --#region Set my custom keybinds
+  local my_custom_keybinds = {
     -- Below keybinds are commented out because they are already set above with CMD -> CTRL mapping
     -- Interrupt
     -- { key = 'c',          mods = 'CMD',       action = wezterm.action.SendKey { key = 'c', mods = 'CTRL' } },
@@ -54,9 +54,10 @@ function module.apply_to_config(config)
     -- { key = 'LeftArrow',  mods = 'OPT',       action = wezterm.action.SendString("\x1b[H") },
     -- { key = 'LeftArrow',  mods = 'OPT',       action = wezterm.action.SendString("\27[H") },
   }
+  --#endregion
 
   -- Add my custom keybinds to the config
-  for _, keybinding in ipairs(my_custom_keys) do
+  for _, keybinding in ipairs(my_custom_keybinds) do
     table.insert(config.keys, keybinding)
   end
 end
