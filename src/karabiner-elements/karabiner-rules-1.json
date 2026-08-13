@@ -1857,6 +1857,28 @@
             }
           ],
           "type": "basic"
+        },
+        {
+          "description": "Fix iTerm2 copy mode: cmd+c -> ctrl+c",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["com.googlecode.iterm2"]
+            }
+          ],
+          "from": {
+            "key_code": "c",
+            "modifiers": {
+              "mandatory": ["left_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "c",
+              "modifiers": ["left_control"]
+            }
+          ],
+          "type": "basic"
         }
       ]
     }

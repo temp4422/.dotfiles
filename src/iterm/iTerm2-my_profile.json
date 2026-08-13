@@ -101,49 +101,11 @@
   "Custom Command" : "No",
   "Title Components" : 4,
   "Keyboard Map" : {
-    "0x65-0x100000-0xe" : {
+    "0x6c-0x100000-0x25" : {
       "Version" : 1,
       "Action" : 38,
-      "Text" : "\\<C-e>",
+      "Text" : "\\<C-l>",
       "Label" : ""
-    },
-    "0x7a-0x100000-0x6" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
-      "Action" : 38,
-      "Text" : "\\<C-z>",
-      "Escaping" : 2
-    },
-    "0x6f-0x100000-0x1f" : {
-      "Version" : 1,
-      "Action" : 38,
-      "Text" : "\\<C-o>",
-      "Label" : ""
-    },
-    "0xf72d-0x80000-0x79" : {
-      "Version" : 1,
-      "Action" : 8,
-      "Text" : "",
-      "Label" : ""
-    },
-    "0xf72c-0x80000-0x74" : {
-      "Version" : 1,
-      "Action" : 9,
-      "Text" : "",
-      "Label" : ""
-    },
-    "0x6d-0x100000-0x2e" : {
-      "Version" : 1,
-      "Action" : 38,
-      "Text" : "\\<C-m>",
-      "Label" : ""
-    },
-    "0x5a-0x120000-0x6" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
-      "Action" : 10,
-      "Text" : "z",
-      "Escaping" : 2
     },
     "0x44-0x120000-0x2" : {
       "Version" : 2,
@@ -152,30 +114,25 @@
       "Text" : "187B374B-6876-4EB8-901A-4F0B7165043F",
       "Escaping" : 2
     },
-    "0xd-0x100000-0x24" : {
+    "0xf702-0x300000-0x7b" : {
       "Version" : 2,
       "Apply Mode" : 0,
-      "Action" : 11,
-      "Text" : "0x1b 0x0d",
+      "Action" : 10,
+      "Text" : "[H",
       "Escaping" : 2
     },
-    "0xf729-0x80000-0x73" : {
-      "Version" : 1,
-      "Action" : 5,
-      "Text" : "",
-      "Label" : ""
-    },
-    "0xf701-0x280000-0x7d" : {
-      "Version" : 1,
-      "Action" : 6,
-      "Text" : "",
-      "Label" : ""
-    },
-    "0x63-0x100000-0x8" : {
+    "0x61-0x100000-0x0" : {
       "Version" : 2,
       "Apply Mode" : 0,
       "Action" : 38,
-      "Text" : "\\<C-c>",
+      "Text" : "\\<C-a>",
+      "Escaping" : 2
+    },
+    "0xf701-0x280000-0x7d" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 6,
+      "Text" : "",
       "Escaping" : 2
     },
     "0x46-0x120000-0x3" : {
@@ -185,46 +142,22 @@
       "Text" : "f",
       "Escaping" : 2
     },
-    "0xf72b-0x80000-0x77" : {
-      "Version" : 1,
-      "Action" : 4,
-      "Text" : "",
-      "Label" : ""
-    },
-    "0x73-0x100000-0x1" : {
+    "0x6f-0x100000-0x1f" : {
       "Version" : 1,
       "Action" : 38,
-      "Text" : "\\<C-s>",
+      "Text" : "\\<C-o>",
       "Label" : ""
     },
-    "0x53-0x120000-0x1" : {
-      "Version" : 1,
+    "0xf703-0x300000-0x7c" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
       "Action" : 10,
-      "Text" : "s",
-      "Label" : ""
+      "Text" : "[F",
+      "Escaping" : 2
     },
     "0x9-0x40000-0x30" : {
       "Version" : 1,
       "Action" : 0,
-      "Text" : "",
-      "Label" : ""
-    },
-    "0x67-0x100000-0x5" : {
-      "Version" : 1,
-      "Action" : 38,
-      "Text" : "\\<C-g>",
-      "Label" : ""
-    },
-    "0x7f-0x80000-0x33" : {
-      "Version" : 2,
-      "Apply Mode" : 0,
-      "Action" : 38,
-      "Text" : "\\<C-w>",
-      "Escaping" : 2
-    },
-    "0x19-0x60000-0x30" : {
-      "Version" : 1,
-      "Action" : 2,
       "Text" : "",
       "Label" : ""
     },
@@ -234,23 +167,56 @@
       "Text" : "\\<C-p>",
       "Label" : ""
     },
-    "0x61-0x100000-0x0" : {
+    "0x7f-0x80000-0x33" : {
       "Version" : 2,
       "Apply Mode" : 0,
       "Action" : 38,
-      "Text" : "\\<C-a>",
+      "Text" : "\\<C-w>",
       "Escaping" : 2
     },
-    "0x6c-0x100000-0x25" : {
+    "0x72-0x100000-0xf" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 38,
+      "Text" : "\\<C-r>",
+      "Escaping" : 2
+    },
+    "0x65-0x100000-0xe" : {
       "Version" : 1,
       "Action" : 38,
-      "Text" : "\\<C-l>",
+      "Text" : "\\<C-e>",
       "Label" : ""
     },
-    "0x6a-0x100000-0x26" : {
+    "0xf72b-0x80000-0x77" : {
+      "Version" : 1,
+      "Action" : 4,
+      "Text" : "",
+      "Label" : ""
+    },
+    "0xf700-0x280000-0x7e" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 7,
+      "Text" : "",
+      "Escaping" : 2
+    },
+    "0xf702-0x320000-0x7b" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 10,
+      "Text" : "[1;2H",
+      "Escaping" : 2
+    },
+    "0x67-0x100000-0x5" : {
       "Version" : 1,
       "Action" : 38,
-      "Text" : "\\<C-j>",
+      "Text" : "\\<C-g>",
+      "Label" : ""
+    },
+    "0x73-0x100000-0x1" : {
+      "Version" : 1,
+      "Action" : 38,
+      "Text" : "\\<C-s>",
       "Label" : ""
     },
     "0x78-0x100000-0x7" : {
@@ -260,12 +226,6 @@
       "Text" : "\\<C-x>",
       "Escaping" : 2
     },
-    "0xf700-0x280000-0x7e" : {
-      "Version" : 1,
-      "Action" : 7,
-      "Text" : "",
-      "Label" : ""
-    },
     "0x52-0x120000-0xf" : {
       "Version" : 2,
       "Apply Mode" : 0,
@@ -273,17 +233,94 @@
       "Text" : "r",
       "Escaping" : 2
     },
+    "0xf703-0x320000-0x7c" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 10,
+      "Text" : "[1;2F",
+      "Escaping" : 2
+    },
+    "0x7a-0x100000-0x6" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 38,
+      "Text" : "\\<C-z>",
+      "Escaping" : 2
+    },
+    "0xf72c-0x80000-0x74" : {
+      "Version" : 1,
+      "Action" : 9,
+      "Text" : "",
+      "Label" : ""
+    },
     "0x7e-0x120000-0x32" : {
       "Version" : 1,
       "Action" : 31,
       "Text" : "",
       "Label" : ""
     },
-    "0x72-0x100000-0xf" : {
+    "0xf72d-0x80000-0x79" : {
+      "Version" : 1,
+      "Action" : 8,
+      "Text" : "",
+      "Label" : ""
+    },
+    "0x19-0x60000-0x30" : {
+      "Version" : 1,
+      "Action" : 2,
+      "Text" : "",
+      "Label" : ""
+    },
+    "0xf729-0x80000-0x73" : {
+      "Version" : 1,
+      "Action" : 5,
+      "Text" : "",
+      "Label" : ""
+    },
+    "0x53-0x120000-0x1" : {
+      "Version" : 1,
+      "Action" : 10,
+      "Text" : "s",
+      "Label" : ""
+    },
+    "0x6d-0x100000-0x2e" : {
+      "Version" : 1,
+      "Action" : 38,
+      "Text" : "\\<C-m>",
+      "Label" : ""
+    },
+    "0xd-0x100000-0x24" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 11,
+      "Text" : "0x1b 0x0d",
+      "Escaping" : 2
+    },
+    "0x63-0x100000-0x8" : {
       "Version" : 2,
       "Apply Mode" : 0,
       "Action" : 38,
-      "Text" : "\\<C-r>",
+      "Text" : "\\<C-c>",
+      "Escaping" : 2
+    },
+    "0x5a-0x120000-0x6" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 10,
+      "Text" : "z",
+      "Escaping" : 2
+    },
+    "0x6a-0x100000-0x26" : {
+      "Version" : 1,
+      "Action" : 38,
+      "Text" : "\\<C-j>",
+      "Label" : ""
+    },
+    "0xf702-0x380000-0x7b" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 5,
+      "Text" : "",
       "Escaping" : 2
     }
   },

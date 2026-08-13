@@ -223,7 +223,10 @@ zle-select-all() {
   done
 }
 zle -N zle-select-all
-bindkey '^a' zle-select-all # Send escape sequence esc+a, bacause this interfere with 'home' button
+bindkey '^a' zle-select-all
+# Send escape sequence esc+a, bacause this interfere with 'home' button.
+# Fixed: iterm -> Settings -> Profiles -> Keys -> Key Bindings -> Set cmd+left "Send ^[[H"
+# Also remove all keybinds: iterm -> Settings -> Keys -> Key Bindings -> Remove all keybinds
 
 # Clear scrollback buffer
 zle-clear-scrollback-buffer() {
