@@ -123,7 +123,7 @@ tere() {
     local result=$(command tere --map alt-s:Exit,ctrl-q:Exit --gap-search-anywhere "$@")
     [ -n "$result" ] && cd -- "$result" && clear && printf '\e[3J' && gls -Ah --color --group-directories-first
 }
-bindkey -s '^[s' tere^M # Set keybind in iTerm cmd+shift+s -> alt+s
+# bindkey -s '^[s' tere^M # Set keybind in iTerm cmd+shift+s -> alt+s
 
 # broot
 source /Users/user/.config/broot/launcher/bash/br
@@ -199,3 +199,6 @@ if [[ ":$FPATH:" != *":/Users/user/.zsh/completions:"* ]]; then export FPATH="/U
 # autoload -Uz compinit
 # compinit
 # # End of Docker CLI completions
+
+# WezTerm
+export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"

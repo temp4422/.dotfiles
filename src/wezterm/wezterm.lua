@@ -1,0 +1,40 @@
+-- Pull in the wezterm API
+local wezterm = require 'wezterm'
+-- This will hold the configuration
+local config = wezterm.config_builder()
+
+-- New windows geometry
+config.initial_cols = 212
+config.initial_rows = 28
+
+-- Font
+config.font_size = 14
+
+-- Window position on startup
+wezterm.on('gui-startup', function()
+  local tab, pane, window = wezterm.mux.spawn_window {
+    position = {
+      x = 0,
+      y = 955,
+    }
+  }
+end)
+
+-- Cursor styles
+config.default_cursor_style = 'BlinkingBar'
+config.cursor_thickness = '4px'
+config.cursor_blink_rate = 500
+
+-- Pane styles
+-- Dim and desaturate inactive panes
+config.inactive_pane_hsb = {
+  saturation = 0.8,
+  brightness = 0.2,
+}
+
+-- Keybinds
+local keybinds = require 'keybinds'
+keybinds.apply_to_config(config)
+
+-- Return configuration to wezterm
+return config

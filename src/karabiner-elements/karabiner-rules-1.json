@@ -1160,7 +1160,7 @@
           "type": "basic"
         },
         {
-          "description": "Ascii terminal iTerm2",
+          "description": "Ascii terminal WezTerm",
           "from": {
             "key_code": "a",
             "modifiers": {
@@ -1169,7 +1169,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b com.googlecode.iterm2"
+              "shell_command": "open -b com.github.wez.wezterm"
             }
           ],
           "type": "basic"
