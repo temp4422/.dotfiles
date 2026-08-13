@@ -31,6 +31,17 @@ ln -s ~/.dotfiles/src/karabiner-elements/karabiner-rules-1.json ~/.config/karabi
 
 As for 10.11.2023, make many remmapings for basic shortcuts like cmd+e,r,s... etc. Still iTerm not functioning as expected in some cases, e.g. copy mode. Many remmapings done due to widgets.zsh "Set bindkey keybindings all together" function (you may explore this further). Below are example of some changes made to iTerm settings. All settings, as for today, backup in "My profile" file, iTerm2-my_profile.json, in this repo. How keybinds work: map iTerm2 keybinds 'cmd+p' to "Send Text with "vim" Special Chars" - "\<C-p>" mapped to functions in widgets.zsh "^p". Example: bindkey '^p' run-fzf-fasd-cd-vi. Basically this maps cmd+key to ctrl+key. Alternative: map 'cmd+a' to '^[a' (esc+a) to prevent same key codes collisions. Import iTerm2-key-mappings.itermkeymap by Settings -> Profiles -> Keys -> Key Mappings -> Presets -> Import
 
+Separate Copy Mode keyboard shortcuts:
+
+- https://iterm2.com/documentation-copymode.html
+- https://gitlab.com/gnachman/iterm2/-/work_items/10636
+- https://chatgpt.com/share/6a7d52b2-3eac-83eb-bd61-d27201f23ac6
+
+```bash
+rm -rf "~/Library/Application\ Support/iTerm2/CopyModeKeyBindings.dict"
+ln -s ~/.dotfiles/src/iterm/CopyModeKeyBindings.dict ~/Library/Application\ Support/iTerm2/CopyModeKeyBindings.dict
+```
+
 #### iTerm2 example settings changes
 
 Set iTerm2 Vim scroll up/down behavior to use pgup/pgdown in vim. Settings -> Advanced -> Scroll wheel sends arrow keys when in alternate screen mode -> Yes.
