@@ -69,25 +69,8 @@ function module.apply_to_config(config)
   --#region Copy Mode key table keybinds
   local SHIFT_ON = false
 
-  local function set_shift(value)
-    return wezterm.action_callback(function(window, pane)
-      SHIFT_ON = value
-    end)
-  end
-
-  -- local function when_shift_on(action)
-  --   return wezterm.action_callback(function(window, pane)
-  --     if SHIFT_ON then
-  --       window:perform_action(action, pane)
-  --     end
-  --   end)
-  -- end
-
-
   local copy_mode_keybinds = {
-    { key = 'c', mods = 'CMD|SHIFT', action = act.CopyMode 'Close' },
-    { key = 'c', mods = 'CMD',       action = act.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, { CopyMode = 'Close' } } },
-
+    -- Examples:
     -- { key = 'f', mods = 'CMD',       action = act.Multiple { { CopyMode = 'MoveForwardWord' }, { CopyMode = 'MoveForwardWord' }, } },
     -- { key = 'f', mods = 'CMD',       action = when_shift_on(act.Multiple { { CopyMode = 'MoveForwardWord' }, { CopyMode = 'MoveForwardWord' }, }), },
     -- { key = 'f', mods = 'CMD',       action = act.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, set_shift(true), }, },
@@ -95,17 +78,19 @@ function module.apply_to_config(config)
     -- send multiple commands with delay wezterm.sleep_ms(500)
     -- Timing issue: use action_callback with a short sleep_ms delay to ensure asynchronous GUI/clipboard actions finish before the next action starts.
     -- https://github.com/wezterm/wezterm/discussions/5384
-
     -- {
     --   key = 'LeftArrow',
     --   mods = 'SHIFT',
     --   action = wezterm.action_callback(function(window, pane)
-    --     -- when_shift_on(window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane))
-    --     if shift_on == false then window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane) end
+    --     window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+    --     wezterm.sleep_ms(500)
     --     window:perform_action(act.CopyMode('MoveLeft'), pane)
-    --     window:perform_action(set_shift(true))
+    --     SHIFT_ON = true
     --   end),
     -- },
+
+    { key = 'c', mods = 'CMD|SHIFT', action = act.CopyMode 'Close' },
+    { key = 'c', mods = 'CMD',       action = act.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, { CopyMode = 'Close' } } },
 
     -- shift select by character
     {
@@ -277,6 +262,97 @@ function module.apply_to_config(config)
       end),
     },
 
+    -- shift select by word
+    -- WezTerm (and underlying terminal modifier systems) treats the left and right Command (CMD / SUPER) keys on macOS as equivalent
+    -- BUT for left/right movement CMD is remaped to OPT in karabiner
+    {
+      key = 'LeftArrow',
+      mods = 'OPT|SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveBackwardWord', pane)
+      end),
+    },
+    {
+      key = 'LeftArrow',
+      mods = 'OPT',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('MoveBackwardWord'), pane)
+        SHIFT_ON = false
+      end),
+    },
+
+    {
+      key = 'RightArrow',
+      mods = 'OPT|SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveForwardWord', pane)
+      end),
+    },
+    {
+      key = 'RightArrow',
+      mods = 'OPT',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('MoveForwardWord'), pane)
+        SHIFT_ON = false
+      end),
+    },
+
+    -- for up/down it still CMD not OPT
+    {
+      key = 'UpArrow',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveToViewportTop', pane)
+      end),
+    },
+    {
+      key = 'UpArrow',
+      mods = 'CMD',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('MoveToViewportTop'), pane)
+        SHIFT_ON = false
+      end),
+    },
+
+    {
+      key = 'DownArrow',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveToViewportBottom', pane)
+      end),
+    },
+    {
+      key = 'DownArrow',
+      mods = 'CMD',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('MoveToViewportBottom'), pane)
+        SHIFT_ON = false
+      end),
+    },
+
+    -- TODO select to scroll top/bottom
+    -- { key = 'g',          mods = 'NONE',  action = act.CopyMode 'MoveToScrollbackTop' },
+    -- { key = 'G',          mods = 'NONE',  action = act.CopyMode 'MoveToScrollbackBottom' },
   }
 
   -- Copy Mode import default_key_tables
