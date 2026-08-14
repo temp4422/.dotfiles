@@ -67,21 +67,21 @@ function module.apply_to_config(config)
   --#endregion
 
   --#region Copy Mode key table keybinds
-  local shift_on = false
+  local SHIFT_ON = false
 
   local function set_shift(value)
     return wezterm.action_callback(function(window, pane)
-      shift_on = value
+      SHIFT_ON = value
     end)
   end
 
-  local function when_shift_on(action)
-    return wezterm.action_callback(function(window, pane)
-      if shift_on then
-        window:perform_action(action, pane)
-      end
-    end)
-  end
+  -- local function when_shift_on(action)
+  --   return wezterm.action_callback(function(window, pane)
+  --     if SHIFT_ON then
+  --       window:perform_action(action, pane)
+  --     end
+  --   end)
+  -- end
 
 
   local copy_mode_keybinds = {
@@ -92,18 +92,105 @@ function module.apply_to_config(config)
     -- { key = 'f', mods = 'CMD',       action = when_shift_on(act.Multiple { { CopyMode = 'MoveForwardWord' }, { CopyMode = 'MoveForwardWord' }, }), },
     -- { key = 'f', mods = 'CMD',       action = act.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, set_shift(true), }, },
 
-    -- send multiple commands with delay
+    -- send multiple commands with delay wezterm.sleep_ms(500)
+    -- Timing issue: use action_callback with a short sleep_ms delay to ensure asynchronous GUI/clipboard actions finish before the next action starts.
+    -- https://github.com/wezterm/wezterm/discussions/5384
+
+    -- {
+    --   key = 'LeftArrow',
+    --   mods = 'SHIFT',
+    --   action = wezterm.action_callback(function(window, pane)
+    --     -- when_shift_on(window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane))
+    --     if shift_on == false then window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane) end
+    --     window:perform_action(act.CopyMode('MoveLeft'), pane)
+    --     window:perform_action(set_shift(true))
+    --   end),
+    -- },
+
+    -- shift select by character
     {
-      key = 'f',
-      mods = 'CMD',
+      key = 'LeftArrow',
+      mods = 'SHIFT',
       action = wezterm.action_callback(function(window, pane)
-        window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
-        wezterm.sleep_ms(500)
-        window:perform_action(act.CopyMode('MoveForwardWord'), pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveLeft', pane)
+      end),
+    },
+    {
+      key = 'LeftArrow',
+      mods = 'NONE',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('MoveLeft'), pane)
+        SHIFT_ON = false
       end),
     },
 
+    {
+      key = 'RightArrow',
+      mods = 'SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveRight', pane)
+      end),
+    },
+    {
+      key = 'RightArrow',
+      mods = 'NONE',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('MoveRight'), pane)
+        SHIFT_ON = false
+      end),
+    },
 
+    {
+      key = 'UpArrow',
+      mods = 'SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveUp', pane)
+      end),
+    },
+    {
+      key = 'UpArrow',
+      mods = 'NONE',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('MoveUp'), pane)
+        SHIFT_ON = false
+      end),
+    },
+
+    {
+      key = 'DownArrow',
+      mods = 'SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveDown', pane)
+      end),
+    },
+    {
+      key = 'DownArrow',
+      mods = 'NONE',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('MoveDown'), pane)
+        SHIFT_ON = false
+      end),
+    },
 
   }
 
