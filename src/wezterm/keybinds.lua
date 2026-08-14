@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local act = wezterm.action
 local module = {}
 
 function module.apply_to_config(config)
@@ -10,12 +11,12 @@ function module.apply_to_config(config)
     table.insert(config.keys, {
       key = char,
       mods = 'CMD',
-      action = wezterm.action.SendKey { key = char, mods = 'CTRL' },
+      action = act.SendKey { key = char, mods = 'CTRL' },
     })
     table.insert(config.keys, {
       key = char,
       mods = 'CMD|SHIFT',
-      action = wezterm.action.SendKey { key = char, mods = 'CTRL|SHIFT' },
+      action = act.SendKey { key = char, mods = 'CTRL|SHIFT' },
     })
   end
   --#endregion
@@ -26,31 +27,31 @@ function module.apply_to_config(config)
 
     -- Below keybinds are commented out because they are already set above with CMD -> CTRL mapping
     -- Interrupt
-    -- { key = 'c',          mods = 'CMD',       action = wezterm.action.SendKey { key = 'c', mods = 'CTRL' } },
+    -- { key = 'c',          mods = 'CMD',       action = act.SendKey { key = 'c', mods = 'CTRL' } },
     -- Select all
-    -- { key = 'a',          mods = 'CMD',       action = wezterm.action.SendKey { key = 'a', mods = 'CTRL' } },
+    -- { key = 'a',          mods = 'CMD',       action = act.SendKey { key = 'a', mods = 'CTRL' } },
     -- Undo
-    -- { key = 'z',          mods = 'CMD',       action = wezterm.action.SendKey { key = 'z', mods = 'CTRL' } },
+    -- { key = 'z',          mods = 'CMD',       action = act.SendKey { key = 'z', mods = 'CTRL' } },
     -- Clear scrollback and viewport
-    -- { key = 'k',          mods = 'CMD',       action = wezterm.action.ClearScrollback 'ScrollbackAndViewport' },
+    -- { key = 'k',          mods = 'CMD',       action = act.ClearScrollback 'ScrollbackAndViewport' },
 
     -- Fix clipboard paste
-    { key = 'v',          mods = 'CMD',       action = wezterm.action.PasteFrom 'Clipboard' },
+    { key = 'v',          mods = 'CMD',       action = act.PasteFrom 'Clipboard' },
     -- Split pane horizontally
-    { key = 'd',          mods = 'CMD|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+    { key = 'd',          mods = 'CMD|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
     -- Close pane
-    { key = 'w',          mods = 'CMD',       action = wezterm.action.CloseCurrentPane { confirm = true } },
+    { key = 'w',          mods = 'CMD',       action = act.CloseCurrentPane { confirm = true } },
     -- Select pane
-    { key = 'LeftArrow',  mods = 'CMD|OPT',   action = wezterm.action.ActivatePaneDirection 'Left' },
-    { key = 'RightArrow', mods = 'CMD|OPT',   action = wezterm.action.ActivatePaneDirection 'Right' },
+    { key = 'LeftArrow',  mods = 'CMD|OPT',   action = act.ActivatePaneDirection 'Left' },
+    { key = 'RightArrow', mods = 'CMD|OPT',   action = act.ActivatePaneDirection 'Right' },
     -- Copy Mode
-    { key = 'c',          mods = 'CMD|SHIFT', action = wezterm.action.ActivateCopyMode },
+    { key = 'c',          mods = 'CMD|SHIFT', action = act.ActivateCopyMode },
     -- Search history
-    { key = 'r',          mods = 'CMD|SHIFT', action = wezterm.action.SendKey { key = 'r', mods = 'OPT' } },
+    { key = 'r',          mods = 'CMD|SHIFT', action = act.SendKey { key = 'r', mods = 'OPT' } },
     -- Redo
-    { key = 'z',          mods = 'CMD|SHIFT', action = wezterm.action.SendKey { key = 'z', mods = 'OPT' } },
-    -- action = wezterm.action.SendString("\x1bz")
-    -- action = wezterm.action.SendString("\27z")
+    { key = 'z',          mods = 'CMD|SHIFT', action = act.SendKey { key = 'z', mods = 'OPT' } },
+    -- action = act.SendString("\x1bz")
+    -- action = act.SendString("\27z")
     -- Alternative send escape sequence "\x1bz" equal to "^[z" and is set in zsh widgets
     -- Meaning: send esc+z or meta+z (OPT or ESCAPE acts as meta key)
     -- https://wezterm.org/config/keys.html#configuring-key-assignments
@@ -66,9 +67,31 @@ function module.apply_to_config(config)
   --#endregion
 
   --#region Copy Mode key table keybinds
+  -- local shift_on = false
+
+  -- local function set_shift(value)
+  --   return act_callback(function(window, pane)
+  --     shift_on = value
+  --   end)
+  -- end
+
+  -- local function when_shift_on(action)
+  --   return act_callback(function(window, pane)
+  --     if shift_on then
+  --       window:perform_action(action, pane)
+  --     end
+  --   end)
+  -- end
+
+
   local copy_mode_keybinds = {
-    { key = 'c', mods = 'CMD|SHIFT', action = wezterm.action.CopyMode 'Close' },
-    { key = 'c', mods = 'CMD',       action = wezterm.action.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, { CopyMode = 'Close' } } },
+    { key = 'c', mods = 'CMD|SHIFT', action = act.CopyMode 'Close' },
+    { key = 'c', mods = 'CMD',       action = act.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, { CopyMode = 'Close' } } },
+    -- { key = 'f', mods = 'CMD',       action = act.Multiple { { CopyMode = 'MoveForwardWord' }, { CopyMode = 'MoveForwardWord' }, } },
+    -- { key = 'f', mods = 'CMD',       action = when_shift_on(act.Multiple { { CopyMode = 'MoveForwardWord' }, { CopyMode = 'MoveForwardWord' }, }), },
+    -- { key = 's', mods = 'CMD',       action = act.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, set_shift(true), }, },
+
+    -- { key = 'LeftArrow', mods = 'SHIFT',     action = act.Multiple { { CopyMode = 'MoveForwardWord' }, { CopyMode = 'MoveForwardWord' }, } },
   }
 
   -- Copy Mode import default_key_tables
