@@ -20,8 +20,10 @@ function module.apply_to_config(config)
   end
   --#endregion
 
-  --#region Set my custom keybinds
+  --#region Default key table keybinds
   local my_custom_keybinds = {
+    -- Fix home/end in karabiner-elements
+
     -- Below keybinds are commented out because they are already set above with CMD -> CTRL mapping
     -- Interrupt
     -- { key = 'c',          mods = 'CMD',       action = wezterm.action.SendKey { key = 'c', mods = 'CTRL' } },
@@ -39,27 +41,44 @@ function module.apply_to_config(config)
     -- Select pane
     { key = 'LeftArrow',  mods = 'CMD|OPT',   action = wezterm.action.ActivatePaneDirection 'Left' },
     { key = 'RightArrow', mods = 'CMD|OPT',   action = wezterm.action.ActivatePaneDirection 'Right' },
+    -- Copy Mode
+    { key = 'c',          mods = 'CMD|SHIFT', action = wezterm.action.ActivateCopyMode },
 
     -- Redo
     { key = 'z',          mods = 'CMD|SHIFT', action = wezterm.action.SendKey { key = 'z', mods = 'OPT' } },
     -- action = wezterm.action.SendString("\x1bz")
+    -- action = wezterm.action.SendString("\27z")
     -- Alternative send escape sequence "\x1bz" equal to "^[z" and is set in zsh widgets
     -- Meaning: send esc+z or meta+z (OPT or ESCAPE acts as meta key)
     -- https://wezterm.org/config/keys.html#configuring-key-assignments
     -- https://wezterm.org/config/lua/keyassignment/SendString.html
 
 
-    --TODO
-    -- Move to beginning/end of line
-    -- { key = 'LeftArrow',  mods = 'OPT',       action = wezterm.action.SendString("\x1b[H") },
-    -- { key = 'LeftArrow',  mods = 'OPT',       action = wezterm.action.SendString("\27[H") },
   }
-  --#endregion
 
   -- Add my custom keybinds to the config
   for _, keybinding in ipairs(my_custom_keybinds) do
     table.insert(config.keys, keybinding)
   end
+  --#endregion
+
+  --#region Copy Mode key table keybinds
+  local copy_mode_keybinds = {
+    { key = 'c', mods = 'CMD|SHIFT', action = wezterm.action.CopyMode 'Close' },
+    { key = 'c', mods = 'CMD',       action = wezterm.action.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, { CopyMode = 'Close' } } },
+
+  }
+
+  -- Copy Mode import default_key_tables
+  config.key_tables = {
+    copy_mode = wezterm.gui.default_key_tables().copy_mode,
+  }
+
+  -- Add my custom table keybinds to the config
+  for _, keybinding in ipairs(copy_mode_keybinds) do
+    table.insert(config.key_tables.copy_mode, keybinding)
+  end
+  --#endregion
 end
 
 return module
