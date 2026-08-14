@@ -67,31 +67,44 @@ function module.apply_to_config(config)
   --#endregion
 
   --#region Copy Mode key table keybinds
-  -- local shift_on = false
+  local shift_on = false
 
-  -- local function set_shift(value)
-  --   return act_callback(function(window, pane)
-  --     shift_on = value
-  --   end)
-  -- end
+  local function set_shift(value)
+    return wezterm.action_callback(function(window, pane)
+      shift_on = value
+    end)
+  end
 
-  -- local function when_shift_on(action)
-  --   return act_callback(function(window, pane)
-  --     if shift_on then
-  --       window:perform_action(action, pane)
-  --     end
-  --   end)
-  -- end
+  local function when_shift_on(action)
+    return wezterm.action_callback(function(window, pane)
+      if shift_on then
+        window:perform_action(action, pane)
+      end
+    end)
+  end
 
 
   local copy_mode_keybinds = {
     { key = 'c', mods = 'CMD|SHIFT', action = act.CopyMode 'Close' },
     { key = 'c', mods = 'CMD',       action = act.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, { CopyMode = 'Close' } } },
+
     -- { key = 'f', mods = 'CMD',       action = act.Multiple { { CopyMode = 'MoveForwardWord' }, { CopyMode = 'MoveForwardWord' }, } },
     -- { key = 'f', mods = 'CMD',       action = when_shift_on(act.Multiple { { CopyMode = 'MoveForwardWord' }, { CopyMode = 'MoveForwardWord' }, }), },
-    -- { key = 's', mods = 'CMD',       action = act.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, set_shift(true), }, },
+    -- { key = 'f', mods = 'CMD',       action = act.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, set_shift(true), }, },
 
-    -- { key = 'LeftArrow', mods = 'SHIFT',     action = act.Multiple { { CopyMode = 'MoveForwardWord' }, { CopyMode = 'MoveForwardWord' }, } },
+    -- send multiple commands with delay
+    {
+      key = 'f',
+      mods = 'CMD',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+        wezterm.sleep_ms(500)
+        window:perform_action(act.CopyMode('MoveForwardWord'), pane)
+      end),
+    },
+
+
+
   }
 
   -- Copy Mode import default_key_tables
