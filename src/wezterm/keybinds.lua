@@ -34,6 +34,8 @@ function module.apply_to_config(config)
     -- Clear scrollback and viewport
     -- { key = 'k',          mods = 'CMD',       action = wezterm.action.ClearScrollback 'ScrollbackAndViewport' },
 
+    -- Fix clipboard paste
+    { key = 'v',          mods = 'CMD',       action = wezterm.action.PasteFrom 'Clipboard' },
     -- Split pane horizontally
     { key = 'd',          mods = 'CMD|SHIFT', action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' } },
     -- Close pane
@@ -43,7 +45,8 @@ function module.apply_to_config(config)
     { key = 'RightArrow', mods = 'CMD|OPT',   action = wezterm.action.ActivatePaneDirection 'Right' },
     -- Copy Mode
     { key = 'c',          mods = 'CMD|SHIFT', action = wezterm.action.ActivateCopyMode },
-
+    -- Search history
+    { key = 'r',          mods = 'CMD|SHIFT', action = wezterm.action.SendKey { key = 'r', mods = 'OPT' } },
     -- Redo
     { key = 'z',          mods = 'CMD|SHIFT', action = wezterm.action.SendKey { key = 'z', mods = 'OPT' } },
     -- action = wezterm.action.SendString("\x1bz")
@@ -66,7 +69,6 @@ function module.apply_to_config(config)
   local copy_mode_keybinds = {
     { key = 'c', mods = 'CMD|SHIFT', action = wezterm.action.CopyMode 'Close' },
     { key = 'c', mods = 'CMD',       action = wezterm.action.Multiple { { CopyTo = 'ClipboardAndPrimarySelection' }, { CopyMode = 'Close' } } },
-
   }
 
   -- Copy Mode import default_key_tables
