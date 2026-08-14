@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 
 -- New windows geometry
 config.initial_cols = 212
-config.initial_rows = 28
+config.initial_rows = 24
 
 -- Font
 config.font_size = 14
@@ -15,7 +15,7 @@ wezterm.on('gui-startup', function()
   local tab, pane, window = wezterm.mux.spawn_window {
     position = {
       x = 0,
-      y = 955,
+      y = 960,
     }
   }
 end)
