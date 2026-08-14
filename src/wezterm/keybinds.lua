@@ -192,6 +192,91 @@ function module.apply_to_config(config)
       end),
     },
 
+    -- shift select by line home/end pageup/pagedown
+    {
+      key = 'Home',
+      mods = 'SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveToStartOfLine', pane)
+      end),
+    },
+    {
+      key = 'Home',
+      mods = 'NONE',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('MoveToStartOfLine'), pane)
+        SHIFT_ON = false
+      end),
+    },
+
+    {
+      key = 'End',
+      mods = 'SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveToEndOfLineContent', pane)
+      end),
+    },
+    {
+      key = 'End',
+      mods = 'NONE',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('MoveToEndOfLineContent'), pane)
+        SHIFT_ON = false
+      end),
+    },
+
+    {
+      key = 'PageUp',
+      mods = 'SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'PageUp', pane)
+      end),
+    },
+    {
+      key = 'PageUp',
+      mods = 'NONE',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('PageUp'), pane)
+        SHIFT_ON = false
+      end),
+    },
+
+    {
+      key = 'PageDown',
+      mods = 'SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'PageDown', pane)
+      end),
+    },
+    {
+      key = 'PageDown',
+      mods = 'NONE',
+      action = wezterm.action_callback(function(window, pane)
+        window:perform_action(act.CopyMode('ClearSelectionMode'), pane)
+        window:perform_action(act.CopyMode('PageDown'), pane)
+        SHIFT_ON = false
+      end),
+    },
+
   }
 
   -- Copy Mode import default_key_tables
