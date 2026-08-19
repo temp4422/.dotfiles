@@ -48,6 +48,26 @@ config.send_composed_key_when_left_alt_is_pressed = true
 -- Disable window title bar but enable the resizable border
 config.window_decorations = "RESIZE"
 
+-- Set tab title to directory
+function tab_title(tab_info)
+  local cwd = tab_info.active_pane.current_working_dir
+
+  if cwd and cwd.file_path then
+    return cwd.file_path:match('([^/]+)/?$') or cwd.file_path
+  end
+
+  return tab_info.active_pane.title
+end
+
+wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
+  local title = tab_title(tab)
+
+  return {
+    { Text = ' ' .. title .. ' ' }
+  }
+end
+)
+
 -- Keybinds
 local keybinds = require 'keybinds'
 keybinds.apply_to_config(config)
