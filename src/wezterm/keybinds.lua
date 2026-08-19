@@ -362,9 +362,29 @@ function module.apply_to_config(config)
       end),
     },
 
-    -- TODO select to scroll top/bottom
-    -- { key = 'g',          mods = 'NONE',  action = act.CopyMode 'MoveToScrollbackTop' },
-    -- { key = 'G',          mods = 'NONE',  action = act.CopyMode 'MoveToScrollbackBottom' },
+    -- shift select to top/bottom of buffer
+    {
+      key = 'Home',
+      mods = 'OPT|SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveToScrollbackTop', pane)
+      end),
+    },
+    {
+      key = 'End',
+      mods = 'OPT|SHIFT',
+      action = wezterm.action_callback(function(window, pane)
+        if not SHIFT_ON then
+          window:perform_action(act.CopyMode { SetSelectionMode = 'Cell' }, pane)
+          SHIFT_ON = true
+        end
+        window:perform_action(act.CopyMode 'MoveToScrollbackBottom', pane)
+      end),
+    }
 
   }
 
