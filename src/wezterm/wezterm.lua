@@ -45,6 +45,9 @@ config.enable_scroll_bar = true
 -- Allow Option key to compose symbols
 config.send_composed_key_when_left_alt_is_pressed = true
 
+-- Disable window title bar but enable the resizable border
+config.window_decorations = "RESIZE"
+
 -- Keybinds
 local keybinds = require 'keybinds'
 keybinds.apply_to_config(config)
