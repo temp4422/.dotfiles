@@ -37,6 +37,10 @@ function module.apply_to_config(config)
 
     -- Fix clipboard paste
     { key = 'v',          mods = 'CMD',       action = act.PasteFrom 'Clipboard' },
+    -- Copy Mode
+    { key = 'c',          mods = 'CMD|SHIFT', action = act.ActivateCopyMode },
+    -- New tab
+    { key = 't',          mods = 'CMD',       action = act.SpawnTab 'CurrentPaneDomain' },
     -- Split pane horizontally
     { key = 'd',          mods = 'CMD|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
     -- Close pane
@@ -44,8 +48,6 @@ function module.apply_to_config(config)
     -- Select pane
     { key = 'LeftArrow',  mods = 'CMD|OPT',   action = act.ActivatePaneDirection 'Left' },
     { key = 'RightArrow', mods = 'CMD|OPT',   action = act.ActivatePaneDirection 'Right' },
-    -- Copy Mode
-    { key = 'c',          mods = 'CMD|SHIFT', action = act.ActivateCopyMode },
     -- Search history
     { key = 'r',          mods = 'CMD|SHIFT', action = act.SendKey { key = 'r', mods = 'OPT' } },
     -- Redo
@@ -57,6 +59,16 @@ function module.apply_to_config(config)
     -- https://wezterm.org/config/keys.html#configuring-key-assignments
     -- https://wezterm.org/config/lua/keyassignment/SendString.html
 
+
+    -- Scroll buffer
+    { key = 'UpArrow',    mods = 'OPT',       action = act.ScrollByLine(-1) },
+    { key = 'DownArrow',  mods = 'OPT',       action = act.ScrollByLine(1) },
+
+    { key = 'PageUp',     mods = 'OPT',       action = act.ScrollByPage(-1) },
+    { key = 'PageDown',   mods = 'OPT',       action = act.ScrollByPage(1) },
+
+    { key = 'Home',       mods = 'OPT',       action = act.ScrollToTop },
+    { key = 'End',        mods = 'OPT',       action = act.ScrollToBottom },
 
   }
 
@@ -353,6 +365,7 @@ function module.apply_to_config(config)
     -- TODO select to scroll top/bottom
     -- { key = 'g',          mods = 'NONE',  action = act.CopyMode 'MoveToScrollbackTop' },
     -- { key = 'G',          mods = 'NONE',  action = act.CopyMode 'MoveToScrollbackBottom' },
+
   }
 
   -- Copy Mode import default_key_tables
