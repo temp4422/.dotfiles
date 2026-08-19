@@ -26,8 +26,10 @@ end)
 
 -- Cursor styles
 config.default_cursor_style = 'BlinkingBar'
-config.cursor_thickness = '4px'
+config.cursor_thickness = '3px'
 config.cursor_blink_rate = 500
+config.cursor_blink_ease_in = "Constant"
+config.cursor_blink_ease_out = "Constant"
 
 -- Pane styles
 -- Dim and desaturate inactive panes
