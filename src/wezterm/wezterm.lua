@@ -3,19 +3,23 @@ local wezterm = require 'wezterm'
 -- This will hold the configuration
 local config = wezterm.config_builder()
 
+-- Color scheme
+-- Abernathy, Afterglow, Andromeda, Apple System Colors, Apprentice (Gogh), Arthur, Ashes (base16), Atom, ayu, Breath Silverfox (Gogh), Brewer (base16)
+config.color_scheme = 'Brewer (base16)'
+
 -- New windows geometry
 config.initial_cols = 212
 config.initial_rows = 24
 
 -- Font
-config.font_size = 14
+config.font_size = 13
 
 -- Window position on startup
 wezterm.on('gui-startup', function()
   local tab, pane, window = wezterm.mux.spawn_window {
     position = {
       x = 0,
-      y = 960,
+      y = 1020,
     }
   }
 end)
