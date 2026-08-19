@@ -36,5 +36,8 @@ config.inactive_pane_hsb = {
 local keybinds = require 'keybinds'
 keybinds.apply_to_config(config)
 
+-- Allow Option key to compose symbols
+config.send_composed_key_when_left_alt_is_pressed = true
+
 -- Return configuration to wezterm
 return config
