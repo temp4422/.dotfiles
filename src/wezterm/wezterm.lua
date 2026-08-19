@@ -39,5 +39,8 @@ keybinds.apply_to_config(config)
 -- Allow Option key to compose symbols
 config.send_composed_key_when_left_alt_is_pressed = true
 
+-- Enable scroll bar
+config.enable_scroll_bar = true
+
 -- Return configuration to wezterm
 return config
