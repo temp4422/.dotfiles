@@ -1,5 +1,6 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
+
 -- This will hold the configuration
 local config = wezterm.config_builder()
 
@@ -38,15 +39,25 @@ config.inactive_pane_hsb = {
   brightness = 0.2,
 }
 
--- Keybinds
-local keybinds = require 'keybinds'
-keybinds.apply_to_config(config)
+-- Enable scroll bar
+config.enable_scroll_bar = true
 
 -- Allow Option key to compose symbols
 config.send_composed_key_when_left_alt_is_pressed = true
 
--- Enable scroll bar
-config.enable_scroll_bar = true
+-- Keybinds
+local keybinds = require 'keybinds'
+keybinds.apply_to_config(config)
+
+-- Plugins
+-- AI plugin
+-- Work, but got JSON parsing error inside plugin itself, need to be fixed.
+local ai_helper = wezterm.plugin.require 'https://github.com/Michal1993r/ai-helper.wezterm.git'
+ai_helper.apply_to_config(config, {
+  type = "ollama",
+  ollama_path = "/usr/local/bin/ollama",
+  model = "gemma4:e4b",
+})
 
 -- Return configuration to wezterm
 return config
