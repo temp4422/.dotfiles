@@ -35,6 +35,8 @@ function module.apply_to_config(config)
     -- Clear scrollback and viewport
     -- { key = 'k',          mods = 'CMD',       action = act.ClearScrollback 'ScrollbackAndViewport' },
 
+    -- Search
+    { key = 'f',          mods = 'CMD',       action = act.Search 'CurrentSelectionOrEmptyString' },
     -- Fix clipboard paste
     { key = 'v',          mods = 'CMD',       action = act.PasteFrom 'Clipboard' },
     -- Copy Mode
