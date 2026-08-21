@@ -1,4 +1,4 @@
--- ln -s ~/.dotfiles/src/init.lua ~/.hammerspoon/init.lua
+-- ln -s ~/.dotfiles/src/hammerspoon/init.lua ~/.hammerspoon/init.lua
 
 -- Source - https://superuser.com/a/1918149
 -- Posted by Ricky Boyce
