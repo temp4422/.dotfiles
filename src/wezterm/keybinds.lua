@@ -47,6 +47,8 @@ function module.apply_to_config(config)
     { key = 'd',          mods = 'CMD|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
     -- Close pane
     { key = 'w',          mods = 'CMD',       action = act.CloseCurrentPane { confirm = false } },
+    -- Quit App, cmd+shift+w set in karabiner to cmd+q
+    { key = 'q',          mods = 'CMD',       action = act.QuitApplication },
     -- Select pane
     { key = 'LeftArrow',  mods = 'CMD|OPT',   action = act.ActivatePaneDirection 'Left' },
     { key = 'RightArrow', mods = 'CMD|OPT',   action = act.ActivatePaneDirection 'Right' },
