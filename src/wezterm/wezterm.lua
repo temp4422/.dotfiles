@@ -48,15 +48,34 @@ config.send_composed_key_when_left_alt_is_pressed = true
 -- Disable window title bar but enable the resizable border
 config.window_decorations = "RESIZE"
 
--- Set tab title to directory
+-- Set tab title to directory, or "ssh <username>" when connected via SSH
 function tab_title(tab_info)
-  local cwd = tab_info.active_pane.current_working_dir
+  local pane = tab_info.active_pane
+
+  -- Detect SSH
+  if pane.foreground_process_name then
+    local process = pane.foreground_process_name:match('([^/]+)$')
+
+    if process == 'ssh' then
+      local title = pane.title
+      local username = title:match('^([^@]+)@')
+
+      if username then
+        return 'ssh ' .. username
+      end
+
+      return 'ssh'
+    end
+  end
+
+  -- Default: current working directory
+  local cwd = pane.current_working_dir
 
   if cwd and cwd.file_path then
     return cwd.file_path:match('([^/]+)/?$') or cwd.file_path
   end
 
-  return tab_info.active_pane.title
+  return pane.title
 end
 
 wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
@@ -65,8 +84,7 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
   return {
     { Text = ' ' .. title .. ' ' }
   }
-end
-)
+end)
 
 -- Disable quit prompt
 config.window_close_confirmation = 'NeverPrompt'
