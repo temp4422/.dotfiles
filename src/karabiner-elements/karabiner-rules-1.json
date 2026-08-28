@@ -565,7 +565,28 @@
       "description": "🔵 2 Finder modification to work as Windows File Explorer",
       "manipulators": [
         {
-          "description": "Finder f2 -> Rename: Set in Keyboard -> Shortcuts -> Finder -> Rename"
+          "description": "Finder f2 -> Rename: Set in System Settings -> Keyboard -> Shortcuts -> Finder -> Rename"
+        },
+        {
+          "description": "Finder cmd+backspace -> Move to Bin: Set in ~/.hammerspoon/init.lua",
+          "conditions": [
+            {
+              "type": "frontmost_application_if",
+              "bundle_identifiers": ["^com.apple.finder"]
+            }
+          ],
+          "from": {
+            "key_code": "delete_or_backspace",
+            "modifiers": {
+              "mandatory": ["right_command"]
+            }
+          },
+          "to": [
+            {
+              "key_code": "f18"
+            }
+          ],
+          "type": "basic"
         },
         {
           "description": "Finder enter -> Open: Set in ~/.hammerspoon/init.lua",
@@ -603,28 +624,7 @@
           ],
           "type": "basic"
         },
-        {
-          "description": "Finder super+backspace -> Move to Bin; Set in Keyboard -> Shortcuts -> Finder -> Move to Bin to ^+⌥+⌘+\\",
-          "conditions": [
-            {
-              "type": "frontmost_application_if",
-              "bundle_identifiers": ["^com.apple.finder"]
-            }
-          ],
-          "from": {
-            "key_code": "delete_or_backspace",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "key_code": "backslash",
-              "modifiers": ["left_control", "left_option", "left_command"]
-            }
-          ],
-          "type": "basic"
-        },
+
         {
           "description": "Set cmd+x -> cutMode=1",
           "conditions": [
