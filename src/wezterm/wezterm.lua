@@ -68,6 +68,9 @@ wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_wid
 end
 )
 
+-- Disable quit prompt
+config.window_close_confirmation = 'NeverPrompt'
+
 -- Keybinds
 local keybinds = require 'keybinds'
 keybinds.apply_to_config(config)

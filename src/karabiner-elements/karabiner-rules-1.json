@@ -1497,58 +1497,6 @@
           "type": "basic"
         },
         {
-          "description": "Click mouse left button x10 times",
-          "from": {
-            "key_code": "f12",
-            "modifiers": {
-              "mandatory": ["right_command"]
-            }
-          },
-          "to": [
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 100
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 100
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 100
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 100
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 100
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 100
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 100
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 100
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 100
-            },
-            {
-              "pointing_button": "button1",
-              "hold_down_milliseconds": 100
-            }
-          ],
-          "type": "basic"
-        },
-        {
           "description": "RemNote cmd+shift+f duplicate cmd+p",
           "conditions": [
             {

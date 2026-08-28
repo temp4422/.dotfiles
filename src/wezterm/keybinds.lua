@@ -41,12 +41,12 @@ function module.apply_to_config(config)
     { key = 'v',          mods = 'CMD',       action = act.PasteFrom 'Clipboard' },
     -- Copy Mode
     { key = 'c',          mods = 'CMD|SHIFT', action = act.ActivateCopyMode },
-    -- New tab
-    { key = 't',          mods = 'CMD',       action = act.SpawnTab 'CurrentPaneDomain' },
+    -- New tab in home dir
+    { key = "t",          mods = "CMD",       action = wezterm.action.SpawnCommandInNewTab { args = { os.getenv("SHELL"), "-l" }, cwd = os.getenv("HOME") } },
     -- Split pane horizontally
     { key = 'd',          mods = 'CMD|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
     -- Close pane
-    { key = 'w',          mods = 'CMD',       action = act.CloseCurrentPane { confirm = true } },
+    { key = 'w',          mods = 'CMD',       action = act.CloseCurrentPane { confirm = false } },
     -- Select pane
     { key = 'LeftArrow',  mods = 'CMD|OPT',   action = act.ActivatePaneDirection 'Left' },
     { key = 'RightArrow', mods = 'CMD|OPT',   action = act.ActivatePaneDirection 'Right' },
