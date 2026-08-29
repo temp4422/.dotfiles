@@ -95,12 +95,30 @@ keybinds.apply_to_config(config)
 
 -- Plugins
 -- AI plugin
--- Work, but got JSON parsing error inside plugin itself, need to be fixed.
 local ai_helper = wezterm.plugin.require 'https://github.com/Michal1993r/ai-helper.wezterm.git'
 ai_helper.apply_to_config(config, {
-  type = "ollama",
-  ollama_path = "/usr/local/bin/ollama",
+  -- type = "ollama",
+  -- api_url = "/usr/local/bin/ollama",
+  type = "http",
+  api_url = "http://localhost:11434/v1/chat/completions",
   model = "llama3.1:8b",
+  system_prompt = [[
+    You are a CLI and macOS assistant.
+
+    Answer directly and concisely.
+    For simple questions, give only the answer.
+
+    Return ONLY valid JSON with exactly two fields:
+
+    {
+      "message": "short explanation",
+      "command": "shell command or empty string"
+    }
+
+    Do not use Markdown.
+    Do not use code fences.
+    The command must be directly executable.
+    ]],
 })
 
 -- Return configuration to wezterm
