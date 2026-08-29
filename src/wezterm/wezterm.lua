@@ -100,7 +100,7 @@ local ai_helper = wezterm.plugin.require 'https://github.com/Michal1993r/ai-help
 ai_helper.apply_to_config(config, {
   type = "ollama",
   ollama_path = "/usr/local/bin/ollama",
-  model = "gemma4:e4b",
+  model = "llama3.1:8b",
 })
 
 -- Return configuration to wezterm
