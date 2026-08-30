@@ -90,6 +90,9 @@ end)
 config.window_close_confirmation = 'NeverPrompt'
 
 -- Keybinds
+-- Set the Global Preference to Physical keybinds; Fix input/layout-independent keybinds
+config.key_map_preference = 'Physical'
+-- Set keybinds in keybinds.lua
 local keybinds = require 'keybinds'
 keybinds.apply_to_config(config)
 
