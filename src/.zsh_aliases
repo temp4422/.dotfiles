@@ -48,3 +48,6 @@ alias live-server='live-server --port=3000 --no-browser'
 
 # systemctl
 alias s='systemctl'
+
+# ollama
+alias o='ollama'
