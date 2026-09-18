@@ -10,6 +10,10 @@ My macOS productivity setup: terminal, shell, editors, browsers, keybindings, an
 
 ## macOS
 
+### Set my custom keyboard layout with Ukelele
+
+Copy `ENG.bundle` and `UKR.bundle` into `/Users/user/Library/Keyboard Layouts/` folder
+
 ### Install Homebrew and apps
 
 ```bash
