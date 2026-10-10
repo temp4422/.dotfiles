@@ -974,7 +974,7 @@
           },
           "to": [
             {
-              "shell_command": "open -b com.google.Chrome.app.cadlkienfkclaiaibeoongdcgmdikeeg"
+              "shell_command": "open -b com.openai.codex"
             }
           ],
           "type": "basic"
