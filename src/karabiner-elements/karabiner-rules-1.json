@@ -1377,7 +1377,7 @@
             },
             {
               "shell_command": "open -b com.google.Chrome.app.edanbjnaiofggfmimiidpfmhggkbokck",
-              "hold_down_milliseconds": 250
+              "hold_down_milliseconds": 500
             },
             {
               "key_code": "slash"
